@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu;
 
 import com.mojang.logging.LogUtils;
+import huase.xiuxianzhilu.configs.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
