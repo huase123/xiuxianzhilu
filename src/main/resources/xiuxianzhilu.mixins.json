@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "huase.xiuxianzhilu.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "xiuxianzhilu.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
