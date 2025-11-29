@@ -121,3 +121,5 @@ run/
 /run-data/defaultconfigs/
 /run-data/logs/
 /run-data/mods/
+/src/generated/resources/data/
+/src/generated/resources/.cache/
