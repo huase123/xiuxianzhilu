@@ -40,12 +40,13 @@ public class RegisterCapabilitys {
 
     //    实体增加Capabilities事件
     @SubscribeEvent
-    public static void onAttachCapabilities(AttachCapabilitiesEvent<Player> event)
+    public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event)
     {
+        if (event.getObject() instanceof Player player) {
             event.addCapability(new ResourceLocation(ModMain.MOD_ID, "playercapability"),
-                    new CapabilityProvider(new PlayerCapability(event.getObject()))
+                    new CapabilityProvider(new PlayerCapability(player))
             );
-
+        }
     }
 
     //    实体增加Capabilities事件

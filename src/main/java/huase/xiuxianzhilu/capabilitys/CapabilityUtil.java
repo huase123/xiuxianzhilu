@@ -27,7 +27,7 @@ public class CapabilityUtil {
     }
 
     public static AttributeBase getCapability(ICapabilityProvider capabilityProvider) {
-        if(capabilityProvider == null)return null;
+//        if(capabilityProvider == null)return null;
         if(capabilityProvider instanceof Player)return capabilityProvider.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElse(null);
         if(capabilityProvider instanceof LivingEntity)return capabilityProvider.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).orElse(null);
         return null;
