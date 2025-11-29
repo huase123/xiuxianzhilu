@@ -6,7 +6,12 @@ import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
+import huase.xiuxianzhilu.worlds.BiomeSources.REBiomeSource;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.level.block.Blocks;
@@ -22,9 +27,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ModMain.MODID)
@@ -60,9 +67,13 @@ public class ModMain {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
 
+        modEventBus.addListener(this::registerExtraStuff);
         changeAttributesIO();
     }
 
+    public static ResourceLocation prefix(String name) {
+        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
+    }
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
@@ -83,6 +94,18 @@ public class ModMain {
         LOGGER.info("HELLO from server starting");
     }
 
+    public void registerExtraStuff(RegisterEvent evt) {
+        if (evt.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
+            Registry.register(BuiltInRegistries.BIOME_SOURCE, prefix("xiuxiuzhilu_biomes"), REBiomeSource.CODEC);
+//            Registry.register(BuiltInRegistries.BIOME_SOURCE, TwilightForestMod.prefix("twilight_biomes"), TFBiomeProvider.TF_CODEC);
+//            Registry.register(BuiltInRegistries.BIOME_SOURCE, TwilightForestMod.prefix("landmarks"), LandmarkBiomeSource.CODEC);
+        } else if (evt.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
+//            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, prefix("structure_locating_wrapper"), REChunkGenerator.CODEC);
+//            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, TwilightForestMod.prefix("structure_locating_wrapper"), ChunkGeneratorTwilight.CODEC);
+        } else if (evt.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
+//            CraftingHelper.register(UncraftingTableCondition.Serializer.INSTANCE);
+        }
+    }
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {

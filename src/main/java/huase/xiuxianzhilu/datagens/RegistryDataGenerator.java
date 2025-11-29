@@ -6,6 +6,7 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.worlds.levelstem.REDimensionSettings;
 import huase.xiuxianzhilu.worlds.worldpresets.REWorldPresets;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -39,6 +40,9 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 //                .add(Registries.DENSITY_FUNCTION, NoiseRouterData::bootstrap)
 //                .add(Registries.NOISE_SETTINGS, NoiseGeneratorSettings::bootstrap)
 //                .add(Registries.WORLD_PRESET, WorldPresets::bootstrap)
+                .add(Registries.DIMENSION_TYPE, REDimensionSettings::bootstrapType)
+                .add(Registries.NOISE_SETTINGS, REDimensionSettings::bootstrapNoise)
+                .add(Registries.LEVEL_STEM, REDimensionSettings::bootstrapStem)
                 .add(Registries.WORLD_PRESET, REWorldPresets::bootstrap)
 //                .add(Registries.FLAT_LEVEL_GENERATOR_PRESET, FlatLevelGeneratorPresets::bootstrap)
 //                .add(Registries.CHAT_TYPE, ChatType::bootstrap)
