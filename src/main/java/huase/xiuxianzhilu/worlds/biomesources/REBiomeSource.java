@@ -1,4 +1,4 @@
-package huase.xiuxianzhilu.worlds.BiomeSources;
+package huase.xiuxianzhilu.worlds.biomesources;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;

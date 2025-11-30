@@ -6,7 +6,7 @@ import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
-import huase.xiuxianzhilu.worlds.BiomeSources.REBiomeSource;
+import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;

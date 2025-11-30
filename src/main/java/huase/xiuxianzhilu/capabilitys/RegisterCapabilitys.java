@@ -8,7 +8,6 @@ import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.network.NetworkHandler;
 import huase.xiuxianzhilu.network.SynsAPI;
 import huase.xiuxianzhilu.network.client.CPacketCapability;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -43,7 +42,7 @@ public class RegisterCapabilitys {
     public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event)
     {
         if (event.getObject() instanceof Player player) {
-            event.addCapability(new ResourceLocation(ModMain.MOD_ID, "playercapability"),
+            event.addCapability(ModMain.prefix("playercapability"),
                     new CapabilityProvider(new PlayerCapability(player))
             );
         }

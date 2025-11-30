@@ -24,7 +24,6 @@ import huase.xiuxianzhilu.network.client.CPacketCapability;
 import huase.xiuxianzhilu.network.server.SPacketCapability;
 import huase.xiuxianzhilu.network.server.SPacketEntityAttribute;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -43,7 +42,7 @@ public class NetworkHandler {
 
   public static void register() {
 
-    INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ModMain.MOD_ID, "main"))
+    INSTANCE = NetworkRegistry.ChannelBuilder.named(ModMain.prefix("main"))
         .networkProtocolVersion(() -> PTC_VERSION).clientAcceptedVersions(PTC_VERSION::equals)
         .serverAcceptedVersions(PTC_VERSION::equals).simpleChannel();
 

@@ -1,7 +1,7 @@
 package huase.xiuxianzhilu.worlds.levelstem;
 
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.worlds.BiomeSources.REBiomeSource;
+import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
