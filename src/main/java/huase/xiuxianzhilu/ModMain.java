@@ -7,6 +7,8 @@ import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
 import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
+import huase.xiuxianzhilu.worlds.levelstem.REDimensionSettings;
+import huase.xiuxianzhilu.worlds.structures.StructuresInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -56,6 +58,12 @@ public class ModMain {
         // Register the Deferred Register to the mod event bus so tabs get registered
         CreativeModeTabInit.CREATIVE_MODE_TABS.register(modEventBus);
 
+
+        REDimensionSettings.BIOME_SOURCE_TYPE_REGISTRIES.register(modEventBus);
+
+        StructuresInit.STRUCTURE_PIECE_TYPE_Registries.register(modEventBus);
+        StructuresInit.STRUCTURE_TYPE_Registries.register(modEventBus);
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -67,12 +75,12 @@ public class ModMain {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
 
-        modEventBus.addListener(this::registerExtraStuff);
+//        modEventBus.addListener(this::registerExtraStuff);
         changeAttributesIO();
     }
 
     public static ResourceLocation prefix(String name) {
-        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
+        return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
@@ -104,8 +112,12 @@ public class ModMain {
 //            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, TwilightForestMod.prefix("structure_locating_wrapper"), ChunkGeneratorTwilight.CODEC);
         } else if (evt.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
 //            CraftingHelper.register(UncraftingTableCondition.Serializer.INSTANCE);
+        } else if (evt.getRegistryKey().equals(ForgeRegistries.Keys.CHUNK_STATUS)) {
+
         }
     }
+
+
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
