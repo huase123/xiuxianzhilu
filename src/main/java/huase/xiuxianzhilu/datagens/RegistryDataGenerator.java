@@ -6,9 +6,14 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.worlds.levelstem.REDimensionSettings;
+import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
+import huase.xiuxianzhilu.worlds.dimensiontype.DimensionTypeGen;
+import huase.xiuxianzhilu.worlds.levelstem.LevelStemGen;
+import huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists.MultiNoiseBiomeSourceParameterListGen;
+import huase.xiuxianzhilu.worlds.noisegeneratorsettings.NoiseGeneratorSettingsGen;
+import huase.xiuxianzhilu.worlds.noises.NoiseGen;
 import huase.xiuxianzhilu.worlds.structures.StructuresInit;
-import huase.xiuxianzhilu.worlds.worldpresets.REWorldPresets;
+import huase.xiuxianzhilu.worlds.worldpresets.WorldPresetsGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -36,6 +41,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 //                .add(Registries.PROCESSOR_LIST, ProcessorLists::bootstrap)
 //                .add(Registries.TEMPLATE_POOL, Pools::bootstrap)
 //                .add(Registries.BIOME, BiomeData::bootstrap)
+                .add(Registries.BIOME, BiomesInit::bootstrap)
 //                .add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, MultiNoiseBiomeSourceParameterLists::bootstrap)
 //                .add(Registries.NOISE, NoiseData::bootstrap)
 //                .add(Registries.DENSITY_FUNCTION, NoiseRouterData::bootstrap)
@@ -47,10 +53,13 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 
 
 
-                .add(Registries.DIMENSION_TYPE, REDimensionSettings::bootstrapType)
-                .add(Registries.NOISE_SETTINGS, REDimensionSettings::bootstrapNoise)
-                .add(Registries.LEVEL_STEM, REDimensionSettings::bootstrapStem)
-                .add(Registries.WORLD_PRESET, REWorldPresets::bootstrap)
+                .add(Registries.NOISE, NoiseGen::bootstrap)
+
+                .add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, MultiNoiseBiomeSourceParameterListGen::bootstrap)
+                .add(Registries.NOISE_SETTINGS, NoiseGeneratorSettingsGen::bootstrapNoise)
+                .add(Registries.DIMENSION_TYPE, DimensionTypeGen::bootstrapType)
+                .add(Registries.LEVEL_STEM, LevelStemGen::bootstrapStem)
+                .add(Registries.WORLD_PRESET, WorldPresetsGen::bootstrap)
 //                .add(Registries.FLAT_LEVEL_GENERATOR_PRESET, FlatLevelGeneratorPresets::bootstrap)
 //                .add(Registries.CHAT_TYPE, ChatType::bootstrap)
 //                .add(Registries.TRIM_PATTERN, TrimPatterns::bootstrap)

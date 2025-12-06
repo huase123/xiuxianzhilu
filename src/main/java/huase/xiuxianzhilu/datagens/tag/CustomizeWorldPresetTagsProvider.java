@@ -1,7 +1,7 @@
 package huase.xiuxianzhilu.datagens.tag;
 
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.worlds.worldpresets.REWorldPresets;
+import huase.xiuxianzhilu.worlds.worldpresets.WorldPresetsGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.WorldPresetTagsProvider;
@@ -19,7 +19,7 @@ public class CustomizeWorldPresetTagsProvider extends WorldPresetTagsProvider {
     }
 
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(WorldPresetTags.NORMAL).add(REWorldPresets.XIUXIANZHILU);
+        this.tag(WorldPresetTags.NORMAL).add(WorldPresetsGen.XIUXIANZHILU);
 //        this.tag(WorldPresetTags.EXTENDED).addTag(WorldPresetTags.NORMAL).add(WorldPresets.DEBUG);
     }
 }

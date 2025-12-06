@@ -6,8 +6,10 @@ import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
+import huase.xiuxianzhilu.worlds.biomesources.BiomeSourceInit;
 import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
-import huase.xiuxianzhilu.worlds.levelstem.REDimensionSettings;
+import huase.xiuxianzhilu.worlds.chunkgenerators.ChunkGeneratorInti;
+import huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists.MultiNoiseBiomeSourceParameterListGen;
 import huase.xiuxianzhilu.worlds.structures.StructuresInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
@@ -16,6 +18,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -59,7 +62,8 @@ public class ModMain {
         CreativeModeTabInit.CREATIVE_MODE_TABS.register(modEventBus);
 
 
-        REDimensionSettings.BIOME_SOURCE_TYPE_REGISTRIES.register(modEventBus);
+        BiomeSourceInit.BIOME_SOURCE_TYPE_REGISTRIES.register(modEventBus);
+        ChunkGeneratorInti.CHUNK_GENERATOR_REGISTRIES.register(modEventBus);
 
         StructuresInit.STRUCTURE_PIECE_TYPE_Registries.register(modEventBus);
         StructuresInit.STRUCTURE_TYPE_Registries.register(modEventBus);
@@ -77,6 +81,13 @@ public class ModMain {
 
 //        modEventBus.addListener(this::registerExtraStuff);
         changeAttributesIO();
+
+/**
+ * TODO 功能描述：原版群系分布修改功能需要
+ * @author :huase
+ * @date 2025/12/7 5:29
+ */
+        MultiNoiseBiomeSourceParameterList.Preset.BY_NAME.put(MultiNoiseBiomeSourceParameterListGen.xiexianjiemultinoisebiome.id(),MultiNoiseBiomeSourceParameterListGen.xiexianjiemultinoisebiome);
     }
 
     public static ResourceLocation prefix(String name) {

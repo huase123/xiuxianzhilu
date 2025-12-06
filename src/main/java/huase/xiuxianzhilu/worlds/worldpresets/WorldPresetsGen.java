@@ -1,7 +1,7 @@
 package huase.xiuxianzhilu.worlds.worldpresets;
 
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.worlds.levelstem.REDimensionSettings;
+import huase.xiuxianzhilu.worlds.levelstem.LevelStemGen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * - @description:WorldPresets类
  */
-public class REWorldPresets {
+public class WorldPresetsGen {
     public static final ResourceKey<WorldPreset> XIUXIANZHILU = ResourceKey.create(Registries.WORLD_PRESET, ModMain.prefix("xiuxianzhilu"));
 
     public static void bootstrap(BootstapContext<WorldPreset> pContext) {
@@ -33,7 +33,7 @@ public class REWorldPresets {
         pContext.register(XIUXIANZHILU,new WorldPreset(Map.of(
                 LevelStem.OVERWORLD,
                 new LevelStem(holder, new NoiseBasedChunkGenerator(TheEndBiomeSource.create(biomes), noiseSettings.getOrThrow(NoiseGeneratorSettings.END))),
-                REDimensionSettings.XIUXIANJIE,
+                LevelStemGen.XIUXIANJIE,
                 new LevelStem(holder, new NoiseBasedChunkGenerator(TheEndBiomeSource.create(biomes), noiseSettings.getOrThrow(NoiseGeneratorSettings.END)))
         )));
     }
