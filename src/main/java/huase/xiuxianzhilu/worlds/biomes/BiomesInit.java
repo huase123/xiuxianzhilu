@@ -2,10 +2,18 @@ package huase.xiuxianzhilu.worlds.biomes;
 
 import huase.xiuxianzhilu.ModMain;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.sounds.Musics;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -14,13 +22,29 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
  */
 public class BiomesInit {
 
-    public static final ResourceKey<Biome> FOREST = makeKey("forest");
-    public static final ResourceKey<Biome> DENSE_FOREST = makeKey("dense_forest");
-    public static final ResourceKey<Biome> FIREFLY_FOREST = makeKey("firefly_forest");
-    public static final ResourceKey<Biome> CLEARING = makeKey("clearing");
-    public static final ResourceKey<Biome> OAK_SAVANNAH = makeKey("oak_savannah");
-    public static final ResourceKey<Biome> STREAM = makeKey("stream");
-    public static final ResourceKey<Biome> LAKE = makeKey("lake");
+
+    public static final ResourceKey<Biome> ZHUJI_BIOME1 = makeKey("zhuji_biome1");
+    public static final ResourceKey<Biome> ZHUJI_BIOME2 = makeKey("zhuji_biome2");
+
+    public static final ResourceKey<Biome> JINDAN_BIOME1 = makeKey("jindan_biome1");
+    public static final ResourceKey<Biome> JINDAN_BIOME2 = makeKey("jindan_biome2");
+    public static final ResourceKey<Biome> JINDAN_BIOME3 = makeKey("jindan_biome3");
+
+    public static final ResourceKey<Biome> YUANYIN_BIOME1 = makeKey("yuanyin_biome1");
+    public static final ResourceKey<Biome> YUANYIN_BIOME2 = makeKey("yuanyin_biome2");
+    public static final ResourceKey<Biome> YUANYIN_BIOME3 = makeKey("yuanyin_biome3");
+
+    public static final ResourceKey<Biome> HUASHEN_BIOME1 = makeKey("huashen_biome1");
+    public static final ResourceKey<Biome> HUASHEN_BIOME2 = makeKey("huashen_biome2");
+    public static final ResourceKey<Biome> HUASHEN_BIOME3 = makeKey("huashen_biome3");
+
+    public static final ResourceKey<Biome> JIN_BIOME    = makeKey("jin_biome");
+    public static final ResourceKey<Biome> MU_BIOME     = makeKey("mu_biome");
+    public static final ResourceKey<Biome> SHUI_BIOME   = makeKey("shui_biome");
+    public static final ResourceKey<Biome> HUO_BIOME    = makeKey("huo_biome");
+    public static final ResourceKey<Biome> TU_BIOME     = makeKey("tu_biome");
+
+
     private static ResourceKey<Biome> makeKey(String name) {
         return ResourceKey.create(Registries.BIOME, ModMain.prefix(name));
     }
@@ -28,7 +52,93 @@ public class BiomesInit {
     public static void bootstrap(BootstapContext<Biome> context) {
         HolderGetter<PlacedFeature> featureGetter = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
-//        context.register(FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), defaultMobSpawning(), twilightForestGen(featureGetter, carverGetter)).build());
-//        context.register(DENSE_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()).waterColor(0x005522), defaultMobSpawning(), denseForestGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.8F).build());
+        context.register(ZHUJI_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(ZHUJI_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+
+        context.register(JINDAN_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd9c)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(JINDAN_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd9c)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(JINDAN_BIOME3, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd9c)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+
+        context.register(YUANYIN_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fde4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(YUANYIN_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fde4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(YUANYIN_BIOME3, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fde4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+
+        context.register(HUASHEN_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x017dfbf4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(HUASHEN_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x017dfbf4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(HUASHEN_BIOME3, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x017dfbf4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+
+
+        context.register(JIN_BIOME  , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x01ffea00)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(MU_BIOME   , biomeWithDefaults(fireflyParticles   (defaultSHAmbientBuilder(0x013cff00)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(SHUI_BIOME , biomeWithDefaults(fireflyParticles (defaultSHAmbientBuilder(0x016faffe)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(HUO_BIOME  , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x01c4360f)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(TU_BIOME   , biomeWithDefaults(fireflyParticles   (defaultSHAmbientBuilder(0x01925f36)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
     }
+
+    public static Biome.BiomeBuilder biomeWithDefaults(BiomeSpecialEffects.Builder biomeAmbience, MobSpawnSettings.Builder mobSpawnInfo, BiomeGenerationSettings.Builder biomeGenerationSettings) {
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(0.5F)
+                .downfall(0.5F)
+                .specialEffects(biomeAmbience.build())
+                .mobSpawnSettings(mobSpawnInfo.build())
+                .generationSettings(biomeGenerationSettings.build())
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE);
+    }
+
+
+    public static BiomeSpecialEffects.Builder fireflyParticles(BiomeSpecialEffects.Builder builder) {
+//        builder.ambientParticle(new AmbientParticleSettings(SHParticleType.WANDERING_FIREFLY.get(), 0.005f));
+		builder.ambientParticle(new AmbientParticleSettings(ParticleTypes.WHITE_ASH, 0.05f));
+        return builder;
+    }
+
+
+
+    public static BiomeSpecialEffects.Builder defaultSHAmbientBuilder(int color) {
+        return new BiomeSpecialEffects.Builder()
+                .waterColor(color)
+                .waterFogColor(color)
+                .fogColor(0x01afaffe)
+                .skyColor(0x019f9ffe)
+                .foliageColorOverride(color)
+                .grassColorOverride(color)
+                .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS) // We should probably change it
+                .backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_NETHER_WASTES));
+
+    }
+
+
+
+
+    public static MobSpawnSettings.Builder defaultSpawning() {
+        MobSpawnSettings.Builder spawnInfo = new MobSpawnSettings.Builder();
+        spawnInfo.creatureGenerationProbability(0.004f);
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.CHICKEN, 10, 4, 4));
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 5, 4, 4));
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 4, 2, 3));
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.FROG, 10, 2, 5));
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.SHEEP, 12, 4, 4));
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.PIG, 10, 4, 4));
+        spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.COW, 8, 4, 4));
+        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 5, 1, 1));
+//        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.xiushientity.get(), 1, 1, 1));
+        spawnInfo.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 100, 4, 8));
+        return spawnInfo;
+    }
+
+
+    public static BiomeGenerationSettings.Builder defaultGenSettingBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+        BiomeDefaultFeatures.addDefaultSoftDisks(biome);
+        BiomeDefaultFeatures.addForestGrass(biome);
+        BiomeDefaultFeatures.addSavannaGrass(biome);
+        BiomeDefaultFeatures.addDefaultGrass(biome);
+        BiomeDefaultFeatures.addSavannaExtraGrass(biome);
+        biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
+        BiomeDefaultFeatures.addSurfaceFreezing(biome);
+        return biome;
+    }
+
 }

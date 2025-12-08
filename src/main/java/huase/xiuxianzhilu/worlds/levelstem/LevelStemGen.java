@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.worlds.levelstem;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
 import huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists.MultiNoiseBiomeSourceParameterListGen;
+import huase.xiuxianzhilu.worlds.noisegeneratorsettings.NoiseGeneratorSettingsGen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -34,6 +35,7 @@ public class LevelStemGen {
         MultiNoiseBiomeSource multiNoiseBiomeSource = MultiNoiseBiomeSource.createFromPreset(reference);
         REBiomeSource reBiomeSource = new REBiomeSource(biomeRegistry.getOrThrow(Biomes.PLAINS));
 
+        Holder<NoiseGeneratorSettings> xiuxinjie = context.lookup(Registries.NOISE_SETTINGS).getOrThrow(NoiseGeneratorSettingsGen.xiuxianzhilu_noisegeneratorsetting);
         Holder<NoiseGeneratorSettings> holder = context.lookup(Registries.NOISE_SETTINGS).getOrThrow(NoiseGeneratorSettings.OVERWORLD);
         Holder<NoiseGeneratorSettings> CAVES = context.lookup(Registries.NOISE_SETTINGS).getOrThrow(NoiseGeneratorSettings.CAVES);
         Holder<NoiseGeneratorSettings> FLOATING_ISLANDS = context.lookup(Registries.NOISE_SETTINGS).getOrThrow(NoiseGeneratorSettings.FLOATING_ISLANDS);

@@ -7,6 +7,7 @@ package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
+import huase.xiuxianzhilu.worlds.densityfunctions.DensityFunctionGen;
 import huase.xiuxianzhilu.worlds.dimensiontype.DimensionTypeGen;
 import huase.xiuxianzhilu.worlds.levelstem.LevelStemGen;
 import huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists.MultiNoiseBiomeSourceParameterListGen;
@@ -45,6 +46,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 //                .add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, MultiNoiseBiomeSourceParameterLists::bootstrap)
 //                .add(Registries.NOISE, NoiseData::bootstrap)
 //                .add(Registries.DENSITY_FUNCTION, NoiseRouterData::bootstrap)
+                .add(Registries.DENSITY_FUNCTION, DensityFunctionGen::bootstrap)
 //                .add(Registries.NOISE_SETTINGS, NoiseGeneratorSettings::bootstrap)
 //                .add(Registries.WORLD_PRESET, WorldPresets::bootstrap)
 

@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
 import net.minecraft.SharedConstants;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -52,11 +53,38 @@ public class MultiNoiseBiomeSourceParameterListGen {
         if (SharedConstants.debugGenerateSquareTerrainWithoutNoise) {
             this.addDebugBiomes(pKey);
         } else {
-            this.addDebugBiomes(pKey);
+            this.addbugBiomes(pKey);
 //            this.addOffCoastBiomes(pKey);
 //            this.addInlandBiomes(pKey);
 //            this.addUndergroundBiomes(pKey);
         }
+    }
+
+    private void addbugBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pKey) {
+//        addbiomesDemo(pKey,-1.0f,BiomesInit.JIN_BIOME);
+//        addbiomesDemo(pKey,-0.5f,BiomesInit.MU_BIOME);
+//        addbiomesDemo(pKey,0.0f,BiomesInit.SHUI_BIOME);
+//        addbiomesDemo(pKey,0.5f,BiomesInit.HUO_BIOME);
+//        addbiomesDemo(pKey,1.0f,BiomesInit.TU_BIOME);
+
+
+        pKey.accept(Pair.of(Climate.parameters(temperatures[0], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.JIN_BIOME  ));
+        pKey.accept(Pair.of(Climate.parameters(temperatures[1], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.MU_BIOME   ));
+        pKey.accept(Pair.of(Climate.parameters(temperatures[2], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.SHUI_BIOME ));
+        pKey.accept(Pair.of(Climate.parameters(temperatures[3], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.HUO_BIOME  ));
+        pKey.accept(Pair.of(Climate.parameters(temperatures[4], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.TU_BIOME   ));
+    }
+
+    private void addbiomesDemo(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pKey, float v, ResourceKey<Biome> jinBiome) {
+        pKey.accept(Pair.of(Climate.parameters(
+                Climate.Parameter.point(v),
+                Climate.Parameter.point(v),
+                this.FULL_RANGE,
+                this.FULL_RANGE,
+                this.FULL_RANGE,
+                this.FULL_RANGE,
+                0.0F
+        ), jinBiome));
     }
 
     private void addDebugBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pKey) {
