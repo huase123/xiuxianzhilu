@@ -6,6 +6,7 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiuJingjieInit;
 import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
 import huase.xiuxianzhilu.worlds.densityfunctions.DensityFunctionGen;
 import huase.xiuxianzhilu.worlds.dimensiontype.DimensionTypeGen;
@@ -62,6 +63,9 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
                 .add(Registries.DIMENSION_TYPE, DimensionTypeGen::bootstrapType)
                 .add(Registries.LEVEL_STEM, LevelStemGen::bootstrapStem)
                 .add(Registries.WORLD_PRESET, WorldPresetsGen::bootstrap)
+
+
+                .add(LingxiuJingjieInit.LINGXIUJINGJIE_KEY, LingxiuJingjieInit::bootstrap)
 //                .add(Registries.FLAT_LEVEL_GENERATOR_PRESET, FlatLevelGeneratorPresets::bootstrap)
 //                .add(Registries.CHAT_TYPE, ChatType::bootstrap)
 //                .add(Registries.TRIM_PATTERN, TrimPatterns::bootstrap)

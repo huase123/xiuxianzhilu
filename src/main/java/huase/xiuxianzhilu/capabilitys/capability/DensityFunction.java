@@ -9,9 +9,9 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
  * - @description:DensityFunction类
  */
 public class DensityFunction {
-    public long time = 0;
-    public long dazuo = 0;
-    public long danyao = 0;
+    public double time = 0;
+    public double dazuo = 0;
+    public double danyao = 0;
     PlayerCapability playerCapability;
     NormalNoise normalNoise;
     Player player;
@@ -29,7 +29,7 @@ public class DensityFunction {
         time++;
     }
 
-    public void synchronize(long time, long dazuo, long danyao) {
+    public void synchronize(double time, double dazuo, double danyao) {
         this.time = time;
         this.dazuo = dazuo;
         this.danyao = danyao;

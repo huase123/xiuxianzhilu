@@ -33,9 +33,9 @@ import java.util.function.Supplier;
 public class DensityFunctionPacketCapability {
 
   private int entityId;
-  public long time;
-  public long dazuo;
-  public long danyao;
+  public double time;
+  public double dazuo;
+  public double danyao;
   public DensityFunctionPacketCapability(int entityId, DensityFunction densityFunction) {
     this.entityId = entityId;
     this.time = densityFunction.time;
@@ -43,7 +43,7 @@ public class DensityFunctionPacketCapability {
     this.danyao = densityFunction.danyao;
   }
 
-  public DensityFunctionPacketCapability(int entityId, long time, long dazuo, long danyao) {
+  public DensityFunctionPacketCapability(int entityId, double time, double dazuo, double danyao) {
     this.entityId = entityId;
     this.time = time;
     this.dazuo = dazuo;
@@ -52,9 +52,9 @@ public class DensityFunctionPacketCapability {
 
   public static void encode(DensityFunctionPacketCapability msg, FriendlyByteBuf buf) {
     buf.writeInt(msg.entityId);
-    buf.writeLong(msg.time);
-    buf.writeLong(msg.dazuo);
-    buf.writeLong(msg.danyao);
+    buf.writeDouble(msg.time);
+    buf.writeDouble(msg.dazuo);
+    buf.writeDouble(msg.danyao);
   }
 
   public static DensityFunctionPacketCapability decode(FriendlyByteBuf buf) {
