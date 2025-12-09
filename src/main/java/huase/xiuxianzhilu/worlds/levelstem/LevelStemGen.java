@@ -42,7 +42,7 @@ public class LevelStemGen {
 
         NoiseBasedChunkGenerator wrappedChunkGenerator = new NoiseBasedChunkGenerator(
                 multiNoiseBiomeSource,
-                holder
+                xiuxinjie
         );
 
         LevelStem stem = new LevelStem(

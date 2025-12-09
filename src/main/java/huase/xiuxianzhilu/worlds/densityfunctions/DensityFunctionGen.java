@@ -73,6 +73,7 @@ public class DensityFunctionGen {
 
     private static final ResourceKey<DensityFunction> temperature = createKey("xiuxianjietemperature");
     private static final ResourceKey<DensityFunction> vegetation = createKey("xiuxianjievegetation");
+
     private static final ResourceKey<DensityFunction> continents = createKey("xiuxianjiecontinents");
     private static final ResourceKey<DensityFunction> erosion = createKey("xiuxianjieerosion");
     private static final ResourceKey<DensityFunction> ridges = createKey("xiuxianjieridges");
@@ -120,12 +121,12 @@ public class DensityFunctionGen {
         pContext.register(BASE_3D_NOISE_OVERWORLD, BlendedNoise.createUnseeded(0.25D, 0.125D, 80.0D, 160.0D, 8.0D));
         pContext.register(BASE_3D_NOISE_NETHER, BlendedNoise.createUnseeded(0.25D, 0.375D, 80.0D, 60.0D, 8.0D));
         pContext.register(BASE_3D_NOISE_END, BlendedNoise.createUnseeded(0.25D, 0.25D, 80.0D, 160.0D, 4.0D));
-        Holder<DensityFunction> holder = pContext.register(CONTINENTS, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.CONTINENTALNESS))));
-        Holder<DensityFunction> holder1 = pContext.register(EROSION, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.EROSION))));
-        DensityFunction densityfunction2 = registerAndWrap(pContext, RIDGES, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.RIDGE))));
+        Holder<DensityFunction> holder = pContext.register(continents, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.CONTINENTALNESS))));
+        Holder<DensityFunction> holder1 = pContext.register(erosion, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.EROSION))));
+        DensityFunction densityfunction2 = registerAndWrap(pContext, ridges, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.RIDGE))));
         pContext.register(RIDGES_FOLDED, peaksAndValleys(densityfunction2));
         DensityFunction densityfunction3 = DensityFunctions.noise(holdergetter.getOrThrow(Noises.JAGGED), 1500.0D, 0.0D);
-        registerTerrainNoises(pContext, densityFunctionHolderGetter, densityfunction3, holder, holder1, OFFSET, FACTOR, JAGGEDNESS, DEPTH, SLOPED_CHEESE, false);
+        registerTerrainNoises(pContext, densityFunctionHolderGetter, densityfunction3, holder, holder1, OFFSET, FACTOR, JAGGEDNESS, depth, SLOPED_CHEESE, false);
         Holder<DensityFunction> holder2 = pContext.register(CONTINENTS_LARGE, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.CONTINENTALNESS_LARGE))));
         Holder<DensityFunction> holder3 = pContext.register(EROSION_LARGE, DensityFunctions.flatCache(DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25D, holdergetter.getOrThrow(Noises.EROSION_LARGE))));
         registerTerrainNoises(pContext, densityFunctionHolderGetter, densityfunction3, holder2, holder3, OFFSET_LARGE, FACTOR_LARGE, JAGGEDNESS_LARGE, DEPTH_LARGE, SLOPED_CHEESE_LARGE, false);
@@ -148,14 +149,13 @@ public class DensityFunctionGen {
         pContext.register(fluidLevelFloodednessNoise,DensityFunctions.noise(holdergetter.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_FLOODEDNESS), 0.67D));
         pContext.register(fluidLevelSpreadNoise,DensityFunctions.noise(holdergetter.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_SPREAD), 0.7142857142857143D));
         pContext.register(lavaNoise,DensityFunctions.noise(holdergetter.getOrThrow(Noises.AQUIFER_BARRIER)));
-
+//
         pContext.register(temperature,DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(SHIFT_X)), new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(SHIFT_Z)), 0.25D, holdergetter.getOrThrow(Noises.TEMPERATURE)));
         pContext.register(vegetation,DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(SHIFT_X)), new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(SHIFT_Z)), 0.25D, holdergetter.getOrThrow(Noises.VEGETATION)));
-        pContext.register(continents,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(CONTINENTS)));
-        pContext.register(erosion,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(EROSION)));
-        pContext.register(depth,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(DEPTH)));
-        pContext.register(ridges,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(RIDGES)));
-
+//        pContext.register(continents,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(continents)));
+//        pContext.register(erosion,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(EROSION)));
+//        pContext.register(depth,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(DEPTH)));
+//        pContext.register(ridges,new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(RIDGES)));
 
         DensityFunction initialDensityWithoutJaggedness_densityFunction = buildInitialDensityWithoutJaggednessDensityFunction(
                 DensityFunctions.add(
@@ -163,7 +163,7 @@ public class DensityFunctionGen {
                                 DensityFunctions.constant(4.0D),
                                 DensityFunctions.mul(
                                         new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(FACTOR)),
-                                        new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(DEPTH))
+                                        new DensityFunctions.HolderHolder(densityFunctionHolderGetter.getOrThrow(depth))
                                 ).quarterNegative()),
                         DensityFunctions.constant(-0.703125D)).clamp(-64.0D, 64.0D));
         pContext.register(initialDensityWithoutJaggedness,initialDensityWithoutJaggedness_densityFunction);
@@ -212,14 +212,13 @@ public class DensityFunctionGen {
                 ));
         pContext.register(veinRidged,veinridged);
         pContext.register(veinGap,DensityFunctions.noise(holdergetter.getOrThrow(Noises.ORE_GAP)));
-
     }
 
 
     private static void registerTerrainNoises(BootstapContext<DensityFunction> pContext, HolderGetter<DensityFunction> pDensityFunctionGetter, DensityFunction pJaggedNoise, Holder<DensityFunction> pContinents, Holder<DensityFunction> pErosion, ResourceKey<DensityFunction> pOffsetKey, ResourceKey<DensityFunction> pFactorKey, ResourceKey<DensityFunction> pJaggednessKey, ResourceKey<DensityFunction> pDepthKey, ResourceKey<DensityFunction> pSlopedCheeseKey, boolean pAmplified) {
         DensityFunctions.Spline.Coordinate densityfunctions$spline$coordinate = new DensityFunctions.Spline.Coordinate(pContinents);
         DensityFunctions.Spline.Coordinate densityfunctions$spline$coordinate1 = new DensityFunctions.Spline.Coordinate(pErosion);
-        DensityFunctions.Spline.Coordinate densityfunctions$spline$coordinate2 = new DensityFunctions.Spline.Coordinate(pDensityFunctionGetter.getOrThrow(RIDGES));
+        DensityFunctions.Spline.Coordinate densityfunctions$spline$coordinate2 = new DensityFunctions.Spline.Coordinate(pDensityFunctionGetter.getOrThrow(ridges));
         DensityFunctions.Spline.Coordinate densityfunctions$spline$coordinate3 = new DensityFunctions.Spline.Coordinate(pDensityFunctionGetter.getOrThrow(RIDGES_FOLDED));
         DensityFunction densityfunction = registerAndWrap(pContext, pOffsetKey, splineWithBlending(DensityFunctions.add(DensityFunctions.constant((double)-0.50375F), DensityFunctions.spline(TerrainProvider.overworldOffset(densityfunctions$spline$coordinate, densityfunctions$spline$coordinate1, densityfunctions$spline$coordinate3, pAmplified))), DensityFunctions.blendOffset()));
         DensityFunction densityfunction1 = registerAndWrap(pContext, pFactorKey, splineWithBlending(DensityFunctions.spline(TerrainProvider.overworldFactor(densityfunctions$spline$coordinate, densityfunctions$spline$coordinate1, densityfunctions$spline$coordinate2, densityfunctions$spline$coordinate3, pAmplified)), BLENDING_FACTOR));
@@ -258,7 +257,9 @@ public class DensityFunctionGen {
     }
 
     private static DensityFunction spaghettiRoughnessFunction(HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {
+
         DensityFunction densityfunction = DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.SPAGHETTI_ROUGHNESS));
+
         DensityFunction densityfunction1 = DensityFunctions.mappedNoise(pNoiseParameters.getOrThrow(Noises.SPAGHETTI_ROUGHNESS_MODULATOR), 0.0D, -0.1D);
         return DensityFunctions.cacheOnce(DensityFunctions.mul(densityfunction1, DensityFunctions.add(densityfunction.abs(), DensityFunctions.constant(-0.4D))));
     }

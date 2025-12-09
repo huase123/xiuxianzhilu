@@ -21,6 +21,7 @@ package huase.xiuxianzhilu.network;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.network.client.CPacketCapability;
+import huase.xiuxianzhilu.network.server.DensityFunctionPacketCapability;
 import huase.xiuxianzhilu.network.server.SPacketCapability;
 import huase.xiuxianzhilu.network.server.SPacketEntityAttribute;
 import net.minecraft.network.FriendlyByteBuf;
@@ -52,6 +53,7 @@ public class NetworkHandler {
     // Server Packets
     register(SPacketCapability.class, SPacketCapability::encode, SPacketCapability::decode, SPacketCapability::handle);
     register(SPacketEntityAttribute.class, SPacketEntityAttribute::encode, SPacketEntityAttribute::decode, SPacketEntityAttribute::handle);
+    register(DensityFunctionPacketCapability.class, DensityFunctionPacketCapability::encode, DensityFunctionPacketCapability::decode, DensityFunctionPacketCapability::handle);
 
   }
 

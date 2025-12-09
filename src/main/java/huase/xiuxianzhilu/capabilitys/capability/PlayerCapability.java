@@ -45,6 +45,8 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     private boolean isupdate =true;
     private int indexofwuhunused;
 
+    private DensityFunction densityFunction ;
+
     public boolean isIsupdate() {
         return isupdate;
     }
@@ -54,7 +56,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     }
 
     public PlayerCapability(Player player) {
-
+        densityFunction = new DensityFunction(this,player);
     }
 
 
@@ -263,5 +265,10 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
 
     public ItemStack getUseWuhun() {
         return wuhun.getStackInSlot(indexofwuhunused);
+    }
+
+
+    public DensityFunction getDensityFunction() {
+        return densityFunction;
     }
 }
