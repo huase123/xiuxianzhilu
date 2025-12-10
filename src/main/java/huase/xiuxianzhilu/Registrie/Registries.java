@@ -1,10 +1,9 @@
 package huase.xiuxianzhilu.Registrie;
 
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjie;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
 import net.minecraftforge.registries.DataPackRegistryEvent;
 import net.minecraftforge.registries.NewRegistryEvent;
 
-import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiuJingjieInit.LINGXIUJINGJIE_KEY;
 
 /**
  * - @description:Registries类
@@ -12,7 +11,7 @@ import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiuJingjieIn
 public class Registries {
 
     public static void setRegistriesForDatapack(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(LINGXIUJINGJIE_KEY, LingxiuJingjie.CODEC, LingxiuJingjie.CODEC);
+        event.dataPackRegistry(LingxiujingjieFactorys.lingxiu_jingjie_key, LingxiujingjieFactorys.CODEC, LingxiujingjieFactorys.CODEC);
 //        event.dataPackRegistry(MagicPaintingVariants.REGISTRY_KEY, MagicPaintingVariant.CODEC, MagicPaintingVariant.CODEC);
     }
 

@@ -2,7 +2,8 @@ package huase.xiuxianzhilu;
 
 import com.mojang.logging.LogUtils;
 import huase.xiuxianzhilu.blocks.BlockInit;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiuJingjieInit;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypes;
 import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.items.Iteminit;
@@ -80,7 +81,8 @@ public class ModMain {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 //普通注册表注册
 //        modEventBus.addListener(huase.xiuxianzhilu.Registrie.Registries::registerNewRegistry);
-        LingxiuJingjieInit.LINGXIUJINGJIE_REGISTER.register(modEventBus);
+        LingxiujingjieFactorys.LingxiujingjieBase_REGISTER.register(modEventBus);
+        LingxiujingjieTypes.BIOME_LAYER_TYPES_REGISTER.register(modEventBus);
 //        资源包管理的注册表
         modEventBus.addListener(huase.xiuxianzhilu.Registrie.Registries::setRegistriesForDatapack);
 

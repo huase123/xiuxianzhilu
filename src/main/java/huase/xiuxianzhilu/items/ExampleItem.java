@@ -1,8 +1,7 @@
 package huase.xiuxianzhilu.items;
 
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiuJingjieInit;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjie;
-import net.minecraft.core.Registry;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -32,9 +31,7 @@ public class ExampleItem extends Item {
 //        pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().add(vec3.normalize().scale(0.5D)));
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
-        Registry<LingxiuJingjie> lingxiuJingjies = pPlayer.level().registryAccess().registryOrThrow(LingxiuJingjieInit.LINGXIUJINGJIE_KEY);
-        LingxiuJingjie lingxiuJingjie = pPlayer.level().registryAccess().registryOrThrow(LingxiuJingjieInit.LINGXIUJINGJIE_KEY).get(LingxiuJingjieInit.lianqi);
-
+        LingxiuJingjie lingxiuJingjie = pPlayer.level().registryAccess().registryOrThrow(LingxiujingjieFactorys.lingxiu_jingjie_key).get(LingxiujingjieFactorys.lianqi);
         System.out.println(lingxiuJingjie.toString());
         return InteractionResultHolder.consume(itemstack);
     }

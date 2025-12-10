@@ -1,6 +1,6 @@
 package huase.xiuxianzhilu.capabilitys.capability;
 
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.Lingxiu;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.tis.Tixiu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
@@ -16,9 +16,9 @@ import java.util.List;
  * - @date: 2025/10/12 3:37
  */
 public class PlayerCapability extends AttributeBase implements hua.huase.shanhaicontinent.capabilitys.capability.Update {
-    List<Linggen> linggens = new ArrayList<>();
-    List<Lingxiu> lingxius = new ArrayList<>();
+    List<LingxiuCase> lingxius = new ArrayList<>();
     List<Tixiu> tixius = new ArrayList<>();
+    List<Linggen> linggens = new ArrayList<>();
 
     ItemStackHandler boneslot = new ItemStackHandler(7);
     private boolean isupdate =true;
@@ -42,23 +42,49 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     @Override
     public CompoundTag serializeNBT() {
 
-        CompoundTag nbt = super.serializeNBT();
-        nbt.putBoolean("isupdate",isupdate);
-        nbt.put("boneslot", boneslot.serializeNBT());
-        return nbt;
+        CompoundTag compoundTag = super.serializeNBT();
+        compoundTag.putBoolean("isupdate",isupdate);
+        compoundTag.put("boneslot", boneslot.serializeNBT());
+
+        compoundTag.putInt("lingxiusize",lingxius.size());
+        for (int i = 0; i < lingxius.size(); i++) {
+            compoundTag.put("lingxiu"+i,lingxius.get(i).serializeNBT());
+        }
+
+
+        return compoundTag;
     }
 
     @Override
-    public void deserializeNBT(CompoundTag nbt) {
-        super.deserializeNBT(nbt);
-        isupdate = nbt.getBoolean("isupdate");
-        if(nbt.get("boneslot")!=null){
-            this.boneslot.deserializeNBT((CompoundTag) nbt.get("boneslot"));
+    public void deserializeNBT(CompoundTag compoundTag) {
+        super.deserializeNBT(compoundTag);
+        isupdate = compoundTag.getBoolean("isupdate");
+        if(compoundTag.get("boneslot")!=null){
+            this.boneslot.deserializeNBT((CompoundTag) compoundTag.get("boneslot"));
         }
+        lingxius.clear();
+        int lingxiusize = compoundTag.getInt("lingxiusize");
+        for (int i = 0; i < lingxiusize; i++) {
+            CompoundTag tag = (CompoundTag) compoundTag.get("lingxiu" + i);
+            lingxius.add(new LingxiuCase(tag));
+        }
+
     }
 
     public DensityFunction getDensityFunction() {
         return densityFunction;
+    }
+
+    public List<Linggen> getLinggens() {
+        return linggens;
+    }
+
+    public void setLinggens(List<Linggen> linggens) {
+        this.linggens = linggens;
+    }
+
+    public List<LingxiuCase> getLingxius() {
+        return lingxius;
     }
 
     public void setDensityFunction(DensityFunction densityFunction) {

@@ -5,11 +5,12 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public class
 AttributeBase implements INBTSerializable<CompoundTag> {
-    private float maxshengming;
-    private float wugong;
-    private float wufang;
-    private float baojishanghai;
-    private float baojilv;
+    public float maxshengming;
+    public float wugong;
+    public float wufang;
+    public float baojishanghai;
+    public float baojilv;
+
     public AttributeBase(){
         this.maxshengming = 20;
         this.wugong = 1;
@@ -18,26 +19,34 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.baojilv = 1;
     }
 
-    @Override
-    public CompoundTag serializeNBT() {
-
-        CompoundTag nbt = new CompoundTag();
-        nbt.putFloat("wugong",wugong);
-        nbt.putFloat("baojishanghai",baojishanghai);
-        nbt.putFloat("baojilv",baojilv);
-        nbt.putFloat("wufang",wufang);
-        nbt.putFloat("maxshengming",maxshengming);
-        return nbt;
+    public AttributeBase(float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
+        this.maxshengming = maxshengming;
+        this.wugong = wugong;
+        this.wufang = wufang;
+        this.baojishanghai = baojishanghai;
+        this.baojilv = baojilv;
     }
 
     @Override
-    public void deserializeNBT(CompoundTag nbt) {
-        if(nbt == null)return;
-        this.wugong=nbt.getFloat("wugong");
-        this.baojishanghai=nbt.getFloat("baojishanghai");
-        this.baojilv=nbt.getFloat("baojilv");
-        this.wufang=nbt.getFloat("wufang");
-        this.maxshengming=nbt.getFloat("maxshengming");
+    public CompoundTag serializeNBT() {
+
+        CompoundTag compoundTag = new CompoundTag();
+        compoundTag.putFloat("wugong",wugong);
+        compoundTag.putFloat("baojishanghai",baojishanghai);
+        compoundTag.putFloat("baojilv",baojilv);
+        compoundTag.putFloat("wufang",wufang);
+        compoundTag.putFloat("maxshengming",maxshengming);
+        return compoundTag;
+    }
+
+    @Override
+    public void deserializeNBT(CompoundTag compoundTag) {
+        if(compoundTag == null)return;
+        this.wugong=compoundTag.getFloat("wugong");
+        this.baojishanghai=compoundTag.getFloat("baojishanghai");
+        this.baojilv=compoundTag.getFloat("baojilv");
+        this.wufang=compoundTag.getFloat("wufang");
+        this.maxshengming=compoundTag.getFloat("maxshengming");
 
     }
 
