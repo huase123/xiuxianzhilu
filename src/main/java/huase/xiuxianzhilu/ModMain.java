@@ -10,6 +10,7 @@ import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
+import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.worlds.biomesources.BiomeSourceInit;
 import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
 import huase.xiuxianzhilu.worlds.chunkgenerators.ChunkGeneratorInti;
@@ -51,6 +52,7 @@ public class ModMain {
     public static final String MOD_ID = "xiuxianzhilu";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGERTemporary = LogUtils.getLogger();
     public ModMain() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -69,6 +71,7 @@ public class ModMain {
 
         // Register the Deferred Register to the mod event bus so tabs get registered
         CreativeModeTabInit.CREATIVE_MODE_TABS.register(modEventBus);
+        MenuTypesInit.MENUS.register(modEventBus);
 
 
         BiomeSourceInit.BIOME_SOURCE_TYPE_REGISTRIES.register(modEventBus);

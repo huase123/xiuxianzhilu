@@ -33,7 +33,8 @@ public class ZhenjiBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void handleLingshi(ItemStack itemstack, Player pPlayer) {
-        ZhenfaEntity zhenfaEntity = new ZhenfaEntity(this.level);
+        ZhenfaEntity zhenfaEntity = new ZhenfaEntity(this.level,this);
+        zhenfaEntity.setPos(this.getBlockPos().getCenter());
         this.level.addFreshEntity(zhenfaEntity);
         if (!pPlayer.getAbilities().instabuild) {
             itemstack.shrink(1);

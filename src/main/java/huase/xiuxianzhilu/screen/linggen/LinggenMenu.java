@@ -1,0 +1,55 @@
+package huase.xiuxianzhilu.screen.linggen;
+
+import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import huase.xiuxianzhilu.entity.functions.ZhenfaEntity;
+import huase.xiuxianzhilu.screen.MenuTypesInit;
+import huase.xiuxianzhilu.screen.ReAbstractContainerMenu;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+
+/**
+ * - @description:LinggenMenu类
+ */
+public class LinggenMenu extends ReAbstractContainerMenu {
+    private ZhenfaEntity zhenfaEntity;
+    private Player player;
+    public LinggenMenu(int i, Inventory playerInventory, FriendlyByteBuf friendlyByteBuf) {
+        super(MenuTypesInit.linggenmenu.get(), i);
+        Entity entity = playerInventory.player.level().getEntity(friendlyByteBuf.readInt());
+        if(entity instanceof ZhenfaEntity zhenfaEntity){
+            this.zhenfaEntity = zhenfaEntity;
+        }
+    }
+
+    public LinggenMenu(int containerId, Inventory playerInventory, ZhenfaEntity zhenfaEntity) {
+        super(MenuTypesInit.linggenmenu.get(),containerId);
+        this.zhenfaEntity = zhenfaEntity;
+        player = playerInventory.player;
+    }
+
+    @Override
+    public void createButtonFunctions() {
+        addButtonFunctions(() -> {
+            PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(player);
+            CapabilityUtil.openLinggen(capability,player);
+            ModMain.LOGGER.info(player.getName().getString()+"成功觉醒灵根");
+        });
+    }
+
+
+    @Override
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+        return null;
+    }
+
+    @Override
+    public boolean stillValid(Player pPlayer) {
+        return zhenfaEntity.isAlive();
+    }
+
+}

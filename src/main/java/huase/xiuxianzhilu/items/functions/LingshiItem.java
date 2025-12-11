@@ -40,9 +40,11 @@ public class LingshiItem extends Item {
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
         BlockState blockState = pLevel.getBlockState(blockhitresult.getBlockPos());
         if (blockhitresult.getType() == HitResult.Type.BLOCK && blockState.is(BlockInit.zhenji.get())) {
-            ZhenjiBlockEntity zhenjiBlockEntity = (ZhenjiBlockEntity) pLevel.getBlockEntity(blockhitresult.getBlockPos());
-            zhenjiBlockEntity.handleLingshi(itemstack,pPlayer);
 
+            if (pPlayer instanceof ServerPlayer) {
+                ZhenjiBlockEntity zhenjiBlockEntity = (ZhenjiBlockEntity) pLevel.getBlockEntity(blockhitresult.getBlockPos());
+                zhenjiBlockEntity.handleLingshi(itemstack, pPlayer);
+            }
             return InteractionResultHolder.pass(itemstack);
         } else {
             pPlayer.startUsingItem(pHand);

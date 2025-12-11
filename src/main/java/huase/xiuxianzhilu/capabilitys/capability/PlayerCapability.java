@@ -104,6 +104,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         this.densityFunction = densityFunction;
     }
 
-    public void createDensityFunction( Player entity) {
+    public void createDensityFunction( Player player) {
+        densityFunction = new DensityFunction(this, player);
     }
 }

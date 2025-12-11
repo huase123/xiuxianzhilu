@@ -68,14 +68,14 @@ public class CapabilityUtil {
     }
 
     public static void createDensityFunction(PlayerCapability capability, Player pPlayer) {
-        capability.createDensityFunction(pPlayer);
         openLinggen(capability,pPlayer);
+        capability.createDensityFunction(pPlayer);
 
 //        改为由功法触发
         CapabilityUtil.addLingxiuCase(pPlayer);
     }
 
-    private static void openLinggen(PlayerCapability capability, Player pPlayer) {
+    public static void openLinggen(PlayerCapability capability, Player pPlayer) {
         RandomSource random = pPlayer.getRandom();
         Linggen[] values = Linggen.values();
         List<Linggen> linggens1 = capability.getLinggens();
@@ -86,5 +86,7 @@ public class CapabilityUtil {
                 }
             }
         }
+
+        capability.createDensityFunction(pPlayer);
     }
 }
