@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.capabilitys.capability.jingjie;
 import com.mojang.serialization.Codec;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjie0;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiujingjieFinal;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ExtraCodecs;
@@ -24,6 +25,7 @@ public class LingxiujingjieTypes {
     public static final Codec<LingxiujingjieType> CODEC = ExtraCodecs.lazyInitializedCodec(() -> REGISTRY.get().getCodec());
 
     public static final RegistryObject<LingxiujingjieType> lianqi_type = registerType("lianqi_type", () -> () -> LingxiuJingjie0.CODEC);
+    public static final RegistryObject<LingxiujingjieType> fannal_type = registerType("fannal_type", () -> () -> LingxiujingjieFinal.CODEC);
 
     private static RegistryObject<LingxiujingjieType> registerType(String name, Supplier<LingxiujingjieType> factory) {
         return BIOME_LAYER_TYPES_REGISTER.register(name, factory);

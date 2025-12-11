@@ -6,6 +6,8 @@ import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
+import java.util.List;
+
 /**
  * - @description:DensityFunction类
  */
@@ -22,15 +24,28 @@ public class DensityFunction {
         this.player =player;
         updateNormalNoise();
     }
-//更新密度函数
+//更新密度函数,灵根改变再调用
     public void updateNormalNoise() {
         int size = playerCapability.getLinggens().size();
         jingjieNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits())), -9+size, 1);
         gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits()>>2)), -9+size, 1);
     }
 
-    public void update() {
+    public void update(Player player) {
         time++;
+
+        if (time %20 == 0L) {
+            List<LingxiuCase> lingxius = playerCapability.getLingxius();
+            if(lingxius.isEmpty())return;
+
+
+            double value = value();
+            lingxius.get(lingxius.size()-1).addJingyan(player,value);
+            if(!player.level().isClientSide){
+
+            }
+        }
+
     }
 
     public void synchronize(double time, double dazuo, double danyao) {
@@ -42,8 +57,8 @@ public class DensityFunction {
     public double getjingjieNoise() {
         int scale=1;
         double value = jingjieNoise.getValue((double) time / scale, (double) dazuo, (double) danyao);
-        LingxiuCase lingxiuCase = playerCapability.getLingxius().get(playerCapability.getLingxius().size() - 1);
-        int intensity = lingxiuCase.getIntensity();
+        List<LingxiuCase> lingxius = playerCapability.getLingxius();
+        int intensity =lingxius.isEmpty()? 1:lingxius.get(lingxius.size() - 1).getIntensity();
         return Math.abs(value*intensity);
     }
 

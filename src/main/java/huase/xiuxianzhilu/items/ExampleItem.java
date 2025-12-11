@@ -1,7 +1,8 @@
 package huase.xiuxianzhilu.items;
 
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjie;
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.capabilitys.capability.DensityFunction;
+import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -31,8 +32,15 @@ public class ExampleItem extends Item {
 //        pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().add(vec3.normalize().scale(0.5D)));
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
-        LingxiuJingjie lingxiuJingjie = pPlayer.level().registryAccess().registryOrThrow(LingxiujingjieFactorys.lingxiu_jingjie_key).get(LingxiujingjieFactorys.lianqi);
-        System.out.println(lingxiuJingjie.toString());
+
+        if(!pPlayer.level().isClientSide){
+            PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(pPlayer);
+            DensityFunction densityFunction = capability.getDensityFunction();
+            CapabilityUtil.createDensityFunction(capability,pPlayer);
+
+        }
+
+
         return InteractionResultHolder.consume(itemstack);
     }
 

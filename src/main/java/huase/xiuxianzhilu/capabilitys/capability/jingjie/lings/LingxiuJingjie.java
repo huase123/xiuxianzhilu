@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.capabilitys.capability.jingjie.lings;
 
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieType;
+import net.minecraft.core.Holder;
 
 /**
  * - @description:Jingjie类
@@ -12,8 +13,10 @@ public abstract class LingxiuJingjie extends AttributeBase {
     float maxlingli;
     float maxjingyan;
 
+    private  Holder<LingxiuJingjie> prentkey;
 
-    public LingxiuJingjie(int maxDengji,int intensity,float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
+    public LingxiuJingjie(Holder<LingxiuJingjie> prentkey, int maxDengji, int intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
+        this.prentkey = prentkey;
         this.maxDengji = maxDengji;
         this.intensity = intensity;
         this.maxlingli = maxlingli;
@@ -24,8 +27,6 @@ public abstract class LingxiuJingjie extends AttributeBase {
         setBaojishanghai(getBaojishanghai);
         setBaojilv(getBaojilv);
     }
-
-
 
 
     public float getMaxlingli() {
@@ -51,4 +52,9 @@ public abstract class LingxiuJingjie extends AttributeBase {
     public void setIntensity(int intensity) {
         this.intensity = intensity;
     }
+
+    public Holder<LingxiuJingjie> getPrent() {
+        return prentkey;
+    }
+
 }

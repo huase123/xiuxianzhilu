@@ -36,6 +36,7 @@ public class RERenderGuiEventEventEvent {
         PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(localplayer);
         float partialTick = event.getPartialTick();
         DensityFunction densityFunction = capability.getDensityFunction();
+        if(densityFunction == null)return;
         float d = (float) densityFunction.value();
         GuiGraphics guiGraphics = event.getGuiGraphics();
         Matrix4f matrix4f = guiGraphics.pose().last().pose();

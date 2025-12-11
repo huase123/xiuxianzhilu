@@ -26,6 +26,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -69,7 +70,10 @@ public class DensityFunctionPacketCapability {
         Entity entity = world.getEntity(msg.entityId);
         if(entity != null){
           PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(entity);
-          capability.getDensityFunction().synchronize(msg.time,msg.dazuo,msg.danyao);
+          DensityFunction densityFunction = capability.getDensityFunction();
+          if(densityFunction == null)capability.createDensityFunction((Player) entity);
+          densityFunction.synchronize(msg.time,msg.dazuo,msg.danyao);
+
         }
       }
     });

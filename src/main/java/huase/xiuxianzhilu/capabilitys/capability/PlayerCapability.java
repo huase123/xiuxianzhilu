@@ -16,14 +16,15 @@ import java.util.List;
  * - @date: 2025/10/12 3:37
  */
 public class PlayerCapability extends AttributeBase implements hua.huase.shanhaicontinent.capabilitys.capability.Update {
-    List<LingxiuCase> lingxius = new ArrayList<>();
-    List<Tixiu> tixius = new ArrayList<>();
-    List<Linggen> linggens = new ArrayList<>();
+    private List<LingxiuCase> lingxius = new ArrayList<>();
+    private List<Tixiu> tixius = new ArrayList<>();
+    private List<Linggen> linggens = new ArrayList<>();
 
     ItemStackHandler boneslot = new ItemStackHandler(7);
     private boolean isupdate =true;
 
     private DensityFunction densityFunction ;
+    private Player player ;
 
     public boolean isIsupdate() {
         return isupdate;
@@ -34,7 +35,9 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     }
 
     public PlayerCapability(Player player) {
-        densityFunction = new DensityFunction(this,player);
+        this.player = player;
+        if(!linggens.isEmpty());
+        densityFunction = new DensityFunction(this, player);
     }
 
 
@@ -49,6 +52,11 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         compoundTag.putInt("lingxiusize",lingxius.size());
         for (int i = 0; i < lingxius.size(); i++) {
             compoundTag.put("lingxiu"+i,lingxius.get(i).serializeNBT());
+        }
+
+        compoundTag.putInt("linggensize",linggens.size());
+        for (int i = 0; i < linggens.size(); i++) {
+            compoundTag.putString("linggen"+i,linggens.get(i).name());
         }
 
 
@@ -66,9 +74,14 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         int lingxiusize = compoundTag.getInt("lingxiusize");
         for (int i = 0; i < lingxiusize; i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("lingxiu" + i);
-            lingxius.add(new LingxiuCase(tag));
+            lingxius.add(new LingxiuCase(player,tag));
         }
-
+        linggens.clear();
+        int linggensize = compoundTag.getInt("linggensize");
+        for (int i = 0; i < linggensize; i++) {
+            Linggen linggen = Linggen.valueOf(compoundTag.getString("linggen" + i));
+            linggens.add(linggen);
+        }
     }
 
     public DensityFunction getDensityFunction() {
@@ -89,5 +102,8 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
 
     public void setDensityFunction(DensityFunction densityFunction) {
         this.densityFunction = densityFunction;
+    }
+
+    public void createDensityFunction( Player entity) {
     }
 }

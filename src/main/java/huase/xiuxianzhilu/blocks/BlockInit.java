@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.blocks;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.blocks.functions.ZhenjiBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -21,5 +22,10 @@ public class BlockInit {
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
 
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
+
+
+    public static final RegistryObject<Block> zhenji = BLOCKS.register("zhenji", () -> new ZhenjiBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+
+    public static final RegistryObject<Item> zhenji_item = ITEMS.register("zhenji_item", () -> new BlockItem(zhenji.get(), new Item.Properties()));
 
 }

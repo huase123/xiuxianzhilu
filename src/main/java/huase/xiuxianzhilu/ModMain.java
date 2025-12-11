@@ -1,11 +1,13 @@
 package huase.xiuxianzhilu;
 
 import com.mojang.logging.LogUtils;
+import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypes;
 import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
+import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
 import huase.xiuxianzhilu.worlds.biomesources.BiomeSourceInit;
@@ -48,7 +50,7 @@ public class ModMain {
     public static final String MODID = "xiuxianzhilu";
     public static final String MOD_ID = "xiuxianzhilu";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public ModMain() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -60,6 +62,11 @@ public class ModMain {
         // Register the Deferred Register to the mod event bus so items get registered
         BlockInit.ITEMS.register(modEventBus);
         Iteminit.ITEMS.register(modEventBus);
+
+        EntityInit.ENTITY_TYPES.register(modEventBus);
+        BlockEntitiesinit.BLOCK_ENTITIES.register(modEventBus);
+
+
         // Register the Deferred Register to the mod event bus so tabs get registered
         CreativeModeTabInit.CREATIVE_MODE_TABS.register(modEventBus);
 
