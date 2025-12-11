@@ -1,5 +1,7 @@
 package huase.xiuxianzhilu.items.functions;
 
+import huase.xiuxianzhilu.blocks.BlockInit;
+import huase.xiuxianzhilu.blocks.functions.ZhenjiBlockEntity;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -36,7 +38,11 @@ public class LingshiItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
-        if (blockhitresult.getType() == HitResult.Type.BLOCK && pLevel.getBlockState(blockhitresult.getBlockPos()).is(Blocks.END_PORTAL_FRAME)) {
+        BlockState blockState = pLevel.getBlockState(blockhitresult.getBlockPos());
+        if (blockhitresult.getType() == HitResult.Type.BLOCK && blockState.is(BlockInit.zhenji.get())) {
+            ZhenjiBlockEntity zhenjiBlockEntity = (ZhenjiBlockEntity) pLevel.getBlockEntity(blockhitresult.getBlockPos());
+            zhenjiBlockEntity.handleLingshi(itemstack,pPlayer);
+
             return InteractionResultHolder.pass(itemstack);
         } else {
             pPlayer.startUsingItem(pHand);

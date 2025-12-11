@@ -18,13 +18,11 @@ public class EntityInit {
 
 
     public static final RegistryObject<EntityType<ZhenfaEntity>> zhenfaentity = registerEntity("zhennfaenntity",
-            EntityType.Builder.of(ZhenfaEntity::new, MobCategory.MONSTER).sized(1.3964844F, 1.4F).clientTrackingRange(8));
+            EntityType.Builder.<ZhenfaEntity>of(ZhenfaEntity::new, MobCategory.MONSTER).sized(1.3964844F, 1.4F));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity( String entityName,EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(entityName, () -> builder.build(entityName));
     }
-
-
 
 
 }
