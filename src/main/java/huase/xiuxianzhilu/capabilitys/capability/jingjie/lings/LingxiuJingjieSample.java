@@ -9,54 +9,24 @@ import net.minecraft.world.entity.player.Player;
  * - @description:Jingjie类
  */
 public abstract class LingxiuJingjieSample extends AttributeBase {
-    int maxDengji;
-    private int intensity;
-    float maxlingli;
-    float maxjingyan;
-
-    private  Holder<LingxiuJingjieSample> prentkey;
-
-    public LingxiuJingjieSample(Holder<LingxiuJingjieSample> prentkey, int maxDengji, int intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
-        this.prentkey = prentkey;
-        this.maxDengji = maxDengji;
-        this.intensity = intensity;
-        this.maxlingli = maxlingli;
-        this.maxjingyan = maxjingyan;
-        setWugong(getWugong);
-        setWufang(getWufang);
-        setMaxshengming(getMaxshengming);
-        setBaojishanghai(getBaojishanghai);
-        setBaojilv(getBaojilv);
-    }
-
-
-    public float getMaxlingli() {
-        return maxlingli;
-    }
-
-
-    public float getMaxjingyan() {
-        return maxjingyan;
-    }
-
-    public int getMaxDengji() {
-        return maxDengji;
+    public LingxiuJingjieSample(float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
+        super(maxshengming, wugong, wufang, baojishanghai, baojilv);
     }
 
     public abstract LingxiujingjieType getType();
+    public abstract float getMaxlingli();
 
 
-    public int getIntensity() {
-        return intensity;
-    }
+    public abstract float getMaxjingyan();
 
-    public void setIntensity(int intensity) {
-        this.intensity = intensity;
-    }
+    public abstract int getMaxdengji();
 
-    public Holder<LingxiuJingjieSample> getPrent() {
-        return prentkey;
-    }
+
+
+    public abstract float getIntensity();
+
+    public abstract Holder<LingxiuJingjieSample> getPrent();
+
 
     public double addJingyan(Player player, double value) {
         return value;

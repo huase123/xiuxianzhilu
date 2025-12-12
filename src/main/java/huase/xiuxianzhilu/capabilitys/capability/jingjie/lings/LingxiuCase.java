@@ -26,9 +26,9 @@ public class LingxiuCase extends AttributeBase {
         super(lingxiuJingjieSample.maxshengming, lingxiuJingjieSample.wugong, lingxiuJingjieSample.wufang, lingxiuJingjieSample.baojishanghai, lingxiuJingjieSample.baojilv);
         this.player = player;
         this.lingxiuJingjieSample = lingxiuJingjieSample;
-        this.maxlingli = lingxiuJingjieSample.maxlingli;
-        this.maxjingyan = lingxiuJingjieSample.maxjingyan;
-        this.maxDengji = lingxiuJingjieSample.maxDengji;
+        this.maxlingli = lingxiuJingjieSample.getMaxlingli();
+        this.maxjingyan = lingxiuJingjieSample.getMaxjingyan();
+        this.maxDengji = lingxiuJingjieSample.getMaxdengji();
     }
 
     public LingxiuCase(Player player, CompoundTag compoundTag) {
@@ -58,7 +58,7 @@ public class LingxiuCase extends AttributeBase {
         lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
     }
 
-    public int getIntensity() {
+    public float getIntensity() {
 
         return lingxiuJingjieSample.getIntensity();
     }

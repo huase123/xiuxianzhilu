@@ -17,7 +17,7 @@ import net.minecraft.world.item.Item;
 public class JichutulafaGongfa extends GongfaSample {
     public static final Codec<JichutulafaGongfa> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(GongfaSample::getItem),
-            Codec.intRange(0,100000).fieldOf("getWugong").forGetter(JichutulafaGongfa::getIntensity),
+            Codec.intRange(0,100000).fieldOf("getIntensity").forGetter(JichutulafaGongfa::getIntensity),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWugong").forGetter(AttributeBase::getWugong),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWufang").forGetter(AttributeBase::getWufang),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getMaxshengming").forGetter(AttributeBase::getMaxshengming),

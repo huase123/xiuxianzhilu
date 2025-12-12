@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample0;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiujingjieFinal;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiujingjieNoPrent;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -40,7 +40,7 @@ public class LingxiujingjieGen {
 
     public static void bootstrap(BootstapContext<LingxiuJingjieSample> context) {
 
-        Holder.Reference<LingxiuJingjieSample> lingxiujingjie4 = context.register(huashen, new LingxiujingjieFinal( 4, 500, 100, 300, 8, 4, 40, 3, 3));
+        Holder.Reference<LingxiuJingjieSample> lingxiujingjie4 = context.register(huashen, new LingxiujingjieNoPrent( 4, 500, 100, 300, 8, 4, 40, 3, 3));
         Holder.Reference<LingxiuJingjieSample> lingxiujingjie3 = context.register(yuanying, new LingxiuJingjieSample0(lingxiujingjie4, 4, 100, 100, 300, 8, 4, 40, 3, 3));
         Holder.Reference<LingxiuJingjieSample> lingxiujingjie2 = context.register(jindan, new LingxiuJingjieSample0(lingxiujingjie3, 4, 50, 100, 300, 8, 4, 40, 3, 3));
         Holder.Reference<LingxiuJingjieSample> lingxiujingjie1 = context.register(zhuji, new LingxiuJingjieSample0(lingxiujingjie2, 4, 10, 100, 300, 8, 4, 40, 3, 3));

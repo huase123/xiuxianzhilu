@@ -67,7 +67,7 @@ public class DensityFunction {
         double value = jingjieNoise.getValue(time / scale,  dazuo,danyao);
         LingxiuCase lingxiu = playerCapability.getLingxiuindex();
 
-        int intensity =lingxiu==null? 1:lingxiu.getIntensity();
+        float intensity =( lingxiu==null? 1:lingxiu.getIntensity());
         return Math.abs(value*intensity);
     }
 
