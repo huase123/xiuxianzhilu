@@ -18,9 +18,11 @@ import java.util.List;
  */
 public class PlayerCapability extends AttributeBase implements hua.huase.shanhaicontinent.capabilitys.capability.Update {
     private List<LingxiuCase> lingxius = new ArrayList<>();
+    private int lingxiuindex=-1;
     private List<Tixiu> tixius = new ArrayList<>();
     private List<Linggen> linggens = new ArrayList<>();
     private List<GongfaCase> gongfas = new ArrayList<>();
+    private int gongfaindex=-1;
 
     ItemStackHandler boneslot = new ItemStackHandler(7);
     private boolean isupdate =true;
@@ -53,6 +55,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
 
         compoundTag.putBoolean("huadensityfunction",densityFunction != null);
 
+        compoundTag.putInt("lingxiuindex",lingxiuindex);
         compoundTag.putInt("lingxiusize",lingxius.size());
         for (int i = 0; i < lingxius.size(); i++) {
             compoundTag.put("lingxiu"+i,lingxius.get(i).serializeNBT());
@@ -64,6 +67,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         }
 
 
+        compoundTag.putInt("gongfaindex",gongfaindex);
         compoundTag.putInt("gongfasize",gongfas.size());
         for (int i = 0; i < gongfas.size(); i++) {
             compoundTag.put("gongfa"+i,gongfas.get(i).serializeNBT());
@@ -82,6 +86,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
 
         if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(player);
 
+        lingxiuindex = compoundTag.getInt("lingxiuindex" );
         lingxius.clear();
         for (int i = 0; i < compoundTag.getInt("lingxiusize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("lingxiu" + i);
@@ -94,6 +99,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         }
 
 
+        gongfaindex = compoundTag.getInt("gongfaindex" );
         gongfas.clear();
         for (int i = 0; i < compoundTag.getInt("gongfassize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("gongfa" + i);
@@ -116,6 +122,18 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     public List<LingxiuCase> getLingxius() {
         return lingxius;
     }
+    public LingxiuCase getLingxiuindex() {
+        return lingxiuindex == -1? null :lingxius.get(lingxiuindex);
+    }
+
+    public List<GongfaCase> getGongfas() {
+        return gongfas;
+    }
+
+    public GongfaCase getGongfaindex() {
+        return gongfaindex == -1? null :gongfas.get(gongfaindex);
+    }
+
 
     public void setDensityFunction(DensityFunction densityFunction) {
         this.densityFunction = densityFunction;

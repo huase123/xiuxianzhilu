@@ -17,6 +17,7 @@ import net.minecraft.world.item.Item;
 public class JichutulafaGongfa extends GongfaSample {
     public static final Codec<JichutulafaGongfa> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(GongfaSample::getItem),
+            Codec.intRange(0,100000).fieldOf("getWugong").forGetter(JichutulafaGongfa::getIntensity),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWugong").forGetter(AttributeBase::getWugong),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWufang").forGetter(AttributeBase::getWufang),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getMaxshengming").forGetter(AttributeBase::getMaxshengming),
@@ -24,19 +25,26 @@ public class JichutulafaGongfa extends GongfaSample {
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getBaojilv").forGetter(AttributeBase::getBaojilv)
     ).apply(instance, JichutulafaGongfa::new));
 
-    public GongfaSampleItem getItem() {
-        return item;
-    }
-
     GongfaSampleItem item;
+    int intensity;
 
-    public JichutulafaGongfa(Item item,float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
+    public JichutulafaGongfa(Item item,int intensity,float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
         super(maxshengming, wugong, wufang, baojishanghai, baojilv);
         if(item instanceof GongfaSampleItem gongfaSampleItem){
             this.item = gongfaSampleItem;
         }else {
             ModMain.LOGGER.error("非功法物品添加>>>>"+item.getDescriptionId());
         }
+        this.intensity = intensity;
+    }
+
+    public GongfaSampleItem getItem() {
+        return item;
+    }
+
+    @Override
+    public int getIntensity() {
+        return intensity;
     }
 
     @Override

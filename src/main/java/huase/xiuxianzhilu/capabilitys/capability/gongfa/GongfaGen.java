@@ -38,10 +38,10 @@ public class GongfaGen {
 
 
     public static void bootstrap(BootstapContext<GongfaSample> context) {
-        context.register(jichutulafa0, new JichutulafaGongfa(Iteminit.gongfa0.get(), 10, 2, 3, 1, 1));
-        context.register(jichutulafa1, new JichutulafaGongfa(Iteminit.gongfa1.get(), 20, 2, 3, 1, 1));
-        context.register(jichutulafa2, new JichutulafaGongfa(Iteminit.gongfa2.get(), 30, 2, 3, 1, 1));
-        context.register(jichutulafa3, new JichutulafaGongfa(Iteminit.gongfa3.get(), 50, 2, 3, 1, 1));
-        context.register(jichutulafa4, new JichutulafaGongfa(Iteminit.gongfa4.get(), 80, 2, 3, 1, 1));
+        context.register(jichutulafa0, new JichutulafaGongfa(Iteminit.gongfa0.get(),1, 10, 2, 3, 1, 1));
+        context.register(jichutulafa1, new JichutulafaGongfa(Iteminit.gongfa1.get(), 2,20, 2, 3, 1, 1));
+        context.register(jichutulafa2, new JichutulafaGongfa(Iteminit.gongfa2.get(), 3,30, 2, 3, 1, 1));
+        context.register(jichutulafa3, new JichutulafaGongfa(Iteminit.gongfa3.get(), 4,50, 2, 3, 1, 1));
+        context.register(jichutulafa4, new JichutulafaGongfa(Iteminit.gongfa4.get(), 5,80, 2, 3, 1, 1));
     }
 }

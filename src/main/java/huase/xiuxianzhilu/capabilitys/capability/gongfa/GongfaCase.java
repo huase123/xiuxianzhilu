@@ -35,4 +35,8 @@ public class GongfaCase extends AttributeBase {
         gongfaSample = player.level().registryAccess().registryOrThrow(gongfa_key).get(ResourceLocation.parse(string));
     }
 
+    public int getIntensity() {
+
+        return gongfaSample.getIntensity();
+    }
 }

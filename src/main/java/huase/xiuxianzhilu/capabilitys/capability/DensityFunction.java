@@ -1,12 +1,11 @@
 package huase.xiuxianzhilu.capabilitys.capability;
 
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
-
-import java.util.List;
 
 /**
  * - @description:DensityFunction类
@@ -40,12 +39,13 @@ public class DensityFunction {
         time++;
 
         if (time % 20 == 0L) {
-            List<LingxiuCase> lingxius = playerCapability.getLingxius();
-            if(lingxius.isEmpty())return;
+            LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+
+            if(lingxiu == null)return;
 
 
             double value = value();
-//            lingxius.get(lingxius.size()-1).addJingyan(player,value);
+            lingxiu.addJingyan(player,value);
         }
 
     }
@@ -64,16 +64,22 @@ public class DensityFunction {
 
     public double getjingjieNoise() {
         float scale=1.0f;
-        double value = jingjieNoise.getValue((double) time / scale, (double) dazuo, (double) danyao);
-        List<LingxiuCase> lingxius = playerCapability.getLingxius();
-        int intensity =lingxius.isEmpty()? 1:lingxius.get(lingxius.size() - 1).getIntensity();
+        double value = jingjieNoise.getValue(time / scale,  dazuo,danyao);
+        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+
+        int intensity =lingxiu==null? 1:lingxiu.getIntensity();
         return Math.abs(value*intensity);
     }
 
     public double getGongfaNoise() {
         int scale=1;
         double value = gongfaNoise.getValue(time / scale, dazuo, danyao);
-        return value;
+
+        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+        GongfaCase gongfaindex = playerCapability.getGongfaindex();
+
+        int intensity =gongfaindex==null? 1:gongfaindex.getIntensity();
+        return value * intensity;
     }
 
     public double value() {

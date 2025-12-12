@@ -15,4 +15,6 @@ public abstract class GongfaSample extends AttributeBase {
     public abstract GongfaType getType();
 
     public abstract GongfaSampleItem getItem() ;
+
+    public abstract int getIntensity();
 }
