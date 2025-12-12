@@ -59,7 +59,7 @@ public class DensityFunctionPacketCapability {
   }
 
   public static DensityFunctionPacketCapability decode(FriendlyByteBuf buf) {
-    return new DensityFunctionPacketCapability(buf.readInt(),buf.readInt(),buf.readInt(),buf.readInt());
+    return new DensityFunctionPacketCapability(buf.readInt(),buf.readDouble(),buf.readDouble(),buf.readDouble());
   }
 
   public static void handle(DensityFunctionPacketCapability msg, Supplier<NetworkEvent.Context> ctx) {
@@ -72,7 +72,7 @@ public class DensityFunctionPacketCapability {
           PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(entity);
           DensityFunction densityFunction = capability.getDensityFunction();
           if(densityFunction == null)capability.createDensityFunction((Player) entity);
-          densityFunction.synchronize(msg.time,msg.dazuo,msg.danyao);
+          densityFunction.synchronizeClient(msg.time,msg.dazuo,msg.danyao);
 
         }
       }

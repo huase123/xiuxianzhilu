@@ -15,6 +15,10 @@ public class DensityFunction {
     public double time = 0;
     public double dazuo = 0;
     public double danyao = 0;
+//    用于客户端平滑查找
+    public double newtime = 0;
+    public double newdazuo = 0;
+    public double newdanyao = 0;
     PlayerCapability playerCapability;
     NormalNoise jingjieNoise;
     NormalNoise gongfaNoise;
@@ -32,30 +36,34 @@ public class DensityFunction {
     }
 
     public void update(Player player) {
+
         time++;
 
-        if (time %20 == 0L) {
+        if (time % 20 == 0L) {
             List<LingxiuCase> lingxius = playerCapability.getLingxius();
             if(lingxius.isEmpty())return;
 
 
             double value = value();
-            lingxius.get(lingxius.size()-1).addJingyan(player,value);
-            if(!player.level().isClientSide){
-
-            }
+//            lingxius.get(lingxius.size()-1).addJingyan(player,value);
         }
 
     }
 
-    public void synchronize(double time, double dazuo, double danyao) {
-        this.time = time;
-        this.dazuo = dazuo;
-        this.danyao = danyao;
+    public void updateClientState(float partialTick) {
+        newtime++;
+        time += (newtime-time)*0.01 * partialTick;
+        dazuo += (newdazuo-dazuo)*0.01 * partialTick;
+        danyao += (newdanyao-danyao)*0.01 *partialTick;
+    }
+    public void synchronizeClient(double time, double dazuo, double danyao) {
+        this.newtime = time;
+        this.newdazuo = dazuo;
+        this.newdanyao = danyao;
     }
 
     public double getjingjieNoise() {
-        int scale=1;
+        float scale=1.0f;
         double value = jingjieNoise.getValue((double) time / scale, (double) dazuo, (double) danyao);
         List<LingxiuCase> lingxius = playerCapability.getLingxius();
         int intensity =lingxius.isEmpty()? 1:lingxius.get(lingxius.size() - 1).getIntensity();
@@ -64,7 +72,7 @@ public class DensityFunction {
 
     public double getGongfaNoise() {
         int scale=1;
-        double value = gongfaNoise.getValue((double) time / scale, (double) dazuo, (double) danyao);
+        double value = gongfaNoise.getValue(time / scale, dazuo, danyao);
         return value;
     }
 

@@ -71,6 +71,7 @@ public class CapabilityUtil {
         RandomSource random = pPlayer.getRandom();
         Linggen[] values = Linggen.values();
         List<Linggen> linggens1 = capability.getLinggens();
+        linggens1.clear();
         while (linggens1.isEmpty()){
             for (Linggen value : values) {
                 if(random.nextBoolean());{

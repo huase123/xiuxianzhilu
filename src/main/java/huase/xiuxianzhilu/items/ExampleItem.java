@@ -1,8 +1,6 @@
 package huase.xiuxianzhilu.items;
 
-import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
-import huase.xiuxianzhilu.capabilitys.capability.DensityFunction;
-import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -34,10 +32,12 @@ public class ExampleItem extends Item {
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
 
         if(!pPlayer.level().isClientSide){
-            PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(pPlayer);
-            DensityFunction densityFunction = capability.getDensityFunction();
+//            PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(pPlayer);
+//            DensityFunction densityFunction = capability.getDensityFunction();
 //            CapabilityUtil.createDensityFunction(capability,pPlayer);
 
+        }else {
+            Minecraft.getInstance().gameRenderer.cycleEffect();
         }
 
 

@@ -37,7 +37,8 @@ public class RERenderGuiEventEventEvent {
         float partialTick = event.getPartialTick();
         DensityFunction densityFunction = capability.getDensityFunction();
         if(densityFunction == null)return;
-        float d = (float) densityFunction.value();
+        densityFunction.updateClientState(partialTick);
+        float d = (float) densityFunction.getGongfaNoise();
         GuiGraphics guiGraphics = event.getGuiGraphics();
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
 

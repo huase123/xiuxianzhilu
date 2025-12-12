@@ -39,7 +39,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     public PlayerCapability(Player player) {
         this.player = player;
         if(!linggens.isEmpty());
-        densityFunction = new DensityFunction(this, player);
+//        densityFunction = new DensityFunction(this, player);
     }
 
 
@@ -50,6 +50,8 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         CompoundTag compoundTag = super.serializeNBT();
         compoundTag.putBoolean("isupdate",isupdate);
         compoundTag.put("boneslot", boneslot.serializeNBT());
+
+        compoundTag.putBoolean("huadensityfunction",densityFunction != null);
 
         compoundTag.putInt("lingxiusize",lingxius.size());
         for (int i = 0; i < lingxius.size(); i++) {
@@ -77,6 +79,9 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         if(compoundTag.get("boneslot")!=null){
             this.boneslot.deserializeNBT((CompoundTag) compoundTag.get("boneslot"));
         }
+
+        if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(player);
+
         lingxius.clear();
         for (int i = 0; i < compoundTag.getInt("lingxiusize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("lingxiu" + i);
