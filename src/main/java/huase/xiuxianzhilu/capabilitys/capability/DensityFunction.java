@@ -40,7 +40,7 @@ public class DensityFunction {
 
 
             double value = value();
-//            lingxius.get(lingxius.size()-1).addJingyan(player,value);
+            lingxius.get(lingxius.size()-1).addJingyan(player,value);
             if(!player.level().isClientSide){
 
             }

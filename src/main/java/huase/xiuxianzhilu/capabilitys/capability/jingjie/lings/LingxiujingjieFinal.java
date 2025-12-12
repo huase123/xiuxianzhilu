@@ -4,16 +4,16 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieType;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypes;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypesInIt;
 
 /**
  * - @description:LingxiujingjieEmpty类
  */
-public class LingxiujingjieFinal extends LingxiuJingjie{
+public class LingxiujingjieFinal extends LingxiuJingjieSample {
 
     public static final Codec<LingxiujingjieFinal> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
-            Codec.intRange(0, Integer.MAX_VALUE).fieldOf("maxmaxdengji").forGetter(LingxiuJingjie::getMaxDengji),
-            Codec.intRange(0, Integer.MAX_VALUE).fieldOf("intensity").forGetter(LingxiuJingjie::getIntensity),
+            Codec.intRange(0, Integer.MAX_VALUE).fieldOf("maxmaxdengji").forGetter(LingxiuJingjieSample::getMaxDengji),
+            Codec.intRange(0, Integer.MAX_VALUE).fieldOf("intensity").forGetter(LingxiuJingjieSample::getIntensity),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("maxlingli").forGetter(p -> p.maxlingli),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("maxjingyan").forGetter(p -> p.maxjingyan),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWugong").forGetter(AttributeBase::getWugong),
@@ -29,6 +29,6 @@ public class LingxiujingjieFinal extends LingxiuJingjie{
 
 
     public LingxiujingjieType getType() {
-        return LingxiujingjieTypes.fannal_type.get();
+        return LingxiujingjieTypesInIt.fannal_type.get();
     }
 }

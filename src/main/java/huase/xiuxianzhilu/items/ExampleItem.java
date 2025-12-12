@@ -36,7 +36,7 @@ public class ExampleItem extends Item {
         if(!pPlayer.level().isClientSide){
             PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(pPlayer);
             DensityFunction densityFunction = capability.getDensityFunction();
-            CapabilityUtil.createDensityFunction(capability,pPlayer);
+//            CapabilityUtil.createDensityFunction(capability,pPlayer);
 
         }
 

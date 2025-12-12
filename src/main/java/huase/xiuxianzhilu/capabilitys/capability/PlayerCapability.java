@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.capabilitys.capability;
 
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.tis.Tixiu;
 import net.minecraft.nbt.CompoundTag;
@@ -19,6 +20,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     private List<LingxiuCase> lingxius = new ArrayList<>();
     private List<Tixiu> tixius = new ArrayList<>();
     private List<Linggen> linggens = new ArrayList<>();
+    private List<GongfaCase> gongfas = new ArrayList<>();
 
     ItemStackHandler boneslot = new ItemStackHandler(7);
     private boolean isupdate =true;
@@ -60,6 +62,11 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         }
 
 
+        compoundTag.putInt("gongfasize",gongfas.size());
+        for (int i = 0; i < gongfas.size(); i++) {
+            compoundTag.put("gongfa"+i,gongfas.get(i).serializeNBT());
+        }
+
         return compoundTag;
     }
 
@@ -71,16 +78,21 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
             this.boneslot.deserializeNBT((CompoundTag) compoundTag.get("boneslot"));
         }
         lingxius.clear();
-        int lingxiusize = compoundTag.getInt("lingxiusize");
-        for (int i = 0; i < lingxiusize; i++) {
+        for (int i = 0; i < compoundTag.getInt("lingxiusize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("lingxiu" + i);
             lingxius.add(new LingxiuCase(player,tag));
         }
         linggens.clear();
-        int linggensize = compoundTag.getInt("linggensize");
-        for (int i = 0; i < linggensize; i++) {
+        for (int i = 0; i < compoundTag.getInt("linggensize"); i++) {
             Linggen linggen = Linggen.valueOf(compoundTag.getString("linggen" + i));
             linggens.add(linggen);
+        }
+
+
+        gongfas.clear();
+        for (int i = 0; i < compoundTag.getInt("gongfassize"); i++) {
+            CompoundTag tag = (CompoundTag) compoundTag.get("gongfa" + i);
+            gongfas.add(new GongfaCase(player,tag));
         }
     }
 

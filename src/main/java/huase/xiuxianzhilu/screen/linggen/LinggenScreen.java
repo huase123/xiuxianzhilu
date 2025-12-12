@@ -22,7 +22,7 @@ public class LinggenScreen  extends FunctionAbstractContainerScreen<LinggenMenu>
     public void createToServerButton(LinggenMenu pMenu) {
         Map<Integer, Task> buttonFunctionMap = pMenu.getButtonFunctionMap();
         int index = 0;
-        ToServerButton toServerButton = new ToServerButton(pMenu, ++index, width/2-100, height/2-30, 200,60);
+        ToServerButton toServerButton = new ToServerButton(pMenu, index++, width/2-100, height/2-30, 200,60);
         this.addRenderableWidget(toServerButton);
 
         if(index != buttonFunctionMap.size()){

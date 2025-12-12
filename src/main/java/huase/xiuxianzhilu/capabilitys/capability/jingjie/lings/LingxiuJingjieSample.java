@@ -3,19 +3,20 @@ package huase.xiuxianzhilu.capabilitys.capability.jingjie.lings;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieType;
 import net.minecraft.core.Holder;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * - @description:Jingjie类
  */
-public abstract class LingxiuJingjie extends AttributeBase {
+public abstract class LingxiuJingjieSample extends AttributeBase {
     int maxDengji;
     private int intensity;
     float maxlingli;
     float maxjingyan;
 
-    private  Holder<LingxiuJingjie> prentkey;
+    private  Holder<LingxiuJingjieSample> prentkey;
 
-    public LingxiuJingjie(Holder<LingxiuJingjie> prentkey, int maxDengji, int intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
+    public LingxiuJingjieSample(Holder<LingxiuJingjieSample> prentkey, int maxDengji, int intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
         this.prentkey = prentkey;
         this.maxDengji = maxDengji;
         this.intensity = intensity;
@@ -53,8 +54,11 @@ public abstract class LingxiuJingjie extends AttributeBase {
         this.intensity = intensity;
     }
 
-    public Holder<LingxiuJingjie> getPrent() {
+    public Holder<LingxiuJingjieSample> getPrent() {
         return prentkey;
     }
 
+    public double addJingyan(Player player, double value) {
+        return value;
+    }
 }

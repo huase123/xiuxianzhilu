@@ -1,6 +1,7 @@
-package huase.xiuxianzhilu.Registrie;
+package huase.xiuxianzhilu.registrie;
 
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import net.minecraftforge.registries.DataPackRegistryEvent;
 import net.minecraftforge.registries.NewRegistryEvent;
 
@@ -8,10 +9,11 @@ import net.minecraftforge.registries.NewRegistryEvent;
 /**
  * - @description:Registries类
  */
-public class Registries {
+public class NewRegistries {
 
     public static void setRegistriesForDatapack(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(LingxiujingjieFactorys.lingxiu_jingjie_key, LingxiujingjieFactorys.CODEC, LingxiujingjieFactorys.CODEC);
+        event.dataPackRegistry(LingxiujingjieGen.lingxiu_jingjie_key, LingxiujingjieGen.CODEC, LingxiujingjieGen.CODEC);
+        event.dataPackRegistry(GongfaGen.gongfa_key, GongfaGen.CODEC, GongfaGen.CODEC);
 //        event.dataPackRegistry(MagicPaintingVariants.REGISTRY_KEY, MagicPaintingVariant.CODEC, MagicPaintingVariant.CODEC);
     }
 

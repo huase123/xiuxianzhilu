@@ -3,13 +3,16 @@ package huase.xiuxianzhilu;
 import com.mojang.logging.LogUtils;
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypes;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaTypesInit;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypesInIt;
 import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
+import huase.xiuxianzhilu.registrie.NewRegistries;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.worlds.biomesources.BiomeSourceInit;
 import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
@@ -90,11 +93,13 @@ public class ModMain {
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 //普通注册表注册
-//        modEventBus.addListener(huase.xiuxianzhilu.Registrie.Registries::registerNewRegistry);
-        LingxiujingjieFactorys.LingxiujingjieBase_REGISTER.register(modEventBus);
-        LingxiujingjieTypes.BIOME_LAYER_TYPES_REGISTER.register(modEventBus);
+//        modEventBus.addListener(huase.xiuxianzhilu.registrie.Registries::registerNewRegistry);
+        LingxiujingjieGen.LingxiujingjieBase_REGISTER.register(modEventBus);
+        LingxiujingjieTypesInIt.lingxiu_jingjie_type_REGISTER.register(modEventBus);
+        GongfaGen.gongfa_key_REGISTER.register(modEventBus);
+        GongfaTypesInit.gongfa_type_key_REGISTER.register(modEventBus);
 //        资源包管理的注册表
-        modEventBus.addListener(huase.xiuxianzhilu.Registrie.Registries::setRegistriesForDatapack);
+        modEventBus.addListener(NewRegistries::setRegistriesForDatapack);
 
 //        modEventBus.addListener(this::registerExtraStuff);
         changeAttributesIO();

@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.items;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.items.functions.LingshiItem;
+import huase.xiuxianzhilu.items.gongfa.GongfaSampleItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,5 +18,10 @@ public class Iteminit {
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new ExampleItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
     public static final RegistryObject<Item> lingshi = ITEMS.register("lingshi", () -> new LingshiItem());
+    public static final RegistryObject<Item> gongfa0 = ITEMS.register("gongfa0", () -> new GongfaSampleItem());
+    public static final RegistryObject<Item> gongfa1 = ITEMS.register("gongfa1", () -> new GongfaSampleItem());
+    public static final RegistryObject<Item> gongfa2 = ITEMS.register("gongfa2", () -> new GongfaSampleItem());
+    public static final RegistryObject<Item> gongfa3 = ITEMS.register("gongfa3", () -> new GongfaSampleItem());
+    public static final RegistryObject<Item> gongfa4 = ITEMS.register("gongfa4", () -> new GongfaSampleItem());
 
 }

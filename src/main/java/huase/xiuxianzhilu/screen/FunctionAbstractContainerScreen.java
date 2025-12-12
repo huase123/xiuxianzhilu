@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 /**
  * - @description:FunctionAbstractContainerScreen类
  */
-public abstract class FunctionAbstractContainerScreen<T extends ReAbstractContainerMenu> extends AbstractContainerScreen{
+public abstract class FunctionAbstractContainerScreen<T extends ReAbstractContainerMenu> extends AbstractContainerScreen<T> {
     public FunctionAbstractContainerScreen(T pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

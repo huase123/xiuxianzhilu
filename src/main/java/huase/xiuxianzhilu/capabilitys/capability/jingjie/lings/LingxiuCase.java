@@ -7,13 +7,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
-import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys.lingxiu_jingjie_key;
+import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
 
 /**
  * - @description:LingxiuCase类
  */
 public class LingxiuCase extends AttributeBase {
-    private LingxiuJingjie lingxiuJingjie;
+    private LingxiuJingjieSample lingxiuJingjieSample;
     float lingli;
     float maxlingli;
     float jingyan;
@@ -22,13 +22,13 @@ public class LingxiuCase extends AttributeBase {
     int maxDengji;
     Player player;
 
-    public LingxiuCase(Player player,LingxiuJingjie lingxiuJingjie) {
-        super(lingxiuJingjie.maxshengming, lingxiuJingjie.wugong, lingxiuJingjie.wufang, lingxiuJingjie.baojishanghai, lingxiuJingjie.baojilv);
+    public LingxiuCase(Player player, LingxiuJingjieSample lingxiuJingjieSample) {
+        super(lingxiuJingjieSample.maxshengming, lingxiuJingjieSample.wugong, lingxiuJingjieSample.wufang, lingxiuJingjieSample.baojishanghai, lingxiuJingjieSample.baojilv);
         this.player = player;
-        this.lingxiuJingjie = lingxiuJingjie;
-        this.maxlingli = lingxiuJingjie.maxlingli;
-        this.maxjingyan = lingxiuJingjie.maxjingyan;
-        this.maxDengji = lingxiuJingjie.maxDengji;
+        this.lingxiuJingjieSample = lingxiuJingjieSample;
+        this.maxlingli = lingxiuJingjieSample.maxlingli;
+        this.maxjingyan = lingxiuJingjieSample.maxjingyan;
+        this.maxDengji = lingxiuJingjieSample.maxDengji;
     }
 
     public LingxiuCase(Player player, CompoundTag compoundTag) {
@@ -37,14 +37,14 @@ public class LingxiuCase extends AttributeBase {
     }
 
 
-    public LingxiuJingjie getLingxiuJingjie() {
-        return lingxiuJingjie;
+    public LingxiuJingjieSample getLingxiuJingjie() {
+        return lingxiuJingjieSample;
     }
 
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag compoundTag = super.serializeNBT();
-        ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjie);
+        ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
         if(key !=null){
             compoundTag.putString("lingxiuJingjie",key.toString());
         }
@@ -55,24 +55,24 @@ public class LingxiuCase extends AttributeBase {
     public void deserializeNBT(CompoundTag compoundTag) {
         super.deserializeNBT(compoundTag);
         String string = compoundTag.getString("lingxiuJingjie");
-        lingxiuJingjie = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
+        lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
     }
 
     public int getIntensity() {
 
-        return lingxiuJingjie.getIntensity();
+        return lingxiuJingjieSample.getIntensity();
     }
 
     public void addJingyan(Player player, double value) {
+        value = lingxiuJingjieSample.addJingyan(player,value);
         if(jingyan>=maxjingyan){
-            ModMain.LOGGER.info("达到境界最大经验可以突破");
             tupo(player);
         }else {
-            jingyan+=value*1000;
+            jingyan = (float) Math.min(maxlingli,jingyan+value);
         }
     }
 
-    private void tupo(Player player) {
+    public void tupo(Player player) {
         if(dengji<maxDengji-1){
             dengji++;
             jingyan = 0;

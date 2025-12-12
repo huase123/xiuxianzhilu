@@ -4,9 +4,9 @@ import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.Linggen;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjie;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -17,7 +17,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import java.util.List;
 
-import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieFactorys.lingxiu_jingjie_key;
+import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
 
 /**
  * - @description:CapabilityUtil类
@@ -52,12 +52,12 @@ public class CapabilityUtil {
         PlayerCapability capability = (PlayerCapability) getCapability(player);
         List<LingxiuCase> lingxius = capability.getLingxius();
         if(lingxius.isEmpty()){
-            LingxiuJingjie lingxiuJingjie = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(LingxiujingjieFactorys.lianqi);
-            lingxius.add(new LingxiuCase(player,lingxiuJingjie));
+            LingxiuJingjieSample lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(LingxiujingjieGen.lianqi);
+            lingxius.add(new LingxiuCase(player, lingxiuJingjieSample));
             ModMain.LOGGER.info("成功添加新境界");
         }else {
             LingxiuCase lingxiuCase = lingxius.get(lingxius.size() - 1);
-            Holder<LingxiuJingjie> prent = lingxiuCase.getLingxiuJingjie().getPrent();
+            Holder<LingxiuJingjieSample> prent = lingxiuCase.getLingxiuJingjie().getPrent();
 
             if(prent != null){
                 lingxius.add(new LingxiuCase(player,prent.get()));
@@ -65,14 +65,6 @@ public class CapabilityUtil {
                 ModMain.LOGGER.info("无后续境界");
             }
         }
-    }
-
-    public static void createDensityFunction(PlayerCapability capability, Player pPlayer) {
-        openLinggen(capability,pPlayer);
-        capability.createDensityFunction(pPlayer);
-
-//        改为由功法触发
-        CapabilityUtil.addLingxiuCase(pPlayer);
     }
 
     public static void openLinggen(PlayerCapability capability, Player pPlayer) {
