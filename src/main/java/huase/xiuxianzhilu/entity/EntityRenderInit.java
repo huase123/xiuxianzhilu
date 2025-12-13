@@ -1,7 +1,6 @@
 package huase.xiuxianzhilu.entity;
 
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.entity.functions.ZhenfaEntityRender;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -19,7 +18,6 @@ public class EntityRenderInit {
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 
-            EntityRenderers.register(EntityInit.zhenfaentity.get(), ZhenfaEntityRender::new);
         }
     }
 }

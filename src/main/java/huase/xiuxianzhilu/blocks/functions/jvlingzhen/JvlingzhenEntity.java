@@ -1,7 +1,8 @@
-package huase.xiuxianzhilu.entity.functions;
+package huase.xiuxianzhilu.blocks.functions.jvlingzhen;
 
-import huase.xiuxianzhilu.blocks.functions.ZhenjiBlockEntity;
-import huase.xiuxianzhilu.entity.EntityInit;
+import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
+import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
+import huase.xiuxianzhilu.capabilitys.RegisterCapabilitys;
 import huase.xiuxianzhilu.screen.linggen.LinggenMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -21,22 +22,22 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkHooks;
 
+import java.util.Optional;
+
 /**
  * - @description:ZhenfaEntity类
  */
-public class ZhenfaEntity extends Entity implements HasCustomInventoryScreen {
-    private ZhenjiBlockEntity zhenjiBlockEntity;
+public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen {
 
 
     private static final EntityDataAccessor<BlockPos> blockPosEntityDataAccessor =
-            SynchedEntityData.defineId(ZhenfaEntity.class, EntityDataSerializers.BLOCK_POS);
-    public ZhenfaEntity(EntityType<?> pEntityType, Level pLevel) {
+            SynchedEntityData.defineId(JvlingzhenEntity.class, EntityDataSerializers.BLOCK_POS);
+    public JvlingzhenEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
-    public ZhenfaEntity(Level level, ZhenjiBlockEntity zhenjiBlockEntity) {
-        this(EntityInit.zhenfaentity.get(),level);
+    public JvlingzhenEntity(Level level, BlockEntity zhenjiBlockEntity) {
+        this(BlockCreateEntityInit.jvlingzhenentity.get(),level);
         this.entityData.set(blockPosEntityDataAccessor,zhenjiBlockEntity.getBlockPos());
-        this.zhenjiBlockEntity = zhenjiBlockEntity;
 
     }
 
@@ -46,8 +47,8 @@ public class ZhenfaEntity extends Entity implements HasCustomInventoryScreen {
         super.tick();
 
         if(!this.level().isClientSide){
-            ZhenjiBlockEntity zhenjiBlockEntity1 = getZhenjiBlockEntity();
-            if(zhenjiBlockEntity1==null || zhenjiBlockEntity1.isRemoved()){
+            Optional<JvlingzhenBlockEntity> blockEntity = this.level().getBlockEntity(this.entityData.get(blockPosEntityDataAccessor), BlockEntitiesinit.jvlingzhenblockentity.get());
+            if(blockEntity.isEmpty()){
                 this.discard();
             }
         }
@@ -77,11 +78,15 @@ public class ZhenfaEntity extends Entity implements HasCustomInventoryScreen {
     @Override
     public void openCustomInventoryScreen(Player pPlayer) {
         if (!this.level().isClientSide) {
-            NetworkHooks.openScreen((ServerPlayer) pPlayer,
-                    new SimpleMenuProvider((containerId, playerInventory, player) -> new LinggenMenu(containerId, playerInventory,this),
-                            Component.translatable("menu.title.linggen")),
-                    buf -> buf.writeInt(this.getId())
-            );
+            pPlayer.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(playerCapability -> {
+               if(playerCapability.getLinggens().isEmpty()){
+                   NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                           new SimpleMenuProvider((containerId, playerInventory, player) -> new LinggenMenu(containerId, playerInventory,this),
+                                   Component.translatable("menu.title.linggen")),
+                           buf -> buf.writeInt(this.getId())
+                   );
+               }
+            });
         }
     }
 
@@ -108,14 +113,4 @@ public class ZhenfaEntity extends Entity implements HasCustomInventoryScreen {
         pCompound.putInt("blockposz", blockPos.getZ());
     }
 
-    public ZhenjiBlockEntity getZhenjiBlockEntity() {
-        if(zhenjiBlockEntity == null){
-            BlockEntity blockEntity = this.level().getBlockEntity(this.entityData.get(blockPosEntityDataAccessor));
-            if(blockEntity != null && blockEntity instanceof ZhenjiBlockEntity zhenjiBlockEntity && !zhenjiBlockEntity.isRemoved() ){
-                this.zhenjiBlockEntity = zhenjiBlockEntity;
-            }
-        }
-
-        return zhenjiBlockEntity;
-    }
 }

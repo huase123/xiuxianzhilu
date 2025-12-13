@@ -6,7 +6,9 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.datagens.tag.BlockTagsProvider;
 import huase.xiuxianzhilu.datagens.tag.CustomizeWorldPresetTagsProvider;
+import huase.xiuxianzhilu.datagens.tag.ItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -34,10 +36,10 @@ public class DataGenerators {
 //
 //        generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
 //
-//        BlockTagsProvider blockTags = new BlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-//        generator.addProvider(event.includeServer(), blockTags);
-//
-//        generator.addProvider(event.includeServer(), new ItemTagGenerator(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        BlockTagsProvider blockTags = new BlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
+        generator.addProvider(event.includeServer(), blockTags);
+
+        generator.addProvider(event.includeServer(), new ItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
 //        generator.addProvider(event.includeServer(), new EntityTagGenerator(packOutput, lookupProvider, existingFileHelper));
 ////        结构数据
 //        generator.addProvider(event.includeServer(), new StalactiteGenerator(packOutput));

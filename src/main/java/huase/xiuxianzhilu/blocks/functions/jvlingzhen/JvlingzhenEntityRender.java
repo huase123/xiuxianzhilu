@@ -1,4 +1,4 @@
-package huase.xiuxianzhilu.entity.functions;
+package huase.xiuxianzhilu.blocks.functions.jvlingzhen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -13,12 +13,12 @@ import net.minecraft.util.Mth;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
-public class ZhenfaEntityRender extends EntityRenderer<ZhenfaEntity> {
-    public ZhenfaEntityRender(EntityRendererProvider.Context context) {
+public class JvlingzhenEntityRender extends EntityRenderer<JvlingzhenEntity> {
+    public JvlingzhenEntityRender(EntityRendererProvider.Context context) {
         super(context);
     }
 
-    public void render(ZhenfaEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(JvlingzhenEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
 
         pMatrixStack.pushPose();
         pMatrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(pPartialTicks, pEntity.yRotO, pEntity.getYRot()) - 90.0F));
@@ -72,7 +72,7 @@ public class ZhenfaEntityRender extends EntityRenderer<ZhenfaEntity> {
 
     private static final ResourceLocation EVOKER_ILLAGER = new ResourceLocation("textures/entity/illager/evoker.png");
     @Override
-    public ResourceLocation getTextureLocation(ZhenfaEntity pEntity) {
+    public ResourceLocation getTextureLocation(JvlingzhenEntity pEntity) {
         return EVOKER_ILLAGER;
     }
 }

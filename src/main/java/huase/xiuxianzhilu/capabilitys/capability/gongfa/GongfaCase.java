@@ -18,6 +18,10 @@ public class GongfaCase extends AttributeBase {
         deserializeNBT(compoundTag);
     }
 
+    public GongfaCase() {
+
+    }
+
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag compoundTag = super.serializeNBT();

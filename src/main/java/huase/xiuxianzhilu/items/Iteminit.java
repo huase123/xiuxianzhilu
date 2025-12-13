@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.items;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.items.functions.LingshiItem;
 import huase.xiuxianzhilu.items.gongfa.GongfaSampleItem;
 import net.minecraft.world.food.FoodProperties;
@@ -23,5 +24,12 @@ public class Iteminit {
     public static final RegistryObject<Item> gongfa2 = ITEMS.register("gongfa2", () -> new GongfaSampleItem());
     public static final RegistryObject<Item> gongfa3 = ITEMS.register("gongfa3", () -> new GongfaSampleItem());
     public static final RegistryObject<Item> gongfa4 = ITEMS.register("gongfa4", () -> new GongfaSampleItem());
+
+    static {
+        GongfaGen.gongfa_key_REGISTER.getEntries().stream().forEach(e ->{
+            ModMain.LOGGER.info("开始注册功法物品");
+            ITEMS.register(e.getKey().toString()+"aaa", () -> new GongfaSampleItem());
+        });
+    }
 
 }

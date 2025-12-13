@@ -3,7 +3,6 @@ package huase.xiuxianzhilu.screen.linggen;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
-import huase.xiuxianzhilu.entity.functions.ZhenfaEntity;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.screen.ReAbstractContainerMenu;
 import net.minecraft.network.FriendlyByteBuf;
@@ -16,19 +15,19 @@ import net.minecraft.world.item.ItemStack;
  * - @description:LinggenMenu类
  */
 public class LinggenMenu extends ReAbstractContainerMenu {
-    private ZhenfaEntity zhenfaEntity;
+    private Entity prententity;
     private Player player;
     public LinggenMenu(int i, Inventory playerInventory, FriendlyByteBuf friendlyByteBuf) {
         super(MenuTypesInit.linggenmenu.get(), i);
         Entity entity = playerInventory.player.level().getEntity(friendlyByteBuf.readInt());
-        if(entity instanceof ZhenfaEntity zhenfaEntity){
-            this.zhenfaEntity = zhenfaEntity;
+        if(entity.isAlive()){
+            this.prententity = entity;
         }
     }
 
-    public LinggenMenu(int containerId, Inventory playerInventory, ZhenfaEntity zhenfaEntity) {
+    public LinggenMenu(int containerId, Inventory playerInventory, Entity prententity) {
         super(MenuTypesInit.linggenmenu.get(),containerId);
-        this.zhenfaEntity = zhenfaEntity;
+        this.prententity = prententity;
         player = playerInventory.player;
     }
 
@@ -49,7 +48,7 @@ public class LinggenMenu extends ReAbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return zhenfaEntity.isAlive();
+        return prententity.isAlive();
     }
 
 }

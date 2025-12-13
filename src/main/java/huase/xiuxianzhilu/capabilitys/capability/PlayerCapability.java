@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class PlayerCapability extends AttributeBase implements hua.huase.shanhaicontinent.capabilitys.capability.Update {
     private List<LingxiuCase> lingxius = new ArrayList<>();
-    private int lingxiuindex=-1;
+    private int lingxiuindex =-1;
     private List<Tixiu> tixius = new ArrayList<>();
     private List<Linggen> linggens = new ArrayList<>();
     private List<GongfaCase> gongfas = new ArrayList<>();
-    private int gongfaindex=-1;
+    private int gongfaindex =-1;
 
     ItemStackHandler boneslot = new ItemStackHandler(7);
     private boolean isupdate =true;

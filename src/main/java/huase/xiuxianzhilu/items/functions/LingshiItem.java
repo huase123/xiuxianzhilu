@@ -1,27 +1,14 @@
 package huase.xiuxianzhilu.items.functions;
 
-import huase.xiuxianzhilu.blocks.BlockInit;
-import huase.xiuxianzhilu.blocks.functions.ZhenjiBlockEntity;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
-import net.minecraft.tags.StructureTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.EyeOfEnder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 
 /**
  * - @description:ExampleItem类
@@ -39,7 +26,7 @@ public class LingshiItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
         BlockState blockState = pLevel.getBlockState(blockhitresult.getBlockPos());
-        if (blockhitresult.getType() == HitResult.Type.BLOCK && blockState.is(BlockInit.zhenji.get())) {
+ /*       if (blockhitresult.getType() == HitResult.Type.BLOCK && blockState.is(BlockInit.zhenji.get())) {
 
             if (pPlayer instanceof ServerPlayer) {
                 ZhenjiBlockEntity zhenjiBlockEntity = (ZhenjiBlockEntity) pLevel.getBlockEntity(blockhitresult.getBlockPos());
@@ -71,9 +58,8 @@ public class LingshiItem extends Item {
                     pPlayer.swing(pHand, true);
                     return InteractionResultHolder.success(itemstack);
                 }
-            }
+            }*/
 
             return InteractionResultHolder.consume(itemstack);
-        }
     }
 }

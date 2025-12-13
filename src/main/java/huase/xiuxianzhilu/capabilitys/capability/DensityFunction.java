@@ -14,7 +14,7 @@ public class DensityFunction {
     public double time = 0;
     public double dazuo = 0;
     public double danyao = 0;
-//    用于客户端平滑查找
+//    用于客户端平滑插值
     public double newtime = 0;
     public double newdazuo = 0;
     public double newdanyao = 0;
@@ -74,8 +74,6 @@ public class DensityFunction {
     public double getGongfaNoise() {
         int scale=1;
         double value = gongfaNoise.getValue(time / scale, dazuo, danyao);
-
-        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
         GongfaCase gongfaindex = playerCapability.getGongfaindex();
 
         int intensity =gongfaindex==null? 1:gongfaindex.getIntensity();

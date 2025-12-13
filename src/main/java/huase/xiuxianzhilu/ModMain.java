@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu;
 
 import com.mojang.logging.LogUtils;
+import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
@@ -68,6 +69,7 @@ public class ModMain {
         BlockInit.ITEMS.register(modEventBus);
         Iteminit.ITEMS.register(modEventBus);
 
+        BlockCreateEntityInit.BlockCreate_ENTITY_TYPES.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
         BlockEntitiesinit.BLOCK_ENTITIES.register(modEventBus);
 
