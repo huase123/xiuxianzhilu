@@ -9,6 +9,7 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -81,8 +82,10 @@ public class CapabilityUtil {
                 }
             }
         }
-
         capability.createDensityFunction(pPlayer);
+        pPlayer.sendSystemMessage(Component.translatable("成功觉醒灵根"));
+
+        capability.setIsupdate(true);
     }
 
     public static void addGongfa(Player player, ItemStack itemstack) {

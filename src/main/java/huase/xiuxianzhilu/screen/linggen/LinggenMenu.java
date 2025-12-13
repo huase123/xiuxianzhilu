@@ -36,7 +36,6 @@ public class LinggenMenu extends ReAbstractContainerMenu {
         addButtonFunctions(() -> {
             PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(player);
             CapabilityUtil.openLinggen(capability,player);
-            ModMain.LOGGER.info(player.getName().getString()+"成功觉醒灵根");
         });
     }
 

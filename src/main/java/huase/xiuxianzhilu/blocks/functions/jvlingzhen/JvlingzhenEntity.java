@@ -1,7 +1,6 @@
 package huase.xiuxianzhilu.blocks.functions.jvlingzhen;
 
 import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
-import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.capabilitys.RegisterCapabilitys;
 import huase.xiuxianzhilu.screen.linggen.LinggenMenu;
 import net.minecraft.core.BlockPos;
@@ -22,8 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkHooks;
 
-import java.util.Optional;
-
 /**
  * - @description:ZhenfaEntity类
  */
@@ -38,21 +35,27 @@ public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen
     public JvlingzhenEntity(Level level, BlockEntity zhenjiBlockEntity) {
         this(BlockCreateEntityInit.jvlingzhenentity.get(),level);
         this.entityData.set(blockPosEntityDataAccessor,zhenjiBlockEntity.getBlockPos());
-
     }
-
+    private BlockEntity selfBlockEntity;
 
     @Override
     public void tick() {
         super.tick();
 
         if(!this.level().isClientSide){
-            Optional<JvlingzhenBlockEntity> blockEntity = this.level().getBlockEntity(this.entityData.get(blockPosEntityDataAccessor), BlockEntitiesinit.jvlingzhenblockentity.get());
-            if(blockEntity.isEmpty()){
+            if(getSelfBlockEntity() == null || getSelfBlockEntity().isRemoved()){
                 this.discard();
             }
         }
     }
+
+    private BlockEntity getSelfBlockEntity() {
+        if(selfBlockEntity == null){
+            selfBlockEntity  = this.level().getBlockEntity(this.entityData.get(blockPosEntityDataAccessor));
+        }
+        return selfBlockEntity;
+    }
+
     @Override
     public boolean isPickable() {
         return true;
