@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.blocks;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenBlockEntity;
+import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,6 +20,11 @@ public class BlockEntitiesinit {
     public static final RegistryObject<BlockEntityType<JvlingzhenBlockEntity>> jvlingzhenblockentity =
             BLOCK_ENTITIES.register("jvlingzhenblockentity", () ->
                     BlockEntityType.Builder.of(JvlingzhenBlockEntity::new, BlockInit.jvlingzhen.get()).build(null));
+
+
+    public static final RegistryObject<BlockEntityType<LianqidingBlockEntity>> lianqidingblockentity =
+            BLOCK_ENTITIES.register("lianqidingblockentity", () ->
+                    BlockEntityType.Builder.of(LianqidingBlockEntity::new, BlockInit.lianaqiding.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

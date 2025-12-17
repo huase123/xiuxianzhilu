@@ -6,6 +6,7 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.datagens.recipeprovider.RERecipeProvider;
 import huase.xiuxianzhilu.datagens.tag.BlockTagsProvider;
 import huase.xiuxianzhilu.datagens.tag.CustomizeWorldPresetTagsProvider;
 import huase.xiuxianzhilu.datagens.tag.ItemTagsProvider;
@@ -44,7 +45,7 @@ public class DataGenerators {
 ////        结构数据
 //        generator.addProvider(event.includeServer(), new StalactiteGenerator(packOutput));
 //
-//        generator.addProvider(event.includeServer(), new SHRecipeProvider(packOutput));
+        generator.addProvider(event.includeServer(), new RERecipeProvider(packOutput));
 //
 //        generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Set.of(), List.of(
 //                new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK),

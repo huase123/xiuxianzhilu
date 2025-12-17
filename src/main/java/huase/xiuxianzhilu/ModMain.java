@@ -13,6 +13,7 @@ import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
+import huase.xiuxianzhilu.recipe.RecipesInit;
 import huase.xiuxianzhilu.registrie.NewRegistries;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.worlds.biomesources.BiomeSourceInit;
@@ -75,6 +76,7 @@ public class ModMain {
 
 
         // Register the Deferred Register to the mod event bus so tabs get registered
+        RecipesInit.SERIALIZERS.register(modEventBus);
         CreativeModeTabInit.CREATIVE_MODE_TABS.register(modEventBus);
         MenuTypesInit.MENUS.register(modEventBus);
 

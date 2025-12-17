@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.blocks.functions.jvlingzhen;
 
 import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
 import huase.xiuxianzhilu.capabilitys.RegisterCapabilitys;
+import huase.xiuxianzhilu.items.functions.Interactionzhenfa;
 import huase.xiuxianzhilu.screen.linggen.LinggenMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,9 +18,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.HasCustomInventoryScreen;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkHooks;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * - @description:ZhenfaEntity类
@@ -29,6 +34,9 @@ public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen
 
     private static final EntityDataAccessor<BlockPos> blockPosEntityDataAccessor =
             SynchedEntityData.defineId(JvlingzhenEntity.class, EntityDataSerializers.BLOCK_POS);
+
+    private static final EntityDataAccessor<Optional<UUID>> prentEntityUUID =
+            SynchedEntityData.defineId(JvlingzhenEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     public JvlingzhenEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -62,6 +70,10 @@ public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen
     }
     public InteractionResult interact(Player player, InteractionHand hand) {
         if (player.isSecondaryUseActive()) {
+            ItemStack itemInHand = player.getItemInHand(hand);
+            if(itemInHand.getItem() instanceof Interactionzhenfa interactionzhenfa){
+                interactionzhenfa.interactionzhenfa(itemInHand,this,player);
+            }
             return InteractionResult.SUCCESS;
         } else{
             if (!this.level().isClientSide) {
@@ -76,6 +88,24 @@ public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen
                 return InteractionResult.SUCCESS;
             }
         }
+    }
+
+    Entity prent;
+    public void interactZhenfa(ItemStack itemInHand, Entity entity, Player player) {
+        prent = entity;
+        this.entityData.set(prentEntityUUID, Optional.of(entity.getUUID()));
+    }
+
+
+    public Entity getprentEntity() {
+        if(prent == null){
+            Level level = this.level();
+            Optional<UUID> uuid1 = this.entityData.get(prentEntityUUID);
+            if(!uuid1.isEmpty()){
+                prent = level.getEntities().get(uuid1.get());
+            }
+        }
+        return prent;
     }
 
     @Override
@@ -96,6 +126,21 @@ public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen
     @Override
     protected void defineSynchedData() {
         this.entityData.define(blockPosEntityDataAccessor, BlockPos.ZERO);
+        this.entityData.define(prentEntityUUID, Optional.empty());
+    }
+
+
+    @Override
+    protected void addAdditionalSaveData(CompoundTag pCompound) {
+        BlockPos blockPos = this.entityData.get(blockPosEntityDataAccessor);
+        pCompound.putInt("blockposx", blockPos.getX());
+        pCompound.putInt("blockposy", blockPos.getY());
+        pCompound.putInt("blockposz", blockPos.getZ());
+
+        Optional<UUID> uuid1 = this.entityData.get(prentEntityUUID);
+        if(!uuid1.isEmpty()){
+            pCompound.putUUID("prententityuuid",uuid1.get());
+        }
     }
 
     @Override
@@ -105,15 +150,11 @@ public class JvlingzhenEntity extends Entity implements HasCustomInventoryScreen
                 pCompound.getInt("blockposz")
         );
         this.entityData.set(blockPosEntityDataAccessor, blockPos);
-    }
+        if(pCompound.hasUUID("prententityuuid")){
+            this.entityData.set(prentEntityUUID, Optional.of(pCompound.getUUID("prententityuuid")));
+        }
 
-    @Override
-    protected void addAdditionalSaveData(CompoundTag pCompound) {
-        BlockPos blockPos = this.entityData.get(blockPosEntityDataAccessor);
 
-        pCompound.putInt("blockposx", blockPos.getX());
-        pCompound.putInt("blockposy", blockPos.getY());
-        pCompound.putInt("blockposz", blockPos.getZ());
     }
 
 }

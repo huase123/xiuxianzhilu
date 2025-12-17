@@ -92,4 +92,13 @@ public class CapabilityUtil {
         PlayerCapability capability = (PlayerCapability) getCapability(player);
         capability.getGongfas().add(new GongfaCase());
     }
+
+    public static float getPlayerLingli(Player player) {
+
+        return 100;
+    }
+
+    public static void addPlayerLingli(Player player) {
+
+    }
 }

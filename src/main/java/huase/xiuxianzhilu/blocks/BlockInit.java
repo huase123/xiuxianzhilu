@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.blocks;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenBlock;
+import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -27,6 +28,12 @@ public class BlockInit {
     public static final RegistryObject<Block> jvlingzhen = BLOCKS.register("jvlingzhen", () -> new JvlingzhenBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
 
     public static final RegistryObject<Item> jvlingzhen_item = ITEMS.register("jvlingzhen_item", () -> new BlockItem(jvlingzhen.get(), new Item.Properties()));
+
+
+
+    public static final RegistryObject<Block> lianaqiding = BLOCKS.register("lianaqiding", () -> new LianqidingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+
+    public static final RegistryObject<Item> lianaqiding_item = ITEMS.register("lianaqiding_item", () -> new BlockItem(lianaqiding.get(), new Item.Properties()));
 
 
 

@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.screen;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import huase.xiuxianzhilu.screen.linggen.LinggenMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -18,7 +19,10 @@ public class MenuTypesInit {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, ModMain.MOD_ID);
 
     public static final RegistryObject<MenuType<LinggenMenu>> linggenmenu =
-            registerMenuType("pot_menu", LinggenMenu::new);
+            registerMenuType("linggenmenu", LinggenMenu::new);
+
+    public static final RegistryObject<MenuType<LianqidingMenu>> lianqidingmenu =
+            registerMenuType("lianqidingmenu", LianqidingMenu::new);
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

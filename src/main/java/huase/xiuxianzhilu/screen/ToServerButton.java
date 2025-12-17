@@ -19,7 +19,7 @@ public class ToServerButton extends AbstractButton {
 
     @Override
     public void onPress() {
-
+        pMenu.getButtonFunctionMap().get(index).task();
         Minecraft.getInstance().gameMode.handleInventoryButtonClick(pMenu.containerId, index);
     }
 

@@ -1,15 +1,15 @@
-package huase.xiuxianzhilu.blocks.functions.jvlingzhen;
+package huase.xiuxianzhilu.blocks.functions.lianqiding;
 
-import huase.xiuxianzhilu.datagens.tag.ItemTagsProvider;
+import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
+import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -25,22 +25,17 @@ import net.minecraft.world.level.block.state.pattern.BlockPatternBuilder;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * - @description:ZhenjiBlock类
  */
-public class JvlingzhenBlock extends BaseEntityBlock {
-    public JvlingzhenBlock(Properties pProperties) {
+public class LianqidingBlock extends BaseEntityBlock {
+    public LianqidingBlock(Properties pProperties) {
         super(pProperties);
     }
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-
-        return new JvlingzhenBlockEntity(pPos, pState);
-    }
 
 
     @Override
@@ -49,12 +44,7 @@ public class JvlingzhenBlock extends BaseEntityBlock {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(!entity.isRemoved()) {
                 ItemStack itemInHand = pPlayer.getItemInHand(pHand);
-                if(itemInHand.is(ItemTagsProvider.islingshi)){
-                    handleLingshi(itemInHand,pPlayer,entity);
-                }else {
-                    pPlayer.sendSystemMessage(Component.translatable("需要灵石激活").withStyle(ChatFormatting.DARK_GRAY));
-                }
-
+                handleClick(itemInHand,pPlayer,entity);
             } else {
                 throw new IllegalStateException("pot is missing!");
             }
@@ -64,20 +54,28 @@ public class JvlingzhenBlock extends BaseEntityBlock {
     }
 
 
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+//        if (pState.getBlock() != pNewState.getBlock()) {
+//            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+//            if (blockEntity instanceof PotBlockEntity) {
+//                ((PotBlockEntity) blockEntity).drops();
+//            }
+//        }
 
-    public void handleLingshi(ItemStack itemstack, Player pPlayer, BlockEntity entity) {
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
+
+    public void handleClick(ItemStack itemstack, Player pPlayer, BlockEntity entity) {
         if(isSuccess(entity)){
-            createZhenfa(itemstack,pPlayer,entity);
+            NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                    new SimpleMenuProvider((containerId, playerInventory, player) -> new LianqidingMenu(containerId, playerInventory,entity),
+                            Component.translatable("menu.title.linggen")),
+                    entity.getBlockPos()
+            );
         }else {
-            BlockPos blockPos = entity.getBlockPos();
-            ItemEntity itementity = new ItemEntity(entity.getLevel(), blockPos.getX(), blockPos.getY() + (double)0.8, blockPos.getZ(), itemstack.copyWithCount(1));
-            itementity.setDefaultPickUpDelay();
-            entity.getLevel().addFreshEntity(itementity);
-            if (!pPlayer.getAbilities().instabuild) {
-                itemstack.shrink(1);
-            }
-
-            pPlayer.sendSystemMessage(Component.translatable("需正确布置阵法").withStyle(ChatFormatting.DARK_GRAY));
+            pPlayer.sendSystemMessage(Component.translatable("需正确布置结构").withStyle(ChatFormatting.RED));
             pPlayer.sendSystemMessage(Component.translatable("?sss?\n"+
                     "saaas\n"+
                     "sa?as\n"+
@@ -101,32 +99,12 @@ public class JvlingzhenBlock extends BaseEntityBlock {
     }
 
 
-    private void createZhenfa(ItemStack itemstack, Player pPlayer, BlockEntity entity) {
-        JvlingzhenEntity jvlingzhenEntity = new JvlingzhenEntity(entity.getLevel(),entity);
-        jvlingzhenEntity.setPos(entity.getBlockPos().getCenter());
-        entity.getLevel().addFreshEntity(jvlingzhenEntity);
-        if (!pPlayer.getAbilities().instabuild) {
-            itemstack.shrink(1);
-        }
-        BlockPos offset = entity.getBlockPos().offset(-2, 0, -2);
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                BlockPos offset1 = offset.offset(i, 0, j);
-                if(!entity.getLevel().getBlockState(offset1).is(entity.getBlockState().getBlock())){
-                    entity.getLevel().setBlock(offset1, Blocks.AIR.defaultBlockState(),2);
-                }
-            }
-        }
-
-        entity.getLevel().playSeededSound(pPlayer,offset.getX(), offset.getY(), offset.getZ(), SoundEvents.GHAST_WARN, SoundSource.RECORDS, 1.0F, 1.0F, 1L);
-    }
-
 
     @javax.annotation.Nullable
-    private static BlockPattern witherPatternFull;
+    private static BlockPattern lianqidingpattern;
     private static BlockPattern getOrCreateWitherFull() {
-        if (witherPatternFull == null) {
-            witherPatternFull =
+        if (lianqidingpattern == null) {
+            lianqidingpattern =
                     BlockPatternBuilder.start()
                             .aisle(
                                     "?sss?",
@@ -146,13 +124,26 @@ public class JvlingzhenBlock extends BaseEntityBlock {
                             .build();
 
         }
-        return witherPatternFull;
+        return lianqidingpattern;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+
+        return new LianqidingBlockEntity(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return super.getTicker(pLevel, pState, pBlockEntityType);
+//        if(pLevel.isClientSide()) {
+//            return null;
+//        }
+
+//        return createTickerHelper(pBlockEntityType,  BlockEntitiesinit.lianqidingblockentity.get(), LianqidingBlockEntity::tick);
+        return createTickerHelper(pBlockEntityType, BlockEntitiesinit.lianqidingblockentity.get(),
+                (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 
     @Nullable
