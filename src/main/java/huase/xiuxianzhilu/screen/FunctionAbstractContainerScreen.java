@@ -15,7 +15,6 @@ public abstract class FunctionAbstractContainerScreen<T extends ReAbstractContai
 
     @Override
     protected void init() {
-
         createToServerButton((T)this.menu);
     }
     public abstract void createToServerButton(T pMenu);

@@ -18,12 +18,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraft.world.level.block.state.pattern.BlockPattern;
 import net.minecraft.world.level.block.state.pattern.BlockPatternBuilder;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.gameevent.GameEventListener;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
@@ -32,8 +34,16 @@ import org.jetbrains.annotations.Nullable;
  * - @description:ZhenjiBlock类
  */
 public class LianqidingBlock extends BaseEntityBlock {
-    public LianqidingBlock(Properties pProperties) {
-        super(pProperties);
+
+    private int lv = 0;
+
+    public int getLv() {
+        return lv;
+    }
+
+    public LianqidingBlock(int lv) {
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
+        this.lv = lv;
     }
 
 
@@ -71,7 +81,7 @@ public class LianqidingBlock extends BaseEntityBlock {
         if(isSuccess(entity)){
             NetworkHooks.openScreen((ServerPlayer) pPlayer,
                     new SimpleMenuProvider((containerId, playerInventory, player) -> new LianqidingMenu(containerId, playerInventory,entity),
-                            Component.translatable("menu.title.linggen")),
+                            Component.translatable("炼器鼎")),
                     entity.getBlockPos()
             );
         }else {
@@ -131,7 +141,7 @@ public class LianqidingBlock extends BaseEntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
 
-        return new LianqidingBlockEntity(pPos, pState);
+        return new LianqidingBlockEntity(pPos, pState,lv);
     }
 
     @Nullable

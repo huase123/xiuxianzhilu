@@ -31,9 +31,15 @@ public class BlockInit {
 
 
 
-    public static final RegistryObject<Block> lianaqiding = BLOCKS.register("lianaqiding", () -> new LianqidingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+    public static final RegistryObject<Block> lianaqiding0 = BLOCKS.register("lianaqiding0", () -> new LianqidingBlock(0));
+    public static final RegistryObject<Block> lianaqiding1 = BLOCKS.register("lianaqiding1", () -> new LianqidingBlock(1));
+    public static final RegistryObject<Block> lianaqiding2 = BLOCKS.register("lianaqiding2", () -> new LianqidingBlock(2));
+    public static final RegistryObject<Block> lianaqiding3 = BLOCKS.register("lianaqiding3", () -> new LianqidingBlock(3));
 
-    public static final RegistryObject<Item> lianaqiding_item = ITEMS.register("lianaqiding_item", () -> new BlockItem(lianaqiding.get(), new Item.Properties()));
+    public static final RegistryObject<Item> lianaqiding_item0 = ITEMS.register("lianaqiding0_item", () -> new BlockItem(lianaqiding0.get(), new Item.Properties()));
+    public static final RegistryObject<Item> lianaqiding_item1 = ITEMS.register("lianaqiding1_item", () -> new BlockItem(lianaqiding1.get(), new Item.Properties()));
+    public static final RegistryObject<Item> lianaqiding_item2 = ITEMS.register("lianaqiding2_item", () -> new BlockItem(lianaqiding2.get(), new Item.Properties()));
+    public static final RegistryObject<Item> lianaqiding_item3 = ITEMS.register("lianaqiding3_item", () -> new BlockItem(lianaqiding3.get(), new Item.Properties()));
 
 
 

@@ -35,7 +35,7 @@ import java.util.Optional;
  * - @description:ZhenjiBlockEntity类
  */
 public class LianqidingBlockEntity extends BlockEntity implements PrentFunction {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(49) {
+    private  ItemStackHandler itemHandler = new ItemStackHandler(){
         @Override
         protected void onContentsChanged(int slot) {
             if(!level.isClientSide()) {
@@ -47,12 +47,36 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private int progress = 0;
-    private int maxProgress = 200;
+    private int maxProgress = 400;
     private int lingli = 0;
     private Player player;
+    private int lv = 0;
+
+    public int getLv() {
+        return lv;
+    }
+
     public LianqidingBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntitiesinit.lianqidingblockentity.get(),pPos, pBlockState);
 
+    }
+    public LianqidingBlockEntity(BlockPos pPos, BlockState pBlockState,int lv) {
+        super(BlockEntitiesinit.lianqidingblockentity.get(),pPos, pBlockState);
+        this.lv = lv;
+        maxProgress = 400-lv*100;
+        int size;
+        switch (lv){
+            case 0:size=9;
+            break;
+            case 1:size=13;
+            break;
+            case 2:size=21;
+            break;
+            case 3:size=25;
+            break;
+            default:size=9;
+        };
+        itemHandler.setSize(size);
     }
 
 
@@ -162,6 +186,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("gem_polishing_station.progress", progress);
+        pTag.putInt("lv", lv);
 
     }
 
@@ -170,6 +195,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("gem_polishing_station.progress");
+        lv = pTag.getInt("lv");
     }
 
 //
