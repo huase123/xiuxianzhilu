@@ -42,6 +42,17 @@ public class LianqidingCategory implements IRecipeCategory<LianqidingRecipe> {
     private static final ResourceLocation lianqiding1 = ModMain.prefix("textures/gui/container/lianqiding1.png");
     private static final ResourceLocation lianqiding2 = ModMain.prefix("textures/gui/container/lianqiding2.png");
     private static final ResourceLocation lianqiding3 = ModMain.prefix("textures/gui/container/lianqiding3.png");
+
+    public static RecipeType<LianqidingRecipe> getRecipeTypeWithLV(int lv) {
+        switch (lv){
+            case 0:return GEM_LIANQIDING0_TYPE;
+            case 1:return GEM_LIANQIDING1_TYPE;
+            case 2:return GEM_LIANQIDING2_TYPE;
+            case 3:return GEM_LIANQIDING3_TYPE;
+        }
+        return GEM_LIANQIDING3_TYPE;
+    }
+
     private ResourceLocation getResourceLocation(int lv) {
         switch (lv){
             case 0:return lianqiding0;
