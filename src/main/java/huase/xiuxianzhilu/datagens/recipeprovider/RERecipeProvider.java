@@ -19,12 +19,24 @@ public class RERecipeProvider extends RecipeProvider implements IConditionBuilde
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
-        BuildLianqidingRecipe define = BuildLianqidingRecipe.shapedResult(Items.STONE, 10)
-                .define(0, Items.STONE)
-                .define(1, Items.STONE)
-                .define(2, Items.STONE)
-                .define(3, Items.STONE);
-        pWriter.accept(define);
+        for (int i = 0; i < 11; i++) {
+            BuildLianqidingRecipe define = BuildLianqidingRecipe.shapedResult(Items.STONE, 10+i)
+                    .define(0, Items.STONE)
+                    .define(1, Items.STONE)
+                    .define(2, Items.STONE)
+                    .define(3, Items.STONE);
+            pWriter.accept(define);
+
+        }
+        for (int i = 0; i < 11; i++) {
+            BuildLianqidingRecipe define = BuildLianqidingRecipe.shapedResult(Items.RED_BED, 10+i)
+                    .define(0, Items.STONE)
+                    .define(1, Items.STONE)
+                    .define(11, Items.STONE)
+                    .define(9, Items.STONE);
+            pWriter.accept(define);
+
+        }
     }
 
 }

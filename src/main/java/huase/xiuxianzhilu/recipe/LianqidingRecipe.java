@@ -33,6 +33,12 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
+        int containerSize = pContainer.getContainerSize();
+        for (int i = 0; i < containerSize; i++) {
+            if(!inputItems.get(i).test(pContainer.getItem( i))){
+                return false;
+            }
+        }
         return true;
     }
 
@@ -111,8 +117,8 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
             Map<Integer, Ingredient> map = keyFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "key"));
 
 
-            NonNullList<Ingredient> inputs = NonNullList.withSize(49, Ingredient.EMPTY);
-            for (int i = 0; i < 49; i++) {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(25, Ingredient.EMPTY);
+            for (int i = 0; i < 25; i++) {
                 Ingredient ingredient = map.get(i);
                 if(ingredient != null){
                     inputs.set(i,ingredient);

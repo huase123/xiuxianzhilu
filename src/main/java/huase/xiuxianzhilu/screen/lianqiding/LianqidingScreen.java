@@ -1,15 +1,19 @@
 package huase.xiuxianzhilu.screen.lianqiding;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.recipe.LianqidingRecipe;
 import huase.xiuxianzhilu.screen.FunctionAbstractContainerScreen;
 import huase.xiuxianzhilu.screen.Task;
 import huase.xiuxianzhilu.screen.ToServerButton;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * - @description:LinggenScreen类
@@ -53,6 +57,12 @@ public class LianqidingScreen extends FunctionAbstractContainerScreen<Lianqiding
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
         pGuiGraphics.blit(getResourceLocation(), i, j, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+        Optional<LianqidingRecipe> recipeFor = this.menu.getBlockEntity().getRecipeFor();
+        if(recipeFor.isPresent()){
+            pGuiGraphics.drawString(Minecraft.getInstance().font,
+                    Component.translatable("灵力消耗："+recipeFor.get().getLingli()).withStyle(ChatFormatting.AQUA)
+                    , i+113, j+84, 0xFF00ff00, false);
+        }
     }
 
     private ResourceLocation getResourceLocation() {

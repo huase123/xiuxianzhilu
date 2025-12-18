@@ -150,6 +150,10 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         return result;
     }
 
+    public Optional<LianqidingRecipe> getRecipeFor() {
+        return recipeFor;
+    }
+
     @Override
     public List<ChildFunction> getChildFunction() {
         return null;
