@@ -5,14 +5,13 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
 
 /**
  * - @description:RERecipeProvider类
  */
-public class RERecipeProvider extends RecipeProvider implements IConditionBuilder {
+public class RERecipeProvider extends RecipeProvider {
     public RERecipeProvider(PackOutput pOutput) {
         super(pOutput);
     }

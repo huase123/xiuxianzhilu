@@ -13,6 +13,7 @@ import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.network.NetworkHandler;
+import huase.xiuxianzhilu.recipe.MultiBlockRecipesInit;
 import huase.xiuxianzhilu.recipe.RecipesInit;
 import huase.xiuxianzhilu.registrie.NewRegistries;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
@@ -97,7 +98,9 @@ public class ModMain {
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 //普通注册表注册
-//        modEventBus.addListener(huase.xiuxianzhilu.registrie.Registries::registerNewRegistry);
+        modEventBus.addListener(huase.xiuxianzhilu.registrie.NewRegistries::registerNewRegistry);
+        MultiBlockRecipesInit.MULTIBLOCKRECIPESERIALIZER.register(modEventBus);
+
         LingxiujingjieGen.LingxiujingjieBase_REGISTER.register(modEventBus);
         LingxiujingjieTypesInIt.lingxiu_jingjie_type_REGISTER.register(modEventBus);
         GongfaGen.gongfa_key_REGISTER.register(modEventBus);

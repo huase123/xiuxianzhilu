@@ -14,6 +14,6 @@ public class RecipesInit {
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ModMain.MOD_ID);
 
     public static final RegistryObject<RecipeSerializer<LianqidingRecipe>> lianqidingtrecipe =
-            SERIALIZERS.register("pot_recipe", () -> LianqidingRecipe.Serializer.INSTANCE);
+            SERIALIZERS.register("lianqiding_recipe", () -> LianqidingRecipe.Serializer.INSTANCE);
 
 }
