@@ -1,6 +1,9 @@
 package huase.xiuxianzhilu.blocks.functions.lianqiding;
 
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
+import huase.xiuxianzhilu.event.server.AddReloadListenerEvent;
+import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
+import huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipe;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -29,6 +32,8 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 /**
  * - @description:ZhenjiBlock类
@@ -105,7 +110,10 @@ public class LianqidingBlock extends BaseEntityBlock {
 
     private boolean isSuccess(BlockEntity entity) {
         BlockPos blockPos = entity.getBlockPos();
-        return getOrCreateWitherFull().find(entity.getLevel(), blockPos)!= null;
+
+        Optional<MultiBlockRecipe> multiBlockRecipeFor = AddReloadListenerEvent.INSTANCE.getMultiBlockRecipeFor(MultiBlockRecipeType.multiblockrecipe, entity.getLevel(), blockPos);
+
+        return multiBlockRecipeFor.isPresent();
     }
 
 

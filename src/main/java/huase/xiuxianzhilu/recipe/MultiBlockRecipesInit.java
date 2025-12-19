@@ -13,7 +13,7 @@ public class MultiBlockRecipesInit {
 
     public static final DeferredRegister<MultiBlockRecipeSerializer<?>> MULTIBLOCKRECIPESERIALIZER = DeferredRegister.create(NewRegistries.MultiBlockRecipeSerializer_Resourcekey, ModMain.MODID);
 
-    public static RegistryObject<MultiBlockRecipeSerializer<?>> registryObject = register("exmple", huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipeSerializer.INSTANCE);
+    public static RegistryObject<MultiBlockRecipeSerializer<?>> registryObject = register("multiblockrecipeserializer", huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipeSerializer.INSTANCE);
     static <S extends MultiBlockRecipeSerializer<T>, T extends MultiRecipe<?>> RegistryObject<MultiBlockRecipeSerializer<?>> register(String pKey, S pRecipeSerializer) {
         return MULTIBLOCKRECIPESERIALIZER.register(pKey, () -> pRecipeSerializer);
     }

@@ -137,6 +137,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         for(int i = 0; i < itemHandler.getSlots()-1; i++) {
             inventory.setItem(i, this.itemHandler.getStackInSlot(i));
         }
+
         recipeFor = this.level.getRecipeManager().getRecipeFor(LianqidingRecipe.Type.INSTANCE, inventory, level);
         if(recipeFor.isPresent()){
             ItemStack resultItem = recipeFor.get().getResultItem();

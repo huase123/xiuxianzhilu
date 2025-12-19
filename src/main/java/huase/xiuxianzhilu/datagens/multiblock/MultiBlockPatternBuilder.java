@@ -76,13 +76,17 @@ public class MultiBlockPatternBuilder {
     }
 
     private REBlockPredicate[][][] createPattern() {
-        this.ensureAllCharactersMatched();
         REBlockPredicate[][][] predicate = (REBlockPredicate[][][]) Array.newInstance(REBlockPredicate.class, this.pattern.size(), this.height, this.width);
 
         for(int i = 0; i < this.pattern.size(); ++i) {
             for(int j = 0; j < this.height; ++j) {
                 for(int k = 0; k < this.width; ++k) {
-                    predicate[i][j][k] = this.lookup.get((this.pattern.get(i))[j].charAt(k));
+                    REBlockPredicate reBlockPredicate = this.lookup.get((this.pattern.get(i))[j].charAt(k));
+                    if(reBlockPredicate != null){
+                        predicate[i][j][k] = reBlockPredicate;
+                    }else {
+                        predicate[i][j][k] = REBlockPredicate.ANY;
+                    }
                 }
             }
         }
@@ -90,19 +94,6 @@ public class MultiBlockPatternBuilder {
         return predicate;
     }
 
-    private void ensureAllCharactersMatched() {
-        List<Character> list = Lists.newArrayList();
-
-        for(Map.Entry<Character, REBlockPredicate> entry : this.lookup.entrySet()) {
-            if (entry.getValue() == null) {
-                list.add(entry.getKey());
-            }
-        }
-
-        if (!list.isEmpty()) {
-            throw new IllegalStateException("Predicates for character(s) " + COMMA_JOINED.join(list) + " are missing");
-        }
-    }
 
     public List<String[]> getPattern() {
         return pattern;

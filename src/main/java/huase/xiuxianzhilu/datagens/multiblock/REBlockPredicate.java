@@ -123,9 +123,29 @@ public class REBlockPredicate {
     }
 
 
-    public boolean test(BlockInWorld unchecked) {
+    public boolean test(BlockInWorld blockInWorld) {
 
-        return true;
+        if (this == ANY) {
+            return true;
+        }else {
+            BlockState blockstate =blockInWorld.getState();
+            if (this.tag != null && !blockstate.is(this.tag)) {
+                return false;
+            } else if (this.blocks != null && !this.blocks.contains(blockstate.getBlock())) {
+                return false;
+            } else if (!this.properties.matches(blockstate)) {
+                return false;
+            } else {
+                if (this.nbt != NbtPredicate.ANY) {
+                    BlockEntity blockentity = blockInWorld.getEntity();
+                    if (blockentity == null || !this.nbt.matches(blockentity.saveWithFullMetadata())) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
     }
 
     @Override
