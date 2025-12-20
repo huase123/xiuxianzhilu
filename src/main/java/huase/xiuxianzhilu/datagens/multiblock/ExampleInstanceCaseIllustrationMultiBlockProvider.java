@@ -23,21 +23,70 @@ public class ExampleInstanceCaseIllustrationMultiBlockProvider extends MultiBloc
         pWriter.accept(BuildMultiBlockRecipe.builder(
                 MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianaqiding0.get()).build())
                         .aisle(
-                                "?sss?",
-                                "saaas",
-                                "sa?as",
-                                "saaas",
-                                "?sss?")
+                                "?????"
+                                , "?sss?"
+                                , "?sss?"
+                                , "?sss?"
+                                , "?????"
+                        )
                         .aisle(
-                                "?????",
-                                "?sss?",
-                                "?sss?",
-                                "?sss?",
-                                "?????")
+                                "?sss?"
+                                , "saaas"
+                                , "saxas"
+                                , "saaas"
+                                , "?sss?"
+                        )
+                        .whereresult('x')
                         .where('?', REBlockPredicate.ANY)
                         .where('a',  REBlockPredicate.Builder.block().of(Blocks.AIR).build())
                         .where('s',  REBlockPredicate.Builder.block().of(Blocks.STONE).build())
-//                        .build()
         ));
+
+        pWriter.accept(BuildMultiBlockRecipe.builder(
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianaqiding1.get()).build())
+                        .aisle(
+                                "?????"
+                                , "?sss?"
+                                , "?sss?"
+                                , "?sss?"
+                                , "?????"
+                        )
+                        .aisle(
+                                "?sss?"
+                                , "saaas"
+                                , "saxas"
+                                , "saaas"
+                                , "?sss?"
+                        )
+                        .whereresult('x')
+                        .where('?', REBlockPredicate.ANY)
+                        .where('a',  REBlockPredicate.Builder.block().of(Blocks.FLETCHING_TABLE).build())
+                        .where('s',  REBlockPredicate.Builder.block().of(Blocks.SEA_LANTERN).build())
+        ));
+
+
+        pWriter.accept(BuildMultiBlockRecipe.builder(
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianaqiding3.get()).build())
+                        .aisle(
+                                "?sss?"
+                                , "saaas"
+                                , "saxas"
+                                , "saaas"
+                                , "?sss?"
+                        )
+                        .aisle(
+                                "?sss?"
+                                , "saaas"
+                                , "saxas"
+                                , "saaas"
+                                , "?sss?"
+                        )
+                        .whereresult('x')
+                        .where('?', REBlockPredicate.ANY)
+                        .where('a',  REBlockPredicate.Builder.block().of(Blocks.FLETCHING_TABLE).build())
+                        .where('s',  REBlockPredicate.Builder.block().of(Blocks.SEA_LANTERN).build())
+        ));
+
+
     }
 }

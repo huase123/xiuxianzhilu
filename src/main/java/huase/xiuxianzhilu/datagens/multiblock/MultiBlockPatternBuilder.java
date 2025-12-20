@@ -71,6 +71,10 @@ public class MultiBlockPatternBuilder {
         return this;
     }
 
+    public MultiBlockPatternBuilder whereresult(char x) {
+        this.lookup.put( x, result);
+        return this;
+    }
     public MultiBlockPattern build() {
         return new MultiBlockPattern(this.createPattern());
     }
@@ -148,4 +152,5 @@ public class MultiBlockPatternBuilder {
         pJson.add("result", result.serializeToJson());
 
     }
+
 }

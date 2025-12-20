@@ -3,7 +3,10 @@ package huase.xiuxianzhilu.compat.jei;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlock;
+import huase.xiuxianzhilu.event.server.AddReloadListenerEvent;
 import huase.xiuxianzhilu.recipe.LianqidingRecipe;
+import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
+import huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipe;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingScreen;
@@ -18,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Collection;
 import java.util.List;
@@ -51,6 +55,11 @@ public class JEITutorialModPlugin implements IModPlugin {
             registration.addRecipeCatalysts(LianqidingCategory.GEM_LIANQIDING3_TYPE
                     ,BlockInit.lianaqiding3.get()
             );
+
+
+            registration.addRecipeCatalysts(MultiBlockRecipeCategory.MULTIBLOCKRECIPE_TYPE
+                    , Blocks.STRUCTURE_BLOCK
+            );
     }
 
     @Override
@@ -59,6 +68,9 @@ public class JEITutorialModPlugin implements IModPlugin {
         registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding1.get()));
         registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding2.get()));
         registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding3.get()));
+
+
+        registration.addRecipeCategories(new MultiBlockRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -122,6 +134,11 @@ public class JEITutorialModPlugin implements IModPlugin {
 
 
         registration.addRecipes(LianqidingCategory.GEM_LIANQIDING3_TYPE, polishingRecipes);
+
+
+
+        List<MultiBlockRecipe> allRecipesFor = AddReloadListenerEvent.INSTANCE.getAllRecipesFor(MultiBlockRecipeType.multiblockrecipe);
+        registration.addRecipes(MultiBlockRecipeCategory.MULTIBLOCKRECIPE_TYPE, allRecipesFor);
 
 
     }

@@ -23,9 +23,7 @@ public class MultiBlockRecipe implements MultiRecipe<LoadingCache<BlockPos, Bloc
 
     @Override
     public boolean matches(LoadingCache<BlockPos, BlockInWorld> loadingcache, Level pLevel, BlockPos blockPos) {
-//        MultiBlockPattern.BlockPatternMatch matches = multiBlockPattern.matches(pLevel, blockPos.offset(2,0,0), Direction.DOWN, Direction.SOUTH);
-        MultiBlockPattern.BlockPatternMatch matches = multiBlockPattern.find(pLevel, blockPos);
-        return matches != null;
+        return  multiBlockPattern.matches(pLevel, blockPos,multiBlockPatternBuilder);
     }
 
     public ResourceLocation getId() {

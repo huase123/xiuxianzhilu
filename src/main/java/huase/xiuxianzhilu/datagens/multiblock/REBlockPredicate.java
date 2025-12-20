@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
@@ -37,6 +38,16 @@ public class REBlockPredicate {
         this.blocks = pBlocks;
         this.properties = pProperties;
         this.nbt = pNbt;
+    }
+
+    public  Block getBlock() {
+        Block reblock = Blocks.AIR;
+        if(blocks != null){
+            for (Block block : blocks) {
+                return block;
+            }
+        }
+            return reblock;
     }
 
     public boolean matches(ServerLevel pLevel, BlockPos pPos) {
@@ -155,67 +166,25 @@ public class REBlockPredicate {
             s.append(tag.location().getPath());
         }
 
-        for (Block block : blocks) {
-            s.append(BuiltInRegistries.BLOCK.getKey(block).getPath());
+        if(blocks != null) {
+            for (Block block : blocks) {
+                s.append(BuiltInRegistries.BLOCK.getKey(block).getPath());
+            }
         }
-
 
         return s.toString();
     }
 
-
-/*
-    public void toNetwork(FriendlyByteBuf pBuffer) {
-        pBuffer.writeBoolean(this == ANY);
-        if (this != ANY) {
-            pBuffer.writeBoolean(this.tag != null);
-            if (this.tag != null) {
-                pBuffer.writeResourceLocation(this.tag.location());
-            }
-
-            pBuffer.writeBoolean(this.blocks != null);
-            if (this.blocks != null) {
-                pBuffer.writeVarInt(this.blocks.size());
-                for (Block block : this.blocks) {
-                    pBuffer.writeResourceLocation(BuiltInRegistries.BLOCK.getKey(block));
-                }
-            }
-
-            this.properties.toNetwork(pBuffer);
-            this.nbt.toNetwork(pBuffer);
-        }
+    @Nullable
+    public TagKey<Block> getTag() {
+        return tag;
     }
 
-    public static REBlockPredicate fromNetwork(FriendlyByteBuf pBuffer) {
-        if (pBuffer.readBoolean()) {
-            return ANY;
-        } else {
-            TagKey<Block> tag = null;
-            if (pBuffer.readBoolean()) {
-                tag = TagKey.create(Registries.BLOCK, pBuffer.readResourceLocation());
-            }
-
-            Set<Block> blocks = null;
-            if (pBuffer.readBoolean()) {
-                int size = pBuffer.readVarInt();
-                ImmutableSet.Builder<Block> builder = ImmutableSet.builder();
-                for (int i = 0; i < size; i++) {
-                    ResourceLocation location = pBuffer.readResourceLocation();
-                    builder.add(BuiltInRegistries.BLOCK.getOptional(location).orElseThrow(() ->
-                            new IllegalStateException("Unknown block id '" + location + "'")
-                    ));
-                }
-                blocks = builder.build();
-            }
-
-            StatePropertiesPredicate properties = StatePropertiesPredicate.fromNetwork(pBuffer);
-            NbtPredicate nbt = NbtPredicate.fromNetwork(pBuffer);
-
-            return new REBlockPredicate(tag, blocks, properties, nbt);
-        }
+    @Nullable
+    public Set<Block> getBlocks() {
+        return blocks;
     }
 
-    */
     public static class Builder {
         @Nullable
         private Set<Block> blocks;

@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -93,5 +94,9 @@ public class BuildMultiBlockRecipeManager  extends SimpleJsonResourceReloadListe
         return (Map<ResourceLocation, T>)this.multiblockrecipes.getOrDefault(tMultiBlockRecipeType, Collections.emptyMap());
     }
 
+
+    public < C extends LoadingCache<BlockPos, BlockInWorld>,T extends  MultiRecipe<C>> List<T> getAllRecipesFor(MultiBlockRecipeType<T> multiBlockRecipeType) {
+        return List.copyOf(this.byType(multiBlockRecipeType).values());
+    }
 
 }

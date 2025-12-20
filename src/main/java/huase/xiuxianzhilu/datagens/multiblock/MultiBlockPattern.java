@@ -5,9 +5,11 @@ import com.google.common.base.MoreObjects;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import huase.xiuxianzhilu.ModMain;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 
@@ -71,7 +73,10 @@ public class MultiBlockPattern {
         for(int i = 0; i < this.width; ++i) {
             for(int j = 0; j < this.height; ++j) {
                 for(int k = 0; k < this.depth; ++k) {
-                    if (!this.pattern[k][j][i].test(pCache.getUnchecked(translateAndRotate(pPos, pFinger, pThumb, i, j, k)))) {
+//                    if (!this.pattern[k][j][i].test(pCache.getUnchecked(translateAndRotate(pPos, pFinger, pThumb, i, j, k)))) {
+                    BlockInWorld unchecked = pCache.getUnchecked(pPos.offset(i, k, j));
+                    REBlockPredicate reBlockPredicate = this.pattern[k][j][i];
+                    if (!reBlockPredicate.test(unchecked)) {
                         return null;
                     }
                 }
@@ -80,6 +85,40 @@ public class MultiBlockPattern {
 
         return new MultiBlockPattern.BlockPatternMatch(pPos, pFinger, pThumb, pCache, this.width, this.height, this.depth);
     }
+
+
+    public boolean matches(Level pLevel, BlockPos blockPos, MultiBlockPatternBuilder multiBlockPatternBuilder) {
+        BlockPos offset;
+        for(int i = 0; i < this.width; ++i) {
+            for(int j = 0; j < this.height; ++j) {
+                for(int k = 0; k < this.depth; ++k) {
+                    REBlockPredicate reBlockPredicate = this.pattern[k][j][i];
+                    if (reBlockPredicate.toString().equals(multiBlockPatternBuilder.getResult().toString())) {
+                        offset = new BlockPos(i,k,j);
+                        return matches(pLevel, blockPos,offset);
+                    }
+                }
+            }
+        }
+        ModMain.LOGGER.error("MultiBlockPatternBuilder NoResult");
+        return false;
+    }
+
+    private boolean matches(Level pLevel, BlockPos blockPos, BlockPos offset) {
+        LoadingCache<BlockPos, BlockInWorld> loadingcache = createLevelCache(pLevel, false);
+        BlockPos subtract = blockPos.subtract(offset);
+        for(int i = 0; i < this.width; ++i) {
+            for(int j = 0; j < this.height; ++j) {
+                for(int k = 0; k < this.depth; ++k) {
+                    if (!this.pattern[k][j][i].test(loadingcache.getUnchecked(subtract.offset(i,k,j)))) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 
     /**
      * Calculates whether the given world position matches the pattern. Warning, fairly heavy function.
