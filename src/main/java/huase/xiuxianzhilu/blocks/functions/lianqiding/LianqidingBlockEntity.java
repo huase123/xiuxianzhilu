@@ -20,6 +20,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -100,7 +101,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
                 this.player =null;
                 progress = 0;
             }else {
-                CapabilityUtil.addPlayerLingli(player);
+                CapabilityUtil.addPlayerLingli(lingli1);
                 progress++;
             }
         }else {
@@ -119,7 +120,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
             }
         }
 
-        ItemEntity itementity = new ItemEntity(this.getLevel(), pPos.getX(), pPos.getY() + (double)1.2, pPos.getZ(), resultItem);
+        ItemEntity itementity = new ItemEntity(this.getLevel(), pPos.getX(), pPos.getY() + 2.2, pPos.getZ(), resultItem);
         itementity.setDefaultPickUpDelay();
         this.getLevel().addFreshEntity(itementity);
     }
@@ -203,16 +204,13 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         lv = pTag.getInt("lv");
     }
 
-//
-//    @Nullable
-//    @Override
-//    public Packet<ClientGamePacketListener> getUpdatePacket() {
-//        return ClientboundBlockEntityDataPacket.create(this);
-//    }
-//
-//    @Override
-//    public CompoundTag getUpdateTag() {
-//        return saveWithoutMetadata();
-//    }
 
+    public ItemStackHandler getItemHandler() {
+        return itemHandler;
+    }
+
+    public AABB getRenderBoundingBox()
+    {
+        return INFINITE_EXTENT_AABB;
+    }
 }

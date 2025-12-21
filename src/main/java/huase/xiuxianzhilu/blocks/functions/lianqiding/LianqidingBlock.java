@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -18,17 +19,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.pattern.BlockInWorld;
-import net.minecraft.world.level.block.state.pattern.BlockPattern;
-import net.minecraft.world.level.block.state.pattern.BlockPatternBuilder;
-import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
@@ -36,6 +32,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -91,16 +88,20 @@ public class LianqidingBlock extends BaseEntityBlock {
     }
 
 
-    @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-//        if (pState.getBlock() != pNewState.getBlock()) {
-//            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-//            if (blockEntity instanceof PotBlockEntity) {
-//                ((PotBlockEntity) blockEntity).drops();
-//            }
-//        }
 
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (!pState.is(pNewState.getBlock())) {
+            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+            if (blockentity instanceof LianqidingBlockEntity lianqidingBlockEntity) {
+                ItemStackHandler itemHandler = lianqidingBlockEntity.getItemHandler();
+                for (int i = 0; i < itemHandler.getSlots(); i++) {
+                    ItemStack stackInSlot = itemHandler.getStackInSlot(i);
+                    Containers.dropItemStack(pLevel, pPos.getX(),pPos.getY(),pPos.getZ(),stackInSlot);
+                }
+                pLevel.updateNeighbourForOutputSignal(pPos, this);
+            }
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        }
     }
 
 
@@ -113,59 +114,23 @@ public class LianqidingBlock extends BaseEntityBlock {
             );
         }else {
             pPlayer.sendSystemMessage(Component.translatable("需正确布置结构").withStyle(ChatFormatting.RED));
-            pPlayer.sendSystemMessage(Component.translatable("?sss?\n"+
-                    "saaas\n"+
-                    "sa?as\n"+
-                    "saaas\n"+
-                    "?sss?\n"+
-                    "-------------------------------------\n"+
-                    "?????\n"+
-                    "?sss?\n"+
-                    "?sss?\n"+
-                    "?sss?\n"+
-                    "?????\n"
-                    )
-                    .withStyle(ChatFormatting.GREEN));
-
         }
     }
-
+    private Optional<MultiBlockRecipe> multiBlockRecipeFor;
     private boolean isSuccess(BlockEntity entity) {
-        BlockPos blockPos = entity.getBlockPos();
+        Optional<MultiBlockRecipe> multiBlockRecipe = getmultiBlockRecipeFor(entity);
+        if(multiBlockRecipe.isPresent()){
+            return multiBlockRecipe.get().matches(entity.getLevel(), entity.getBlockPos());
+        }
 
-//        Optional<MultiBlockRecipe> multiBlockRecipeFor = AddReloadListenerEvent.INSTANCE.getMultiBlockRecipeFor(MultiBlockRecipeType.multiblockrecipe, entity.getLevel(), blockPos);
-        Optional<MultiBlockRecipe> multiBlockRecipeFor = AddReloadListenerEvent.INSTANCE.getMultiBlockRecipeFor(MultiBlockRecipeType.multiblockrecipe, entity);
-
-        return multiBlockRecipeFor.isPresent();
+        return false;
     }
 
-
-
-    @javax.annotation.Nullable
-    private static BlockPattern lianqidingpattern;
-    private static BlockPattern getOrCreateWitherFull() {
-        if (lianqidingpattern == null) {
-            lianqidingpattern =
-                    BlockPatternBuilder.start()
-                            .aisle(
-                                    "?sss?",
-                                    "saaas",
-                                    "sa?as",
-                                    "saaas",
-                                    "?sss?")
-                            .aisle(
-                                    "?????",
-                                    "?sss?",
-                                    "?sss?",
-                                    "?sss?",
-                                    "?????")
-                            .where('?', BlockInWorld.hasState(BlockStatePredicate.ANY))
-                            .where('a',  (blockInWorld) -> blockInWorld.getState().isAir())
-                            .where('s',  (blockInWorld) -> blockInWorld.getState().is(Blocks.STONE))
-                            .build();
-
+    private Optional<MultiBlockRecipe> getmultiBlockRecipeFor(BlockEntity entity) {
+        if(multiBlockRecipeFor == null){
+            multiBlockRecipeFor = AddReloadListenerEvent.INSTANCE.getMultiBlockRecipeFor(MultiBlockRecipeType.multiblockrecipe, entity);
         }
-        return lianqidingpattern;
+        return multiBlockRecipeFor;
     }
 
     @Nullable

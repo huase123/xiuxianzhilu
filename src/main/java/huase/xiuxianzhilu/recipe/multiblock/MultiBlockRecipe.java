@@ -26,7 +26,7 @@ public class MultiBlockRecipe implements MultiRecipe<LoadingCache<BlockPos, Bloc
     public boolean matches(BlockEntity entity) {
 
         if(multiBlockPatternBuilder.getResult().match(entity)){
-            return this.matches(entity.getLevel(),entity.getBlockPos());
+            return true;
         }
 
         return false;

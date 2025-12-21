@@ -98,7 +98,7 @@ public class CapabilityUtil {
         return 100;
     }
 
-    public static void addPlayerLingli(Player player) {
+    public static void addPlayerLingli(float lingi) {
 
     }
 }
