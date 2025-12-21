@@ -25,10 +25,10 @@ public class BlockEntitiesinit {
     public static final RegistryObject<BlockEntityType<LianqidingBlockEntity>> lianqidingblockentity =
             BLOCK_ENTITIES.register("lianqidingblockentity", () ->
                     BlockEntityType.Builder.of(LianqidingBlockEntity::new
-                            , BlockInit.lianaqiding0.get()
-                            , BlockInit.lianaqiding1.get()
-                            , BlockInit.lianaqiding2.get()
-                            , BlockInit.lianaqiding3.get()
+                            , BlockInit.lianqiding0.get()
+                            , BlockInit.lianqiding1.get()
+                            , BlockInit.lianqiding2.get()
+                            , BlockInit.lianqiding3.get()
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

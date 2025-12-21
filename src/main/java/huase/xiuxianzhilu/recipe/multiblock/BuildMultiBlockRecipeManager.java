@@ -4,7 +4,6 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.*;
-import huase.xiuxianzhilu.datagens.multiblock.MultiBlockPattern;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
 import huase.xiuxianzhilu.registrie.NewRegistries;
 import net.minecraft.core.BlockPos;
@@ -14,6 +13,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -84,10 +84,11 @@ public class BuildMultiBlockRecipeManager  extends SimpleJsonResourceReloadListe
     }
 
     public <C extends LoadingCache<BlockPos, BlockInWorld>, T extends MultiRecipe<C>> Optional<T> getMultiBlockRecipeFor(MultiBlockRecipeType<T> multiBlockRecipeType, Level level, BlockPos blockPos) {
-        return this.byType(multiBlockRecipeType).values().stream().filter((t) -> {
-            LoadingCache<BlockPos, BlockInWorld> levelCache = MultiBlockPattern.createLevelCache(level, false);
-            return t.matches(levelCache, level, blockPos);
-        }).findFirst();
+        return this.byType(multiBlockRecipeType).values().stream().filter((t) -> t.matches(level,blockPos)).findFirst();
+    }
+
+    public <C extends LoadingCache<BlockPos, BlockInWorld>, T extends MultiRecipe<C>> Optional<T> getMultiBlockRecipeFor(MultiBlockRecipeType<T> multiBlockRecipeType, BlockEntity entity) {
+        return this.byType(multiBlockRecipeType).values().stream().filter((t) -> t.matches(entity)).findFirst();
     }
 
     private < C extends LoadingCache<BlockPos, BlockInWorld>,T extends  MultiRecipe<C>> Map<ResourceLocation, T> byType(MultiBlockRecipeType<T> tMultiBlockRecipeType) {

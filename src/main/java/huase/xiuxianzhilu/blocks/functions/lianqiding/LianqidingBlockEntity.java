@@ -104,7 +104,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
                 progress++;
             }
         }else {
-//            player =null;
+            player =null;
             progress = 0;
             handRecipeResult(player,pPos,lianqidingRecipe);
         }

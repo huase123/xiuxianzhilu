@@ -7,6 +7,7 @@ import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 
 
@@ -22,7 +23,17 @@ public class MultiBlockRecipe implements MultiRecipe<LoadingCache<BlockPos, Bloc
     }
 
     @Override
-    public boolean matches(LoadingCache<BlockPos, BlockInWorld> loadingcache, Level pLevel, BlockPos blockPos) {
+    public boolean matches(BlockEntity entity) {
+
+        if(multiBlockPatternBuilder.getResult().match(entity)){
+            return this.matches(entity.getLevel(),entity.getBlockPos());
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean matches(Level pLevel, BlockPos blockPos) {
         return  multiBlockPattern.matches(pLevel, blockPos,multiBlockPatternBuilder);
     }
 

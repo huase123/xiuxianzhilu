@@ -38,22 +38,22 @@ public class JEITutorialModPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
             registration.addRecipeCatalysts(LianqidingCategory.GEM_LIANQIDING0_TYPE
-                    ,BlockInit.lianaqiding0.get()
-                    ,BlockInit.lianaqiding1.get()
-                    ,BlockInit.lianaqiding2.get()
-                    ,BlockInit.lianaqiding3.get()
+                    ,BlockInit.lianqiding0.get()
+                    ,BlockInit.lianqiding1.get()
+                    ,BlockInit.lianqiding2.get()
+                    ,BlockInit.lianqiding3.get()
             );
             registration.addRecipeCatalysts(LianqidingCategory.GEM_LIANQIDING1_TYPE
-                    ,BlockInit.lianaqiding1.get()
-                    ,BlockInit.lianaqiding2.get()
-                    ,BlockInit.lianaqiding3.get()
+                    ,BlockInit.lianqiding1.get()
+                    ,BlockInit.lianqiding2.get()
+                    ,BlockInit.lianqiding3.get()
             );
             registration.addRecipeCatalysts(LianqidingCategory.GEM_LIANQIDING2_TYPE
-                    ,BlockInit.lianaqiding2.get()
-                    ,BlockInit.lianaqiding3.get()
+                    ,BlockInit.lianqiding2.get()
+                    ,BlockInit.lianqiding3.get()
             );
             registration.addRecipeCatalysts(LianqidingCategory.GEM_LIANQIDING3_TYPE
-                    ,BlockInit.lianaqiding3.get()
+                    ,BlockInit.lianqiding3.get()
             );
 
 
@@ -64,10 +64,10 @@ public class JEITutorialModPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding0.get()));
-        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding1.get()));
-        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding2.get()));
-        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianaqiding3.get()));
+        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianqiding0.get()));
+        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianqiding1.get()));
+        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianqiding2.get()));
+        registration.addRecipeCategories(new LianqidingCategory(registration.getJeiHelpers().getGuiHelper(), (LianqidingBlock) BlockInit.lianqiding3.get()));
 
 
         registration.addRecipeCategories(new MultiBlockRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
@@ -79,10 +79,10 @@ public class JEITutorialModPlugin implements IModPlugin {
 //添加物品描述
 
         registration.addItemStackInfo(List.of(
-                        new ItemStack(BlockInit.lianaqiding0.get()),
-                        new ItemStack(BlockInit.lianaqiding1.get()),
-                        new ItemStack(BlockInit.lianaqiding2.get()),
-                        new ItemStack(BlockInit.lianaqiding3.get())
+                        new ItemStack(BlockInit.lianqiding0.get()),
+                        new ItemStack(BlockInit.lianqiding1.get()),
+                        new ItemStack(BlockInit.lianqiding2.get()),
+                        new ItemStack(BlockInit.lianqiding3.get())
                 ),
                 Component.translatable("需要建造特殊结构").withStyle(ChatFormatting.RED), // actually 2 lines
                 Component.translatable("需要灵力提供").withStyle(ChatFormatting.BLUE),

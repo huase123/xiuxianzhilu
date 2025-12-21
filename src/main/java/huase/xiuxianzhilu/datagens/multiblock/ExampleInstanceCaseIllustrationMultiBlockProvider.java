@@ -21,7 +21,7 @@ public class ExampleInstanceCaseIllustrationMultiBlockProvider extends MultiBloc
     @Override
     protected void buildRecipes(Consumer<BuildMultiRecipe> pWriter) {
         pWriter.accept(BuildMultiBlockRecipe.builder(
-                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianaqiding0.get()).build())
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianqiding0.get()).build())
                         .aisle(
                                 "?????"
                                 , "?sss?"
@@ -43,7 +43,7 @@ public class ExampleInstanceCaseIllustrationMultiBlockProvider extends MultiBloc
         ));
 
         pWriter.accept(BuildMultiBlockRecipe.builder(
-                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianaqiding1.get()).build())
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianqiding1.get()).build())
                         .aisle(
                                 "?????"
                                 , "?sss?"
@@ -66,7 +66,7 @@ public class ExampleInstanceCaseIllustrationMultiBlockProvider extends MultiBloc
 
 
         pWriter.accept(BuildMultiBlockRecipe.builder(
-                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianaqiding3.get()).build())
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianqiding3.get()).build())
                         .aisle(
                                 "?sss?"
                                 , "saaas"

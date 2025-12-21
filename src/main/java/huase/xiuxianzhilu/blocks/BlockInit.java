@@ -12,6 +12,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 /**
  * - @description:BlockInti类
  */
@@ -31,16 +33,15 @@ public class BlockInit {
 
 
 
-    public static final RegistryObject<Block> lianaqiding0 = BLOCKS.register("lianaqiding0", () -> new LianqidingBlock(0));
-    public static final RegistryObject<Block> lianaqiding1 = BLOCKS.register("lianaqiding1", () -> new LianqidingBlock(1));
-    public static final RegistryObject<Block> lianaqiding2 = BLOCKS.register("lianaqiding2", () -> new LianqidingBlock(2));
-    public static final RegistryObject<Block> lianaqiding3 = BLOCKS.register("lianaqiding3", () -> new LianqidingBlock(3));
-
-    public static final RegistryObject<Item> lianaqiding_item0 = ITEMS.register("lianaqiding0_item", () -> new BlockItem(lianaqiding0.get(), new Item.Properties()));
-    public static final RegistryObject<Item> lianaqiding_item1 = ITEMS.register("lianaqiding1_item", () -> new BlockItem(lianaqiding1.get(), new Item.Properties()));
-    public static final RegistryObject<Item> lianaqiding_item2 = ITEMS.register("lianaqiding2_item", () -> new BlockItem(lianaqiding2.get(), new Item.Properties()));
-    public static final RegistryObject<Item> lianaqiding_item3 = ITEMS.register("lianaqiding3_item", () -> new BlockItem(lianaqiding3.get(), new Item.Properties()));
+    public static final RegistryObject<Block> lianqiding0 = registerBlockWithBlockItem("lianqiding0", () -> new LianqidingBlock(0));
+    public static final RegistryObject<Block> lianqiding1 = registerBlockWithBlockItem("lianqiding1", () -> new LianqidingBlock(1));
+    public static final RegistryObject<Block> lianqiding2 = registerBlockWithBlockItem("lianqiding2", () -> new LianqidingBlock(2));
+    public static final RegistryObject<Block> lianqiding3 = registerBlockWithBlockItem("lianqiding3", () -> new LianqidingBlock(3));
 
 
-
+    private static <T extends Block> RegistryObject<T> registerBlockWithBlockItem(String name, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
+        return toReturn;
+    }
 }

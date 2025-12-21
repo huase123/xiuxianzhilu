@@ -50,6 +50,30 @@ public class REBlockPredicate {
             return reblock;
     }
 
+    public boolean match(BlockEntity blockentity) {
+        if (this == ANY) {
+            return true;
+        } else {
+            BlockState blockstate = blockentity.getBlockState();
+            if (this.tag != null && !blockstate.is(this.tag)) {
+                return false;
+            } else if (this.blocks != null && !this.blocks.contains(blockstate.getBlock())) {
+                return false;
+            } else if (!this.properties.matches(blockstate)) {
+                return false;
+            } else {
+                if (this.nbt != NbtPredicate.ANY) {
+
+                    if (blockentity == null || !this.nbt.matches(blockentity.saveWithFullMetadata())) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+    }
+
     public boolean matches(ServerLevel pLevel, BlockPos pPos) {
         if (this == ANY) {
             return true;
