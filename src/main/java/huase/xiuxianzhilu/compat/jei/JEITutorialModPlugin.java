@@ -3,7 +3,7 @@ package huase.xiuxianzhilu.compat.jei;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlock;
-import huase.xiuxianzhilu.event.server.AddReloadListenerEvent;
+import huase.xiuxianzhilu.event.server.MultiBlockRecipeManager;
 import huase.xiuxianzhilu.recipe.LianqidingRecipe;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
 import huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipe;
@@ -137,7 +137,7 @@ public class JEITutorialModPlugin implements IModPlugin {
 
 
 
-        List<MultiBlockRecipe> allRecipesFor = AddReloadListenerEvent.INSTANCE.getAllRecipesFor(MultiBlockRecipeType.multiblockrecipe);
+        List<MultiBlockRecipe> allRecipesFor = MultiBlockRecipeManager.INSTANCE.getAllRecipesFor(MultiBlockRecipeType.multiblockrecipe);
         registration.addRecipes(MultiBlockRecipeCategory.MULTIBLOCKRECIPE_TYPE, allRecipesFor);
 
 

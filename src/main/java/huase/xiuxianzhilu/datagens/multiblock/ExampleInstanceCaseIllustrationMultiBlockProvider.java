@@ -21,6 +21,27 @@ public class ExampleInstanceCaseIllustrationMultiBlockProvider extends MultiBloc
     @Override
     protected void buildRecipes(Consumer<BuildMultiRecipe> pWriter) {
         pWriter.accept(BuildMultiBlockRecipe.builder(
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.jvlingzhen0.get()).build())
+                        .aisle(
+                                "?????"
+                                , "?sss?"
+                                , "?sss?"
+                                , "?sss?"
+                                , "?????"
+                        )
+                        .aisle(
+                                "?sss?"
+                                , "saaas"
+                                , "saxas"
+                                , "saaas"
+                                , "?sss?"
+                        )
+                        .whereresult('x')
+                        .where('?', REBlockPredicate.ANY)
+                        .where('a',  REBlockPredicate.Builder.block().of(Blocks.AIR).build())
+                        .where('s',  REBlockPredicate.Builder.block().of(Blocks.STONE).build())
+        ));
+        pWriter.accept(BuildMultiBlockRecipe.builder(
                 MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.lianqiding0.get()).build())
                         .aisle(
                                 "?????"

@@ -1,20 +1,15 @@
 package huase.xiuxianzhilu.items.functions;
 
-import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenEntity;
+import huase.xiuxianzhilu.blocks.functions.LinkEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.UUID;
 
 /**
  * - @description:ExampleItem类
@@ -29,8 +24,13 @@ public class ZhenqiItem extends Item implements Interactionzhenfa{
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
         ItemStack itemstack = player.getItemInHand(pUsedHand);
+
         if(!player.level().isClientSide) {
-            setEntity(player,itemstack,null);
+            if (player.isSecondaryUseActive()) {
+                setBlockEntity(player,itemstack,null);
+            }else {
+                return InteractionResultHolder.pass(itemstack);
+            }
         }
 
 
@@ -38,42 +38,43 @@ public class ZhenqiItem extends Item implements Interactionzhenfa{
     }
 
 
-    public void interactionzhenfa(ItemStack itemInHand, JvlingzhenEntity jvlingzhenEntity, Player player) {
+    @Override
+    public void interactionzhenfa(ItemStack itemstack, BlockEntity entity, Player player) {
         if(player.level().isClientSide)return;
 
-        Entity entity =getEntity(player, itemInHand);
-        if(entity == null){
-            setEntity(player,itemInHand,jvlingzhenEntity);
+        BlockEntity blockEntity = getBlockEntity(player, itemstack);
+        if(blockEntity == null){
+            setBlockEntity(player,itemstack,entity);
         }else {
-            if(!entity.is(jvlingzhenEntity)&&entity.isAlive()){
-                jvlingzhenEntity.interactZhenfa(itemInHand,entity,player);
+            if(blockEntity instanceof LinkEntity linkEntity){
+                linkEntity.interaction(entity);
+            }
+            if(entity instanceof LinkEntity linkEntity){
+                linkEntity.interaction(blockEntity);
             }
         }
 
-    }
-
-    @Override
-    public void interactionzhenfa(Level pLevel, Player pPlayer, BlockEntity entity, BlockState pState, BlockPos pPos) {
 
     }
 
-    public void setEntity(Player player, ItemStack itemStack, Entity entity) {
+    public void setBlockEntity(Player player, ItemStack itemStack, BlockEntity blockEntity) {
         CompoundTag orCreateTag = itemStack.getOrCreateTag();
-        if (entity != null) {
-            orCreateTag.putUUID("entityuuid", entity.getUUID());
+        if (blockEntity != null) {
+            BlockPos blockPos = blockEntity.getBlockPos();
+            orCreateTag.putIntArray("blockpos",new int[]{blockPos.getX(),blockPos.getY(),blockPos.getZ()});
         }else {
-            orCreateTag.remove("entityuuid");
+            orCreateTag.remove("blockpos");
         }
 
     }
 
-    public Entity getEntity(Player player, ItemStack itemStack) {
+    public BlockEntity getBlockEntity(Player player, ItemStack itemStack) {
         CompoundTag orCreateTag = itemStack.getOrCreateTag();
-        if (!orCreateTag.hasUUID("entityuuid")) {
+        int[] intArray = orCreateTag.getIntArray("blockpos");
+        if(intArray.length != 3){
             return null;
         }else {
-            UUID uuid = orCreateTag.getUUID("entityuuid");
-            return ((ServerLevel)player.level()).getEntity(uuid);
+            return player.level().getBlockEntity(new BlockPos(intArray[0],intArray[1],intArray[2]));
         }
     }
 }

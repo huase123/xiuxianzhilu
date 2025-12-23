@@ -10,7 +10,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntArrayTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -29,6 +35,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -129,6 +136,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         updateCurrentRecipe();
 
         super.setChanged();
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
     }
 
     private Optional<LianqidingRecipe> recipeFor = Optional.empty();
@@ -157,8 +165,24 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
     }
 
     @Override
-    public List<ChildFunction> getChildFunction() {
-        return null;
+    public void interaction(BlockEntity entity) {
+        if(entity instanceof ChildFunction childFunction && ! childBlockPos.contains(entity.getBlockPos())){
+            if(childBlockPos.size()>=getMaxinteractNum()){
+                childBlockPos.remove(0);
+            }
+            childBlockPos.add(entity.getBlockPos());
+            setChanged();
+        }
+    }
+
+    private int getMaxinteractNum() {
+        return getLv()+1;
+    }
+
+    List<BlockPos> childBlockPos = new ArrayList<>();
+    @Override
+    public List<BlockPos> getChildBlockPos() {
+        return childBlockPos;
     }
 
     public Player getPlayer() {
@@ -191,8 +215,18 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("gem_polishing_station.progress", progress);
+        pTag.putInt("gprogress", progress);
+        pTag.putInt("maxProgress", maxProgress);
         pTag.putInt("lv", lv);
+
+
+        ListTag listTag = new ListTag();
+        for (BlockPos blockPos : childBlockPos) {
+            IntArrayTag intTags = new IntArrayTag(new int[]{blockPos.getX(), blockPos.getY(), blockPos.getZ()});
+            listTag.add(intTags);
+        }
+        pTag.put("childblockpos",listTag);
+
 
     }
 
@@ -200,8 +234,19 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        progress = pTag.getInt("gem_polishing_station.progress");
+        progress = pTag.getInt("progress");
+        maxProgress = pTag.getInt("maxProgress");
         lv = pTag.getInt("lv");
+
+        childBlockPos.clear();
+        ListTag listTag = (ListTag) pTag.get("childblockpos");
+        for (Tag tag : listTag) {
+            IntArrayTag intTags = (IntArrayTag) tag;
+            int[] intArray = intTags.getAsIntArray();
+            childBlockPos.add(new BlockPos(intArray[0], intArray[1], intArray[2]));
+        }
+
+
     }
 
 
@@ -212,5 +257,17 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
     public AABB getRenderBoundingBox()
     {
         return INFINITE_EXTENT_AABB;
+    }
+
+
+    @Nullable
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return saveWithoutMetadata();
     }
 }

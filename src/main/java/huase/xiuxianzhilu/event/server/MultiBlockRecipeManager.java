@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
  * - @description:AddReloadListenerEvent类
  */
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class AddReloadListenerEvent {
+public class MultiBlockRecipeManager {
 
     public static BuildMultiBlockRecipeManager INSTANCE;
 

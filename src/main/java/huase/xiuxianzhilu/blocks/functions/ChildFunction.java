@@ -1,9 +1,15 @@
 package huase.xiuxianzhilu.blocks.functions;
 
+import net.minecraft.core.BlockPos;
+
+import java.util.List;
+
 /**
  * - @description:ChildFunction接口
  */
-public interface ChildFunction {
+public interface ChildFunction extends LinkEntity {
 
-    public abstract PrentFunction getPrentFunction();
+    public abstract List<BlockPos> getPrentBlockPos();
+
+    BlockPos getBlockPos();
 }

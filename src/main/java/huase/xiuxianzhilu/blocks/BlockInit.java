@@ -27,9 +27,9 @@ public class BlockInit {
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
 
 
-    public static final RegistryObject<Block> jvlingzhen = BLOCKS.register("jvlingzhen", () -> new JvlingzhenBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
 
-    public static final RegistryObject<Item> jvlingzhen_item = ITEMS.register("jvlingzhen_item", () -> new BlockItem(jvlingzhen.get(), new Item.Properties()));
+
+    public static final RegistryObject<Block> jvlingzhen0 = registerBlockWithBlockItem("jvlingzhen0", () -> new JvlingzhenBlock(0));
 
 
 

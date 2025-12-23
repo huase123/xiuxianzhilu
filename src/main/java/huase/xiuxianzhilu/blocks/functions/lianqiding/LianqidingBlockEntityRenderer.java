@@ -24,10 +24,14 @@ public class LianqidingBlockEntityRenderer implements BlockEntityRenderer<Lianqi
             float f6 = (float)(Mth.lerp(pPartialTick, prent.xo, prent.getX()) - pEntity.getBlockPos().getX());
             float f7 = (float)(Mth.lerp(pPartialTick, prent.yo, prent.getY()) - pEntity.getBlockPos().getY()) - 1.0f;
             float f8 = (float)(Mth.lerp(pPartialTick, prent.zo, prent.getZ()) - pEntity.getBlockPos().getZ());
+
+            pPoseStack.pushPose();
             pPoseStack.translate(f6, f7, f8);
             RenderApi.renderCrystalBeams(0.14f,0.6f,255,-f6+0.5f, -f7- 1.0f, -f8+0.5f, pPartialTick, prent.tickCount, pPoseStack, pBuffer, pPackedLight);
             RenderApi.renderCrystalBeams(0.20f,0.6f,150,-f6+0.5f, -f7- 1.0f, -f8+0.5f, pPartialTick, prent.tickCount, pPoseStack, pBuffer, pPackedLight);
             RenderApi.renderCrystalBeams(0.4f,0.6f,55,  -f6+0.5f, -f7- 1.0f, -f8+0.5f, pPartialTick, prent.tickCount, pPoseStack, pBuffer, pPackedLight);
+
+            pPoseStack.popPose();
         }
     }
 

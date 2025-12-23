@@ -23,7 +23,10 @@ public class RERecipeProvider extends RecipeProvider {
                     .define(0, Items.STONE)
                     .define(1, Items.STONE)
                     .define(2, Items.STONE)
-                    .define(3, Items.STONE);
+                    .define(3, Items.STONE)
+                    .defineLingli(10)
+                    ;
+
             pWriter.accept(define);
 
         }
@@ -32,7 +35,9 @@ public class RERecipeProvider extends RecipeProvider {
                     .define(0, Items.STONE)
                     .define(1, Items.STONE)
                     .define(11, Items.STONE)
-                    .define(9, Items.STONE);
+                    .define(9, Items.STONE)
+                    .defineLingli(20)
+                    ;
             pWriter.accept(define);
 
         }

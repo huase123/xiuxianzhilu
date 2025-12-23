@@ -19,7 +19,7 @@ public class BlockEntitiesinit {
 
     public static final RegistryObject<BlockEntityType<JvlingzhenBlockEntity>> jvlingzhenblockentity =
             BLOCK_ENTITIES.register("jvlingzhenblockentity", () ->
-                    BlockEntityType.Builder.of(JvlingzhenBlockEntity::new, BlockInit.jvlingzhen.get()).build(null));
+                    BlockEntityType.Builder.of(JvlingzhenBlockEntity::new, BlockInit.jvlingzhen0.get()).build(null));
 
 
     public static final RegistryObject<BlockEntityType<LianqidingBlockEntity>> lianqidingblockentity =

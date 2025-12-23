@@ -1,7 +1,8 @@
 package huase.xiuxianzhilu.blocks.functions.lianqiding;
 
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
-import huase.xiuxianzhilu.event.server.AddReloadListenerEvent;
+import huase.xiuxianzhilu.event.server.MultiBlockRecipeManager;
+import huase.xiuxianzhilu.items.functions.Interactionzhenfa;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
 import huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipe;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
@@ -74,6 +75,7 @@ public class LianqidingBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(!entity.isRemoved()) {
@@ -107,11 +109,14 @@ public class LianqidingBlock extends BaseEntityBlock {
 
     public void handleClick(ItemStack itemstack, Player pPlayer, BlockEntity entity) {
         if(isSuccess(entity)){
-            NetworkHooks.openScreen((ServerPlayer) pPlayer,
-                    new SimpleMenuProvider((containerId, playerInventory, player) -> new LianqidingMenu(containerId, playerInventory,entity),
-                            Component.translatable("炼器鼎")),
-                    entity.getBlockPos()
-            );
+            if(!itemstack.isEmpty() && itemstack.getItem() instanceof Interactionzhenfa interactionzhenfa){
+                interactionzhenfa.interactionzhenfa(itemstack,entity,pPlayer);
+            }else {
+                NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                        new SimpleMenuProvider((containerId, playerInventory, player) -> new LianqidingMenu(containerId, playerInventory,entity),
+                                Component.translatable("炼器鼎")),
+                        entity.getBlockPos());
+            }
         }else {
             pPlayer.sendSystemMessage(Component.translatable("需正确布置结构").withStyle(ChatFormatting.RED));
         }
@@ -123,12 +128,12 @@ public class LianqidingBlock extends BaseEntityBlock {
             return multiBlockRecipe.get().matches(entity.getLevel(), entity.getBlockPos());
         }
 
-        return false;
+        return true;
     }
 
     private Optional<MultiBlockRecipe> getmultiBlockRecipeFor(BlockEntity entity) {
         if(multiBlockRecipeFor == null){
-            multiBlockRecipeFor = AddReloadListenerEvent.INSTANCE.getMultiBlockRecipeFor(MultiBlockRecipeType.multiblockrecipe, entity);
+            multiBlockRecipeFor = MultiBlockRecipeManager.INSTANCE.getMultiBlockRecipeFor(MultiBlockRecipeType.multiblockrecipe, entity);
         }
         return multiBlockRecipeFor;
     }
