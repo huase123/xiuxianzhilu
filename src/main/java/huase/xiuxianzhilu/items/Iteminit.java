@@ -20,6 +20,7 @@ public class Iteminit {
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
     public static final RegistryObject<Item> ZhenqiItem = ITEMS.register("zhenqiitem", () -> new ZhenqiItem());
     public static final RegistryObject<Item> lingshi = ITEMS.register("lingshi", () -> new LingshiItem());
+
     public static final RegistryObject<Item> gongfa0 = ITEMS.register("gongfa0", () -> new GongfaSampleItem());
     public static final RegistryObject<Item> gongfa1 = ITEMS.register("gongfa1", () -> new GongfaSampleItem());
     public static final RegistryObject<Item> gongfa2 = ITEMS.register("gongfa2", () -> new GongfaSampleItem());

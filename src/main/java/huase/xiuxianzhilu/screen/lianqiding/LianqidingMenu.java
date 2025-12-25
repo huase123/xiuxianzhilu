@@ -87,7 +87,7 @@ public class LianqidingMenu extends ReAbstractContainerMenu {
     @Override
     public void createButtonFunctions() {
         addButtonFunctions(() -> {
-            blockEntity.startPlayer(player);
+            blockEntity.handleButtonClick(player);
         });
     }
 

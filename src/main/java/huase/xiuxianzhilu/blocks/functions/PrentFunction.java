@@ -12,4 +12,6 @@ public interface PrentFunction  extends LinkEntity {
     public abstract  List<BlockPos>  getChildBlockPos();
 
     BlockPos getBlockPos();
+
+    boolean checkScope(BlockPos blockPos);
 }

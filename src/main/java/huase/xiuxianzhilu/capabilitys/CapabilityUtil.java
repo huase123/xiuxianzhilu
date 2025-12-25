@@ -5,6 +5,7 @@ import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.Linggen;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
@@ -20,6 +21,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import java.util.List;
 
+import static huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen.gongfa_key;
 import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
 
 /**
@@ -46,7 +48,10 @@ public class CapabilityUtil {
         if(capabilityProvider instanceof Player)return capabilityProvider.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElse(null);
         if(capabilityProvider instanceof LivingEntity)return capabilityProvider.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).orElse(null);
         return null;
+    }
 
+    public static PlayerCapability getCapability(Player player) {
+        return player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElse(null);
     }
 
 
@@ -88,9 +93,40 @@ public class CapabilityUtil {
         capability.setIsupdate(true);
     }
 
+    public static void openLinggen(Player player) {
+
+        PlayerCapability capability =CapabilityUtil.getCapability(player);
+        RandomSource random = player.getRandom();
+        Linggen[] values = Linggen.values();
+        List<Linggen> linggens1 = capability.getLinggens();
+        linggens1.clear();
+        while (linggens1.isEmpty()){
+            for (Linggen value : values) {
+                if(random.nextBoolean());{
+                    linggens1.add(value);
+                }
+            }
+        }
+        capability.createDensityFunction(player);
+        player.sendSystemMessage(Component.translatable("成功觉醒灵根"));
+        capability.setIsupdate(true);
+    }
+
+    public static boolean isOpenLinggen(Player player) {
+
+        PlayerCapability capability =CapabilityUtil.getCapability(player);
+        List<Linggen> linggens1 = capability.getLinggens();
+        return !linggens1.isEmpty();
+    }
+
     public static void addGongfa(Player player, ItemStack itemstack) {
-        PlayerCapability capability = (PlayerCapability) getCapability(player);
-        capability.getGongfas().add(new GongfaCase());
+
+        GongfaSample gongfaSample = player.level().registryAccess().registryOrThrow(gongfa_key).stream().filter(
+                c -> itemstack.is(c.getItem())
+        ).findAny().get();
+        PlayerCapability capability =  getCapability(player);
+        capability.getGongfas().add(new GongfaCase(player,gongfaSample));
+
     }
 
     public static float getPlayerLingli(Player player) {

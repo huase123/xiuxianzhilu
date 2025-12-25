@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
 public class LianqidingBlockEntityRenderer implements BlockEntityRenderer<LianqidingBlockEntity> {
@@ -18,19 +18,17 @@ public class LianqidingBlockEntityRenderer implements BlockEntityRenderer<Lianqi
     public void render(LianqidingBlockEntity pEntity, float pPartialTick, PoseStack pPoseStack,
                        MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
 
-        Entity prent = pEntity.getPlayer();
+        Player player = pEntity.getGoalplayer();
 
-        if(prent != null){
-            float f6 = (float)(Mth.lerp(pPartialTick, prent.xo, prent.getX()) - pEntity.getBlockPos().getX());
-            float f7 = (float)(Mth.lerp(pPartialTick, prent.yo, prent.getY()) - pEntity.getBlockPos().getY()) - 1.0f;
-            float f8 = (float)(Mth.lerp(pPartialTick, prent.zo, prent.getZ()) - pEntity.getBlockPos().getZ());
-
+        if(player != null){
+            float f6 = (float)(Mth.lerp(pPartialTick, player.xo, player.getX()) - pEntity.getBlockPos().getX()) - 0.5f;
+            float f7 = (float)(Mth.lerp(pPartialTick, player.yo, player.getY()) - pEntity.getBlockPos().getY())+ 0.5f;
+            float f8 = (float)(Mth.lerp(pPartialTick, player.zo, player.getZ()) - pEntity.getBlockPos().getZ()) - 0.5f;
             pPoseStack.pushPose();
-            pPoseStack.translate(f6, f7, f8);
-            RenderApi.renderCrystalBeams(0.14f,0.6f,255,-f6+0.5f, -f7- 1.0f, -f8+0.5f, pPartialTick, prent.tickCount, pPoseStack, pBuffer, pPackedLight);
-            RenderApi.renderCrystalBeams(0.20f,0.6f,150,-f6+0.5f, -f7- 1.0f, -f8+0.5f, pPartialTick, prent.tickCount, pPoseStack, pBuffer, pPackedLight);
-            RenderApi.renderCrystalBeams(0.4f,0.6f,55,  -f6+0.5f, -f7- 1.0f, -f8+0.5f, pPartialTick, prent.tickCount, pPoseStack, pBuffer, pPackedLight);
-
+            pPoseStack.translate(0.5f, 0.5, 0.5);
+            RenderApi.renderCrystalBeams(0.14f,0.6f,255,f6, f7, f8, pPartialTick, -player.tickCount, pPoseStack, pBuffer, pPackedLight);
+            RenderApi.renderCrystalBeams(0.20f,0.6f,150,f6, f7, f8, pPartialTick, -player.tickCount, pPoseStack, pBuffer, pPackedLight);
+            RenderApi.renderCrystalBeams(0.4f,0.6f,55,  f6, f7, f8, pPartialTick, -player.tickCount, pPoseStack, pBuffer, pPackedLight);
             pPoseStack.popPose();
         }
     }

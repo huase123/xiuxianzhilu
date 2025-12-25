@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.server.IntegratedServer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
@@ -22,7 +23,7 @@ public class NoiseUse {
         IntegratedServer integratedserver = Minecraft.getInstance().getSingleplayerServer();
         return integratedserver != null ? integratedserver.getLevel(Minecraft.getInstance().level.dimension()) : null;
     }
-    public static double getLingliLV(Level level,int x,int y,int z) {
+    public static double getLingliDensity(Level level, int x, int y, int z) {
         if(serverLevel == null || seed == 0L || normalNoise == null){
             if(level instanceof ServerLevel serverLevel1){
                 serverLevel = serverLevel1;
@@ -39,4 +40,13 @@ public class NoiseUse {
         return value;
     }
 
+    public static int getLingliDensity(Level level, BlockPos pPos) {
+        int x0 = pPos.getX()>>4;
+        int y0 = pPos.getY()>>4;
+        int z0 = pPos.getZ()>>4;
+        double lingliDensity = NoiseUse.getLingliDensity(Minecraft.getInstance().level, x0, y0, z0);
+        double max = Math.max(0.0D, lingliDensity);
+        double v = 0.2D + max;
+        return (int) (v*100);
+    }
 }

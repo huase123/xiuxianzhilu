@@ -70,10 +70,7 @@ public class JvlingzhenBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        if (pPlayer.isSecondaryUseActive()) {
-
-        }
-        if (true) {
+        if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(!entity.isRemoved()) {
                 ItemStack itemInHand = pPlayer.getItemInHand(pHand);
@@ -110,7 +107,10 @@ public class JvlingzhenBlock extends BaseEntityBlock {
 
                 interactionzhenfa.interactionzhenfa(itemstack,entity,pPlayer);
             }else {
-                pPlayer.sendSystemMessage(Component.translatable("觉醒灵根").withStyle(ChatFormatting.RED));
+//                pPlayer.sendSystemMessage(Component.translatable("觉醒灵根").withStyle(ChatFormatting.RED));
+                if(entity instanceof JvlingzhenBlockEntity jvlingzhenBlockEntity){
+                    jvlingzhenBlockEntity.handleClick(itemstack,pPlayer,jvlingzhenBlockEntity);
+                }
 
             }
         }else {

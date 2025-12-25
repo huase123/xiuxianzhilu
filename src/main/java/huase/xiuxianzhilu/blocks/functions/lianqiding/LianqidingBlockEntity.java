@@ -5,6 +5,7 @@ import huase.xiuxianzhilu.blocks.functions.ChildFunction;
 import huase.xiuxianzhilu.blocks.functions.PrentFunction;
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.recipe.LianqidingRecipe;
+import huase.xiuxianzhilu.util.NoiseUse;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,6 +39,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * - @description:ZhenjiBlockEntity类
@@ -57,8 +59,10 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
     private int progress = 0;
     private int maxProgress = 400;
     private int lingli = 0;
-    private Player player;
+    private Player goalplayer;
+    private UUID playerUUID;
     private int lv = 0;
+    List<BlockPos> childBlockPos = new ArrayList<>();
 
     public int getLv() {
         return lv;
@@ -88,15 +92,64 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
     }
 
 
-    public void startPlayer(Player player) {
-        this.player = player;
+    public void handleButtonClick(Player player) {
+        if( recipeFor.isPresent() && recipeFor.get().getlinglidensity()<=getLingliDensity() && progress==0 ){
+            playerUUID =  player.getUUID();
+            this.setChanged();
+        }
     }
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(player != null && recipeFor.isPresent()){
-            handRecipeFor(player,pPos,recipeFor.get());
+    public void tick(Level level, BlockPos pPos, BlockState State) {
+        if(getGoalplayer() != null && recipeFor.isPresent() && recipeFor.get().getlinglidensity()<=getLingliDensity() ){
+            handRecipeFor(getGoalplayer(),pPos,recipeFor.get());
         }else {
             progress = 0;
+            this.goalplayer =null;
+            this.playerUUID =null;
         }
+        if(this.level.getGameTime() %20 == 0){
+            checkChilds(level,pPos,State);
+        }
+    }
+
+
+/**
+ * TODO 功能描述：获取添加一层缓存，减少计算开销
+ * @author :huase
+ * @date 2025/12/24 12:01
+ */
+    int selflinglidensity = -1;
+    private int getsSelfLingliDensity(Level level, BlockPos pPos) {
+        if(selflinglidensity == -1){
+            selflinglidensity = NoiseUse.getLingliDensity(level, pPos);
+        }
+        return selflinglidensity;
+    }
+
+    public int getLingliDensity() {
+        int lingliDensity = getsSelfLingliDensity(level, this.getBlockPos());
+        for (BlockPos childBlockPo : childBlockPos) {
+            BlockEntity blockEntity = this.level.getBlockEntity(childBlockPo);
+            if (blockEntity != null && blockEntity instanceof ChildFunction childFunction){
+                lingliDensity += childFunction.getLingliDensity();
+            }
+        }
+        return lingliDensity;
+    }
+
+    private void checkChilds(Level level, BlockPos pPos, BlockState state) {
+        childBlockPos.removeIf(c -> checkChildBlockPos(c)
+        );
+    }
+
+    private boolean checkChildBlockPos(BlockPos pPos) {
+        BlockEntity blockEntity = null;
+        if (this.level != null) {
+            blockEntity = this.level.getBlockEntity(pPos);
+        }
+        if(blockEntity == null && !(blockEntity instanceof ChildFunction)){
+            return true;
+        }
+        return false;
     }
 
     private void handRecipeFor(Player player, BlockPos pPos, LianqidingRecipe lianqidingRecipe) {
@@ -105,7 +158,8 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         if(progress<maxProgress){
             if(playerLingli<lingli1){
                 player.sendSystemMessage(Component.translatable("灵力不足").withStyle(ChatFormatting.RED));
-                this.player =null;
+                this.goalplayer =null;
+                this.playerUUID =null;
                 progress = 0;
             }else {
                 CapabilityUtil.addPlayerLingli(lingli1);
@@ -164,30 +218,58 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         return recipeFor;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
+    }
+
     @Override
-    public void interaction(BlockEntity entity) {
+    public void interaction(BlockEntity entity, Player player) {
         if(entity instanceof ChildFunction childFunction && ! childBlockPos.contains(entity.getBlockPos())){
             if(childBlockPos.size()>=getMaxinteractNum()){
                 childBlockPos.remove(0);
             }
-            childBlockPos.add(entity.getBlockPos());
+            if(childFunction.checkScope(this.getBlockPos())){
+                childBlockPos.add(entity.getBlockPos());
+            }else {
+                player.sendSystemMessage(Component.translatable("距离过远").withStyle(ChatFormatting.RED));
+            }
             setChanged();
         }
     }
 
     private int getMaxinteractNum() {
-        return getLv()+1;
+        return 1;
     }
 
-    List<BlockPos> childBlockPos = new ArrayList<>();
     @Override
     public List<BlockPos> getChildBlockPos() {
         return childBlockPos;
     }
 
-    public Player getPlayer() {
-        return player;
+
+    @Override
+    public boolean checkScope(BlockPos blockPos) {
+//        int scope = (int) Math.pow(10 + 10 * getLv(), 2);
+//        double v = blockPos.distSqr(this.getBlockPos());
+//        return scope >= v;
+
+        return true;
     }
+    public Player getGoalplayer() {
+        if(playerUUID != null){
+            if(goalplayer == null){
+                goalplayer = this.level.getPlayerByUUID(playerUUID);
+            }
+        }else {
+            return null;
+        }
+        return goalplayer;
+    }
+
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -219,6 +301,9 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         pTag.putInt("maxProgress", maxProgress);
         pTag.putInt("lv", lv);
 
+        if (playerUUID != null){
+            pTag.putUUID("player", playerUUID);
+        }
 
         ListTag listTag = new ListTag();
         for (BlockPos blockPos : childBlockPos) {
@@ -237,6 +322,10 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
         progress = pTag.getInt("progress");
         maxProgress = pTag.getInt("maxProgress");
         lv = pTag.getInt("lv");
+
+        if(pTag.hasUUID("player")){
+            playerUUID = pTag.getUUID("player");
+        }
 
         childBlockPos.clear();
         ListTag listTag = (ListTag) pTag.get("childblockpos");

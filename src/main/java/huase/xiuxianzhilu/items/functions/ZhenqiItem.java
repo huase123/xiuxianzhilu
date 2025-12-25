@@ -47,10 +47,10 @@ public class ZhenqiItem extends Item implements Interactionzhenfa{
             setBlockEntity(player,itemstack,entity);
         }else {
             if(blockEntity instanceof LinkEntity linkEntity){
-                linkEntity.interaction(entity);
+                linkEntity.interaction(entity,player);
             }
             if(entity instanceof LinkEntity linkEntity){
-                linkEntity.interaction(blockEntity);
+                linkEntity.interaction(blockEntity, player);
             }
         }
 

@@ -43,11 +43,11 @@ public class ReRenderLevelStageEvent {
         for (int i = x0-range; i < x0+range; i++) {
             for (int j = z0-range; j < z0+range; j++) {
                 for (int k = 6; k < 10; k++) {
-                    double lingliLV = NoiseUse.getLingliLV(Minecraft.getInstance().level, i, k, j);
+                    double lingliLV = NoiseUse.getLingliDensity(Minecraft.getInstance().level, i, k, j);
                     if(lingliLV>=0){
                         int i1 = (i << 4)+8;
                         int j1 = (j << 4)+8;
-                        int k1 = (k << 4);
+                        int k1 = (k << 4)+8;
                         poseStack.pushPose();
                         poseStack.translate(i1-position.x, k1-position.y, j1-position.z);
                         RenderApi.renderCrystalBeams(0.1f,80.1f,150,0f, 10.0f, 0f, partialTick, renderTick, poseStack, bufferSource, 15728880);

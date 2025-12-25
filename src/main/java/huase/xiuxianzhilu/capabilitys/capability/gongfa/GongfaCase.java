@@ -18,8 +18,9 @@ public class GongfaCase extends AttributeBase {
         deserializeNBT(compoundTag);
     }
 
-    public GongfaCase() {
-
+    public GongfaCase(Player player, GongfaSample gongfaSample) {
+        this.player = player;
+        this.gongfaSample = gongfaSample;
     }
 
     @Override

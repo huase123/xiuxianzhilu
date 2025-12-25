@@ -24,7 +24,8 @@ public class RERecipeProvider extends RecipeProvider {
                     .define(1, Items.STONE)
                     .define(2, Items.STONE)
                     .define(3, Items.STONE)
-                    .defineLingli(10)
+                    .defineLingli(100)
+                    .defineLingliDensity(10)
                     ;
 
             pWriter.accept(define);

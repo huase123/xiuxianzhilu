@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
 public class JvlingzhenBlockEntityRenderer implements BlockEntityRenderer<JvlingzhenBlockEntity> {
@@ -26,6 +28,20 @@ public class JvlingzhenBlockEntityRenderer implements BlockEntityRenderer<Jvling
             RenderApi.renderCrystalBeams(0.14f,0.6f,255,f6+0.0f, f7+0.0f, f8+0.0f, pPartialTick, (int) pEntity.getLevel().getGameTime(), pPoseStack, pBuffer, pPackedLight);
             RenderApi.renderCrystalBeams(0.20f,0.6f,150,f6+0.0f, f7+0.0f, f8+0.0f, pPartialTick, (int) pEntity.getLevel().getGameTime(), pPoseStack, pBuffer, pPackedLight);
             RenderApi.renderCrystalBeams(0.40f,0.6f,55,  f6+0.0f, f7+0.0f, f8+0.0f, pPartialTick, (int) pEntity.getLevel().getGameTime(), pPoseStack, pBuffer, pPackedLight);
+            pPoseStack.popPose();
+        }
+
+        Player player = pEntity.getGoalplayer();
+
+        if(player != null){
+            float f6 = (float)(Mth.lerp(pPartialTick, player.xo, player.getX()) - pEntity.getBlockPos().getX()) - 0.5f;
+            float f7 = (float)(Mth.lerp(pPartialTick, player.yo, player.getY()) - pEntity.getBlockPos().getY())+ 1.0f;
+            float f8 = (float)(Mth.lerp(pPartialTick, player.zo, player.getZ()) - pEntity.getBlockPos().getZ()) - 0.5f;
+            pPoseStack.pushPose();
+            pPoseStack.translate(0.5f, 0.5, 0.5);
+            RenderApi.renderCrystalBeams(0.14f,0.6f,255,f6, f7, f8, pPartialTick, player.tickCount, pPoseStack, pBuffer, pPackedLight);
+            RenderApi.renderCrystalBeams(0.20f,0.6f,150,f6, f7, f8, pPartialTick, player.tickCount, pPoseStack, pBuffer, pPackedLight);
+            RenderApi.renderCrystalBeams(0.4f,0.6f,55,  f6, f7, f8, pPartialTick, player.tickCount, pPoseStack, pBuffer, pPackedLight);
             pPoseStack.popPose();
         }
     }

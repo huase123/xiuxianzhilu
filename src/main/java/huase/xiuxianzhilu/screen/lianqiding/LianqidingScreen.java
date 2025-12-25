@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.screen.lianqiding;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlockEntity;
 import huase.xiuxianzhilu.recipe.LianqidingRecipe;
 import huase.xiuxianzhilu.screen.FunctionAbstractContainerScreen;
 import huase.xiuxianzhilu.screen.Task;
@@ -50,6 +51,10 @@ public class LianqidingScreen extends FunctionAbstractContainerScreen<Lianqiding
     private static final ResourceLocation lianqiding1 = ModMain.prefix("textures/gui/container/lianqiding1.png");
     private static final ResourceLocation lianqiding2 = ModMain.prefix("textures/gui/container/lianqiding2.png");
     private static final ResourceLocation lianqiding3 = ModMain.prefix("textures/gui/container/lianqiding3.png");
+
+    private static final ResourceLocation tiao0 = ModMain.prefix("textures/gui/container/tiao0.png");
+    private static final ResourceLocation tiao1 = ModMain.prefix("textures/gui/container/tiao1.png");
+    private static final ResourceLocation tiao2 = ModMain.prefix("textures/gui/container/tiao2.png");
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
 
@@ -57,11 +62,43 @@ public class LianqidingScreen extends FunctionAbstractContainerScreen<Lianqiding
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
         pGuiGraphics.blit(getResourceLocation(), i, j, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
-        Optional<LianqidingRecipe> recipeFor = this.menu.getBlockEntity().getRecipeFor();
+        LianqidingBlockEntity blockEntity = this.menu.getBlockEntity();
+        Optional<LianqidingRecipe> recipeFor = blockEntity.getRecipeFor();
+
         if(recipeFor.isPresent()){
+            int lingliDensity = blockEntity.getLingliDensity();
+            int recipelinglidensity = recipeFor.get().getlinglidensity();
+
+            pGuiGraphics.drawString(Minecraft.getInstance().font,
+                    Component.translatable("灵力密度："+ lingliDensity).withStyle(ChatFormatting.BLUE)
+                    , i+120, j+81, 0xFF00ff00, false);
+
+
+
+            pGuiGraphics.drawString(Minecraft.getInstance().font,
+                    Component.translatable("所需密度："+ recipelinglidensity).withStyle(ChatFormatting.AQUA)
+                    , i+120, j+46, 0xFF00ff00, false);
+
+            if(lingliDensity<recipelinglidensity){
+                pGuiGraphics.drawString(Minecraft.getInstance().font,
+                        Component.translatable("密度不够").withStyle(ChatFormatting.DARK_RED)
+                        , i+120, j+16, 0xFF00ff00, false);
+
+            }
+
+
+
             pGuiGraphics.drawString(Minecraft.getInstance().font,
                     Component.translatable("灵力消耗："+recipeFor.get().getLingli()).withStyle(ChatFormatting.AQUA)
-                    , i+113, j+84, 0xFF00ff00, false);
+                    , i+120, j+31, 0xFF00ff00, false);
+
+
+
+            int width = 161;
+            int height = 6;
+            pGuiGraphics.blit(tiao0, i+7, j+118, 0, 0, width, height, width, height);
+            float v = (float) blockEntity.getProgress() /blockEntity.getMaxProgress();
+            pGuiGraphics.blit(tiao1, i+7, j+118, 0, 0, (int) (width*v), height, width, height);
         }
     }
 

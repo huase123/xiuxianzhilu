@@ -31,7 +31,7 @@ public class DensityFunction {
     public void updateNormalNoise() {
         int size = playerCapability.getLinggens().size();
         jingjieNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits())), -9+size, 1);
-        gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits()>>2)), -9+size, 1);
+        gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits()>>2)), -9, 1);
     }
 
     public void update(Player player) {
@@ -40,7 +40,6 @@ public class DensityFunction {
 
         if (time % 20 == 0L) {
             LingxiuCase lingxiu = playerCapability.getLingxiuindex();
-
             if(lingxiu == null)return;
 
 
@@ -63,21 +62,26 @@ public class DensityFunction {
     }
 
     public double getjingjieNoise() {
+        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+        if(lingxiu == null)return 0;
+
+
         float scale=1.0f;
         double value = jingjieNoise.getValue(time / scale,  dazuo,danyao);
-        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
 
-        float intensity =( lingxiu==null? 1:lingxiu.getIntensity());
+        float intensity =lingxiu.getIntensity();
         return Math.abs(value*intensity);
     }
 
     public double getGongfaNoise() {
-        int scale=1;
-        double value = gongfaNoise.getValue(time / scale, dazuo, danyao);
         GongfaCase gongfaindex = playerCapability.getGongfaindex();
+        if(gongfaindex == null)return 0;
 
-        int intensity =gongfaindex==null? 1:gongfaindex.getIntensity();
-        return value * intensity;
+        float scale=1.0f;
+        double value = gongfaNoise.getValue(time / scale, dazuo, danyao);
+
+        int intensity = gongfaindex.getIntensity();
+        return Math.abs(value*intensity);
     }
 
     public double value() {

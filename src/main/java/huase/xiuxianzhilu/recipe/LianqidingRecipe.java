@@ -23,12 +23,14 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
     private final ItemStack result;
     private final ResourceLocation id;
     private final int lingli;
+    private final int linglidensity;
 
-    public LianqidingRecipe(NonNullList<Ingredient> inputItems, ItemStack result, ResourceLocation id, int lingli) {
+    public LianqidingRecipe(NonNullList<Ingredient> inputItems, ItemStack result, ResourceLocation id, int lingli, int linglidensity) {
         this.inputItems = inputItems;
         this.result = result;
         this.id = id;
         this.lingli = lingli;
+        this.linglidensity = linglidensity;
     }
 
     @Override
@@ -48,6 +50,10 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
     }
     public int getLingli() {
         return lingli;
+    }
+
+    public int getlinglidensity() {
+        return linglidensity;
     }
 
     @Override
@@ -111,6 +117,7 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
         public LianqidingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
 
             int lingli1 = GsonHelper.getAsInt(pSerializedRecipe, "lingli");
+            int linglidensity = GsonHelper.getAsInt(pSerializedRecipe, "linglidensity");
             ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "result"));
 
 
@@ -126,12 +133,13 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
             }
 
 
-            return new LianqidingRecipe(inputs, itemstack, pRecipeId,lingli1);
+            return new LianqidingRecipe(inputs, itemstack, pRecipeId,lingli1,linglidensity);
         }
 
         @Override
         public @Nullable LianqidingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             int lingli = pBuffer.readVarInt();
+            int linglidensity = pBuffer.readVarInt();
 
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
 
@@ -140,13 +148,14 @@ public class LianqidingRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = pBuffer.readItem();
-            return new LianqidingRecipe(inputs, output, pRecipeId, lingli);
+            return new LianqidingRecipe(inputs, output, pRecipeId, lingli,linglidensity);
 //            return new PotRecipe(inputs, output, pRecipeId, 0);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, LianqidingRecipe pRecipe) {
             pBuffer.writeVarInt(pRecipe.getLingli());
+            pBuffer.writeVarInt(pRecipe.getlinglidensity());
 
             pBuffer.writeInt(pRecipe.inputItems.size());
 

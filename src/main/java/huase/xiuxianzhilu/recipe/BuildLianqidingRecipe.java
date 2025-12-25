@@ -23,6 +23,7 @@ public class BuildLianqidingRecipe implements FinishedRecipe {
     private  int count;
     private  Map<Integer, Ingredient> key = new HashMap<>();
     private int lingli;
+    private int linglidensity;
 
     public BuildLianqidingRecipe(ItemLike result, int count) {
 
@@ -60,6 +61,11 @@ public class BuildLianqidingRecipe implements FinishedRecipe {
         return this;
     }
 
+    public BuildLianqidingRecipe defineLingliDensity(int lingliDensity) {
+        this.linglidensity = lingliDensity;
+        return this;
+    }
+
     /**
      * Creates a new builder for a shaped recipe.
      */
@@ -72,6 +78,7 @@ public class BuildLianqidingRecipe implements FinishedRecipe {
 
 
         pJson.addProperty("lingli",lingli);
+        pJson.addProperty("linglidensity",linglidensity);
 
         JsonObject jsonobject = new JsonObject();
         for(Map.Entry<Integer, Ingredient> entry : this.key.entrySet()) {
