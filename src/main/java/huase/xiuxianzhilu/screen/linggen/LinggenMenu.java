@@ -1,6 +1,5 @@
 package huase.xiuxianzhilu.screen.linggen;
 
-import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
@@ -42,7 +41,7 @@ public class LinggenMenu extends ReAbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override

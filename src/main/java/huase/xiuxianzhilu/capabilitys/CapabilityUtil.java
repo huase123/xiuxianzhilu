@@ -137,4 +137,12 @@ public class CapabilityUtil {
     public static void addPlayerLingli(float lingi) {
 
     }
+
+    public static void xiuliangongfa(Player player, List<Entity> passengers) {
+        player.sendSystemMessage(Component.translatable("功法进度加1"));
+    }
+
+    public static void xiulianlingmai(Player player, List<Entity> passengers) {
+        player.sendSystemMessage(Component.translatable("灵脉调整"));
+    }
 }

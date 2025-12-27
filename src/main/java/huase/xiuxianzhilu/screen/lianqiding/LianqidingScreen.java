@@ -42,9 +42,7 @@ public class LianqidingScreen extends FunctionAbstractContainerScreen<Lianqiding
         ToServerButton toServerButton = new ToServerButton(pMenu, index++, this.leftPos+119, this.topPos+96, 40,20);
         this.addRenderableWidget(toServerButton);
 
-        if(index != buttonFunctionMap.size()){
-            ModMain.LOGGER.info("客户端与服务端按钮创建数量不对");
-        }
+        this.checkButtonNum(index);
     }
 
     private static final ResourceLocation lianqiding0 = ModMain.prefix("textures/gui/container/lianqiding0.png");

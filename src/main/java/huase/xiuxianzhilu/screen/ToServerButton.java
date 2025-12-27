@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 /**
  * - @description:ToServerButton类
@@ -13,6 +14,11 @@ public class ToServerButton extends AbstractButton {
     private ReAbstractContainerMenu pMenu;
     public ToServerButton(ReAbstractContainerMenu pMenu, int index, int pX, int pY, int pWidth, int pHeight) {
         super(pX, pY, pWidth, pHeight, Component.translatable("炼制"));
+        this.index = index;
+        this.pMenu = pMenu;
+    }
+    public ToServerButton(ReAbstractContainerMenu pMenu, int index, int pX, int pY, int pWidth, int pHeight,MutableComponent component) {
+        super(pX, pY, pWidth, pHeight, component);
         this.index = index;
         this.pMenu = pMenu;
     }

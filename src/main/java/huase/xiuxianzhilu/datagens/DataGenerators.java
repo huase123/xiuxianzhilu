@@ -7,6 +7,7 @@ package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.datagens.modprovider.ModBlockProvider;
+import huase.xiuxianzhilu.datagens.modprovider.ModItemProvider;
 import huase.xiuxianzhilu.datagens.multiblock.ExampleInstanceCaseIllustrationMultiBlockProvider;
 import huase.xiuxianzhilu.datagens.recipeprovider.RERecipeProvider;
 import huase.xiuxianzhilu.datagens.tag.BlockTagsProvider;
@@ -37,7 +38,7 @@ public class DataGenerators {
 //
         generator.addProvider(event.includeClient(), new ModBlockProvider(packOutput, existingFileHelper));
 //
-//        generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new ModItemProvider(packOutput, existingFileHelper));
 //
         BlockTagsProvider blockTags = new BlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTags);

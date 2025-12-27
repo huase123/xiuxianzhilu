@@ -1,6 +1,5 @@
 package huase.xiuxianzhilu.screen.linggen;
 
-import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.screen.FunctionAbstractContainerScreen;
 import huase.xiuxianzhilu.screen.Task;
 import huase.xiuxianzhilu.screen.ToServerButton;
@@ -25,9 +24,7 @@ public class LinggenScreen  extends FunctionAbstractContainerScreen<LinggenMenu>
         ToServerButton toServerButton = new ToServerButton(pMenu, index++, width/2-100, height/2-30, 200,60);
         this.addRenderableWidget(toServerButton);
 
-        if(index != buttonFunctionMap.size()){
-            ModMain.LOGGER.info("客户端与服务端按钮创建数量不对");
-        }
+        this.checkButtonNum(index);
     }
 
     @Override
