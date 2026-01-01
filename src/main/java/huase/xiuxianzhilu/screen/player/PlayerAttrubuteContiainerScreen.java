@@ -23,10 +23,6 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
     protected void init() {
         this.imageWidth = 341;
         this.imageHeight = 166;
-        this.leftPos = (this.width - this.imageWidth) / 2;
-        this.topPos = (this.height - this.imageHeight) / 2;
-        this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
-        this.titleLabelY = 10;
         super.init();
     }
 
@@ -46,10 +42,6 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
 
 
 
-
-    protected void renderLabels(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY) {
-
-    }
 
 
 

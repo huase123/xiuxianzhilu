@@ -13,7 +13,6 @@ public class PutuanScreen extends FunctionAbstractContainerScreen<PutuanMenu> {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
-
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
 

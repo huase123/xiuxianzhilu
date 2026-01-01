@@ -38,6 +38,7 @@ public class PutuanMenu extends ReAbstractContainerMenu {
             int i = index % 2 * 2 - 1;
             int i1 = (index+1) / 2 * i * 70;
             addButtonClientAndServer(-12,53+i1,200,60,() -> putuan.setState(value), Component.translatable("putuan.state."+value.name()));
+            index++;
         }
     }
     @Override

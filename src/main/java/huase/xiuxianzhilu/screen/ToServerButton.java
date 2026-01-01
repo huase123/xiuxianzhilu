@@ -12,8 +12,8 @@ public class ToServerButton extends AbstractButton {
     private ReAbstractContainerMenu pMenu;
 
 
-    public ToServerButton(ReAbstractContainerMenu pMenu, Integer key, ButtonMenu buttonMenu) {
-        super(buttonMenu.left(),buttonMenu.top(),buttonMenu.width(),buttonMenu.height(), buttonMenu.pMessage());
+    public ToServerButton(ReAbstractContainerMenu pMenu, Integer key, ButtonMenu buttonMenu, int leftPos, int topPos) {
+        super(buttonMenu.left()+leftPos,buttonMenu.top()+topPos,buttonMenu.width(),buttonMenu.height(), buttonMenu.pMessage());
         this.index = key;
         this.pMenu = pMenu;
     }

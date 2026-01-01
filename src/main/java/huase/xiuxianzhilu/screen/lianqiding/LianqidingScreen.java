@@ -25,8 +25,7 @@ public class LianqidingScreen extends FunctionAbstractContainerScreen<Lianqiding
     protected void init() {
         this.imageWidth = 176;
         this.imageHeight = 210;
-        this.leftPos = (this.width - this.imageWidth) / 2;
-        this.topPos = (this.height - this.imageHeight) / 2;
+
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
         this.titleLabelY = 10;
         super.init();
