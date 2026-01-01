@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.screen;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingScreen;
 import huase.xiuxianzhilu.screen.linggen.LinggenScreen;
+import huase.xiuxianzhilu.screen.player.PlayerAttrubuteContiainerScreen;
 import huase.xiuxianzhilu.screen.putuan.PutuanScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +19,7 @@ public class ScreenInit {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
+        MenuScreens.register(MenuTypesInit.playerattrubutecontainermenu.get(), PlayerAttrubuteContiainerScreen::new);
         MenuScreens.register(MenuTypesInit.linggenmenu.get(), LinggenScreen::new);
         MenuScreens.register(MenuTypesInit.lianqidingmenu.get(), LianqidingScreen::new);
         MenuScreens.register(MenuTypesInit.putuanmenu.get(), PutuanScreen::new);

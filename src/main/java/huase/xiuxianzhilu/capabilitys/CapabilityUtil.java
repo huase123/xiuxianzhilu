@@ -9,6 +9,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
@@ -125,6 +126,12 @@ public class CapabilityUtil {
                 c -> itemstack.is(c.getItem())
         ).findAny().get();
         PlayerCapability capability =  getCapability(player);
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            if(gongfaSample.equals(gongfa.getGongfaSample())){
+                player.sendSystemMessage(Component.translatable("已习得该功法").withStyle(ChatFormatting.RED));
+                return;
+            }
+        }
         capability.getGongfas().add(new GongfaCase(player,gongfaSample));
 
     }
@@ -139,7 +146,13 @@ public class CapabilityUtil {
     }
 
     public static void xiuliangongfa(Player player, List<Entity> passengers) {
-        player.sendSystemMessage(Component.translatable("功法进度加1"));
+        GongfaCase gongfaindex = getCapability(player).getGongfaindex();
+
+        if(gongfaindex == null){
+
+        }else {
+            gongfaindex.xiulian(player,passengers);
+        }
     }
 
     public static void xiulianlingmai(Player player, List<Entity> passengers) {

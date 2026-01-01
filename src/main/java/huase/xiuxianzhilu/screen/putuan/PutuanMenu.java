@@ -4,6 +4,7 @@ import huase.xiuxianzhilu.entity.functions.putuan.PutuanEntity;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.screen.ReAbstractContainerMenu;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -32,15 +33,13 @@ public class PutuanMenu extends ReAbstractContainerMenu {
 
     @Override
     public void createButtonFunctions() {
+        int index = 0;
         for (PutuanEntity.State value : PutuanEntity.State.values()) {
-            addButtonFunctions(() -> {
-                putuan.setState(value);
-            });
+            int i = index % 2 * 2 - 1;
+            int i1 = (index+1) / 2 * i * 70;
+            addButtonClientAndServer(-12,53+i1,200,60,() -> putuan.setState(value), Component.translatable("putuan.state."+value.name()));
         }
-
     }
-
-
     @Override
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         return ItemStack.EMPTY;

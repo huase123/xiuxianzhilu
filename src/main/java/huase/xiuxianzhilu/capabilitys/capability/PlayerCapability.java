@@ -131,7 +131,9 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     }
 
     public GongfaCase getGongfaindex() {
-        return gongfaindex == -1? null :gongfas.get(gongfaindex);
+//        return gongfaindex == -1? null :gongfas.get(gongfaindex);
+        if(gongfas.isEmpty())return null;
+        return gongfas.get(gongfas.size()-1);
     }
 
 

@@ -21,6 +21,7 @@ package huase.xiuxianzhilu.network;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.network.client.CPacketCapability;
+import huase.xiuxianzhilu.network.client.CPacketOpenAttrGUI;
 import huase.xiuxianzhilu.network.server.DensityFunctionPacketCapability;
 import huase.xiuxianzhilu.network.server.SPacketCapability;
 import huase.xiuxianzhilu.network.server.SPacketEntityAttribute;
@@ -49,6 +50,7 @@ public class NetworkHandler {
 
     //Client Packets
     register(CPacketCapability.class, CPacketCapability::encode, CPacketCapability::decode, CPacketCapability::handle);
+    register(CPacketOpenAttrGUI.class, CPacketOpenAttrGUI::encode, CPacketOpenAttrGUI::decode, CPacketOpenAttrGUI::handle);
 
     // Server Packets
     register(SPacketCapability.class, SPacketCapability::encode, SPacketCapability::decode, SPacketCapability::handle);

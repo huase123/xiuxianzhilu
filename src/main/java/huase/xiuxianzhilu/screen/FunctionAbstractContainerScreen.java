@@ -6,6 +6,8 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.util.Map;
+
 /**
  * - @description:FunctionAbstractContainerScreen类
  */
@@ -18,7 +20,16 @@ public abstract class FunctionAbstractContainerScreen<T extends ReAbstractContai
     protected void init() {
         createToServerButton((T)this.menu);
     }
-    public abstract void createToServerButton(T pMenu);
+    public void createToServerButton(T pMenu){
+        Map<Integer, ButtonMenu> buttonFunctionMap = pMenu.getButtonFunctionMap();
+        for (Map.Entry<Integer, ButtonMenu> integerButtonMenuEntry : buttonFunctionMap.entrySet()) {
+            ButtonMenu buttonMenu = integerButtonMenuEntry.getValue();
+            ToServerButton toServerButton = new ToServerButton(pMenu,integerButtonMenuEntry.getKey(),buttonMenu);
+            this.addRenderableWidget(toServerButton);
+        }
+        this.checkButtonNum(buttonFunctionMap.size());
+    }
+
 
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {

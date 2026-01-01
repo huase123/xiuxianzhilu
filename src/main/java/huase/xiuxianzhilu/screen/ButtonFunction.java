@@ -8,5 +8,7 @@ import java.util.Map;
 public interface ButtonFunction {
 
      void createButtonFunctions();
-    Map<Integer,Task> getButtonFunctionMap();
+    Map<Integer, ButtonMenu> getButtonFunctionMap();
+
+
 }

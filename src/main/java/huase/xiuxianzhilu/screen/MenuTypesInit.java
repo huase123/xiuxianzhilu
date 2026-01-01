@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.screen;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import huase.xiuxianzhilu.screen.linggen.LinggenMenu;
+import huase.xiuxianzhilu.screen.player.PlayerAttrubuteContainerMenu;
 import huase.xiuxianzhilu.screen.putuan.PutuanMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -18,6 +19,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class MenuTypesInit {
 
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, ModMain.MOD_ID);
+
+    public static final RegistryObject<MenuType<PlayerAttrubuteContainerMenu>> playerattrubutecontainermenu =
+            registerMenuType("playerattrubutecontainermenu", PlayerAttrubuteContainerMenu::new);
 
     public static final RegistryObject<MenuType<LinggenMenu>> linggenmenu =
             registerMenuType("linggenmenu", LinggenMenu::new);

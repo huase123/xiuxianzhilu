@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.screen;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -13,27 +14,35 @@ import java.util.Map;
  */
 public abstract class ReAbstractContainerMenu extends AbstractContainerMenu implements ButtonFunction{
     private int index = 0;
-    private Map<Integer, Task> buttonFunctionMap = new HashMap<>();
+    private Map<Integer, ButtonMenu> buttonFunctionMap = new HashMap<>();
     protected ReAbstractContainerMenu(@Nullable MenuType<?> pMenuType, int pContainerId) {
         super(pMenuType, pContainerId);
         createButtonFunctions();
     }
 
-    public void addButtonFunctions(Task task) {
-        buttonFunctionMap.put(index++,task);
+
+
+    public void addButtonClientAndServer(int left, int top, int width, int height, ButtonMenu.Task task, Component pMessage) {
+        buttonFunctionMap.put(index++,new ButtonMenu(left,top,width,height,task,task,pMessage));
     }
 
+    public void addButtonServer(int left, int top, int width, int height, ButtonMenu.Task task, Component pMessage) {
+        buttonFunctionMap.put(index++,new ButtonMenu(left,top,width,height,null,task,pMessage));
+    }
+
+
     public boolean clickMenuButton(Player pPlayer, int pId) {
-        Map<Integer, Task> buttonFunctionMap = getButtonFunctionMap();
-        Task task = buttonFunctionMap.get(pId);
-        if(task != null){
-            task.task();
+        Map<Integer, ButtonMenu> buttonFunctionMap = getButtonFunctionMap();
+        ButtonMenu buttonMenu = buttonFunctionMap.get(pId);
+        if(buttonMenu.serverrun() != null){
+            buttonMenu.serverrun().task();
         }
         return false;
     }
 
     @Override
-    public Map<Integer, Task> getButtonFunctionMap() {
+    public Map<Integer, ButtonMenu> getButtonFunctionMap() {
         return buttonFunctionMap;
     }
+
 }

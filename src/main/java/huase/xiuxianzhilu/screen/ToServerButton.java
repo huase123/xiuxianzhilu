@@ -3,8 +3,6 @@ package huase.xiuxianzhilu.screen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 
 /**
  * - @description:ToServerButton类
@@ -12,20 +10,18 @@ import net.minecraft.network.chat.MutableComponent;
 public class ToServerButton extends AbstractButton {
     private int index;
     private ReAbstractContainerMenu pMenu;
-    public ToServerButton(ReAbstractContainerMenu pMenu, int index, int pX, int pY, int pWidth, int pHeight) {
-        super(pX, pY, pWidth, pHeight, Component.translatable("炼制"));
-        this.index = index;
-        this.pMenu = pMenu;
-    }
-    public ToServerButton(ReAbstractContainerMenu pMenu, int index, int pX, int pY, int pWidth, int pHeight,MutableComponent component) {
-        super(pX, pY, pWidth, pHeight, component);
-        this.index = index;
+
+
+    public ToServerButton(ReAbstractContainerMenu pMenu, Integer key, ButtonMenu buttonMenu) {
+        super(buttonMenu.left(),buttonMenu.top(),buttonMenu.width(),buttonMenu.height(), buttonMenu.pMessage());
+        this.index = key;
         this.pMenu = pMenu;
     }
 
     @Override
     public void onPress() {
-        pMenu.getButtonFunctionMap().get(index).task();
+        ButtonMenu.Task clentrun = pMenu.getButtonFunctionMap().get(index).clentrun();
+        if(clentrun != null)clentrun.task();
         Minecraft.getInstance().gameMode.handleInventoryButtonClick(pMenu.containerId, index);
     }
 

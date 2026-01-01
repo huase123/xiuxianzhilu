@@ -4,6 +4,7 @@ import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlockEntity;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.screen.ReAbstractContainerMenu;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -83,12 +84,9 @@ public class LianqidingMenu extends ReAbstractContainerMenu {
             this.addSlot(new SlotItemHandler(iItemHandler, 24, 8+4*18,  26+2*18));
         }
     }
-
     @Override
     public void createButtonFunctions() {
-        addButtonFunctions(() -> {
-            blockEntity.handleButtonClick(player);
-        });
+        addButtonClientAndServer(119,96,40,20,() -> blockEntity.handleButtonClick(player), Component.translatable("炼制"));
     }
 
 
