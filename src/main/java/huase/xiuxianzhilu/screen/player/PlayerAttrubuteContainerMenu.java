@@ -12,13 +12,13 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implements MenuProvider {
+
     public final Player player;
-    private final Level level;
-    private final ContainerData data;
+    public  Mianban mianban = PlayerAttrubuteContainerMenu.Mianban.attribute;
+
 
     public PlayerAttrubuteContainerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player, new SimpleContainerData(7));
@@ -31,13 +31,18 @@ public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implem
         super(MenuTypesInit.playerattrubutecontainermenu.get(), pContainerId);
         checkContainerSize(inv, 7);
         player = ((Player) entity);
-        this.level = inv.player.level();
-        this.data = data;
     }
 
 
     @Override
     public void createButtonFunctions() {
+        int index = 0;
+        for (Mianban value : Mianban.values()) {
+            addButtonClientAndServer(0+index*36,-30,26+6,30,() -> {
+                mianban = value;
+            }, Component.translatable(value.name()));
+            index++;
+        }
 
     }
 
@@ -63,5 +68,9 @@ public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implem
     }
 
 
-
+    public enum Mianban{
+        attribute,
+        lingxiu,
+        gongfa
+    }
 }
