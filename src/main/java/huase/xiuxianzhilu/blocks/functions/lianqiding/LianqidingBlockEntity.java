@@ -162,7 +162,7 @@ public class LianqidingBlockEntity extends BlockEntity implements PrentFunction 
                 this.playerUUID =null;
                 progress = 0;
             }else {
-                CapabilityUtil.addPlayerLingli(lingli1);
+                CapabilityUtil.addPlayerLingli(-lingli1);
                 progress++;
             }
         }else {

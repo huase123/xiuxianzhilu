@@ -17,18 +17,22 @@ import java.util.List;
  * - @date: 2025/10/12 3:37
  */
 public class PlayerCapability extends AttributeBase implements hua.huase.shanhaicontinent.capabilitys.capability.Update {
+    //年龄
+    private float nianling;
+    //灵力
+    private float lingli;
+
     private List<LingxiuCase> lingxius = new ArrayList<>();
     private int lingxiuindex =-1;
     private List<Tixiu> tixius = new ArrayList<>();
     private List<Linggen> linggens = new ArrayList<>();
     private List<GongfaCase> gongfas = new ArrayList<>();
     private int gongfaindex =-1;
-
     ItemStackHandler boneslot = new ItemStackHandler(7);
     private boolean isupdate =true;
-
     private DensityFunction densityFunction ;
     private Player player ;
+
 
     public boolean isIsupdate() {
         return isupdate;
@@ -45,15 +49,16 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     }
 
 
-
     @Override
     public CompoundTag serializeNBT() {
 
         CompoundTag compoundTag = super.serializeNBT();
+        compoundTag.putFloat("nianling",nianling);
+        compoundTag.putFloat("lingli",lingli);
+
         compoundTag.putBoolean("isupdate",isupdate);
         compoundTag.put("boneslot", boneslot.serializeNBT());
 
-        compoundTag.putBoolean("huadensityfunction",densityFunction != null);
 
         compoundTag.putInt("lingxiuindex",lingxiuindex);
         compoundTag.putInt("lingxiusize",lingxius.size());
@@ -73,18 +78,21 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
             compoundTag.put("gongfa"+i,gongfas.get(i).serializeNBT());
         }
 
+        compoundTag.putBoolean("huadensityfunction",densityFunction != null);
         return compoundTag;
     }
 
     @Override
     public void deserializeNBT(CompoundTag compoundTag) {
         super.deserializeNBT(compoundTag);
+        this.nianling =compoundTag.getFloat("nianling");
+        this.lingli =compoundTag.getFloat("lingli");
+
         isupdate = compoundTag.getBoolean("isupdate");
         if(compoundTag.get("boneslot")!=null){
             this.boneslot.deserializeNBT((CompoundTag) compoundTag.get("boneslot"));
         }
 
-        if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(player);
 
         lingxiuindex = compoundTag.getInt("lingxiuindex" );
         lingxius.clear();
@@ -105,6 +113,23 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
             CompoundTag tag = (CompoundTag) compoundTag.get("gongfa" + i);
             gongfas.add(new GongfaCase(player,tag));
         }
+        if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(player);
+    }
+
+    public float getNianling() {
+        return nianling;
+    }
+
+    public void setNianling(float nianling) {
+        this.nianling = nianling;
+    }
+
+    public float getLingli() {
+        return lingli;
+    }
+
+    public void setLingli(float lingli) {
+        this.lingli = lingli;
     }
 
     public DensityFunction getDensityFunction() {
@@ -122,8 +147,15 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     public List<LingxiuCase> getLingxius() {
         return lingxius;
     }
+
     public LingxiuCase getLingxiuindex() {
-        return lingxiuindex == -1? null :lingxius.get(lingxiuindex);
+        if(lingxius.isEmpty())return null;
+        return lingxius.get(lingxius.size()-1);
+//        return lingxiuindex == -1? null :lingxius.get(lingxiuindex);
+    }
+
+    public void setLingxiuindex(int lingxiuindex) {
+        this.lingxiuindex = lingxiuindex;
     }
 
     public List<GongfaCase> getGongfas() {

@@ -89,8 +89,8 @@ public class JvlingzhenBlockEntity extends BlockEntity implements ChildFunction 
         }
     }
     public void tick(Level Level, BlockPos pPos, BlockState State) {
-        if(goalplayer != null){
-            handProgress(goalplayer,pPos);
+        if(getGoalplayer() != null){
+            handProgress(getGoalplayer(),pPos);
         }else {
             progress = 0;
         }
@@ -119,7 +119,9 @@ public class JvlingzhenBlockEntity extends BlockEntity implements ChildFunction 
         if(progress<maxProgress){
                 progress++;
         }else {
-            CapabilityUtil.openLinggen(player);
+            if(!level.isClientSide){
+                CapabilityUtil.openLinggen(player);
+            }
             this.goalplayer =null;
             playerUUID =null;
             progress = 0;

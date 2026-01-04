@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.screen.player;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.screen.ButtonMenu;
 import huase.xiuxianzhilu.screen.FunctionAbstractContainerScreen;
 import huase.xiuxianzhilu.screen.ToServerButton;
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         this.imageWidth = 362;
         this.imageHeight = 159;
         super.init();
+        updateMutableComponents();
     }
 
     protected void containerTick() {
@@ -49,35 +52,34 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
 
     private void updateMutableComponents() {
         mutableComponents.clear();
-        mutableComponents.add(Component.translatable("境界:10006545",          1000));
-        mutableComponents.add(Component.translatable("灵根",          1000));
-        mutableComponents.add(Component.translatable("灵石",          1000));
-        mutableComponents.add(Component.translatable("资质",          1000));
-        mutableComponents.add(Component.translatable("悟性",          1000));
-        mutableComponents.add(Component.translatable("神识",          1000));
-        mutableComponents.add(Component.translatable("丹毒",          1000));
-        mutableComponents.add(Component.translatable("修龄",          1000));
-        mutableComponents.add(Component.translatable("物攻",          1000));
-        mutableComponents.add(Component.translatable("命中",          1000));
-        mutableComponents.add(Component.translatable("吸血",          1000));
-        mutableComponents.add(Component.translatable("遁速",          1000));
-        mutableComponents.add(Component.translatable("爆伤",          1000));
-        mutableComponents.add(Component.translatable("爆率",          1000));
+        Player player = this.menu.player;
+        mutableComponents.add(Component.translatable("境界",                  CapabilityUtil.getJingjie       (player)));
+        mutableComponents.add(Component.translatable("层数",                  CapabilityUtil.getCengshustring       (player)));
+        mutableComponents.add(Component.translatable("修炼速度",               CapabilityUtil.getXiulianshudu       (player)));
+        mutableComponents.add(Component.translatable("经验",                  CapabilityUtil.getJingyan       (player)));
+        mutableComponents.add(Component.translatable("修龄",                  CapabilityUtil.getNianling      (player)));
+        mutableComponents.add(Component.translatable("生命",                  CapabilityUtil.getShengming     (player)));
+        mutableComponents.add(Component.translatable("灵力",                  CapabilityUtil.getLingli        (player)));
+        mutableComponents.add(Component.translatable("物攻",                  CapabilityUtil.getWugong        (player)));
+        mutableComponents.add(Component.translatable("命中",                  CapabilityUtil.getMingzhong     (player)));
+        mutableComponents.add(Component.translatable("爆伤",                  CapabilityUtil.getBaojishanghai(player)));
 
-        mutableComponents.add(Component.translatable("生命",             1000));
-        mutableComponents.add(Component.translatable("最大生命",           1000));
-        mutableComponents.add(Component.translatable("灵力",             1000));
-        mutableComponents.add(Component.translatable("最大灵力",           1000));
-        mutableComponents.add(Component.translatable("修为",             1000));
-        mutableComponents.add(Component.translatable("最大修为",         1000));
-        mutableComponents.add(Component.translatable("感悟",            1000));;
-        mutableComponents.add(Component.translatable("最大感悟",               1000));
-        mutableComponents.add(Component.translatable("寿元",                 1000));
-        mutableComponents.add(Component.translatable("物防",            1000));
-        mutableComponents.add(Component.translatable("闪避",            1000));
-        mutableComponents.add(Component.translatable("韧性",            1000));
-        mutableComponents.add(Component.translatable("元素抗性",         1000));
-//        mutableComponents.add(Component.translatable("元素精通",         1000));
+        mutableComponents.add(Component.translatable("吸血",                  CapabilityUtil.getXixue         (player)));
+
+
+        mutableComponents.add(Component.translatable("最高境界",               CapabilityUtil.getMaxjingjie       (player)));
+        mutableComponents.add(Component.translatable("圆满层数",               CapabilityUtil.getMaxcengshustring       (player)));
+        mutableComponents.add(Component.translatable("灵根",                  CapabilityUtil.getLinggenstring       (player)));
+        mutableComponents.add(Component.translatable("最大经验",               CapabilityUtil.getMaxjingyan    (player)));
+        mutableComponents.add(Component.translatable("寿元",                  CapabilityUtil.getShouyuan      (player)));
+        mutableComponents.add(Component.translatable("最大生命",               CapabilityUtil.getMaxshengming  (player)));
+        mutableComponents.add(Component.translatable("最大灵力",               CapabilityUtil.getMaxlingli       (player)));
+        mutableComponents.add(Component.translatable("物防",                  CapabilityUtil.getWufang        (player)));
+        mutableComponents.add(Component.translatable("遁速",                  CapabilityUtil.getDunsu         (player)));
+        mutableComponents.add(Component.translatable("爆率",                  CapabilityUtil.getBaolv(player)));
+
+
+
     }
 
     @Override

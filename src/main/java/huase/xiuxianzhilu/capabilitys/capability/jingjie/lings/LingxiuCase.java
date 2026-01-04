@@ -1,7 +1,6 @@
 package huase.xiuxianzhilu.capabilitys.capability.jingjie.lings;
 
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -14,12 +13,11 @@ import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGe
  */
 public class LingxiuCase extends AttributeBase {
     private LingxiuJingjieSample lingxiuJingjieSample;
-    float lingli;
     float maxlingli;
     float jingyan;
     float maxjingyan;
     int dengji;
-    int maxDengji;
+    int maxdengji;
     Player player;
 
     public LingxiuCase(Player player, LingxiuJingjieSample lingxiuJingjieSample) {
@@ -28,7 +26,7 @@ public class LingxiuCase extends AttributeBase {
         this.lingxiuJingjieSample = lingxiuJingjieSample;
         this.maxlingli = lingxiuJingjieSample.getMaxlingli();
         this.maxjingyan = lingxiuJingjieSample.getMaxjingyan();
-        this.maxDengji = lingxiuJingjieSample.getMaxdengji();
+        this.maxdengji = lingxiuJingjieSample.getMaxdengji();
     }
 
     public LingxiuCase(Player player, CompoundTag compoundTag) {
@@ -48,6 +46,11 @@ public class LingxiuCase extends AttributeBase {
         if(key !=null){
             compoundTag.putString("lingxiuJingjie",key.toString());
         }
+        compoundTag.putFloat("maxlingli",maxlingli);
+        compoundTag.putFloat("jingyan",jingyan);
+        compoundTag.putFloat("maxjingyan",maxjingyan);
+        compoundTag.putInt("dengji",dengji);
+        compoundTag.putInt("maxdengji", maxdengji);
         return compoundTag;
     }
 
@@ -56,6 +59,12 @@ public class LingxiuCase extends AttributeBase {
         super.deserializeNBT(compoundTag);
         String string = compoundTag.getString("lingxiuJingjie");
         lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
+
+        this.maxlingli = compoundTag.getFloat("maxlingli");
+        this.jingyan = compoundTag.getFloat("jingyan");
+        this.maxjingyan = compoundTag.getFloat("maxjingyan");
+        this.dengji = compoundTag.getInt("dengji");
+        this.maxdengji = compoundTag.getInt("maxdengji");
     }
 
     public float getIntensity() {
@@ -73,14 +82,36 @@ public class LingxiuCase extends AttributeBase {
     }
 
     public void tupo(Player player) {
-        if(dengji<maxDengji-1){
+        if(dengji< maxdengji -1){
             dengji++;
             jingyan = 0;
-            maxjingyan +=(maxjingyan/maxDengji)*2;
+            maxjingyan +=(maxjingyan/ maxdengji)*2;
             ModMain.LOGGER.info("境界突破至于"+dengji);
         }else {
-            ModMain.LOGGER.info("境界圆满，可开启新境界");
-            CapabilityUtil.addLingxiuCase(player);
+//            ModMain.LOGGER.info("境界圆满，可开启新境界");
+//            CapabilityUtil.addLingxiuCase(player);
         }
+    }
+
+
+    @Override
+    public float getMaxlingli() {
+        return maxlingli;
+    }
+
+    public float getJingyan() {
+        return jingyan;
+    }
+
+    public float getMaxjingyan() {
+        return maxjingyan;
+    }
+
+    public int getDengji() {
+        return dengji;
+    }
+
+    public int getMaxdengji() {
+        return maxdengji;
     }
 }

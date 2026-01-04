@@ -6,6 +6,8 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.datagens.lang.ModEnLanguageProvider;
+import huase.xiuxianzhilu.datagens.lang.ModZHLanguageProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModBlockProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModItemProvider;
 import huase.xiuxianzhilu.datagens.multiblock.ExampleInstanceCaseIllustrationMultiBlockProvider;
@@ -33,8 +35,8 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-//        generator.addProvider(event.includeServer(), new ModZHLanguageProvider(packOutput, "shxiuxian", "zh_cn"));
-//        generator.addProvider(event.includeServer(), new ModEnLanguageProvider(packOutput, "shxiuxian", "en_us"));
+        generator.addProvider(event.includeServer(), new ModZHLanguageProvider(packOutput));
+        generator.addProvider(event.includeServer(), new ModEnLanguageProvider(packOutput));
 //
         generator.addProvider(event.includeClient(), new ModBlockProvider(packOutput, existingFileHelper));
 //

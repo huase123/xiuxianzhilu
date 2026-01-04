@@ -1,7 +1,6 @@
 package huase.xiuxianzhilu.screen.linggen;
 
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
-import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.screen.ReAbstractContainerMenu;
 import net.minecraft.network.FriendlyByteBuf;
@@ -36,8 +35,7 @@ public class LinggenMenu extends ReAbstractContainerMenu {
     public void createButtonFunctions() {
 //176 166
         addButtonServer(-12,53,200,60,() -> {
-            PlayerCapability capability =  CapabilityUtil.getCapability(player);
-            CapabilityUtil.openLinggen(capability,player);
+            CapabilityUtil.openLinggen(player);
         }, Component.translatable("灵根觉醒"));
 
     }

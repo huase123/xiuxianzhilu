@@ -10,6 +10,16 @@ AttributeBase implements INBTSerializable<CompoundTag> {
     public float wufang;
     public float baojishanghai;
     public float baojilv;
+    //命中
+    private float mingzhong;
+    //寿元
+    private float shouyuan;
+    //最大灵力值
+    private float maxlingli;
+    // 遁速
+    private float dunsu;
+    //吸血
+    private float xixue;
 
     public AttributeBase(){
         this.maxshengming = 20;
@@ -36,8 +46,15 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         compoundTag.putFloat("baojilv",baojilv);
         compoundTag.putFloat("wufang",wufang);
         compoundTag.putFloat("maxshengming",maxshengming);
+
+        compoundTag.putFloat("mingzhong",mingzhong);
+        compoundTag.putFloat("shouyuan",shouyuan);
+        compoundTag.putFloat("maxlingli",maxlingli);
+        compoundTag.putFloat("dunsu",dunsu);
+        compoundTag.putFloat("xixue",xixue);
         return compoundTag;
     }
+
 
     @Override
     public void deserializeNBT(CompoundTag compoundTag) {
@@ -47,6 +64,12 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.baojilv=compoundTag.getFloat("baojilv");
         this.wufang=compoundTag.getFloat("wufang");
         this.maxshengming=compoundTag.getFloat("maxshengming");
+
+        this.mingzhong=compoundTag.getFloat("mingzhong");
+        this.shouyuan=compoundTag.getFloat("shouyuan");
+        this.maxlingli=compoundTag.getFloat("maxlingli");
+        this.dunsu=compoundTag.getFloat("dunsu");
+        this.xixue=compoundTag.getFloat("xixue");
 
     }
 
@@ -88,5 +111,45 @@ AttributeBase implements INBTSerializable<CompoundTag> {
 
     public void setBaojilv(float baojilv) {
         this.baojilv = baojilv;
+    }
+
+    public float getMingzhong() {
+        return mingzhong;
+    }
+
+    public void setMingzhong(float mingzhong) {
+        this.mingzhong = mingzhong;
+    }
+
+    public float getShouyuan() {
+        return shouyuan;
+    }
+
+    public void setShouyuan(float shouyuan) {
+        this.shouyuan = shouyuan;
+    }
+
+    public float getMaxlingli() {
+        return maxlingli;
+    }
+
+    public void setMaxlingli(float maxlingli) {
+        this.maxlingli = maxlingli;
+    }
+
+    public float getDunsu() {
+        return dunsu;
+    }
+
+    public void setDunsu(float dunsu) {
+        this.dunsu = dunsu;
+    }
+
+    public float getXixue() {
+        return xixue;
+    }
+
+    public void setXixue(float xixue) {
+        this.xixue = xixue;
     }
 }
