@@ -52,6 +52,7 @@ public abstract class GongfaSample extends AttributeBase {
             }
             lingxius.add(new LingxiuCase(player, prent.get()));
             capability.setLingxiuindex(lingxius.size()-1);
+            capability.setIsupdate(true);
             ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(prent.get());
             player.sendSystemMessage(Component.translatable("修为成功进阶到").withStyle(ChatFormatting.YELLOW).append(Component.translatable(key.toString()).withStyle(ChatFormatting.GOLD)));
 

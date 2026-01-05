@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.screen.player;
 
+import com.ibm.icu.text.DecimalFormat;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.screen.ButtonMenu;
@@ -50,33 +51,34 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         }
     }
 
+    DecimalFormat decimalFormat = new DecimalFormat("#.0");
     private void updateMutableComponents() {
         mutableComponents.clear();
         Player player = this.menu.player;
         mutableComponents.add(Component.translatable("境界",                  CapabilityUtil.getJingjie       (player)));
         mutableComponents.add(Component.translatable("层数",                  CapabilityUtil.getCengshustring       (player)));
         mutableComponents.add(Component.translatable("修炼速度",               CapabilityUtil.getXiulianshudu       (player)));
-        mutableComponents.add(Component.translatable("经验",                  CapabilityUtil.getJingyan       (player)));
-        mutableComponents.add(Component.translatable("修龄",                  CapabilityUtil.getNianling      (player)));
-        mutableComponents.add(Component.translatable("生命",                  CapabilityUtil.getShengming     (player)));
-        mutableComponents.add(Component.translatable("灵力",                  CapabilityUtil.getLingli        (player)));
-        mutableComponents.add(Component.translatable("物攻",                  CapabilityUtil.getWugong        (player)));
-        mutableComponents.add(Component.translatable("命中",                  CapabilityUtil.getMingzhong     (player)));
-        mutableComponents.add(Component.translatable("爆伤",                  CapabilityUtil.getBaojishanghai(player)));
+        mutableComponents.add(Component.translatable("经验",                  decimalFormat.format(CapabilityUtil.getJingyan       (player))));
+        mutableComponents.add(Component.translatable("修龄",                  decimalFormat.format(CapabilityUtil.getNianling      (player))));
+        mutableComponents.add(Component.translatable("生命",                  decimalFormat.format(CapabilityUtil.getShengming     (player))));
+        mutableComponents.add(Component.translatable("灵力",                  decimalFormat.format(CapabilityUtil.getLingli        (player))));
+        mutableComponents.add(Component.translatable("物攻",                  decimalFormat.format(CapabilityUtil.getWugong        (player))));
+        mutableComponents.add(Component.translatable("命中",                  decimalFormat.format(CapabilityUtil.getMingzhong     (player))));
+        mutableComponents.add(Component.translatable("爆伤",                  decimalFormat.format(CapabilityUtil.getBaojishanghai(player))));
 
-        mutableComponents.add(Component.translatable("吸血",                  CapabilityUtil.getXixue         (player)));
+        mutableComponents.add(Component.translatable("吸血",                  decimalFormat.format(CapabilityUtil.getXixue         (player))));
 
 
         mutableComponents.add(Component.translatable("最高境界",               CapabilityUtil.getMaxjingjie       (player)));
         mutableComponents.add(Component.translatable("圆满层数",               CapabilityUtil.getMaxcengshustring       (player)));
         mutableComponents.add(Component.translatable("灵根",                  CapabilityUtil.getLinggenstring       (player)));
-        mutableComponents.add(Component.translatable("最大经验",               CapabilityUtil.getMaxjingyan    (player)));
-        mutableComponents.add(Component.translatable("寿元",                  CapabilityUtil.getShouyuan      (player)));
-        mutableComponents.add(Component.translatable("最大生命",               CapabilityUtil.getMaxshengming  (player)));
-        mutableComponents.add(Component.translatable("最大灵力",               CapabilityUtil.getMaxlingli       (player)));
-        mutableComponents.add(Component.translatable("物防",                  CapabilityUtil.getWufang        (player)));
-        mutableComponents.add(Component.translatable("遁速",                  CapabilityUtil.getDunsu         (player)));
-        mutableComponents.add(Component.translatable("爆率",                  CapabilityUtil.getBaolv(player)));
+        mutableComponents.add(Component.translatable("最大经验",               decimalFormat.format(CapabilityUtil.getMaxjingyan    (player))));
+        mutableComponents.add(Component.translatable("寿元",                  decimalFormat.format(CapabilityUtil.getShouyuan      (player))));
+        mutableComponents.add(Component.translatable("最大生命",               decimalFormat.format(CapabilityUtil.getMaxshengming  (player))));
+        mutableComponents.add(Component.translatable("最大灵力",               decimalFormat.format(CapabilityUtil.getMaxlingli       (player))));
+        mutableComponents.add(Component.translatable("物防",                  decimalFormat.format(CapabilityUtil.getWufang        (player))));
+        mutableComponents.add(Component.translatable("遁速",                  decimalFormat.format(CapabilityUtil.getDunsu         (player))));
+        mutableComponents.add(Component.translatable("爆率",                  decimalFormat.format(CapabilityUtil.getBaolv(player))));
 
 
 

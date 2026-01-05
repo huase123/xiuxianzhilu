@@ -1,8 +1,8 @@
 package huase.xiuxianzhilu.capabilitys.capability.jingjie.lings;
 
-import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
@@ -77,7 +77,7 @@ public class LingxiuCase extends AttributeBase {
         if(jingyan>=maxjingyan){
             tupo(player);
         }else {
-            jingyan = (float) Math.min(maxlingli,jingyan+value);
+            jingyan = (float) Math.min(maxjingyan,jingyan+value);
         }
     }
 
@@ -86,10 +86,20 @@ public class LingxiuCase extends AttributeBase {
             dengji++;
             jingyan = 0;
             maxjingyan +=(maxjingyan/ maxdengji)*2;
-            ModMain.LOGGER.info("境界突破至于"+dengji);
+
+            ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
+            player.sendSystemMessage(Component.translatable("境界突破至")
+                    .append(Component.translatable(key.toString())).append((dengji+1)+"层")
+            );
         }else {
-//            ModMain.LOGGER.info("境界圆满，可开启新境界");
-//            CapabilityUtil.addLingxiuCase(player);
+
+            if(dengji== maxdengji -1){
+                ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
+                player.sendSystemMessage(Component.translatable("境界突破至")
+                        .append(Component.translatable(key.toString())).append("圆满")
+                );
+                dengji++;
+            }
         }
     }
 

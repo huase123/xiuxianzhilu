@@ -109,7 +109,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
 
         gongfaindex = compoundTag.getInt("gongfaindex" );
         gongfas.clear();
-        for (int i = 0; i < compoundTag.getInt("gongfassize"); i++) {
+        for (int i = 0; i < compoundTag.getInt("gongfasize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("gongfa" + i);
             gongfas.add(new GongfaCase(player,tag));
         }

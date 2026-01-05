@@ -109,11 +109,16 @@ public class CapabilityUtil {
         PlayerCapability capability =  getCapability(player);
         for (GongfaCase gongfa : capability.getGongfas()) {
             if(gongfaSample.equals(gongfa.getGongfaSample())){
-                player.sendSystemMessage(Component.translatable("已习得该功法").withStyle(ChatFormatting.RED));
+                player.sendSystemMessage(Component.translatable("已有功法").withStyle(ChatFormatting.RED));
                 return;
             }
         }
+
+        ResourceLocation key = player.level().registryAccess().registryOrThrow(gongfa_key).getKey(gongfaSample);
+        player.sendSystemMessage(Component.translatable("成功习得功法：").withStyle(ChatFormatting.AQUA)
+                .append(Component.translatable(key.toString())));
         capability.getGongfas().add(new GongfaCase(player,gongfaSample));
+        capability.setIsupdate(true);
     }
 
 

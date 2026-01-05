@@ -1,74 +1,82 @@
 package huase.xiuxianzhilu.event.client;
 
+import com.ibm.icu.text.DecimalFormat;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.capability.DensityFunction;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import huase.xiuxianzhilu.util.RenderApi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Matrix4f;
 
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class RERenderGuiEventEventEvent {
-
-
     @SubscribeEvent(priority= EventPriority.LOWEST)
     public static void onRenderGuiEvent(RenderGuiEvent.Post event){
         renderDensityFunction(event);
 //        renderlightTexture(event);
     }
 
+    private static final ResourceLocation lingmai0 = new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/lingmai0.png");
+    private static final ResourceLocation lingmai1 = new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/lingmai1.png");
+
+    static float lastenoise = 0f;
     private static void renderDensityFunction(RenderGuiEvent.Post event) {
         LocalPlayer localplayer = Minecraft.getInstance().player;
         if(localplayer == null)return;
-        PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(localplayer);
+        PlayerCapability capability = CapabilityUtil.getCapability(localplayer);
         float partialTick = event.getPartialTick();
         DensityFunction densityFunction = capability.getDensityFunction();
         if(densityFunction == null)return;
         densityFunction.updateClientState(partialTick);
-        float d = (float) densityFunction.getGongfaNoise();
+        float noise = (float) densityFunction.getjingjieNoise();
         GuiGraphics guiGraphics = event.getGuiGraphics();
-        Matrix4f matrix4f = guiGraphics.pose().last().pose();
 
         int width = event.getWindow().getGuiScaledWidth();
         int height = event.getWindow().getGuiScaledHeight();
+
+
         RenderSystem.enableDepthTest();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        PoseStack posestack = guiGraphics.pose();
+        posestack.pushPose();
+        int size = 60;
+        posestack.translate(width-size/2-18,height-size/2-18,0);
+        posestack.mulPose(Axis.ZP.rotationDegrees((((int)((noise)*10))/10f )*5.0f * (Minecraft.getInstance().level.getGameTime()+partialTick) % 360f));
+        if(noise>0){
+            RenderApi.renderColorTexture(lingmai0,posestack,-size/2,-size/2,0,0,size,size,size,size,1.0f,1.0f,1.0f,1.0f);
+        }else {
+            RenderApi.renderColorTexture(lingmai0,posestack,-size/2,-size/2,0,0,size,size,size,size,0.5f,0.5f,0.5f,1.0f);
+        }
+        posestack.popPose();
 
-        Tesselator tessellator = Tesselator.getInstance();
-        BufferBuilder buffer = tessellator.getBuilder();
-        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        float pX1 = 0;
-        float pX2 = width/8;
-        float pY1 = 0;
-        float pY2 = height/8;
-        float pBlitOffset = 0;
-        float Alpha = 1;
-        float r = d;
-        float g = d;
-        float b = d;
-        buffer.vertex(matrix4f, (float)pX1, (float)pY1, (float)pBlitOffset).color(r, g, b, Alpha).endVertex();
-        buffer.vertex(matrix4f, (float)pX1, (float)pY2, (float)pBlitOffset).color(r, g, b, Alpha).endVertex();
-        buffer.vertex(matrix4f, (float)pX2, (float)pY2, (float)pBlitOffset).color(r, g, b, Alpha).endVertex();
-        buffer.vertex(matrix4f, (float)pX2, (float)pY1, (float)pBlitOffset).color(r, g, b, Alpha).endVertex();
-        tessellator.end();
-
+        posestack.pushPose();
+        int size1 = 60;
+        posestack.translate(width-size1/2-18,height-size1/2-18,0);
+        posestack.mulPose(Axis.ZP.rotationDegrees(1.0f * (Minecraft.getInstance().level.getGameTime()+partialTick) % 360f));
+        RenderApi.renderColorTexture(lingmai1,posestack,-size/2,-size/2,0,0,size,size,size,size,1.0f,1.0f,1.0f,1.0f);
+        posestack.popPose();
         RenderSystem.disableBlend();
-        event.getGuiGraphics().drawString(Minecraft.getInstance().font, "密度："+d,10,10,16777215);
+
+
+        DecimalFormat decimalFormat = new DecimalFormat("#");
+        String format = decimalFormat.format(noise * 100);
+        if(noise>0){
+            event.getGuiGraphics().drawCenteredString(Minecraft.getInstance().font, "灵脉:"+format+"%",width-size1/2-12,height-12,0xffbbbbff);
+          }else {
+            event.getGuiGraphics().drawCenteredString(Minecraft.getInstance().font, "灵脉:"+format+"%",width-size1/2-12,height-12,0xffff3333);
+        }
     }
 
     /**
