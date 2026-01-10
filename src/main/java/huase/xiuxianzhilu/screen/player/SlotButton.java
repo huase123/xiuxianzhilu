@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class SlotButton extends ToServerButton {
     private static final ResourceLocation slot =
-            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/slot.png");
+            ModMain.prefix("textures/gui/player/slot.png");
     private int slotButtonindex;
     public SlotButton(PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
         super(pMenu,index,buttonMenu,leftPos,topPos);

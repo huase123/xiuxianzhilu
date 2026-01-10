@@ -23,15 +23,13 @@ import static net.minecraft.client.gui.screens.inventory.InventoryScreen.renderE
 
 public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerScreen<PlayerAttrubuteContainerMenu> {
     private static final ResourceLocation playermianban =
-            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/playermianban.png");
+            ModMain.prefix("textures/gui/player/playermianban.png");
     private static final ResourceLocation playerslot =
-            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/playerslot.png");
+            ModMain.prefix("textures/gui/player/playerslot.png");
     private static final ResourceLocation huakuaiclose =
-            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/huakuaiclose.png");
+            ModMain.prefix("textures/gui/player/huakuaiclose.png");
     private static final ResourceLocation huakuaiopen =
-            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/huakuaiopen.png");
-    private static final ResourceLocation slot =
-            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/slot.png");
+            ModMain.prefix("textures/gui/player/huakuaiopen.png");
 
     List<MutableComponent> mutableComponents = new LinkedList<>();
     public PlayerAttrubuteContiainerScreen(PlayerAttrubuteContainerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {

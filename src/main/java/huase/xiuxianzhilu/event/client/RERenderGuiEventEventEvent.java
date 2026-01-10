@@ -26,8 +26,8 @@ public class RERenderGuiEventEventEvent {
         renderDensityFunction(event);
     }
 
-    private static final ResourceLocation lingmai0 = new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/lingmai0.png");
-    private static final ResourceLocation lingmai1 = new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/lingmai1.png");
+    private static final ResourceLocation lingmai0 = ModMain.prefix("textures/gui/player/lingmai0.png");
+    private static final ResourceLocation lingmai1 = ModMain.prefix("textures/gui/player/lingmai1.png");
 
     static float lastenoise = 0f;
     static DecimalFormat decimalFormat = new DecimalFormat("#");
