@@ -30,6 +30,8 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
             new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/huakuaiclose.png");
     private static final ResourceLocation huakuaiopen =
             new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/huakuaiopen.png");
+    private static final ResourceLocation slot =
+            new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/slot.png");
 
     List<MutableComponent> mutableComponents = new LinkedList<>();
     public PlayerAttrubuteContiainerScreen(PlayerAttrubuteContainerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -96,8 +98,15 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
             index++;
         }
 
+        int slotButtonindex = -1;
+        for (int i = index; i < buttonFunctionMap.size(); i++) {
+            ButtonMenu buttonMenu = buttonFunctionMap.get(i);
+            SlotButton toServerButton = new SlotButton(pMenu,i,slotButtonindex,buttonMenu,this.leftPos,this.topPos);
+            this.addRenderableWidget(toServerButton);
+            slotButtonindex++;
+        }
 
-        this.checkButtonNum(buttonFunctionMap.size());
+
 
     }
     @Override
@@ -150,6 +159,13 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
 
     }
     private void rendergongfa(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+
+//        guiGraphics.blit(slot, leftPos+161, topPos+30, 0, 0,18,18,18,18);
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                guiGraphics.blit(slot, leftPos+89+j*18, topPos+67+i*18, 0, 0,18,18,18,18);
+//            }
+//        }
 
     }
 

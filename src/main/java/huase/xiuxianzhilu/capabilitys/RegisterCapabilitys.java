@@ -11,6 +11,7 @@ import huase.xiuxianzhilu.network.client.CPacketCapability;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
@@ -93,6 +94,11 @@ public class RegisterCapabilitys {
             AttributeBase capability = CapabilityUtil.getCapability(entity);
             if(capability instanceof hua.huase.shanhaicontinent.capabilitys.capability.Update update && update.isIsupdate()){
                 update.setIsupdate(false);
+                if(entity instanceof Player player){
+                    if(CapabilityUtil.getMaxshengming(player)!=player.getAttribute(Attributes.MAX_HEALTH).getValue()){
+                        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(CapabilityUtil.getMaxshengming(player));
+                    }
+                }
                 SynsAPI.synsCapability(entity,capability);
             }
         }

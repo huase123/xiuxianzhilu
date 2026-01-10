@@ -12,7 +12,7 @@ import net.minecraft.util.Mth;
  */
 public class ToServerButton extends AbstractButton {
     private int index;
-    private ReAbstractContainerMenu pMenu;
+    protected ReAbstractContainerMenu pMenu;
 
 
     public ToServerButton(ReAbstractContainerMenu pMenu, Integer key, ButtonMenu buttonMenu, int leftPos, int topPos) {

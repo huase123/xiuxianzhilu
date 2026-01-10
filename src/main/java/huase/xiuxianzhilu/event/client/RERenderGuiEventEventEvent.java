@@ -24,17 +24,18 @@ public class RERenderGuiEventEventEvent {
     @SubscribeEvent(priority= EventPriority.LOWEST)
     public static void onRenderGuiEvent(RenderGuiEvent.Post event){
         renderDensityFunction(event);
-//        renderlightTexture(event);
     }
 
     private static final ResourceLocation lingmai0 = new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/lingmai0.png");
     private static final ResourceLocation lingmai1 = new ResourceLocation(ModMain.MOD_ID, "textures/gui/player/lingmai1.png");
 
     static float lastenoise = 0f;
+    static DecimalFormat decimalFormat = new DecimalFormat("#");
     private static void renderDensityFunction(RenderGuiEvent.Post event) {
         LocalPlayer localplayer = Minecraft.getInstance().player;
         if(localplayer == null)return;
         PlayerCapability capability = CapabilityUtil.getCapability(localplayer);
+        if(capability == null)return;
         float partialTick = event.getPartialTick();
         DensityFunction densityFunction = capability.getDensityFunction();
         if(densityFunction == null)return;
@@ -70,7 +71,6 @@ public class RERenderGuiEventEventEvent {
         RenderSystem.disableBlend();
 
 
-        DecimalFormat decimalFormat = new DecimalFormat("#");
         String format = decimalFormat.format(noise * 100);
         if(noise>0){
             event.getGuiGraphics().drawCenteredString(Minecraft.getInstance().font, "灵脉:"+format+"%",width-size1/2-12,height-12,0xffbbbbff);

@@ -39,13 +39,16 @@ public class DensityFunction {
         newtime++;
         time++;
 
-        if (((int)time) % 20 == 0L) {
-            LingxiuCase lingxiu = playerCapability.getLingxiuindex();
-            if(lingxiu == null)return;
+        if(!player.level().isClientSide){
+            if (((int)time) % 20 == 0L) {
+                LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+                if(lingxiu == null)return;
 
 
-            double value = value();
-            lingxiu.addJingyan(player,value);
+                double value = value();
+                lingxiu.addJingyan(player,value);
+                playerCapability.setIsupdate(true);
+            }
         }
 
     }
@@ -77,14 +80,14 @@ public class DensityFunction {
     }
 
     public double getGongfaValue() {
-        GongfaCase gongfaindex = playerCapability.getGongfaindex();
+        GongfaCase gongfaindex = playerCapability.getGongfa();
         if(gongfaindex == null)return 0;
         double value = getGongfaNoise();
         int intensity = gongfaindex.getIntensity();
         return Math.abs(value*intensity);
     }
     public double getGongfaNoise() {
-        GongfaCase gongfaindex = playerCapability.getGongfaindex();
+        GongfaCase gongfaindex = playerCapability.getGongfa();
         if(gongfaindex == null)return 0;
         float scale=100.0f;
         double value = gongfaNoise.getValue(time / scale, dazuo, danyao);

@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.event.server;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.RegisterCapabilitys;
 import huase.xiuxianzhilu.capabilitys.capability.DensityFunction;
 import huase.xiuxianzhilu.network.NetworkHandler;
@@ -19,13 +20,19 @@ public class PlayerTickEvent {
         Player player = event.player;
         if (event.phase == TickEvent.Phase.END) {
             if (!player.isDeadOrDying()) {
-                updatesganwu(player);
+                updatesDensityFunction(player);
             }
+            if (!player.level().isClientSide && !player.isDeadOrDying()) {
+                updateShouyuan(player);
+                updatesLingli(player);
+            }
+
+            updatesFly(player);
         }
 
     }
 
-    private static void updatesganwu(Player player) {
+    private static void updatesDensityFunction(Player player) {
         player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(playerCapability -> {
             DensityFunction densityFunction = playerCapability.getDensityFunction();
             if(densityFunction == null)return;
@@ -39,4 +46,34 @@ public class PlayerTickEvent {
         });
     }
 
+    private static void updateShouyuan(Player player) {
+        if (player.level().getGameTime() % 18000L == 0L && !player.isDeadOrDying()) {
+            CapabilityUtil.addNianling(player, -1);
+        }
+    }
+
+    private static void updatesLingli(Player player) {
+        if (player.level().getGameTime() % 400L == 0L) {
+            int xiulianshudu = CapabilityUtil.getXiulianshudu(player);
+            CapabilityUtil.addLingli(player, xiulianshudu/30f);
+        }
+    }
+
+
+    private static void updatesFly(Player player) {
+        if (!player.isCreative() && !player.isSpectator() && !player.isDeadOrDying()) {
+
+            if (CapabilityUtil.getJingjieNum(player) >= 2 && CapabilityUtil.getLingli(player) > 0.0F) {
+                player.getAbilities().mayfly = true;
+            } else {
+                player.getAbilities().mayfly = false;
+                player.getAbilities().flying = false;
+            }
+
+            if (player.getAbilities().flying && player.level().getGameTime() % 40L == 0L) {
+                CapabilityUtil.addLingli(player, -0.2f);
+            }
+        }
+
+    }
 }

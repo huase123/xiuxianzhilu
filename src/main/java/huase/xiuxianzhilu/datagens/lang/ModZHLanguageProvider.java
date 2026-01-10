@@ -40,6 +40,9 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("吸血",                    "吸血:%s");
 
 
+        this.add("生命1",                   "血量：%s/%s"                                            );
+        this.add("修为1",                   "修为：%s/%s"                                            );
+        this.add("灵力1",                   "灵力：%s/%s"                                            );
 
 
         this.add("linggen.jin",                     "§e金");

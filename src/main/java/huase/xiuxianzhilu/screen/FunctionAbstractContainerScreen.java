@@ -29,7 +29,6 @@ public abstract class FunctionAbstractContainerScreen<T extends ReAbstractContai
             ToServerButton toServerButton = new ToServerButton(pMenu,integerButtonMenuEntry.getKey(),buttonMenu,this.leftPos,this.topPos);
             this.addRenderableWidget(toServerButton);
         }
-        this.checkButtonNum(buttonFunctionMap.size());
     }
 
 

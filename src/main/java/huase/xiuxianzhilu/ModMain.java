@@ -48,6 +48,7 @@ import org.slf4j.Logger;
 
 import java.lang.reflect.Field;
 import java.util.Locale;
+import java.util.Random;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ModMain.MODID)
@@ -59,6 +60,7 @@ public class ModMain {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final Logger LOGGERTemporary = LogUtils.getLogger();
+    public static final Random random = new Random();
     public ModMain() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

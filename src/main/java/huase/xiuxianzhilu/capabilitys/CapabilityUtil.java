@@ -24,6 +24,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import java.util.List;
 
+import static huase.xiuxianzhilu.ModMain.random;
 import static huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen.gongfa_key;
 import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
 
@@ -85,7 +86,8 @@ public class CapabilityUtil {
         linggens1.clear();
         while (linggens1.isEmpty()){
             for (Linggen value : values) {
-                if(random.nextBoolean());{
+                float v = random.nextFloat();
+                if(v <=0.2f){
                     linggens1.add(value);
                 }
             }
@@ -102,6 +104,14 @@ public class CapabilityUtil {
         return !linggens1.isEmpty();
     }
 
+    public static void setGongfaindex(Player player, int i) {
+        PlayerCapability capability = getCapability(player);
+        capability.setGongfaindex(i);
+    }
+    public static int getGongfaindex(Player player) {
+        PlayerCapability capability = getCapability(player);
+        return capability.getGongfaindex();
+    }
     public static void addGongfa(Player player, ItemStack itemstack) {
         GongfaSample gongfaSample = player.level().registryAccess().registryOrThrow(gongfa_key).stream().filter(
                 c -> itemstack.is(c.getItem())
@@ -122,8 +132,14 @@ public class CapabilityUtil {
     }
 
 
+    public static GongfaCase getGongfaindext(Player player,int indext) {
+        GongfaCase gongfaCase = getCapability(player).getGongfa(indext);
+
+        return gongfaCase;
+    }
+
     public static void xiuliangongfa(Player player, List<Entity> passengers) {
-        GongfaCase gongfaindex = getCapability(player).getGongfaindex();
+        GongfaCase gongfaindex = getCapability(player).getGongfa();
 
         if(gongfaindex == null){
 
@@ -138,10 +154,15 @@ public class CapabilityUtil {
 
     public static float getPlayerLingli(Player player) {
 
-        return 100;
+        PlayerCapability capability =getCapability(player);
+        return capability.getLingli();
     }
 
-    public static void addPlayerLingli(float lingi) {
+    public static void addPlayerLingli(Player player, float lingi) {
+        PlayerCapability capability =getCapability(player);
+        float v = getPlayerLingli(player) + lingi;
+        float maxlingli = getMaxlingli(player);
+        capability.setLingli(Math.min(maxlingli,Math.max(v,0)));
 
     }
 
@@ -154,6 +175,10 @@ public class CapabilityUtil {
             ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.getLingxiuJingjie());
             return Component.translatable(key.toString());
         }
+    }
+    public static int getJingjieNum(Player player) {
+        PlayerCapability capability =getCapability(player);
+        return capability.getLingxiuindexNum();
     }
 
     public static MutableComponent getMaxjingjie(Player player) {
@@ -209,7 +234,7 @@ public class CapabilityUtil {
         if(lingxiuCase != null){
             value += lingxiuCase.getIntensity();
         }
-        GongfaCase gongfaindex = capability.getGongfaindex();
+        GongfaCase gongfaindex = capability.getGongfa();
         if(gongfaindex != null){
             value += gongfaindex.getIntensity();
         }
@@ -259,6 +284,31 @@ public class CapabilityUtil {
         return value;
     }
 
+    public static void addNianling(Player player, int i) {
+        PlayerCapability capability =getCapability(player);
+        capability.setNianling(Math.max(getShouyuan(player),getNianling(player)+i));
+
+        if(getNianling(player)+3>=getShouyuan(player)){
+            player.sendSystemMessage(Component.translatable("油尽灯枯，寿元即将耗尽").withStyle(ChatFormatting.RED));
+        }
+        if(getNianling(player)>=getShouyuan(player)){
+            chongsheng(player);
+        }
+        capability.setIsupdate(true);
+    }
+
+    static void chongsheng(Player player) {
+
+        PlayerCapability playerCapability =getCapability(player);
+        PlayerCapability playerCapability1 = new PlayerCapability(player);
+        playerCapability.deserializeNBT(playerCapability1.serializeNBT());
+        playerCapability.setIsupdate(true);
+        player.setHealth(0);
+        player.die(player.damageSources().generic());
+        player.sendSystemMessage(Component.translatable("§4修炼一生最后不过一堆黄土，寿命耗尽"));
+    }
+
+
     public static float getShengming(Player player) {
 
         return player.getHealth();
@@ -281,6 +331,11 @@ public class CapabilityUtil {
     public static float getLingli(Player player) {
         PlayerCapability capability =getCapability(player);
         return  capability.getLingli();
+    }
+    public static void addLingli(Player player,float value) {
+        PlayerCapability capability =getCapability(player);
+        capability.setLingli(Math.min(Math.max(getLingli(player)+value,0),getMaxlingli(player)));
+
     }
 
     public static float getMaxlingli(Player player) {
@@ -355,4 +410,62 @@ public class CapabilityUtil {
         }
         return value;
     }
+
+    public static boolean handleMingzhong(Entity entity, LivingEntity living) {
+        float mingzhong = 0;
+        if(entity instanceof Player player){
+             mingzhong += getMingzhong(player);
+        }
+        float dunsu = 0;
+        if(living instanceof Player player){
+             dunsu = getDunsu(player);
+        }
+        float i1 = random.nextFloat(100);
+        if(i1+mingzhong-dunsu>0){
+            return true;
+        }
+        return false;
+    }
+
+    public static float handleWuliDamage(Entity entity, LivingEntity living, float amount) {
+
+        float i = 0;
+        float j = 0;
+        if(entity instanceof Player player){
+            float linglixiaohao = getXiulianshudu(player)/10f;
+            float lingli = getLingli(player);
+            if(lingli>linglixiaohao){
+                i = getWugong(player) + handleBaolv(getBaolv(player)) * (0.4f + getBaojishanghai(player)/100f) * getWugong(player);
+                addLingli(player,-linglixiaohao);
+            }
+        }
+        if(living instanceof Player player){
+            float linglixiaohao = getXiulianshudu(player)/30f;
+            float lingli = getLingli(player);
+            if(lingli>linglixiaohao){
+                j = getWufang(player);
+            }
+            addLingli(player,-linglixiaohao);
+        }
+
+        return Math.max(0,i-j+amount);
+    }
+
+    static float handleBaolv(float i) {
+        float i1 = random.nextFloat(100);
+        if(i1+i>100){
+            return 1;
+        }
+        return 0;
+    }
+
+     public static void handxixue(Entity entity, float amount) {
+        if(entity != null && entity.isAlive()){
+            if(entity instanceof Player player){
+                float v1 = getXixue(player) / 100f * amount;
+                player.setHealth(player.getHealth()+v1);
+            }
+        }
+    }
+
 }

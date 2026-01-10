@@ -1,6 +1,8 @@
 package huase.xiuxianzhilu.screen.player;
 
 
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.screen.ReAbstractContainerMenu;
 import net.minecraft.network.FriendlyByteBuf;
@@ -44,6 +46,27 @@ public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implem
             index++;
         }
 
+
+//        guiGraphics.blit(slot, leftPos+161, topPos+30, 0, 0,18,18,18,18);
+        addButtonClientAndServer(161,30,18,18,() -> {
+            CapabilityUtil.setGongfaindex(player,-1);
+        }, Component.empty());
+
+        int gongnfaindex = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 9; j++) {
+                int finalGongnfaindex = gongnfaindex;
+                addButtonClientAndServer(89+j*18,67+i*18,18,18,() -> {
+                    GongfaCase gongfaindext = CapabilityUtil.getGongfaindext(player, finalGongnfaindex);
+                    if(gongfaindext == null){
+                        CapabilityUtil.setGongfaindex(player,-1);
+                    }else {
+                        CapabilityUtil.setGongfaindex(player,finalGongnfaindex);
+                    }
+                }, Component.empty());
+                gongnfaindex++;
+            }
+        }
     }
 
     @Override

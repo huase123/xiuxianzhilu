@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.items;
 
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -34,7 +35,7 @@ public class ExampleItem extends Item {
         if(!pPlayer.level().isClientSide){
 //            PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(pPlayer);
 //            DensityFunction densityFunction = capability.getDensityFunction();
-//            CapabilityUtil.createDensityFunction(capability,pPlayer);
+            CapabilityUtil.openLinggen(pPlayer);
 
         }else {
             Minecraft.getInstance().gameRenderer.cycleEffect();
