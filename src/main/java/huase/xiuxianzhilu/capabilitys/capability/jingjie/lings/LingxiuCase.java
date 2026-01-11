@@ -19,6 +19,7 @@ public class LingxiuCase extends AttributeBase {
     int dengji;
     int maxdengji;
     Player player;
+    boolean activate = true;
 
     public LingxiuCase(Player player, LingxiuJingjieSample lingxiuJingjieSample) {
         super(lingxiuJingjieSample.maxshengming, lingxiuJingjieSample.wugong, lingxiuJingjieSample.wufang, lingxiuJingjieSample.baojishanghai, lingxiuJingjieSample.baojilv);
@@ -51,6 +52,7 @@ public class LingxiuCase extends AttributeBase {
         compoundTag.putFloat("maxjingyan",maxjingyan);
         compoundTag.putInt("dengji",dengji);
         compoundTag.putInt("maxdengji", maxdengji);
+        compoundTag.putBoolean("activate", activate);
         return compoundTag;
     }
 
@@ -65,6 +67,7 @@ public class LingxiuCase extends AttributeBase {
         this.maxjingyan = compoundTag.getFloat("maxjingyan");
         this.dengji = compoundTag.getInt("dengji");
         this.maxdengji = compoundTag.getInt("maxdengji");
+        this.activate = compoundTag.getBoolean("activate");
     }
 
     public float getIntensity() {
@@ -123,5 +126,13 @@ public class LingxiuCase extends AttributeBase {
 
     public int getMaxdengji() {
         return maxdengji;
+    }
+
+    public boolean isActivate() {
+        return activate;
+    }
+
+    public void setActivate(boolean activate) {
+        this.activate = activate;
     }
 }

@@ -104,6 +104,19 @@ public class CapabilityUtil {
         return !linggens1.isEmpty();
     }
 
+    public static void setLingxiuindex(Player player, int i) {
+        PlayerCapability capability = getCapability(player);
+        capability.setLingxiuindex(i);
+    }
+    public static LingxiuCase getLingxiuindext(Player player,int indext) {
+        LingxiuCase lingxiuCase = getCapability(player).getLingxiu(indext);
+
+        return lingxiuCase;
+    }
+    public static int getLingxiuindex(Player player) {
+        PlayerCapability capability = getCapability(player);
+        return capability.getLingxiuindex();
+    }
     public static void setGongfaindex(Player player, int i) {
         PlayerCapability capability = getCapability(player);
         capability.setGongfaindex(i);
@@ -168,7 +181,7 @@ public class CapabilityUtil {
 
     public static MutableComponent getJingjie(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null){
             return Component.translatable("凡人");
         }else {
@@ -178,7 +191,7 @@ public class CapabilityUtil {
     }
     public static int getJingjieNum(Player player) {
         PlayerCapability capability =getCapability(player);
-        return capability.getLingxiuindexNum();
+        return capability.getLingxiuindex();
     }
 
     public static MutableComponent getMaxjingjie(Player player) {
@@ -194,13 +207,13 @@ public class CapabilityUtil {
     }
     public static int getCengshu(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null)return 0;
         return lingxiuCase.getDengji()+1;
     }
     public static String getCengshustring(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null)return "无";
         int dengji = lingxiuCase.getDengji();
         int maxDengji = lingxiuCase.getMaxdengji();
@@ -216,13 +229,13 @@ public class CapabilityUtil {
     }
     public static int getMaxcengshu(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null)return 0;
         return lingxiuCase.getMaxdengji()+1;
     }
     public static String getMaxcengshustring(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null)return "无";
         return (lingxiuCase.getMaxdengji()+1)+"层";
     }
@@ -230,7 +243,7 @@ public class CapabilityUtil {
     public static int getXiulianshudu(Player player) {
         PlayerCapability capability =getCapability(player);
         int value = 0;
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase != null){
             value += lingxiuCase.getIntensity();
         }
@@ -258,14 +271,14 @@ public class CapabilityUtil {
 
     public static float getJingyan(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null)return 0;
         return lingxiuCase.getJingyan();
     }
 
     public static float getMaxjingyan(Player player) {
         PlayerCapability capability =getCapability(player);
-        LingxiuCase lingxiuCase = capability.getLingxiuindex();
+        LingxiuCase lingxiuCase = capability.getLingxiu();
         if(lingxiuCase == null)return 0;
         return lingxiuCase.getMaxjingyan();
     }

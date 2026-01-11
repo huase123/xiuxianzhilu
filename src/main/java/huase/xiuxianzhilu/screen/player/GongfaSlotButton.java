@@ -18,11 +18,11 @@ import java.util.List;
 /**
  * - @description:PlayerMianbanButton类
  */
-public class SlotButton extends ToServerButton {
+public class GongfaSlotButton extends ToServerButton {
     private static final ResourceLocation slot =
             ModMain.prefix("textures/gui/player/slot.png");
     private int slotButtonindex;
-    public SlotButton(PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
+    public GongfaSlotButton(PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
         super(pMenu,index,buttonMenu,leftPos,topPos);
         this.slotButtonindex = slotButtonindex;
     }

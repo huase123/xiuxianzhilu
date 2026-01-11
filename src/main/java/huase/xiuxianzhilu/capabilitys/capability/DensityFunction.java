@@ -41,7 +41,7 @@ public class DensityFunction {
 
         if(!player.level().isClientSide){
             if (((int)time) % 20 == 0L) {
-                LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+                LingxiuCase lingxiu = playerCapability.getLingxiu();
                 if(lingxiu == null)return;
 
 
@@ -65,14 +65,14 @@ public class DensityFunction {
     }
 
     public double getjingjieValue() {
-        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+        LingxiuCase lingxiu = playerCapability.getLingxiu();
         if(lingxiu == null)return 0;
         double value = getjingjieNoise();
         float intensity =lingxiu.getIntensity();
         return Math.abs(value*intensity);
     }
     public double getjingjieNoise() {
-        LingxiuCase lingxiu = playerCapability.getLingxiuindex();
+        LingxiuCase lingxiu = playerCapability.getLingxiu();
         if(lingxiu == null)return 0;
         float scale=100.0f;
         double value = jingjieNoise.getValue(time / scale,  dazuo,danyao);

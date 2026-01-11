@@ -96,12 +96,21 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
             index++;
         }
 
-        int slotButtonindex = -1;
-        for (int i = index; i < buttonFunctionMap.size(); i++) {
-            ButtonMenu buttonMenu = buttonFunctionMap.get(i);
-            SlotButton toServerButton = new SlotButton(pMenu,i,slotButtonindex,buttonMenu,this.leftPos,this.topPos);
+        int lingxiuslotButtonindex = -1;
+        for (int i = index + 37; index < i; index++) {
+            ButtonMenu buttonMenu = buttonFunctionMap.get(index);
+            LingxiuSlotButton toServerButton = new LingxiuSlotButton(pMenu,index,lingxiuslotButtonindex,buttonMenu,this.leftPos,this.topPos);
             this.addRenderableWidget(toServerButton);
-            slotButtonindex++;
+            lingxiuslotButtonindex++;
+        }
+
+
+        int gongfaslotButtonindex = -1;
+        for (int i = index + 37; index < i; index++) {
+            ButtonMenu buttonMenu = buttonFunctionMap.get(index);
+            GongfaSlotButton toServerButton = new GongfaSlotButton(pMenu,index,gongfaslotButtonindex,buttonMenu,this.leftPos,this.topPos);
+            this.addRenderableWidget(toServerButton);
+            gongfaslotButtonindex++;
         }
 
 

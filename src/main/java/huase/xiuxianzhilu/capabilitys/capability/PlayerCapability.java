@@ -148,17 +148,37 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         return lingxius;
     }
 
-    public LingxiuCase getLingxiuindex() {
-        if(lingxius.isEmpty())return null;
-        return lingxius.get(lingxius.size()-1);
-//        return lingxiuindex == -1? null :lingxius.get(lingxiuindex);
+    public LingxiuCase getLingxiu() {
+        if(lingxius.isEmpty()||lingxiuindex <= -1){
+            return null;
+        }else {
+            if(lingxiuindex>=lingxius.size()){
+                lingxiuindex = -1;
+                return null;
+            }else {
+                return lingxius.get(lingxiuindex);
+            }
+        }
     }
+    public LingxiuCase getLingxiu(int indext) {
+//        return gongfaindex == -1? null :gongfas.get(gongfaindex);
+        if(lingxius.isEmpty()||indext <= -1){
+            return null;
+        }else {
+            if(indext>=lingxius.size()){
+                return null;
+            }else {
+                return lingxius.get(indext);
+            }
+        }
+    }
+
 
     public void setLingxiuindex(int lingxiuindex) {
         this.lingxiuindex = lingxiuindex;
     }
 
-    public int getLingxiuindexNum() {
+    public int getLingxiuindex() {
         return this.lingxiuindex ;
     }
 
@@ -178,7 +198,6 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     }
 
     public GongfaCase getGongfa() {
-//        return gongfaindex == -1? null :gongfas.get(gongfaindex);
         if(gongfas.isEmpty()||gongfaindex <= -1){
             return null;
         }else {
