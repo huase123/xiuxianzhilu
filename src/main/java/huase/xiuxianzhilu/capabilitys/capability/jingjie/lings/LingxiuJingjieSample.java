@@ -4,6 +4,7 @@ import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieType;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 /**
  * - @description:Jingjie类
@@ -14,6 +15,7 @@ public abstract class LingxiuJingjieSample extends AttributeBase {
     }
 
     public abstract LingxiujingjieType getType();
+    public abstract Item getItem() ;
     public abstract float getMaxlingli();
 
 

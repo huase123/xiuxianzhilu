@@ -69,6 +69,22 @@ public class GongfaCase extends AttributeBase {
         return gongfaSample.getIntensity();
     }
 
+    public int getLayernum() {
+        return layernum;
+    }
+
+    public int getMaxlayernum() {
+        return maxlayernum;
+    }
+
+    public int getJingyan() {
+        return jingyan;
+    }
+
+    public int getMaxjingyan() {
+        return maxjingyan;
+    }
+
     public boolean isYuanman() {
         return layernum>= maxlayernum;
     }

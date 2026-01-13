@@ -70,7 +70,7 @@ public class JichutulafaGongfa extends GongfaSample {
     }
 
 
-    public GongfaSampleItem getItem() {
+    public Item getItem() {
         return item;
     }
 

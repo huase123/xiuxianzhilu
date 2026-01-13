@@ -7,6 +7,7 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieType;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypesInIt;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 /**
  * - @description:LingxiujingjieEmpty类
@@ -42,6 +43,11 @@ public class LingxiujingjieNoPrent extends LingxiuJingjieSample {
 
     public LingxiujingjieType getType() {
         return LingxiujingjieTypesInIt.fannal_type.get();
+    }
+
+    @Override
+    public Item getItem() {
+        return null;
     }
 
     public int getMaxdengji() {

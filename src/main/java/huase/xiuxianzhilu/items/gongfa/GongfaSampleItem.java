@@ -62,7 +62,7 @@ public class GongfaSampleItem extends Item {
         }
 
         if(gongfaSample.getmaxlayernum() >0 ){
-            pTooltip.add(Component.translatable("层数",gongfaSample.getmaxlayernum()).withStyle(ChatFormatting.YELLOW));
+            pTooltip.add(Component.translatable("最大层数:"+gongfaSample.getmaxlayernum()).withStyle(ChatFormatting.YELLOW));
         }
 
         if(gongfaSample.getIntensity() >0 ){

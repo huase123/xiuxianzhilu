@@ -7,7 +7,9 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieType;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypesInIt;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -19,6 +21,7 @@ public class LingxiuJingjieSample0 extends LingxiuJingjieSample {
 
     public static final Codec<LingxiuJingjieSample0> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
             LingxiujingjieGen.HOLDER_CODEC.optionalFieldOf("prent").forGetter(lingxiuJingjieSample0 -> Optional.ofNullable(lingxiuJingjieSample0.getPrent())),
+            BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(LingxiuJingjieSample::getItem),
             Codec.intRange(0, 10000).fieldOf("maxdengji").forGetter(LingxiuJingjieSample::getMaxdengji),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("intensity").forGetter(LingxiuJingjieSample::getIntensity),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("maxlingli").forGetter(LingxiuJingjieSample::getMaxlingli),
@@ -30,30 +33,38 @@ public class LingxiuJingjieSample0 extends LingxiuJingjieSample {
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getBaojilv").forGetter(AttributeBase::getBaojilv)
     ).apply(instance, LingxiuJingjieSample0::new));
     Holder<LingxiuJingjieSample> prent;
+    Item item;
     int maxdengji;
     float intensity;
     float maxlingli;
     float maxjingyan;
-    public LingxiuJingjieSample0( Optional<Holder<LingxiuJingjieSample>> prent, int maxDengji, float intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
+    public LingxiuJingjieSample0(Optional<Holder<LingxiuJingjieSample>> prent, Item item, int maxDengji, float intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
         super(getWugong, getWufang, getMaxshengming, getBaojishanghai, getBaojilv);
         this.maxdengji =maxDengji;
         this.intensity=intensity;
         this.maxlingli=maxlingli;
         this.maxjingyan=maxjingyan;
         this.prent=prent.orElse(null);
+        this.item = item;
 
     }
-    public LingxiuJingjieSample0(@Nullable Holder<LingxiuJingjieSample> prent, int maxDengji, float intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
+    public LingxiuJingjieSample0(@Nullable Holder<LingxiuJingjieSample> prent, Item item, int maxDengji, float intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
         super(getWugong, getWufang, getMaxshengming, getBaojishanghai, getBaojilv);
         this.maxdengji =maxDengji;
         this.intensity=intensity;
         this.maxlingli=maxlingli;
         this.maxjingyan=maxjingyan;
         this.prent=prent;
+        this.item = item;
 
     }
     public LingxiujingjieType getType() {
         return LingxiujingjieTypesInIt.lianqi_type.get();
+    }
+
+    @Override
+    public Item getItem() {
+        return item;
     }
 
     @Override

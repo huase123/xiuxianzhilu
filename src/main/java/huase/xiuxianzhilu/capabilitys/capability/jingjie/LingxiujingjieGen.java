@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample0;
+import huase.xiuxianzhilu.items.Iteminit;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Registry;
@@ -41,10 +42,10 @@ public class LingxiujingjieGen {
 
     public static void bootstrap(BootstapContext<LingxiuJingjieSample> context) {
         HolderGetter<LingxiuJingjieSample> lookup = context.lookup(LingxiujingjieGen.lingxiu_jingjie_key);
-        context.register(lianqi, new LingxiuJingjieSample0(lookup.getOrThrow(zhuji)                 , 11, 2, 100, 300, 8, 4, 40, 3, 3));
-        context.register(zhuji, new LingxiuJingjieSample0(lookup.getOrThrow(jindan)                 , 3, 10, 100, 300, 8, 4, 40, 3, 3));
-        context.register(jindan, new LingxiuJingjieSample0(lookup.getOrThrow(yuanying)              , 4, 50, 100, 300, 8, 4, 40, 3, 3));
-        context.register(yuanying, new LingxiuJingjieSample0(lookup.getOrThrow(huashen)             , 3, 100, 100, 300, 8, 4, 40, 3, 3));
-        context.register(huashen, new LingxiuJingjieSample0( (Holder<LingxiuJingjieSample>) null    ,3,  500, 100, 300, 8, 4, 40, 3, 3));
+        context.register(lianqi, new LingxiuJingjieSample0(lookup.getOrThrow(zhuji)                 , Iteminit.jingjie0.get(), 11, 2, 100, 300, 8, 4, 40, 3, 3));
+        context.register(zhuji, new LingxiuJingjieSample0(lookup.getOrThrow(jindan)                 , Iteminit.jingjie1.get(),3, 10, 100, 300, 8, 4, 40, 3, 3));
+        context.register(jindan, new LingxiuJingjieSample0(lookup.getOrThrow(yuanying)              , Iteminit.jingjie2.get(),4, 50, 100, 300, 8, 4, 40, 3, 3));
+        context.register(yuanying, new LingxiuJingjieSample0(lookup.getOrThrow(huashen)             , Iteminit.jingjie3.get(),3, 100, 100, 300, 8, 4, 40, 3, 3));
+        context.register(huashen, new LingxiuJingjieSample0( (Holder<LingxiuJingjieSample>) null    ,Iteminit.jingjie4.get(),3,  500, 100, 300, 8, 4, 40, 3, 3));
     }
 }

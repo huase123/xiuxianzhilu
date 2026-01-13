@@ -5,10 +5,10 @@ import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
-import huase.xiuxianzhilu.items.gongfa.GongfaSampleItem;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public abstract class GongfaSample extends AttributeBase {
 
     public abstract GongfaType getType();
 
-    public abstract GongfaSampleItem getItem() ;
+    public abstract Item getItem() ;
 
     public abstract int getIntensity();
 

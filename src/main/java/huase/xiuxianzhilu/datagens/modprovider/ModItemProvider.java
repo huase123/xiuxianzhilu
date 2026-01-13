@@ -23,6 +23,7 @@ public class ModItemProvider extends ItemModelProvider {
     protected void registerModels() {
         modleItem(Iteminit.putuan);
         Iteminit.gongfaSamplelist.stream().forEach(c ->simpleItem(c));
+        Iteminit.jingjielist.stream().forEach(c ->simpleItem(c));
     }
     private void modleItem(RegistryObject<Item> itemRegistryObject) {
 
