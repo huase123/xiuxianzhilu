@@ -22,14 +22,12 @@ public class ModItemProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         modleItem(Iteminit.putuan);
-
+        Iteminit.gongfaSamplelist.stream().forEach(c ->simpleItem(c));
     }
-
-
     private void modleItem(RegistryObject<Item> itemRegistryObject) {
 
         String currentTrimName =itemRegistryObject.getKey().location().getPath();
-        ResourceLocation trimNameResLoc = new ResourceLocation(ModMain.MOD_ID, currentTrimName);
+        ResourceLocation trimNameResLoc = ModMain.prefix( currentTrimName);
 
         this.withExistingParent(itemRegistryObject.getId().getPath(),
                         mcLoc("item/generated"))
@@ -41,8 +39,8 @@ public class ModItemProvider extends ItemModelProvider {
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(ModMain.MOD_ID,"item/" + item.getId().getPath()));
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ModMain.prefix( "item/" + item.getId().getPath()));
     }
 
 }

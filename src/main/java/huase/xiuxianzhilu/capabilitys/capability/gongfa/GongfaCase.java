@@ -69,11 +69,19 @@ public class GongfaCase extends AttributeBase {
         return gongfaSample.getIntensity();
     }
 
+    public boolean isYuanman() {
+        return layernum>= maxlayernum;
+    }
     public void xiulian(Player player, List<Entity> passengers) {
         gongfaSample.xiulian(player,passengers);
 
-        if(layernum <maxlayernum && player.level().getGameTime() %20 == 0){
-            addjingyan(player,passengers);
+        if(player.level().getGameTime() %20 == 0){
+            if (!isYuanman()){
+                addjingyan(player,passengers);
+            }else {
+                yuanman(player,passengers);
+            }
+
         }
 
     }

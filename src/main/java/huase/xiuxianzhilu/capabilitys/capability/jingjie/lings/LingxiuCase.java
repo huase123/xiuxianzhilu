@@ -95,13 +95,14 @@ public class LingxiuCase extends AttributeBase {
                     .append(Component.translatable(key.toString())).append((dengji+1)+"层")
             );
         }else {
-
-            if(dengji== maxdengji -1){
+            if(!isYuanman()){
                 ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
                 player.sendSystemMessage(Component.translatable("境界突破至")
                         .append(Component.translatable(key.toString())).append("圆满")
                 );
                 dengji++;
+            }else {
+//                CapabilityUtil.addLingxiuCase(player);
             }
         }
     }
@@ -134,5 +135,9 @@ public class LingxiuCase extends AttributeBase {
 
     public void setActivate(boolean activate) {
         this.activate = activate;
+    }
+
+    public boolean isYuanman() {
+        return dengji>= maxdengji;
     }
 }

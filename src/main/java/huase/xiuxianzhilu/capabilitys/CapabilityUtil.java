@@ -1,12 +1,10 @@
 package huase.xiuxianzhilu.capabilitys;
 
-import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.Linggen;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
-import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import net.minecraft.ChatFormatting;
@@ -60,23 +58,17 @@ public class CapabilityUtil {
 
 
 
-    public static void addLingxiuCase(Player player) {
-        PlayerCapability capability = (PlayerCapability) getCapability(player);
+    public static void addLingxiuCase(Player player, Holder<LingxiuJingjieSample> lingxiuCase) {
+        PlayerCapability capability =getCapability(player);
         List<LingxiuCase> lingxius = capability.getLingxius();
-        if(lingxius.isEmpty()){
-            LingxiuJingjieSample lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(LingxiujingjieGen.lianqi);
-            lingxius.add(new LingxiuCase(player, lingxiuJingjieSample));
-            ModMain.LOGGER.info("成功添加新境界");
-        }else {
-            LingxiuCase lingxiuCase = lingxius.get(lingxius.size() - 1);
-            Holder<LingxiuJingjieSample> prent = lingxiuCase.getLingxiuJingjie().getPrent();
 
-            if(prent != null){
-                lingxius.add(new LingxiuCase(player,prent.get()));
-            }else {
-                ModMain.LOGGER.info("无后续境界");
-            }
-        }
+
+        lingxius.add(new LingxiuCase(player, lingxiuCase.get()));
+        lingxius.sort((o1, o2) -> (int) (o2.getIntensity() - o1.getIntensity()));
+        capability.setLingxiuindex(lingxius.size()-1);
+        capability.setIsupdate(true);
+        ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.get());
+        player.sendSystemMessage(Component.translatable("修为成功进阶到").withStyle(ChatFormatting.YELLOW).append(Component.translatable(key.toString()).withStyle(ChatFormatting.GOLD)));
     }
     public static void openLinggen(Player player) {
         PlayerCapability capability =CapabilityUtil.getCapability(player);
@@ -130,17 +122,38 @@ public class CapabilityUtil {
                 c -> itemstack.is(c.getItem())
         ).findAny().get();
         PlayerCapability capability =  getCapability(player);
-        for (GongfaCase gongfa : capability.getGongfas()) {
+        List<GongfaCase> gongfas = capability.getGongfas();
+        for (GongfaCase gongfa : gongfas) {
             if(gongfaSample.equals(gongfa.getGongfaSample())){
                 player.sendSystemMessage(Component.translatable("已有功法").withStyle(ChatFormatting.RED));
                 return;
             }
         }
 
+        Holder<LingxiuJingjieSample> child = gongfaSample.getChild();
+        LingxiuCase lingxiu = capability.getLingxiu();
+
+        if(child == null){
+            if(lingxiu != null){
+                player.sendSystemMessage(Component.translatable("修为境界不匹配，无法修炼该功法").withStyle(ChatFormatting.RED));
+                return;
+            }
+        }else {
+            if(lingxiu == null){
+                player.sendSystemMessage(Component.translatable("修为境界不匹配，无法修炼该功法").withStyle(ChatFormatting.RED));
+                return;
+            }else {
+                if(!lingxiu.getLingxiuJingjie().equals(child.get())){
+                    player.sendSystemMessage(Component.translatable("修为境界不匹配，无法修炼该功法").withStyle(ChatFormatting.RED));
+                    return;
+                }
+            }
+        }
         ResourceLocation key = player.level().registryAccess().registryOrThrow(gongfa_key).getKey(gongfaSample);
         player.sendSystemMessage(Component.translatable("成功习得功法：").withStyle(ChatFormatting.AQUA)
                 .append(Component.translatable(key.toString())));
-        capability.getGongfas().add(new GongfaCase(player,gongfaSample));
+        gongfas.add(new GongfaCase(player,gongfaSample));
+        gongfas.sort((o1, o2) -> (int) (o2.getIntensity() - o1.getIntensity()));
         capability.setIsupdate(true);
     }
 

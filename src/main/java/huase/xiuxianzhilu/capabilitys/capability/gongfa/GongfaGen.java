@@ -43,10 +43,10 @@ public class GongfaGen {
     public static void bootstrap(BootstapContext<GongfaSample> context) {
         HolderGetter<LingxiuJingjieSample> lookup = context.lookup(LingxiujingjieGen.lingxiu_jingjie_key);
 
-        context.register(jichutulafa0, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.lianqi),Iteminit.gongfa0.get(),1, 100,3,10, 2, 3, 1, 1));
-        context.register(jichutulafa1, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.zhuji),Iteminit.gongfa1.get(), 2,200,3,20, 2, 3, 1, 1));
-        context.register(jichutulafa2, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.jindan),Iteminit.gongfa2.get(), 3,300,3,30, 2, 3, 1, 1));
-        context.register(jichutulafa3, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.yuanying),Iteminit.gongfa3.get(), 4,500,3,50, 2, 3, 1, 1));
-        context.register(jichutulafa4, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.huashen),Iteminit.gongfa4.get(), 5,800,3,80, 2, 3, 1, 1));
+        context.register(jichutulafa0, new JichutulafaGongfa(null                                          ,lookup.getOrThrow(LingxiujingjieGen.lianqi)    ,Iteminit.gongfa0.get(),1, 100,3,10, 2, 3, 1, 1));
+        context.register(jichutulafa1, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.lianqi)        ,lookup.getOrThrow(LingxiujingjieGen.zhuji)     ,Iteminit.gongfa1.get(), 2,200,3,20, 2, 3, 1, 1));
+        context.register(jichutulafa2, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.zhuji)         ,lookup.getOrThrow(LingxiujingjieGen.jindan)    ,Iteminit.gongfa2.get(), 3,300,3,30, 2, 3, 1, 1));
+        context.register(jichutulafa3, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.jindan)        ,lookup.getOrThrow(LingxiujingjieGen.yuanying)  ,Iteminit.gongfa3.get(), 4,500,3,50, 2, 3, 1, 1));
+        context.register(jichutulafa4, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.yuanying)      ,lookup.getOrThrow(LingxiujingjieGen.huashen)   ,Iteminit.gongfa4.get(), 5,800,3,80, 2, 3, 1, 1));
     }
 }

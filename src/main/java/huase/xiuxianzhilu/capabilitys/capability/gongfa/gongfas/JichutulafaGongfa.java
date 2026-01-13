@@ -14,14 +14,15 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * - @description:JichutulafaGongfa类
  */
 public class JichutulafaGongfa extends GongfaSample {
     public static final Codec<JichutulafaGongfa> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
-            LingxiujingjieGen.HOLDER_CODEC.fieldOf("prent").forGetter(GongfaSample::getPrent),
+            LingxiujingjieGen.HOLDER_CODEC.optionalFieldOf("child").forGetter(lingxiuJingjieSample0 -> Optional.ofNullable(lingxiuJingjieSample0.getChild())),
+            LingxiujingjieGen.HOLDER_CODEC.optionalFieldOf("prent").forGetter(lingxiuJingjieSample0 -> Optional.ofNullable(lingxiuJingjieSample0.getPrent())),
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(GongfaSample::getItem),
             Codec.intRange(0,100000).fieldOf("getIntensity").forGetter(JichutulafaGongfa::getIntensity),
             Codec.intRange(0,100000).fieldOf("maxjingyan").forGetter(JichutulafaGongfa::getmaxjingyan),
@@ -34,12 +35,27 @@ public class JichutulafaGongfa extends GongfaSample {
     ).apply(instance, JichutulafaGongfa::new));
 
     Holder<LingxiuJingjieSample> prent;
+    Holder<LingxiuJingjieSample> child;
     GongfaSampleItem item;
     int intensity;
     int maxjingyan;
     int maxlayernum;
 
-    public JichutulafaGongfa(@Nullable Holder<LingxiuJingjieSample> prent, Item item, int intensity, int maxjingyan, int maxlayernum, float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
+    public JichutulafaGongfa( Optional<Holder<LingxiuJingjieSample>> child, Optional<Holder<LingxiuJingjieSample>> prent, Item item, int intensity, int maxjingyan, int maxlayernum, float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
+        super(maxshengming, wugong, wufang, baojishanghai, baojilv);
+        if(item instanceof GongfaSampleItem gongfaSampleItem){
+            this.item = gongfaSampleItem;
+        }else {
+            ModMain.LOGGER.error("非功法物品添加>>>>"+item.getDescriptionId());
+        }
+        this.intensity = intensity;
+        this.prent=prent.orElse(null);
+        this.child=child.orElse(null);
+        this.maxjingyan=maxjingyan;
+        this.maxlayernum=maxlayernum;
+    }
+
+    public JichutulafaGongfa(Holder<LingxiuJingjieSample> child, Holder<LingxiuJingjieSample> prent, Item item, int intensity, int maxjingyan, int maxlayernum, float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
         super(maxshengming, wugong, wufang, baojishanghai, baojilv);
         if(item instanceof GongfaSampleItem gongfaSampleItem){
             this.item = gongfaSampleItem;
@@ -48,9 +64,11 @@ public class JichutulafaGongfa extends GongfaSample {
         }
         this.intensity = intensity;
         this.prent=prent;
+        this.child=child;
         this.maxjingyan=maxjingyan;
         this.maxlayernum=maxlayernum;
     }
+
 
     public GongfaSampleItem getItem() {
         return item;
@@ -79,5 +97,10 @@ public class JichutulafaGongfa extends GongfaSample {
     @Override
     public Holder<LingxiuJingjieSample> getPrent() {
         return prent;
+    }
+
+    @Override
+    public Holder<LingxiuJingjieSample> getChild() {
+        return child;
     }
 }

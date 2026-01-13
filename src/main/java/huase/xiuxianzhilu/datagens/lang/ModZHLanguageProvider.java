@@ -59,6 +59,8 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(LingxiujingjieGen.yuanying   ,"§d元婴");
         this.add(LingxiujingjieGen.huashen  ,"§c化神");
 
+
+
     }
 
     private void add(ResourceKey<LingxiuJingjieSample> jingjieSampleResourceKey, String s) {
