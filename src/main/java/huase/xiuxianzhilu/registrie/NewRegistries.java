@@ -28,7 +28,7 @@ public class NewRegistries {
 
     public static IForgeRegistry<MultiBlockRecipeSerializer<?>> MultiBlockRecipeSerializer_IForgeRegistry;
     private static <T> ResourceKey<Registry<T>> createRegistryKey(String pName) {
-        return ResourceKey.createRegistryKey(new ResourceLocation(pName));
+        return ResourceKey.createRegistryKey(ResourceLocation.parse(pName));
     }
     /**
      * TODO 功能描述：注册表查询使用，可直接用level.registryAccess().registryOrThrow(LINGXIUJINGJIE_KEY)代替

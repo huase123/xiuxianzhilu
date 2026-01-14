@@ -83,7 +83,7 @@ public class DensityFunction {
         GongfaCase gongfaindex = playerCapability.getGongfa();
         if(gongfaindex == null)return 0;
         double value = getGongfaNoise();
-        int intensity = gongfaindex.getIntensity();
+        float intensity = gongfaindex.getIntensity();
         return Math.abs(value*intensity);
     }
     public double getGongfaNoise() {

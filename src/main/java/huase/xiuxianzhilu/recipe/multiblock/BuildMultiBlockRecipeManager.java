@@ -79,7 +79,7 @@ public class BuildMultiBlockRecipeManager  extends SimpleJsonResourceReloadListe
     public static MultiRecipe<?> fromJson(ResourceLocation pRecipeId, JsonObject pJson, net.minecraftforge.common.crafting.conditions.ICondition.IContext context) {
         String s = GsonHelper.getAsString(pJson, "type");
 
-        return NewRegistries.MultiBlockRecipeSerializer_IForgeRegistry.getValue(new ResourceLocation(s)).fromJson(pRecipeId, pJson);
+        return NewRegistries.MultiBlockRecipeSerializer_IForgeRegistry.getValue(ResourceLocation.parse(s)).fromJson(pRecipeId, pJson);
 
     }
 

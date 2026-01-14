@@ -61,8 +61,8 @@ public class GongfaSampleItem extends Item {
             pTooltip.add(Component.translatable("所需境界:").append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get()).toString())).withStyle(ChatFormatting.GREEN));
         }
 
-        if(gongfaSample.getmaxlayernum() >0 ){
-            pTooltip.add(Component.translatable("最大层数:"+gongfaSample.getmaxlayernum()).withStyle(ChatFormatting.YELLOW));
+        if(gongfaSample.getMaxdengji() >0 ){
+            pTooltip.add(Component.translatable("最大层数:"+gongfaSample.getMaxdengji()).withStyle(ChatFormatting.YELLOW));
         }
 
         if(gongfaSample.getIntensity() >0 ){

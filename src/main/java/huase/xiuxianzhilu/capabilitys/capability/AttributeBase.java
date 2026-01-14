@@ -10,14 +10,14 @@ AttributeBase implements INBTSerializable<CompoundTag> {
     public float wufang;
     public float baojishanghai;
     public float baojilv;
-    //命中
-    private float mingzhong;
-    //寿元
-    private float shouyuan;
     //最大灵力值
     private float maxlingli;
+    //命中
+    private float mingzhong;
     // 遁速
     private float dunsu;
+    //寿元
+    private float shouyuan;
     //吸血
     private float xixue;
 
@@ -35,6 +35,20 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.wufang = wufang;
         this.baojishanghai = baojishanghai;
         this.baojilv = baojilv;
+    }
+
+
+    public AttributeBase(float maxshengming, float wugong, float wufang, float baojishanghai,float baojilv, float maxlingli, float mingzhong, float dunsu, float shouyuan, float xixue) {
+        this.maxshengming = maxshengming;
+        this.wugong = wugong;
+        this.wufang = wufang;
+        this.baojishanghai = baojishanghai;
+        this.baojilv = baojilv;
+        this.maxlingli = maxlingli;
+        this.mingzhong = mingzhong;
+        this.dunsu = dunsu;
+        this.shouyuan = shouyuan;
+        this.xixue = xixue;
     }
 
     @Override

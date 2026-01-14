@@ -13,7 +13,6 @@ import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGe
  */
 public class LingxiuCase extends AttributeBase {
     private LingxiuJingjieSample lingxiuJingjieSample;
-    float maxlingli;
     float jingyan;
     float maxjingyan;
     int dengji;
@@ -22,10 +21,16 @@ public class LingxiuCase extends AttributeBase {
     boolean activate = true;
 
     public LingxiuCase(Player player, LingxiuJingjieSample lingxiuJingjieSample) {
-        super(lingxiuJingjieSample.maxshengming, lingxiuJingjieSample.wugong, lingxiuJingjieSample.wufang, lingxiuJingjieSample.baojishanghai, lingxiuJingjieSample.baojilv);
+        super(lingxiuJingjieSample.maxshengming, lingxiuJingjieSample.wugong, lingxiuJingjieSample.wufang, lingxiuJingjieSample.baojishanghai, lingxiuJingjieSample.baojilv
+                , lingxiuJingjieSample.getMaxlingli()
+                , lingxiuJingjieSample.getMingzhong()
+                , lingxiuJingjieSample.getDunsu()
+                , lingxiuJingjieSample.getShouyuan()
+                , lingxiuJingjieSample.getXixue()
+        );
         this.player = player;
         this.lingxiuJingjieSample = lingxiuJingjieSample;
-        this.maxlingli = lingxiuJingjieSample.getMaxlingli();
+
         this.maxjingyan = lingxiuJingjieSample.getMaxjingyan();
         this.maxdengji = lingxiuJingjieSample.getMaxdengji();
     }
@@ -47,7 +52,6 @@ public class LingxiuCase extends AttributeBase {
         if(key !=null){
             compoundTag.putString("lingxiuJingjie",key.toString());
         }
-        compoundTag.putFloat("maxlingli",maxlingli);
         compoundTag.putFloat("jingyan",jingyan);
         compoundTag.putFloat("maxjingyan",maxjingyan);
         compoundTag.putInt("dengji",dengji);
@@ -62,7 +66,6 @@ public class LingxiuCase extends AttributeBase {
         String string = compoundTag.getString("lingxiuJingjie");
         lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
 
-        this.maxlingli = compoundTag.getFloat("maxlingli");
         this.jingyan = compoundTag.getFloat("jingyan");
         this.maxjingyan = compoundTag.getFloat("maxjingyan");
         this.dengji = compoundTag.getInt("dengji");
@@ -108,10 +111,7 @@ public class LingxiuCase extends AttributeBase {
     }
 
 
-    @Override
-    public float getMaxlingli() {
-        return maxlingli;
-    }
+
 
     public float getJingyan() {
         return jingyan;

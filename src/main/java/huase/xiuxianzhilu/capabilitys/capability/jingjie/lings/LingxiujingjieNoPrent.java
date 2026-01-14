@@ -18,25 +18,27 @@ public class LingxiujingjieNoPrent extends LingxiuJingjieSample {
     public static final Codec<LingxiujingjieNoPrent> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
             Codec.intRange(0, 10000).fieldOf("maxdengji").forGetter(LingxiuJingjieSample::getMaxdengji),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("intensity").forGetter(LingxiuJingjieSample::getIntensity),
-            Codec.floatRange(0, Float.MAX_VALUE).fieldOf("maxlingli").forGetter(LingxiuJingjieSample::getMaxlingli),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("maxjingyan").forGetter(LingxiuJingjieSample::getMaxjingyan),
+            Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getMaxshengming").forGetter(AttributeBase::getMaxshengming),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWugong").forGetter(AttributeBase::getWugong),
             Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getWufang").forGetter(AttributeBase::getWufang),
-            Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getMaxshengming").forGetter(AttributeBase::getMaxshengming),
-            Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getBaojishanghai").forGetter(AttributeBase::getBaojishanghai),
-            Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getBaojilv").forGetter(AttributeBase::getBaojilv)
+            Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getBaojishanghai").forGetter(AttributeBase::getBaojishanghai)
+            ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getBaojilv").forGetter(AttributeBase::getBaojilv)
+            ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getMaxlingli").forGetter(AttributeBase::getMaxlingli)
+            ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getMingzhong").forGetter(AttributeBase::getMingzhong)
+            ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getDunsu").forGetter(AttributeBase::getDunsu)
+            ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getShouyuan").forGetter(AttributeBase::getShouyuan)
+            ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getXixue").forGetter(AttributeBase::getXixue)
     ).apply(instance, LingxiujingjieNoPrent::new));
 
     int maxdengji;
     float intensity;
-    float maxlingli;
     float maxjingyan;
 
-    public LingxiujingjieNoPrent(int maxDengji, float intensity, float maxlingli, float maxjingyan, float getWugong, float getWufang, float getMaxshengming, float getBaojishanghai, float getBaojilv) {
-        super(getWugong, getWufang, getMaxshengming, getBaojishanghai, getBaojilv);
+    public LingxiujingjieNoPrent(int maxDengji, float intensity, float maxjingyan, float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv, float maxlingli, float mingzhong, float dunsu, float shouyuan, float xixue) {
+        super(maxshengming, wugong, wufang, baojishanghai, baojilv, maxlingli, mingzhong, dunsu, shouyuan, xixue);
         this.maxdengji =maxDengji;
         this.intensity=intensity;
-        this.maxlingli=maxlingli;
         this.maxjingyan=maxjingyan;
     }
 
@@ -59,10 +61,6 @@ public class LingxiujingjieNoPrent extends LingxiuJingjieSample {
         return intensity;
     }
 
-    @Override
-    public float getMaxlingli() {
-        return maxlingli;
-    }
 
     @Override
     public float getMaxjingyan() {

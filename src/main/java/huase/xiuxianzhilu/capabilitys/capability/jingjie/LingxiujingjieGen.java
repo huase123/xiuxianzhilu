@@ -42,10 +42,10 @@ public class LingxiujingjieGen {
 
     public static void bootstrap(BootstapContext<LingxiuJingjieSample> context) {
         HolderGetter<LingxiuJingjieSample> lookup = context.lookup(LingxiujingjieGen.lingxiu_jingjie_key);
-        context.register(lianqi, new LingxiuJingjieSample0(lookup.getOrThrow(zhuji)                 , Iteminit.jingjie0.get(), 11, 2, 100, 300, 8, 4, 40, 3, 3));
-        context.register(zhuji, new LingxiuJingjieSample0(lookup.getOrThrow(jindan)                 , Iteminit.jingjie1.get(),3, 10, 100, 300, 8, 4, 40, 3, 3));
-        context.register(jindan, new LingxiuJingjieSample0(lookup.getOrThrow(yuanying)              , Iteminit.jingjie2.get(),4, 50, 100, 300, 8, 4, 40, 3, 3));
-        context.register(yuanying, new LingxiuJingjieSample0(lookup.getOrThrow(huashen)             , Iteminit.jingjie3.get(),3, 100, 100, 300, 8, 4, 40, 3, 3));
-        context.register(huashen, new LingxiuJingjieSample0( (Holder<LingxiuJingjieSample>) null    ,Iteminit.jingjie4.get(),3,  500, 100, 300, 8, 4, 40, 3, 3));
+        context.register(lianqi, new LingxiuJingjieSample0(lookup.getOrThrow(zhuji)                 , Iteminit.jingjie0.get()   ,12 , 5f    ,30f      ,  20f     , 2     , 1      ,2  , 5 , 5 , 2, 2, 200    , 0));
+        context.register(zhuji, new LingxiuJingjieSample0(lookup.getOrThrow(jindan)                 , Iteminit.jingjie1.get()   ,3  , 10    ,1000    ,   200     , 16    , 8      ,4  , 5 , 5 , 2, 2, 600    , 0));
+        context.register(jindan, new LingxiuJingjieSample0(lookup.getOrThrow(yuanying)              , Iteminit.jingjie2.get()   ,3  , 20    ,2000    ,   800     , 48    , 24     ,8  , 5 ,20 , 2, 2, 1800   , 0));
+        context.register(yuanying, new LingxiuJingjieSample0(lookup.getOrThrow(huashen)             , Iteminit.jingjie3.get()   ,3  , 40    ,4000    ,   3200    , 148   , 72     ,16 , 5 ,40 , 2, 2, 5400   , 2));
+        context.register(huashen, new LingxiuJingjieSample0( (Holder<LingxiuJingjieSample>) null    ,Iteminit.jingjie4.get()    ,3  , 80    ,8000    ,   12800   , 432   , 216    ,32 , 5 ,80 , 2, 2, 10000  , 2));
     }
 }

@@ -10,13 +10,12 @@ import net.minecraft.world.item.Item;
  * - @description:Jingjie类
  */
 public abstract class LingxiuJingjieSample extends AttributeBase {
-    public LingxiuJingjieSample(float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
-        super(maxshengming, wugong, wufang, baojishanghai, baojilv);
+    public LingxiuJingjieSample(float maxshengming, float wugong, float wufang, float baojishanghai,float baojilv, float maxlingli, float mingzhong, float dunsu, float shouyuan, float xixue) {
+        super(maxshengming, wugong, wufang, baojishanghai, baojilv, maxlingli, mingzhong, dunsu, shouyuan, xixue);
     }
 
     public abstract LingxiujingjieType getType();
     public abstract Item getItem() ;
-    public abstract float getMaxlingli();
 
 
     public abstract float getMaxjingyan();

@@ -17,23 +17,23 @@ import java.util.List;
  */
 public abstract class GongfaSample extends AttributeBase {
 
-    public GongfaSample(float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {
-        super(maxshengming, wugong, wufang, baojishanghai, baojilv);
+    public GongfaSample(float maxshengming, float wugong, float wufang, float baojishanghai,float baojilv, float maxlingli, float mingzhong, float dunsu, float shouyuan, float xixue) {
+        super(maxshengming, wugong, wufang, baojishanghai, baojilv, maxlingli, mingzhong, dunsu, shouyuan, xixue);
     }
 
     public abstract GongfaType getType();
 
     public abstract Item getItem() ;
 
-    public abstract int getIntensity();
+    public abstract float getIntensity();
 
     public void xiulian(Player player, List<Entity> passengers) {
 
     }
 
-    public abstract int getmaxlayernum() ;
+    public abstract int getMaxdengji() ;
 
-    public abstract int getmaxjingyan() ;
+    public abstract float getmaxjingyan() ;
 
     public abstract Holder<LingxiuJingjieSample> getPrent();
     public abstract Holder<LingxiuJingjieSample> getChild();

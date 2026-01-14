@@ -20,8 +20,8 @@ public class GongfaCase extends AttributeBase {
     Player player;
     int layernum;
     int maxlayernum;
-    int jingyan;
-    int maxjingyan;
+    float jingyan;
+    float maxjingyan;
     public GongfaCase(Player player, CompoundTag compoundTag) {
         this.player = player;
         deserializeNBT(compoundTag);
@@ -30,7 +30,7 @@ public class GongfaCase extends AttributeBase {
     public GongfaCase(Player player, GongfaSample gongfaSample) {
         this.player = player;
         this.gongfaSample = gongfaSample;
-        this.maxlayernum = gongfaSample.getmaxlayernum();
+        this.maxlayernum = gongfaSample.getMaxdengji();
         this.maxjingyan = gongfaSample.getmaxjingyan();
     }
 
@@ -43,8 +43,8 @@ public class GongfaCase extends AttributeBase {
         }
         compoundTag.putInt("layernum",layernum);
         compoundTag.putInt("maxlayernum",maxlayernum);
-        compoundTag.putInt("jingyan",jingyan);
-        compoundTag.putInt("maxjingyan",maxjingyan);
+        compoundTag.putFloat("jingyan",jingyan);
+        compoundTag.putFloat("maxjingyan",maxjingyan);
         return compoundTag;
     }
 
@@ -56,15 +56,15 @@ public class GongfaCase extends AttributeBase {
 
         this.layernum = compoundTag.getInt("layernum");
         this.maxlayernum = compoundTag.getInt("maxlayernum");
-        this.jingyan = compoundTag.getInt("jingyan");
-        this.maxjingyan = compoundTag.getInt("maxjingyan");
+        this.jingyan = compoundTag.getFloat("jingyan");
+        this.maxjingyan = compoundTag.getFloat("maxjingyan");
     }
 
     public GongfaSample getGongfaSample() {
         return gongfaSample;
     }
 
-    public int getIntensity() {
+    public float getIntensity() {
 
         return gongfaSample.getIntensity();
     }
@@ -77,11 +77,11 @@ public class GongfaCase extends AttributeBase {
         return maxlayernum;
     }
 
-    public int getJingyan() {
+    public float getJingyan() {
         return jingyan;
     }
 
-    public int getMaxjingyan() {
+    public float getMaxjingyan() {
         return maxjingyan;
     }
 
