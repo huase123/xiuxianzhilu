@@ -64,7 +64,7 @@ public class CapabilityUtil {
 
 
         lingxius.add(new LingxiuCase(player, lingxiuCase.get()));
-        lingxius.sort((o1, o2) -> (int) (o2.getIntensity() - o1.getIntensity()));
+        lingxius.sort((o1, o2) -> (int) (o1.getIntensity() - o2.getIntensity()));
         capability.setLingxiuindex(lingxius.size()-1);
         capability.setIsupdate(true);
         ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.get());
@@ -312,7 +312,7 @@ public class CapabilityUtil {
 
     public static void addNianling(Player player, int i) {
         PlayerCapability capability =getCapability(player);
-        capability.setNianling(Math.max(getShouyuan(player),getNianling(player)+i));
+        capability.setNianling(Math.min(getShouyuan(player),getNianling(player)+i));
 
         if(getNianling(player)+3>=getShouyuan(player)){
             player.sendSystemMessage(Component.translatable("油尽灯枯，寿元即将耗尽").withStyle(ChatFormatting.RED));

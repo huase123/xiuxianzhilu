@@ -41,8 +41,12 @@ public class KeyMappingInit {
     @Mod.EventBusSubscriber(modid = ModMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
     public static class OnClientTick{
         // Event is on the Forge event bus only on the physical client
-
-        @SubscribeEvent
+/**
+ * TODO 功能描述：游戏随时触发
+ * @author :huase
+ * @date 2026/1/15 1:47
+ */
+//        @SubscribeEvent
         public static void onKeyPressed(InputEvent.Key event) {
             if(event.getAction() == InputConstants.PRESS){
                 if (ATTRIBUTE_MAPPING.getKey().getValue() == event.getKey()) {
@@ -50,9 +54,13 @@ public class KeyMappingInit {
                 }
             }
         }
-//        @SubscribeEvent
+        @SubscribeEvent
         public static void onClientTick(TickEvent.ClientTickEvent event) {
-
+            if (event.phase == TickEvent.Phase.END) { // Only call code once as the tick event is called twice every tick
+                if (ATTRIBUTE_MAPPING.consumeClick()) {
+                    NetworkHandler.INSTANCE.sendToServer(new CPacketOpenAttrGUI());
+                }
+            }
 
         }
     }

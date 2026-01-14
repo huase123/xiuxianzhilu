@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.screen.player;
 
 import com.ibm.icu.text.DecimalFormat;
+import com.mojang.blaze3d.vertex.PoseStack;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
@@ -67,18 +68,32 @@ public class GongfaSlotButton extends ToServerButton {
             mutableComponents.add(Component.translatable("层数:" + gongfaCase.getLayernum() + "/" + gongfaCase.getMaxlayernum()).withStyle(ChatFormatting.YELLOW));
             mutableComponents.add(Component.translatable("进度:").append(decimalFormat.format(gongfaCase.getJingyan()*100f/gongfaCase.getMaxjingyan())).append("%").withStyle(ChatFormatting.YELLOW));
             mutableComponents.add(Component.translatable("修炼速度+").append(decimalFormat.format(gongfaCase.getMaxshengming())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("生命+").append(decimalFormat.format(gongfaCase.getMaxshengming())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("物攻+").append(decimalFormat.format(gongfaCase.getWugong())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("物防+").append(decimalFormat.format(gongfaCase.getWufang())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("爆伤+").append(decimalFormat.format(gongfaCase.getBaojishanghai())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("爆率+").append(decimalFormat.format(gongfaCase.getBaojilv())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("命中+").append(decimalFormat.format(gongfaCase.getMingzhong())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("寿元+").append(decimalFormat.format(gongfaCase.getShouyuan())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("灵力+").append(decimalFormat.format(gongfaCase.getMaxlingli())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("遁速+").append(decimalFormat.format(gongfaCase.getDunsu())).withStyle(ChatFormatting.YELLOW));
-            mutableComponents.add(Component.translatable("吸血+").append(decimalFormat.format(gongfaCase.getXixue())).withStyle(ChatFormatting.YELLOW));
 
+            if(gongfaCase.getMaxshengming() >= 0)
+            mutableComponents.add(Component.translatable("生命+").append(decimalFormat.format(gongfaCase.getMaxshengming())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getWugong() >= 0)
+            mutableComponents.add(Component.translatable("物攻+").append(decimalFormat.format(gongfaCase.getWugong())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getWufang() >= 0)
+            mutableComponents.add(Component.translatable("物防+").append(decimalFormat.format(gongfaCase.getWufang())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getBaojishanghai() >= 0)
+            mutableComponents.add(Component.translatable("爆伤+").append(decimalFormat.format(gongfaCase.getBaojishanghai())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getBaojilv() >= 0)
+            mutableComponents.add(Component.translatable("爆率+").append(decimalFormat.format(gongfaCase.getBaojilv())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getMingzhong() >= 0)
+            mutableComponents.add(Component.translatable("命中+").append(decimalFormat.format(gongfaCase.getMingzhong())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getShouyuan() >= 0)
+            mutableComponents.add(Component.translatable("寿元+").append(decimalFormat.format(gongfaCase.getShouyuan())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getMaxlingli() >= 0)
+            mutableComponents.add(Component.translatable("灵力+").append(decimalFormat.format(gongfaCase.getMaxlingli())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getDunsu() >= 0)
+            mutableComponents.add(Component.translatable("遁速+").append(decimalFormat.format(gongfaCase.getDunsu())).withStyle(ChatFormatting.YELLOW));
+            if(gongfaCase.getXixue() >= 0)
+            mutableComponents.add(Component.translatable("吸血+").append(decimalFormat.format(gongfaCase.getXixue())).withStyle(ChatFormatting.YELLOW));
+            PoseStack poseStack = pGuiGraphics.pose();
+            poseStack.popPose();
+            poseStack.translate(0,0,100);
             pGuiGraphics.renderComponentTooltip(Minecraft.getInstance().font,mutableComponents, pX, pY);
+            poseStack.pushPose();
         }
 
     }

@@ -42,11 +42,11 @@ public class GongfaGen {
 
     public static void bootstrap(BootstapContext<GongfaSample> context) {
         HolderGetter<LingxiuJingjieSample> lookup = context.lookup(LingxiujingjieGen.lingxiu_jingjie_key);
-        context.register(gongfa0, new JichutulafaGongfa((null)                                                  ,lookup.getOrThrow(LingxiujingjieGen.lianqi         )       ,Iteminit.gongfa0.get(),12,	5,	30,	20,	2,	1,	2,	5,	5,	2,	2,	200,	0));
-        context.register(gongfa1, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.lianqi  )           ,lookup.getOrThrow(LingxiujingjieGen.zhuji          )       ,Iteminit.gongfa1.get(),12,	5,	30,	20,	2,	1,	2,	5,	5,	2,	2,	200,	0));
-        context.register(gongfa2, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.zhuji   )           ,lookup.getOrThrow(LingxiujingjieGen.jindan         )       ,Iteminit.gongfa2.get(),12,	5,	30,	20,	2,	1,	2,	5,	5,	2,	2,	200,	0));
-        context.register(gongfa3, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.jindan  )           ,lookup.getOrThrow(LingxiujingjieGen.yuanying       )       ,Iteminit.gongfa3.get(),12,	5,	30,	20,	2,	1,	2,	5,	5,	2,	2,	200,	0));
-        context.register(gongfa4, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.yuanying)           ,lookup.getOrThrow(LingxiujingjieGen.huashen        )       ,Iteminit.gongfa4.get(),12,	5,	30,	20,	2,	1,	2,	5,	5,	2,	2,	200,	0));
+        context.register(gongfa0, new JichutulafaGongfa((null)                                                  ,lookup.getOrThrow(LingxiujingjieGen.lianqi         )       ,Iteminit.gongfa0.get(),3,	5   ,	30  ,	5   ,	2   ,	1   ,	0,	0,	5   ,	0,	0,	0,	0));
+        context.register(gongfa1, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.lianqi  )           ,lookup.getOrThrow(LingxiujingjieGen.zhuji          )       ,Iteminit.gongfa1.get(),3,	10  ,	60  ,	20  ,	8   ,	4   ,	0,	0,	20  ,	0,	0,	0,	0));
+        context.register(gongfa2, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.zhuji   )           ,lookup.getOrThrow(LingxiujingjieGen.jindan         )       ,Iteminit.gongfa2.get(),3,	15  ,	120 ,	80  ,	16  ,	8   ,	0,	0,	40  ,	0,	0,	0,	0));
+        context.register(gongfa3, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.jindan  )           ,lookup.getOrThrow(LingxiujingjieGen.yuanying       )       ,Iteminit.gongfa3.get(),3,	20  ,	240 ,	160 ,	32  ,	16  ,	0,	0,	80  ,	0,	0,	0,	0));
+        context.register(gongfa4, new JichutulafaGongfa(lookup.getOrThrow(LingxiujingjieGen.yuanying)           ,lookup.getOrThrow(LingxiujingjieGen.huashen        )       ,Iteminit.gongfa4.get(),3,	25  ,	480 ,	320 ,	64  ,	32  ,	0,	0,	160 ,	0,	0,	0,	0));
 
     }
 }

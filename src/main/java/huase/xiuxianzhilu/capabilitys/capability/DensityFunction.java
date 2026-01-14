@@ -45,7 +45,7 @@ public class DensityFunction {
                 if(lingxiu == null)return;
 
 
-                double value = value();
+                double value = value()*10;
                 lingxiu.addJingyan(player,value);
                 playerCapability.setIsupdate(true);
             }
