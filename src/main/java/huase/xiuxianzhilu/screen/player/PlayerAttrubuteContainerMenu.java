@@ -2,6 +2,9 @@ package huase.xiuxianzhilu.screen.player;
 
 
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.Fabaoabstract;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.screen.MenuTypesInit;
@@ -14,8 +17,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implements MenuProvider {
 
@@ -34,6 +44,15 @@ public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implem
         super(MenuTypesInit.playerattrubutecontainermenu.get(), pContainerId);
         checkContainerSize(inv, 7);
         player = ((Player) entity);
+
+
+        addPlayerInventory(inv);
+        PlayerCapability capability1 = CapabilityUtil.getCapability(player);
+        ItemStackHandler fabaoslot = capability1.getFabaoslot();
+        this.addSlot(new Fabaoslot(fabaoslot, 0,132,37, 0));
+        this.addSlot(new Fabaoslot(fabaoslot, 1,195,37, 1));
+        this.addSlot(new Fabaoslot(fabaoslot, 2,132,101, 2));
+        this.addSlot(new Fabaoslot(fabaoslot, 3,195,101, 3));
     }
 
 
@@ -111,9 +130,60 @@ public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implem
         return this;
     }
 
+    private class Fabaoslot extends SlotItemHandler {
+        int type;
+        public Fabaoslot(IItemHandler itemHandler, int index, int xPosition, int yPosition, int fabaotype) {
+            super(itemHandler, index, xPosition, yPosition);
+            type = fabaotype;
+        }
+        //能否放置
+        @Override
+        public boolean mayPlace(@NotNull ItemStack stack)
+        {
+            Optional<Fabaoabstract> any = player.level().registryAccess().registryOrThrow(FabaoGen.fabao_key).stream().filter(
+                    c -> stack.is(c.getItem())
+            ).findAny();
+            if(any.isEmpty())return false;
+            if(any.get().getTypenum()==type){
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public int getMaxStackSize()
+        {
+            return 1;
+        }
+        //是否有效
+        public boolean isActive() {
+            return mianban.equals(Mianban.fabao);
+        }
+    }
+
+    private void addPlayerInventory(Inventory playerInventory) {
+        for (int i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 90 + i * 18, 221){
+                public boolean isActive() {
+                    return mianban.equals(Mianban.fabao);
+                }
+            });
+        }
+
+        for (int i = 0; i < 3; ++i) {
+            for (int l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 90 + l * 18, 163 + i * 18 ){
+                    public boolean isActive() {
+                        return mianban.equals(Mianban.fabao);
+                    }
+                });
+            }
+        }
+    }
 
     public enum Mianban{
         attribute,
+        fabao,
         lingxiu,
         gongfa
     }

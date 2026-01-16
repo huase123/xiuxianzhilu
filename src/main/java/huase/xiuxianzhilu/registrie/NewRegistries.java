@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.registrie;
 
+import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeSerializer;
@@ -20,6 +21,7 @@ public class NewRegistries {
     public static void setRegistriesForDatapack(DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(LingxiujingjieGen.lingxiu_jingjie_key, LingxiujingjieGen.CODEC, LingxiujingjieGen.CODEC);
         event.dataPackRegistry(GongfaGen.gongfa_key, GongfaGen.CODEC, GongfaGen.CODEC);
+        event.dataPackRegistry(FabaoGen.fabao_key, FabaoGen.CODEC, FabaoGen.CODEC);
 //        event.dataPackRegistry(MagicPaintingVariants.REGISTRY_KEY, MagicPaintingVariant.CODEC, MagicPaintingVariant.CODEC);
     }
 

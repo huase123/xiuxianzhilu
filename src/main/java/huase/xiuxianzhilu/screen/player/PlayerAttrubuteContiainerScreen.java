@@ -30,6 +30,8 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
             ModMain.prefix("textures/gui/player/huakuaiclose.png");
     private static final ResourceLocation huakuaiopen =
             ModMain.prefix("textures/gui/player/huakuaiopen.png");
+    private static final ResourceLocation fabao =
+            ModMain.prefix("textures/gui/player/fabao.png");
 
     List<MutableComponent> mutableComponents = new LinkedList<>();
     public PlayerAttrubuteContiainerScreen(PlayerAttrubuteContainerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -45,6 +47,10 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         updateMutableComponents();
     }
 
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+    }
     protected void containerTick() {
         if(this.minecraft.level.getGameTime()%20==0){
             updateMutableComponents();
@@ -90,7 +96,7 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         int index = 0;
         for (PlayerAttrubuteContainerMenu.Mianban value : PlayerAttrubuteContainerMenu.Mianban.values()) {
             ButtonMenu buttonMenu = buttonFunctionMap.get(index);
-            ToServerButton toServerButton = new PlayerMianbanButton(pMenu,index,buttonMenu,this.leftPos,this.topPos);
+            ToServerButton toServerButton = new PlayerMianbanButton(pMenu,index,buttonMenu,this.leftPos,this.topPos,value);
 
             this.addRenderableWidget(toServerButton);
             index++;
@@ -124,12 +130,6 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         renderEntityInInventoryFollowsMouse(pGuiGraphics, leftPos + 46, topPos + 136, 60, (float)(leftPos + 51) - pMouseX, (float)(topPos + 75 - 50) - pMouseY, this.minecraft.player);
 
 
-        pGuiGraphics.blit(huakuaiclose, leftPos+259, topPos+10, 0, 0,12,15,12,15);
-        pGuiGraphics.blit(huakuaiopen, leftPos+259, topPos+131, 0, 0,12,15,12,15);
-
-        pGuiGraphics.blit(playerslot, leftPos+81, topPos+155, 0, 0,178,93,178,93);
-
-
         renderAllMianban(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
     }
 
@@ -138,6 +138,9 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         switch (menu.mianban){
             case attribute:
                 renderattribute(guiGraphics, pPartialTick, pMouseX, pMouseY);
+                break;
+            case fabao:
+                renderfabao(guiGraphics, pPartialTick, pMouseX, pMouseY);
                 break;
             case lingxiu:
                 renderlingxiu(guiGraphics, pPartialTick, pMouseX, pMouseY);
@@ -148,8 +151,20 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         }
     }
 
+    private void renderfabao(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        guiGraphics.blit(huakuaiclose, leftPos+259, topPos+10, 0, 0,12,15,12,15);
+        guiGraphics.blit(fabao, leftPos+114, topPos+19, 0, 0,115,116,115,116);
+        guiGraphics.blit(playerslot, leftPos+81, topPos+155, 0, 0,178,93,178,93);
+
+    }
+
 
     private void renderattribute(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        guiGraphics.blit(huakuaiopen, leftPos+259, topPos+10+startIndex*121/getOffscreenRows(), 0, 0,12,15,12,15);
+
+//        pGuiGraphics.blit(huakuaiclose, leftPos+259, topPos+10, 0, 0,12,15,12,15);
+//        pGuiGraphics.blit(huakuaiopen, leftPos+259, topPos+131, 0, 0,12,15,12,15);
+
         for (int i = 0; i < getnumberOfExperts(); i++) {
             guiGraphics.drawString(Minecraft.getInstance().font,
                     mutableComponents.get(i+startIndex), leftPos+96, topPos+14+15*i,
@@ -163,9 +178,11 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         }
     }
     private void renderlingxiu(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        guiGraphics.blit(huakuaiclose, leftPos+259, topPos+10, 0, 0,12,15,12,15);
 
     }
     private void rendergongfa(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        guiGraphics.blit(huakuaiclose, leftPos+259, topPos+10, 0, 0,12,15,12,15);
 
 //        guiGraphics.blit(slot, leftPos+161, topPos+30, 0, 0,18,18,18,18);
 //        for (int i = 0; i < 4; i++) {

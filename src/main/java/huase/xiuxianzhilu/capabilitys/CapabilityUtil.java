@@ -7,6 +7,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
+import huase.xiuxianzhilu.items.fabao.FabaoSampleItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -153,7 +154,7 @@ public class CapabilityUtil {
         player.sendSystemMessage(Component.translatable("成功习得功法：").withStyle(ChatFormatting.AQUA)
                 .append(Component.translatable(key.toString())));
         gongfas.add(new GongfaCase(player,gongfaSample));
-        gongfas.sort((o1, o2) -> (int) (o2.getIntensity() - o1.getIntensity()));
+        gongfas.sort((o1, o2) -> (int) (o1.getIntensity() - o2.getIntensity()));
         capability.setIsupdate(true);
     }
 
@@ -304,9 +305,21 @@ public class CapabilityUtil {
     public static float getShouyuan(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getShouyuan();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getShouyuan();
         }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getShouyuan();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getShouyuan(player.level(),pStack);
+            }
+        }
+
         return value;
     }
 
@@ -344,9 +357,22 @@ public class CapabilityUtil {
 
         PlayerCapability capability =getCapability(player);
         float value = capability.getMaxshengming();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getMaxshengming();
         }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getMaxshengming();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getMaxshengming(player.level(),pStack);
+            }
+        }
+
+
 //        处理玩家血量与capabilit血量的不同
         if(player.getMaxHealth()!=value){
             player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(value);
@@ -367,17 +393,40 @@ public class CapabilityUtil {
     public static float getMaxlingli(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getMaxlingli();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getMaxlingli();
         }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getMaxlingli();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getMaxlingli(player.level(),pStack);
+            }
+        }
+
         return value;
     }
 
     public static float getWugong(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getWugong();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getWugong();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getWugong();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getWugong(player.level(),pStack);
+            }
         }
         return value;
     }
@@ -385,8 +434,19 @@ public class CapabilityUtil {
     public static float getWufang(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getWufang();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getWufang();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getWufang();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getWufang(player.level(),pStack);
+            }
         }
         return value;
 
@@ -395,8 +455,19 @@ public class CapabilityUtil {
     public static float getMingzhong(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getMingzhong();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getMingzhong();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getMingzhong();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getMingzhong(player.level(),pStack);
+            }
         }
         return value;
     }
@@ -404,8 +475,19 @@ public class CapabilityUtil {
     public static float getDunsu(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getDunsu();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getDunsu();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getDunsu();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getDunsu(player.level(),pStack);
+            }
         }
         return value;
     }
@@ -413,8 +495,19 @@ public class CapabilityUtil {
     public static float getBaojishanghai(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getBaojishanghai();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getBaojishanghai();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getBaojishanghai();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getBaojishanghai(player.level(),pStack);
+            }
         }
         return value;
     }
@@ -422,8 +515,19 @@ public class CapabilityUtil {
     public static float getBaolv(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getBaojilv();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getBaojilv();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getBaojilv();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getBaojilv(player.level(),pStack);
+            }
         }
         return value;
     }
@@ -431,8 +535,19 @@ public class CapabilityUtil {
     public static float getXixue(Player player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getXixue();
-        for (LingxiuCase lingxius : capability.getLingxius()) {
+        for (int i = 0; i <= getLingxiuindex(player); i++) {
+            LingxiuCase lingxius = capability.getLingxius().get(i);
+            if(lingxius.isActivate())
             value +=lingxius.getXixue();
+        }
+        for (GongfaCase gongfa : capability.getGongfas()) {
+            value +=gongfa.getXixue();
+        }
+        for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
+            ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
+            if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
+                value +=fabaoSampleItem.getXixue(player.level(),pStack);
+            }
         }
         return value;
     }

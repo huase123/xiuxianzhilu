@@ -52,66 +52,78 @@ public class GongfaSampleItem extends Item {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 
         if(pLevel == null)return;
-        GongfaSample gongfaSample = pLevel.registryAccess().registryOrThrow(gongfa_key).stream().filter(
+        GongfaSample sample = pLevel.registryAccess().registryOrThrow(gongfa_key).stream().filter(
                 c -> pStack.is(c.getItem())
         ).findAny().get();
 
-        Holder<LingxiuJingjieSample> child = gongfaSample.getChild();
+        Holder<LingxiuJingjieSample> child = sample.getChild();
         if(child != null){
-            pTooltip.add(Component.translatable("所需境界:").append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get()).toString())).withStyle(ChatFormatting.GREEN));
-        }
-
-        if(gongfaSample.getMaxdengji() >0 ){
-            pTooltip.add(Component.translatable("最大层数:"+gongfaSample.getMaxdengji()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getIntensity() >0 ){
-            pTooltip.add(Component.translatable("修炼速度",gongfaSample.getIntensity()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getMaxshengming() >0 ){
-            pTooltip.add(Component.translatable("最大生命",gongfaSample.getMaxshengming()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getWufang() >0 ){
-            pTooltip.add(Component.translatable("物防",gongfaSample.getWufang()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getBaojishanghai() >0 ){
-            pTooltip.add(Component.translatable("爆伤",gongfaSample.getBaojishanghai()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getBaojilv() >0 ){
-            pTooltip.add(Component.translatable("爆率",gongfaSample.getBaojilv()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getMingzhong() >0 ){
-            pTooltip.add(Component.translatable("命中",gongfaSample.getMingzhong()).withStyle(ChatFormatting.YELLOW));
+            pTooltip.add(Component.translatable("所需境界:").withStyle(ChatFormatting.AQUA).append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get()).toString())));
         }
 
 
-        if(gongfaSample.getShouyuan() >0 ){
-            pTooltip.add(Component.translatable("寿元",gongfaSample.getShouyuan()).withStyle(ChatFormatting.YELLOW));
+        pTooltip.add(Component.translatable("-----基础属性-----").withStyle(ChatFormatting.WHITE));
+        if(sample.getMaxdengji() >0 ){
+            pTooltip.add(Component.translatable("最大层数:").append(Component.translatable(""+sample.getMaxdengji()).withStyle(ChatFormatting.YELLOW)));
+        }
+
+        if(sample.getIntensity() >0 ){
+            pTooltip.add(Component.translatable("修炼速度:").append(Component.translatable("+"+sample.getIntensity()).withStyle(ChatFormatting.YELLOW)));
+        }
+
+        if(sample.getMaxshengming() >0 ){
+            pTooltip.add(Component.translatable("最大生命:").append(Component.translatable("+"+sample.getMaxshengming()).withStyle(ChatFormatting.YELLOW)));
+        }
+
+        if(sample.getWugong() >0 ){
+            pTooltip.add(Component.translatable("物攻:").append(Component.translatable("+"+sample.getWugong()).withStyle(ChatFormatting.YELLOW)));
+        }
+        if(sample.getWufang() >0 ){
+            pTooltip.add(Component.translatable("物防:").append(Component.translatable("+"+sample.getWufang()).withStyle(ChatFormatting.YELLOW)));
+
+        }
+
+        if(sample.getBaojishanghai() >0 ){
+            pTooltip.add(Component.translatable("爆伤:").append(Component.translatable("+"+sample.getBaojishanghai()).withStyle(ChatFormatting.YELLOW)));
+
+        }
+
+        if(sample.getBaojilv() >0 ){
+            pTooltip.add(Component.translatable("爆率:").append(Component.translatable("+"+sample.getBaojilv()).withStyle(ChatFormatting.YELLOW)));
+
+        }
+
+        if(sample.getMingzhong() >0 ){
+            pTooltip.add(Component.translatable("命中:").append(Component.translatable("+"+sample.getMingzhong()).withStyle(ChatFormatting.YELLOW)));
+
         }
 
 
-        if(gongfaSample.getMaxlingli() >0 ){
-            pTooltip.add(Component.translatable("最大灵力",gongfaSample.getMaxlingli()).withStyle(ChatFormatting.YELLOW));
-        }
+        if(sample.getShouyuan() >0 ){
+            pTooltip.add(Component.translatable("寿元:").append(Component.translatable("+"+sample.getShouyuan()).withStyle(ChatFormatting.YELLOW)));
 
-        if(gongfaSample.getDunsu() >0 ){
-            pTooltip.add(Component.translatable("遁速",gongfaSample.getDunsu()).withStyle(ChatFormatting.YELLOW));
-        }
-
-        if(gongfaSample.getXixue() >0 ){
-            pTooltip.add(Component.translatable("吸血",gongfaSample.getXixue()).withStyle(ChatFormatting.YELLOW));
         }
 
 
-        Holder<LingxiuJingjieSample> prent = gongfaSample.getPrent();
+        if(sample.getMaxlingli() >0 ){
+            pTooltip.add(Component.translatable("最大灵力:").append(Component.translatable("+"+sample.getMaxlingli()).withStyle(ChatFormatting.YELLOW)));
+
+        }
+
+        if(sample.getDunsu() >0 ){
+            pTooltip.add(Component.translatable("遁速:").append(Component.translatable("+"+sample.getDunsu()).withStyle(ChatFormatting.YELLOW)));
+
+        }
+
+        if(sample.getXixue() >0 ){
+            pTooltip.add(Component.translatable("吸血:").append(Component.translatable("+"+sample.getXixue()).withStyle(ChatFormatting.YELLOW)));
+        }
+
+
+        Holder<LingxiuJingjieSample> prent = sample.getPrent();
         if(prent != null){
-            pTooltip.add(Component.translatable("效果：修为突破").append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(prent.get()).toString())).append("境").withStyle(ChatFormatting.GOLD));
-
+            pTooltip.add(Component.translatable("=====特殊效果=====").withStyle(ChatFormatting.LIGHT_PURPLE));
+            pTooltip.add(Component.translatable("可突破修为：").withStyle(ChatFormatting.DARK_PURPLE).append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(prent.get()).toString())).append("境"));
         }
     }
 }

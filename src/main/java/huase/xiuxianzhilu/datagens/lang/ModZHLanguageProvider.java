@@ -68,18 +68,40 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(Iteminit.jingjie3.get()  ,"§d元婴");
         this.add(Iteminit.jingjie4.get()  ,"§c化神");
 
-        this.addgongfa(GongfaGen.gongfa0  ,"§c聚灵诀");
-        this.addgongfa(GongfaGen.gongfa1  ,"§c凝元功");
-        this.addgongfa(GongfaGen.gongfa2  ,"§c金丹诀");
-        this.addgongfa(GongfaGen.gongfa3  ,"§c元婴化神诀");
-        this.addgongfa(GongfaGen.gongfa4  ,"§c化神归真诀");
+        this.addgongfa(GongfaGen.gongfa0  ,"功法:§a---聚灵诀---");
+        this.addgongfa(GongfaGen.gongfa1  ,"功法:§b---凝元功---");
+        this.addgongfa(GongfaGen.gongfa2  ,"功法:§e---金丹诀---");
+        this.addgongfa(GongfaGen.gongfa3  ,"功法:§d---元婴化神诀---");
+        this.addgongfa(GongfaGen.gongfa4  ,"功法:§c---化神归真诀---");
 
-        this.add(Iteminit.gongfa0.get(),  "§c聚灵诀");
-        this.add(Iteminit.gongfa1.get(),  "§c凝元功");
-        this.add(Iteminit.gongfa2.get(),  "§c金丹诀");
-        this.add(Iteminit.gongfa3.get(),  "§c元婴化神诀");
-        this.add(Iteminit.gongfa4.get(),  "§c化神归真诀");
+        this.add(Iteminit.gongfa0.get(),  "功法:§a---聚灵诀---");
+        this.add(Iteminit.gongfa1.get(),  "功法:§b---凝元功---");
+        this.add(Iteminit.gongfa2.get(),  "功法:§e---金丹诀---");
+        this.add(Iteminit.gongfa3.get(),  "功法:§d---元婴化神诀---");
+        this.add(Iteminit.gongfa4.get(),  "功法:§c---化神归真诀---");
 
+
+        this.add(Iteminit.jiezhi0.get(),  "法宝:§a---灵戒指---§f<§a黄§f>阶");
+        this.add(Iteminit.jiezhi1.get(),  "法宝:§b---灵戒指---§f<§b玄§f>阶");
+        this.add(Iteminit.jiezhi2.get(),  "法宝:§e---灵戒指---§f<§e地§f>阶");
+        this.add(Iteminit.jiezhi3.get(),  "法宝:§d---灵戒指---§f<§d天§f>阶");
+        this.add(Iteminit.xianglian0.get(),  "法宝:§a---灵项链---§f<§a黄§f>阶");
+        this.add(Iteminit.xianglian1.get(),  "法宝:§b---灵项链---§f<§b玄§f>阶");
+        this.add(Iteminit.xianglian2.get(),  "法宝:§e---灵项链---§f<§e地§f>阶");
+        this.add(Iteminit.xianglian3.get(),  "法宝:§d---灵项链---§f<§d天§f>阶");
+        this.add(Iteminit.yvpei0.get(),  "法宝:§a---灵玉佩---§f<§a黄§f>阶");
+        this.add(Iteminit.yvpei1.get(),  "法宝:§b---灵玉佩---§f<§b玄§f>阶");
+        this.add(Iteminit.yvpei2.get(),  "法宝:§e---灵玉佩---§f<§e地§f>阶");
+        this.add(Iteminit.yvpei3.get(),  "法宝:§d---灵玉佩---§f<§d天§f>阶");
+        this.add(Iteminit.hufu0.get(),  "法宝:§a---灵护符---§f<§a黄§f>阶");
+        this.add(Iteminit.hufu1.get(),  "法宝:§b---灵护符---§f<§b玄§f>阶");
+        this.add(Iteminit.hufu2.get(),  "法宝:§e---灵护符---§f<§e地§f>阶");
+        this.add(Iteminit.hufu3.get(),  "法宝:§d---灵护符---§f<§d天§f>阶");
+
+        this.add("attribute",   "§6面板");
+        this.add("fabao",       "§6法宝");
+        this.add("lingxiu",     "§6境界");
+        this.add("gongfa",      "§6功法");
     }
 
     private void addgongfa(ResourceKey<GongfaSample> gongfa0, String s) {

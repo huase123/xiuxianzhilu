@@ -6,6 +6,7 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
@@ -67,6 +68,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 
 
                 .add(LingxiujingjieGen.lingxiu_jingjie_key, LingxiujingjieGen::bootstrap)
+                .add(FabaoGen.fabao_key, FabaoGen::bootstrap)
                 .add(GongfaGen.gongfa_key, GongfaGen::bootstrap)
 //                .add(Registries.FLAT_LEVEL_GENERATOR_PRESET, FlatLevelGeneratorPresets::bootstrap)
 //                .add(Registries.CHAT_TYPE, ChatType::bootstrap)

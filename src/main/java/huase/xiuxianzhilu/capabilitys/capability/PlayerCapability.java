@@ -28,7 +28,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     private List<Linggen> linggens = new ArrayList<>();
     private List<GongfaCase> gongfas = new ArrayList<>();
     private int gongfaindex =-1;
-    ItemStackHandler boneslot = new ItemStackHandler(7);
+    ItemStackHandler fabaoslot = new ItemStackHandler(7);
     private boolean isupdate =true;
     private DensityFunction densityFunction ;
     private Player player ;
@@ -57,7 +57,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         compoundTag.putFloat("lingli",lingli);
 
         compoundTag.putBoolean("isupdate",isupdate);
-        compoundTag.put("boneslot", boneslot.serializeNBT());
+        compoundTag.put("fabaoslot", fabaoslot.serializeNBT());
 
 
         compoundTag.putInt("lingxiuindex",lingxiuindex);
@@ -89,8 +89,8 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         this.lingli =compoundTag.getFloat("lingli");
 
         isupdate = compoundTag.getBoolean("isupdate");
-        if(compoundTag.get("boneslot")!=null){
-            this.boneslot.deserializeNBT((CompoundTag) compoundTag.get("boneslot"));
+        if(compoundTag.get("fabaoslot")!=null){
+            this.fabaoslot.deserializeNBT((CompoundTag) compoundTag.get("fabaoslot"));
         }
 
 
@@ -114,6 +114,10 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
             gongfas.add(new GongfaCase(player,tag));
         }
         if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(player);
+    }
+
+    public ItemStackHandler getFabaoslot() {
+        return fabaoslot;
     }
 
     public float getNianling() {

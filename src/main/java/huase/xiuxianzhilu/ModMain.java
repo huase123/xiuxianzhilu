@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaTypesInit;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
@@ -105,6 +107,9 @@ public class ModMain {
 
         LingxiujingjieGen.LingxiujingjieBase_REGISTER.register(modEventBus);
         LingxiujingjieTypesInIt.lingxiu_jingjie_type_REGISTER.register(modEventBus);
+
+        FabaoGen.fabao_keyBase_REGISTER.register(modEventBus);
+        FabaoTypesInIt.fabao_type_REGISTER.register(modEventBus);
         GongfaGen.gongfa_key_REGISTER.register(modEventBus);
         GongfaTypesInit.gongfa_type_key_REGISTER.register(modEventBus);
 //        资源包管理的注册表

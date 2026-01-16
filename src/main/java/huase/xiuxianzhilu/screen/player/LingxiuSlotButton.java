@@ -14,6 +14,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import org.joml.Matrix4f;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -63,36 +64,41 @@ public class LingxiuSlotButton extends ToServerButton {
         if(lingxiuCase != null){
             mutableComponents.clear();
             ResourceLocation key = Minecraft.getInstance().level.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.getLingxiuJingjie());
-            mutableComponents.add(Component.translatable("境界:").append(Component.translatable(key.toString())).withStyle(ChatFormatting.GOLD));
-            if(lingxiuCase.getMaxshengming() >=0)
-            mutableComponents.add(Component.translatable("生命+").append(decimalFormat.format(lingxiuCase.getMaxshengming())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getWugong() >=0)
-            mutableComponents.add(Component.translatable("物攻+").append(decimalFormat.format(lingxiuCase.getWugong())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getWufang() >=0)
-            mutableComponents.add(Component.translatable("物防+").append(decimalFormat.format(lingxiuCase.getWufang())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getBaojishanghai() >=0)
-            mutableComponents.add(Component.translatable("爆伤+").append(decimalFormat.format(lingxiuCase.getBaojishanghai())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getBaojilv() >=0)
-            mutableComponents.add(Component.translatable("爆率+").append(decimalFormat.format(lingxiuCase.getBaojilv())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getMingzhong() >=0)
-            mutableComponents.add(Component.translatable("命中+").append(decimalFormat.format(lingxiuCase.getMingzhong())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getShouyuan() >=0)
-            mutableComponents.add(Component.translatable("寿元+").append(decimalFormat.format(lingxiuCase.getShouyuan())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getMaxlingli() >=0)
-            mutableComponents.add(Component.translatable("灵力+").append(decimalFormat.format(lingxiuCase.getMaxlingli())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getDunsu() >=0)
-            mutableComponents.add(Component.translatable("遁速+").append(decimalFormat.format(lingxiuCase.getDunsu())).withStyle(ChatFormatting.YELLOW));
-            if(lingxiuCase.getXixue() >=0)
-            mutableComponents.add(Component.translatable("吸血+").append(decimalFormat.format(lingxiuCase.getXixue())).withStyle(ChatFormatting.YELLOW));
-            if(!lingxiuCase.isActivate()){
+            mutableComponents.add(Component.translatable("境界:").append(Component.translatable(key.toString())));
+
+            mutableComponents.add(Component.translatable("-----基础属性-----").withStyle(ChatFormatting.WHITE));
+            if(lingxiuCase.isActivate()) {
+                mutableComponents.add(Component.translatable("修炼速度:+").append(Component.translatable(decimalFormat.format(lingxiuCase.getIntensity())).withStyle(ChatFormatting.YELLOW)));
+                if (lingxiuCase.getMaxshengming() > 0)
+                    mutableComponents.add(Component.translatable("生命:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getMaxshengming())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getWugong() > 0)
+                    mutableComponents.add(Component.translatable("物攻:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getWugong())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getWufang() > 0)
+                    mutableComponents.add(Component.translatable("物防:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getWufang())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getBaojishanghai() > 0)
+                    mutableComponents.add(Component.translatable("爆伤:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getBaojishanghai())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getBaojilv() > 0)
+                    mutableComponents.add(Component.translatable("爆率:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getBaojilv())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getMingzhong() > 0)
+                    mutableComponents.add(Component.translatable("命中:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getMingzhong())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getShouyuan() > 0)
+                    mutableComponents.add(Component.translatable("寿元:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getShouyuan())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getMaxlingli() > 0)
+                    mutableComponents.add(Component.translatable("灵力:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getMaxlingli())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getDunsu() > 0)
+                    mutableComponents.add(Component.translatable("遁速:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getDunsu())).withStyle(ChatFormatting.YELLOW))));
+                if (lingxiuCase.getXixue() > 0)
+                    mutableComponents.add(Component.translatable("吸血:+").append((Component.translatable(decimalFormat.format(lingxiuCase.getXixue())).withStyle(ChatFormatting.YELLOW))));
+            }else {
                 mutableComponents.add(Component.translatable("该修为已损失").withStyle(ChatFormatting.RED));
             }
 
             PoseStack poseStack = pGuiGraphics.pose();
-            poseStack.popPose();
-            poseStack.translate(0,0,100);
-            pGuiGraphics.renderComponentTooltip(Minecraft.getInstance().font,mutableComponents, pX, pY);
             poseStack.pushPose();
+            Matrix4f pose = poseStack.last().pose();
+            pose.translate(0,0,100);
+            pGuiGraphics.renderComponentTooltip(Minecraft.getInstance().font,mutableComponents, pX, pY);
+            poseStack.popPose();
         }
 
     }
@@ -104,7 +110,7 @@ public class LingxiuSlotButton extends ToServerButton {
         if(lingxiuCase != null){
 
             pGuiGraphics.pose().pushPose();
-            pGuiGraphics.pose().translate(0.0F, 0.0F, 100.0F);
+            pGuiGraphics.pose().translate(0.0F, 0.0F, 50.0F);
             int lingxiuindex = CapabilityUtil.getLingxiuindex(((PlayerAttrubuteContainerMenu) this.pMenu).player);
             if (lingxiuindex == slotButtonindex || slotButtonindex == -1) {
                 pGuiGraphics.fill(i+1, j+1, i+1 + 16, j+1 + 16, 0Xff00ff55);
