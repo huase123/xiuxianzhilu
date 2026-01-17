@@ -102,6 +102,31 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("fabao",       "§6法宝");
         this.add("lingxiu",     "§6境界");
         this.add("gongfa",      "§6功法");
+
+
+
+        this.add(Iteminit.linghe0   .get(),  "灵核:§a---凝气妖丹---");
+        this.add(Iteminit.linghe1   .get(),  "灵核:§b---灵风妖丹---");
+        this.add(Iteminit.linghe2   .get(),  "灵核:§e---真元妖丹---");
+        this.add(Iteminit.linghe3   .get(),  "灵核:§d---真灵妖丹---");
+        this.add(Iteminit.xvantie0  .get(),  "玄铁:§a---黑纹铁---");
+        this.add(Iteminit.xvantie1  .get(),  "玄铁:§b---百锻玄铁---");
+        this.add(Iteminit.xvantie2  .get(),  "玄铁:§e---寒心铁精---");
+        this.add(Iteminit.xvantie3  .get(),  "玄铁:§d---星辰玄铁---");
+        this.add(Iteminit.lingjin0  .get(),  "仙金:§a---云纹仙金---");
+        this.add(Iteminit.lingjin1  .get(),  "仙金:§b---流霞仙金---");
+        this.add(Iteminit.lingjin2  .get(),  "仙金:§e---玄霜仙金---");
+        this.add(Iteminit.lingjin3  .get(),  "仙金:§d---鸿蒙仙金---");
+        this.add(Iteminit.lingyv0   .get(),  "灵玉:§a---青纹灵玉---");
+        this.add(Iteminit.lingyv1   .get(),  "灵玉:§b---凝露灵玉---");
+        this.add(Iteminit.lingyv2   .get(),  "灵玉:§e---玄心灵玉---");
+        this.add(Iteminit.lingyv3   .get(),  "灵玉:§d---通神灵玉---");
+        this.add(Iteminit.lingmu0   .get(),  "灵木:§a---月纹木‌---");
+        this.add(Iteminit.lingmu1   .get(),  "灵木:§b---凝脂楠‌---");
+        this.add(Iteminit.lingmu2   .get(),  "灵木:§e---星叶松---");
+        this.add(Iteminit.lingmu3   .get(),  "灵木:§d---若灵木---");
+
+
     }
 
     private void addgongfa(ResourceKey<GongfaSample> gongfa0, String s) {

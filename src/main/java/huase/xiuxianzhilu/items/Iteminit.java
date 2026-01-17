@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.items;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.items.cailiao.CailiaoSampleItem;
 import huase.xiuxianzhilu.items.fabao.FabaoSampleItem;
 import huase.xiuxianzhilu.items.functions.LingshiItem;
 import huase.xiuxianzhilu.items.functions.PutuanItem;
@@ -25,6 +26,7 @@ public class Iteminit {
     public static List<RegistryObject<Item>> gongfaSamplelist = new ArrayList();
     public static List<RegistryObject<Item>> jingjielist = new ArrayList();
     public static List<RegistryObject<Item>> fabaolist = new ArrayList();
+    public static List<RegistryObject<Item>> cailiaolist = new ArrayList();
     // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new ExampleItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
@@ -62,6 +64,32 @@ public class Iteminit {
     public static final RegistryObject<Item> hufu2 = registerFabao("hufu2", () ->new FabaoSampleItem());
     public static final RegistryObject<Item> hufu3 = registerFabao("hufu3", () ->new FabaoSampleItem());
 
+    public static final RegistryObject<Item> linghe0 = registerCailiao("linghe0", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> linghe1 = registerCailiao("linghe1", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> linghe2 = registerCailiao("linghe2", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> linghe3 = registerCailiao("linghe3", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> xvantie0 = registerCailiao("xvantie0", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> xvantie1 = registerCailiao("xvantie1", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> xvantie2 = registerCailiao("xvantie2", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> xvantie3 = registerCailiao("xvantie3", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingjin0 = registerCailiao("lingjin0", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingjin1 = registerCailiao("lingjin1", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingjin2 = registerCailiao("lingjin2", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingjin3 = registerCailiao("lingjin3", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingyv0 = registerCailiao("lingyv0", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingyv1 = registerCailiao("lingyv1", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingyv2 = registerCailiao("lingyv2", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingyv3 = registerCailiao("lingyv3", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingmu0 = registerCailiao("lingmu0", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingmu1 = registerCailiao("lingmu1", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingmu2 = registerCailiao("lingmu2", () ->new CailiaoSampleItem());
+    public static final RegistryObject<Item> lingmu3 = registerCailiao("lingmu3", () ->new CailiaoSampleItem());
+
+    private static  <T extends Item> RegistryObject<Item> registerCailiao(String string, Supplier<T> item) {
+        RegistryObject<Item> register = ITEMS.register(string, item);
+        cailiaolist.add(register);
+        return register;
+    }
     private static  <T extends Item> RegistryObject<Item> registerGongfa(String string, Supplier<T> item) {
         RegistryObject<Item> register = ITEMS.register(string, item);
         gongfaSamplelist.add(register);

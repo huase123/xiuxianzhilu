@@ -25,6 +25,7 @@ public class ModItemProvider extends ItemModelProvider {
         Iteminit.gongfaSamplelist.stream().forEach(c ->simpleItem(c));
         Iteminit.jingjielist.stream().forEach(c ->simpleItem(c));
         Iteminit.fabaolist.stream().forEach(c ->simpleItem(c));
+        Iteminit.cailiaolist.stream().forEach(c ->simpleItem(c));
     }
     private void modleItem(RegistryObject<Item> itemRegistryObject) {
 
