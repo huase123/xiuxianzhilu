@@ -44,6 +44,18 @@ public class BiomesInit {
     public static final ResourceKey<Biome> HUO_BIOME    = makeKey("huo_biome");
     public static final ResourceKey<Biome> TU_BIOME     = makeKey("tu_biome");
 
+    public static final ResourceKey<Biome> xiuxianjie_biome0     = makeKey("xiuxianjie_biome0");
+    public static final ResourceKey<Biome> xiuxianjie_biome1     = makeKey("xiuxianjie_biome1");
+    public static final ResourceKey<Biome> xiuxianjie_biome2     = makeKey("xiuxianjie_biome2");
+    public static final ResourceKey<Biome> xiuxianjie_biome3     = makeKey("xiuxianjie_biome3");
+    public static final ResourceKey<Biome> xiuxianjie_biome4     = makeKey("xiuxianjie_biome4");
+    public static final ResourceKey<Biome> xiuxianjie_biome5     = makeKey("xiuxianjie_biome5");
+    public static final ResourceKey<Biome> xiuxianjie_biome6     = makeKey("xiuxianjie_biome6");
+    public static final ResourceKey<Biome> xiuxianjie_biome7     = makeKey("xiuxianjie_biome7");
+    public static final ResourceKey<Biome> xiuxianjie_biome8     = makeKey("xiuxianjie_biome8");
+    public static final ResourceKey<Biome> xiuxianjie_biome9     = makeKey("xiuxianjie_biome9");
+    public static final ResourceKey<Biome> xiuxianjie_biome10     = makeKey("xiuxianjie_biome10");
+
 
     private static ResourceKey<Biome> makeKey(String name) {
         return ResourceKey.create(Registries.BIOME, ModMain.prefix(name));
@@ -52,6 +64,21 @@ public class BiomesInit {
     public static void bootstrap(BootstapContext<Biome> context) {
         HolderGetter<PlacedFeature> featureGetter = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
+
+
+        context.register(xiuxianjie_biome0 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0xffffffff)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome1 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x00000000)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome2 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x99999999)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome3 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x11111111)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome4 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x88888888)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome5 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x22222222)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome6 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x77777777)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome7 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x33333333)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome8 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0xffff0000)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome9 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x00ff00ff)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome10, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0xff00ffff)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+
+
         context.register(ZHUJI_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
         context.register(ZHUJI_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
 

@@ -51,18 +51,18 @@ public class LevelStemGen {
         );
 
         context.register(XIUXIANJIE, stem);
-        context.register(caves, new LevelStem(dimTypes.getOrThrow(XIUXIUZHILU_DIMENSIONN_TYPE),
-                new NoiseBasedChunkGenerator(
-                        reBiomeSource,
-                        CAVES
-                )
-                ));
-        context.register(floating_islands, new LevelStem(dimTypes.getOrThrow(XIUXIUZHILU_DIMENSIONN_TYPE),
-                new NoiseBasedChunkGenerator(
-                        reBiomeSource,
-                        FLOATING_ISLANDS
-                )
-                ));
+//        context.register(caves, new LevelStem(dimTypes.getOrThrow(XIUXIUZHILU_DIMENSIONN_TYPE),
+//                new NoiseBasedChunkGenerator(
+//                        reBiomeSource,
+//                        CAVES
+//                )
+//                ));
+//        context.register(floating_islands, new LevelStem(dimTypes.getOrThrow(XIUXIUZHILU_DIMENSIONN_TYPE),
+//                new NoiseBasedChunkGenerator(
+//                        reBiomeSource,
+//                        FLOATING_ISLANDS
+//                )
+//                ));
 
 //        覆盖主世界
 //        context.register(LevelStem.OVERWORLD, stem);

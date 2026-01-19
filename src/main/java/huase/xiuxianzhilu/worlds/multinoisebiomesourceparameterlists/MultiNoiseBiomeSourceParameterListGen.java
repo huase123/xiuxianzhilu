@@ -53,26 +53,246 @@ public class MultiNoiseBiomeSourceParameterListGen {
         if (SharedConstants.debugGenerateSquareTerrainWithoutNoise) {
             this.addDebugBiomes(pKey);
         } else {
-            this.addbugBiomes(pKey);
-//            this.addOffCoastBiomes(pKey);
-//            this.addInlandBiomes(pKey);
-//            this.addUndergroundBiomes(pKey);
+//            this.addbugBiomes(pKey);
+            this.addOffCoastBiomes(pKey);
+            this.addInlandBiomes(pKey);
+            this.addUndergroundBiomes(pKey);
         }
     }
 
-    private void addbugBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pKey) {
+    private void addInlandBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer) {
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-1.0F, -0.93333334F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.93333334F, -0.7666667F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.7666667F, -0.56666666F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.56666666F, -0.4F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.4F, -0.26666668F));
+//        this.addLowSlice(pConsumer, Climate.Parameter.span(-0.26666668F, -0.05F));
+//        this.addValleys(pConsumer, Climate.Parameter.span(-0.05F, 0.05F));
+//        this.addLowSlice(pConsumer, Climate.Parameter.span(0.05F, 0.26666668F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.26666668F, 0.4F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.4F, 0.56666666F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.56666666F, 0.7666667F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.7666667F, 0.93333334F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.93333334F, 1.0F));
+
+
+        this.highland(pConsumer, Climate.Parameter.span(-1.0F, -0.3F));
+        this.plain(pConsumer, Climate.Parameter.span(-0.3F, -0.1F));
+        this.river(pConsumer, Climate.Parameter.span(-0.05F, 0.05F));
+        this.plain(pConsumer, Climate.Parameter.span(0.05F, 0.3F));
+        this.highland(pConsumer, Climate.Parameter.span(0.3F, 1.0F));
+
+
+    }
+
+    private void highland(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
+
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+
+            for(int j = 0; j < this.humidities.length; ++j) {
+                Climate.Parameter climate$parameter1 = this.humidities[j];
+                ResourceKey<Biome> highland = this.pickHighland(i, j, pParam);
+                ResourceKey<Biome> plain = this.pickPlainBiome(i, j, pParam);
+
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[0], this.erosions[4]), pParam, 0.0F, highland);
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[4], this.erosions[6]), pParam, 0.0F, plain);
+            }
+        }
+    }
+
+    private void plain(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+
+            for(int j = 0; j < this.humidities.length; ++j) {
+                Climate.Parameter climate$parameter1 = this.humidities[j];
+                ResourceKey<Biome> highland = this.pickHighland(i, j, pParam);
+                ResourceKey<Biome> plain = this.pickPlainBiome(i, j, pParam);
+
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[0], this.erosions[2]), pParam, 0.0F, highland);
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[6]), pParam, 0.0F, plain);
+            }
+        }
+
+    }
+
+    private void river(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
+
+        if(pParam.max() >= 0L){
+            this.addSurfaceBiome(pConsumer,  this.FROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+            this.addSurfaceBiome(pConsumer,  this.UNFROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+
+        }
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.inlandContinentalness, this.farInlandContinentalness), this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+
+            for(int j = 0; j < this.humidities.length; ++j) {
+                Climate.Parameter climate$parameter1 = this.humidities[j];
+                ResourceKey<Biome> plain = this.pickPlainBiome(i, j, pParam);
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.inlandContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, plain);
+            }
+        }
+    }
+
+
+    private void addPeaks(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+
+            for(int j = 0; j < this.humidities.length; ++j) {
+                Climate.Parameter climate$parameter1 = this.humidities[j];
+                ResourceKey<Biome> resourcekey = this.pickHighland(i, j, pParam);
+                ResourceKey<Biome> resourcekey3 = this.pickPlainBiome(i, j, pParam);
+
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.midInlandContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[0], this.erosions[2]), pParam, 0.0F, resourcekey);
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.midInlandContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[6]), pParam, 0.0F, resourcekey3);
+            }
+        }
+
+    }
+    private void addLowSlice(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
+
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+
+            for(int j = 0; j < this.humidities.length; ++j) {
+                Climate.Parameter climate$parameter1 = this.humidities[j];
+                ResourceKey<Biome> resourcekey = this.pickHighland(i, j, pParam);
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.midInlandContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[0], this.erosions[6]), pParam, 0.0F, resourcekey);
+            }
+        }
+
+
+    }
+    private void addValleys(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
+
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, this.erosions[6], pParam, 0.0F,BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.inlandContinentalness, this.farInlandContinentalness), this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+
+        if(pParam.max() >= 0L){
+
+            this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+            this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+        }
+
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+
+            for(int j = 0; j < this.humidities.length; ++j) {
+                Climate.Parameter climate$parameter1 = this.humidities[j];
+                ResourceKey<Biome> resourcekey = this.pickHighland(i, j, pParam);
+                this.addSurfaceBiome(pConsumer, climate$parameter, climate$parameter1, Climate.Parameter.span(this.midInlandContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, resourcekey);
+            }
+        }
+
+    }
+
+    private ResourceKey<Biome> pickPlainBiome(int pTemperature, int pHumidity, Climate.Parameter pParam) {
+//        if (pParam.max() >= 0L) {
+//            ResourceKey<Biome> resourcekey = this.PLATEAU_BIOMES_VARIANT[pTemperature][pHumidity];
+//            if (resourcekey != null) {
+//                return resourcekey;
+//            }
+//        }
+
+        return this.Plain_BIOMES[pTemperature][pHumidity];
+    }
+
+
+    private ResourceKey<Biome> pickHighland(int pTemperature, int pHumidity, Climate.Parameter pParam) {
+
+        return this.Highland_BIOMES[pTemperature][pHumidity];
+//        if (pParam.max() < 0L) {
+//            return this.MIDDLE_BIOMES[pTemperature][pHumidity];
+//        } else {
+//            ResourceKey<Biome> resourcekey = this.MIDDLE_BIOMES_VARIANT[pTemperature][pHumidity];
+//            return resourcekey == null ? this.MIDDLE_BIOMES[pTemperature][pHumidity] : resourcekey;
+//        }
+    }
+
+    private void addOffCoastBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer) {
+//        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.mushroomFieldsContinentalness, this.FULL_RANGE, this.FULL_RANGE, 0.0F, Biomes.MUSHROOM_FIELDS);
+
+        for(int i = 0; i < this.temperatures.length; ++i) {
+            Climate.Parameter climate$parameter = this.temperatures[i];
+            this.addSurfaceBiome(pConsumer, climate$parameter, this.FULL_RANGE, this.deepOceanContinentalness, this.FULL_RANGE, this.FULL_RANGE, 0.0F, this.OCEANS[0][i]);
+            this.addSurfaceBiome(pConsumer, climate$parameter, this.FULL_RANGE, this.oceanContinentalness, this.FULL_RANGE, this.FULL_RANGE, 0.0F, this.OCEANS[1][i]);
+        }
+
+    }
+    private void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsume) {
+        this.addUndergroundBiome(pConsume, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.erosions[0], this.erosions[1]), this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome3);
+        this.addBottomBiome(pConsume, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.erosions[0], this.erosions[1]), this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome3);
+    }
+
+    private void addSurfaceBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pTemperature, Climate.Parameter pHumidity, Climate.Parameter pContinentalness, Climate.Parameter pErosion, Climate.Parameter pWeirdness, float offte, ResourceKey<Biome> pKey) {
+        pConsumer.accept(Pair.of(Climate.parameters(pTemperature, pHumidity, pContinentalness, pErosion, Climate.Parameter.point(0.0F), pWeirdness, offte), pKey));
+        pConsumer.accept(Pair.of(Climate.parameters(pTemperature, pHumidity, pContinentalness, pErosion, Climate.Parameter.point(1.0F), pWeirdness, offte), pKey));
+    }
+    private void addUndergroundBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pTemperature, Climate.Parameter pHumidity, Climate.Parameter pContinentalness, Climate.Parameter pErosion, Climate.Parameter pWeirdness, float offte, ResourceKey<Biome> pKey) {
+        pConsumer.accept(Pair.of(Climate.parameters(pTemperature, pHumidity, pContinentalness, pErosion, Climate.Parameter.span(0.2F, 0.9F), pWeirdness, offte), pKey));
+    }
+
+    private void addBottomBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pTemerature, Climate.Parameter pHumidity, Climate.Parameter pContinentalness, Climate.Parameter pErosion, Climate.Parameter pWeirdness, float offte, ResourceKey<Biome> pKey) {
+        pConsumer.accept(Pair.of(Climate.parameters(pTemerature, pHumidity, pContinentalness, pErosion, Climate.Parameter.point(1.1F), pWeirdness, offte), pKey));
+    }
+    private void addbugBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer) {
 //        addbiomesDemo(pKey,-1.0f,BiomesInit.JIN_BIOME);
 //        addbiomesDemo(pKey,-0.5f,BiomesInit.MU_BIOME);
 //        addbiomesDemo(pKey,0.0f,BiomesInit.SHUI_BIOME);
 //        addbiomesDemo(pKey,0.5f,BiomesInit.HUO_BIOME);
 //        addbiomesDemo(pKey,1.0f,BiomesInit.TU_BIOME);
 
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-1.0F, -0.93333334F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.93333334F, -0.7666667F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.7666667F, -0.56666666F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.56666666F, -0.4F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(-0.4F, -0.26666668F));
+//        this.addLowSlice(pConsumer, Climate.Parameter.span(-0.26666668F, -0.05F));
+//        this.addValleys(pConsumer, Climate.Parameter.span(-0.05F, 0.05F));
+//        this.addLowSlice(pConsumer, Climate.Parameter.span(0.05F, 0.26666668F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.26666668F, 0.4F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.4F, 0.56666666F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.56666666F, 0.7666667F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.7666667F, 0.93333334F));
+//        this.addPeaks(pConsumer, Climate.Parameter.span(0.93333334F, 1.0F));
 
-        pKey.accept(Pair.of(Climate.parameters(temperatures[0], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.JIN_BIOME  ));
-        pKey.accept(Pair.of(Climate.parameters(temperatures[1], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.MU_BIOME   ));
-        pKey.accept(Pair.of(Climate.parameters(temperatures[2], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.SHUI_BIOME ));
-        pKey.accept(Pair.of(Climate.parameters(temperatures[3], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.HUO_BIOME  ));
-        pKey.accept(Pair.of(Climate.parameters(temperatures[4], this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F), BiomesInit.TU_BIOME   ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(-1.0F, -0.7666667F), 0.0F), BiomesInit.xiuxianjie_biome0  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(-0.7666667F, -0.56666666F), 0.0F), BiomesInit.xiuxianjie_biome1  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(-0.56666666F, -0.4F), 0.0F), BiomesInit.xiuxianjie_biome2  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(-0.4F, -0.26666668F), 0.0F), BiomesInit.xiuxianjie_biome3  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(-0.26666668F,  -0.05F), 0.0F), BiomesInit.xiuxianjie_biome4  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(-0.05F, 0.05F), 0.0F), BiomesInit.xiuxianjie_biome5  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.05F, 0.26666668F), 0.0F), BiomesInit.xiuxianjie_biome5  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.26666668F, 0.4F), 0.0F), BiomesInit.xiuxianjie_biome6  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.4F, 0.56666666F), 0.0F), BiomesInit.xiuxianjie_biome7  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.56666666F, 0.7666667F), 0.0F), BiomesInit.xiuxianjie_biome8  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.7666667F, 0.93333334F), 0.0F), BiomesInit.xiuxianjie_biome9  ));
+//        pKey.accept(Pair.of(Climate.parameters(this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.93333334F, 1.0F), 0.0F), BiomesInit.xiuxianjie_biome10  ));
+
+//        this.addSurfaceBiome(pConsumer,this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.93333334F, 1.0F), 0.0F), BiomesInit.xiuxianjie_biome10);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[0], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[1], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome1);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[2], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome2);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[3], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome3);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[4], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome4);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[5], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome5);
+        this.addSurfaceBiome(pConsumer, this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE,this.erosions[6], this.FULL_RANGE, 0.0F, BiomesInit.xiuxianjie_biome6);
+
     }
 
     private void addbiomesDemo(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pKey, float v, ResourceKey<Biome> jinBiome) {
@@ -141,11 +361,47 @@ public class MultiNoiseBiomeSourceParameterListGen {
     private final Climate.Parameter nearInlandContinentalness = Climate.Parameter.span(-0.11F, 0.03F);
     private final Climate.Parameter midInlandContinentalness = Climate.Parameter.span(0.03F, 0.3F);
     private final Climate.Parameter farInlandContinentalness = Climate.Parameter.span(0.3F, 1.0F);
-    private final ResourceKey<Biome>[][] OCEANS = new ResourceKey[][]{{Biomes.DEEP_FROZEN_OCEAN, Biomes.DEEP_COLD_OCEAN, Biomes.DEEP_OCEAN, Biomes.DEEP_LUKEWARM_OCEAN, Biomes.WARM_OCEAN}, {Biomes.FROZEN_OCEAN, Biomes.COLD_OCEAN, Biomes.OCEAN, Biomes.LUKEWARM_OCEAN, Biomes.WARM_OCEAN}};
-    private final ResourceKey<Biome>[][] MIDDLE_BIOMES = new ResourceKey[][]{{Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA, Biomes.TAIGA}, {Biomes.PLAINS, Biomes.PLAINS, Biomes.FOREST, Biomes.TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA}, {Biomes.FLOWER_FOREST, Biomes.PLAINS, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST}, {Biomes.SAVANNA, Biomes.SAVANNA, Biomes.FOREST, Biomes.JUNGLE, Biomes.JUNGLE}, {Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.DESERT}};
-    private final ResourceKey<Biome>[][] MIDDLE_BIOMES_VARIANT = new ResourceKey[][]{{Biomes.ICE_SPIKES, null, Biomes.SNOWY_TAIGA, null, null}, {null, null, null, null, Biomes.OLD_GROWTH_PINE_TAIGA}, {Biomes.SUNFLOWER_PLAINS, null, null, Biomes.OLD_GROWTH_BIRCH_FOREST, null}, {null, null, Biomes.PLAINS, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE}, {null, null, null, null, null}};
-    private final ResourceKey<Biome>[][] PLATEAU_BIOMES = new ResourceKey[][]{{Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA}, {Biomes.MEADOW, Biomes.MEADOW, Biomes.FOREST, Biomes.TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA}, {Biomes.MEADOW, Biomes.MEADOW, Biomes.MEADOW, Biomes.MEADOW, Biomes.DARK_FOREST}, {Biomes.SAVANNA_PLATEAU, Biomes.SAVANNA_PLATEAU, Biomes.FOREST, Biomes.FOREST, Biomes.JUNGLE}, {Biomes.BADLANDS, Biomes.BADLANDS, Biomes.BADLANDS, Biomes.WOODED_BADLANDS, Biomes.WOODED_BADLANDS}};
-    private final ResourceKey<Biome>[][] PLATEAU_BIOMES_VARIANT = new ResourceKey[][]{{Biomes.ICE_SPIKES, null, null, null, null}, {Biomes.CHERRY_GROVE, null, Biomes.MEADOW, Biomes.MEADOW, Biomes.OLD_GROWTH_PINE_TAIGA}, {Biomes.CHERRY_GROVE, Biomes.CHERRY_GROVE, Biomes.FOREST, Biomes.BIRCH_FOREST, null}, {null, null, null, null, null}, {Biomes.ERODED_BADLANDS, Biomes.ERODED_BADLANDS, null, null, null}};
+    private final ResourceKey<Biome>[][] OCEANS = new ResourceKey[][]{
+            {BiomesInit.xiuxianjie_biome10,
+            BiomesInit.xiuxianjie_biome10,
+            BiomesInit.xiuxianjie_biome10,
+            BiomesInit.xiuxianjie_biome10,
+            BiomesInit.xiuxianjie_biome10},
+            {BiomesInit.xiuxianjie_biome9
+                    , BiomesInit.xiuxianjie_biome6
+                    ,BiomesInit.xiuxianjie_biome6
+                    , BiomesInit.xiuxianjie_biome6
+                    , BiomesInit.xiuxianjie_biome6}
+    };
+    private final ResourceKey<Biome>[][] Plain_BIOMES =
+            new ResourceKey[][]{
+                    {BiomesInit.xiuxianjie_biome4, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome5},
+                    {BiomesInit.xiuxianjie_biome4, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome5},
+                    {BiomesInit.xiuxianjie_biome4, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome5},
+                    {BiomesInit.xiuxianjie_biome4, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome5},
+                    {BiomesInit.xiuxianjie_biome4, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome1, BiomesInit.xiuxianjie_biome5},
+    };
+    private final ResourceKey<Biome>[][] Highland_BIOMES =
+            new ResourceKey[][]{
+                    {BiomesInit.xiuxianjie_biome8, BiomesInit.xiuxianjie_biome8, BiomesInit.xiuxianjie_biome8, BiomesInit.xiuxianjie_biome8, BiomesInit.xiuxianjie_biome8},
+                    {BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2},
+                    {BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2},
+                    {BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2, BiomesInit.xiuxianjie_biome2},
+                    {BiomesInit.xiuxianjie_biome7, BiomesInit.xiuxianjie_biome7, BiomesInit.xiuxianjie_biome7, BiomesInit.xiuxianjie_biome7, BiomesInit.xiuxianjie_biome7},
+            };
+    private final ResourceKey<Biome>[][] MIDDLE_BIOMES_VARIANT =
+            new ResourceKey[][]{{Biomes.ICE_SPIKES, null, Biomes.SNOWY_TAIGA, null, null},
+                    {null, null, null, null, Biomes.OLD_GROWTH_PINE_TAIGA},
+                    {Biomes.SUNFLOWER_PLAINS, null, null,
+                            Biomes.OLD_GROWTH_BIRCH_FOREST, null},
+                    {null, null, Biomes.PLAINS, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE},
+                    {null, null, null, null, null}};
+    private final ResourceKey<Biome>[][] PLATEAU_BIOMES_VARIANT =
+            new ResourceKey[][]{{Biomes.ICE_SPIKES, null, null, null, null},
+                    {Biomes.CHERRY_GROVE, null, Biomes.MEADOW, Biomes.MEADOW, Biomes.OLD_GROWTH_PINE_TAIGA},
+                    {Biomes.CHERRY_GROVE, Biomes.CHERRY_GROVE, Biomes.FOREST, Biomes.BIRCH_FOREST, null},
+                    {null, null, null, null, null},
+                    {Biomes.ERODED_BADLANDS, Biomes.ERODED_BADLANDS, null, null, null}};
     private final ResourceKey<Biome>[][] SHATTERED_BIOMES = new ResourceKey[][]{{Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_FOREST}, {Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_FOREST}, {Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_FOREST}, {null, null, null, null, null}, {null, null, null, null, null}};
 
 }

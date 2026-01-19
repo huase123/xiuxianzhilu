@@ -46,7 +46,7 @@ public class NoiseGeneratorSettingsGen {
 //                DensityFunctionGen.none(),
                 SurfaceRuleData.overworld(),
                 List.of(),
-                0,
+                63,
                 false,
                 false,
                 false,

@@ -30,7 +30,7 @@ public class DimensionTypeGen {
                 false, //ceiling
                 false, //ultrawarm
                 true, //natural
-                0.125D, //coordinate scale
+                8D, //coordinate scale
                 true, //bed works
                 true, //respawn anchor works
                 -32, // Minimum Y Level
