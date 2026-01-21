@@ -126,6 +126,47 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(Iteminit.lingmu2   .get(),  "灵木:§e---星叶松---");
         this.add(Iteminit.lingmu3   .get(),  "灵木:§d---若灵木---");
 
+        this.add(Iteminit.danyao0   .get(),  "丹药:§a---裂石丹---");
+        this.add(Iteminit.danyao1   .get(),  "丹药:§b---凝血丹---");
+        this.add(Iteminit.danyao2   .get(),  "丹药:§e---韧皮丹‌---");
+        this.add(Iteminit.danyao3   .get(),  "丹药:§d---聚气丹---");
+        this.add(Iteminit.danyao4   .get(),  "丹药:§c---炼气丹---");
+        this.add(Iteminit.danyao5   .get(),  "丹药:§a---延寿丹---");
+        this.add(Iteminit.danyao6   .get(),  "丹药:§b---回春丹---");
+        this.add(Iteminit.danyao7   .get(),  "丹药:§e---灵泉丹---");
+        this.add(Iteminit.danyao8   .get(),  "丹药:§d---破山丹‌---");
+        this.add(Iteminit.danyao9   .get(),  "丹药:§c---龟息丹---");
+        this.add(Iteminit.danyao10   .get(),  "丹药:§a---玄甲丹---");
+        this.add(Iteminit.danyao11   .get(),  "丹药:§b---灵海丹‌---");
+        this.add(Iteminit.danyao12   .get(),  "丹药:§e---筑基丹---");
+        this.add(Iteminit.danyao13   .get(),  "丹药:§d---长春丹---");
+        this.add(Iteminit.danyao14   .get(),  "丹药:§c---血莲丹---");
+        this.add(Iteminit.danyao15   .get(),  "丹药:§a---续灵丹---");
+        this.add(Iteminit.danyao16   .get(),  "丹药:§b---惊雷丹---");
+        this.add(Iteminit.danyao17   .get(),  "丹药:§e---龙血丹---");
+        this.add(Iteminit.danyao18   .get(),  "丹药:§d---金刚丹‌---");
+        this.add(Iteminit.danyao19   .get(),  "丹药:§c---紫府丹---");
+        this.add(Iteminit.danyao20   .get(),  "丹药:§a---天尘丹---");
+        this.add(Iteminit.danyao21   .get(),  "丹药:§b---驻颜丹---");
+        this.add(Iteminit.danyao22   .get(),  "丹药:§e---九转还魂丹---");
+        this.add(Iteminit.danyao23   .get(),  "丹药:§d---聚灵丹---");
+        this.add(Iteminit.danyao24   .get(),  "丹药:§c---碎星丹‌---");
+        this.add(Iteminit.danyao25   .get(),  "丹药:§a---不死金丹---");
+        this.add(Iteminit.danyao26   .get(),  "丹药:§b---混元甲丹---");
+        this.add(Iteminit.danyao27   .get(),  "丹药:§e---太虚丹---");
+        this.add(Iteminit.danyao28   .get(),  "丹药:§d---化神丹‌---");
+        this.add(Iteminit.danyao29   .get(),  "丹药:§c---万寿丹---");
+        this.add(Iteminit.danyao30   .get(),  "丹药:§a---涅槃丹‌---");
+        this.add(Iteminit.danyao31   .get(),  "丹药:§b---灵髓丹---");
+        this.add(Iteminit.danyao32   .get(),  "丹药:§e---弑神丹‌---");
+        this.add(Iteminit.danyao33   .get(),  "丹药:§d---鸿蒙丹---");
+        this.add(Iteminit.danyao34   .get(),  "丹药:§c---混沌甲丹‌---");
+        this.add(Iteminit.danyao35   .get(),  "丹药:§a---宇宙丹‌---");
+        this.add(Iteminit.danyao36   .get(),  "丹药:§b---飞升丹---");
+        this.add(Iteminit.danyao37   .get(),  "丹药:§e---长生丹---");
+        this.add(Iteminit.danyao38   .get(),  "丹药:§d---轮回丹---");
+        this.add(Iteminit.danyao39   .get(),  "丹药:§c---源初灵丹---");
+
 
     }
 

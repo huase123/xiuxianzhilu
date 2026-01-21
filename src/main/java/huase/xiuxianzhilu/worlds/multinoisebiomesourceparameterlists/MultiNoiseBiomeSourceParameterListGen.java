@@ -76,11 +76,11 @@ public class MultiNoiseBiomeSourceParameterListGen {
 //        this.addPeaks(pConsumer, Climate.Parameter.span(0.93333334F, 1.0F));
 
 
-        this.highland(pConsumer, Climate.Parameter.span(-1.0F, -0.3F));
-        this.plain(pConsumer, Climate.Parameter.span(-0.3F, -0.1F));
+        this.highland(pConsumer, Climate.Parameter.span(-1.0F, -0.4F));
+        this.plain(pConsumer, Climate.Parameter.span(-0.4F, -0.1F));
         this.river(pConsumer, Climate.Parameter.span(-0.05F, 0.05F));
-        this.plain(pConsumer, Climate.Parameter.span(0.05F, 0.3F));
-        this.highland(pConsumer, Climate.Parameter.span(0.3F, 1.0F));
+        this.plain(pConsumer, Climate.Parameter.span(0.05F, 0.4F));
+        this.highland(pConsumer, Climate.Parameter.span(0.4F, 1.0F));
 
 
     }
@@ -120,17 +120,17 @@ public class MultiNoiseBiomeSourceParameterListGen {
     private void river(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pConsumer, Climate.Parameter pParam) {
 
         if(pParam.max() >= 0L){
-            this.addSurfaceBiome(pConsumer,  this.FROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
-            this.addSurfaceBiome(pConsumer,  this.UNFROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+            this.addSurfaceBiome(pConsumer,  this.FROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+            this.addSurfaceBiome(pConsumer,  this.UNFROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
 
         }
-        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
-        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
-        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
-        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
-        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
-        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, this.FULL_RANGE, this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
-        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, this.FULL_RANGE, Climate.Parameter.span(this.inlandContinentalness, this.farInlandContinentalness), this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), this.nearInlandContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[1]), pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), Climate.Parameter.span(this.coastContinentalness, this.farInlandContinentalness), Climate.Parameter.span(this.erosions[2], this.erosions[5]), pParam, 0.0F,  BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.UNFROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), this.coastContinentalness, this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
+        this.addSurfaceBiome(pConsumer, this.FROZEN_RANGE, Climate.Parameter.span(this.temperatures[1], this.temperatures[4]), Climate.Parameter.span(this.inlandContinentalness, this.farInlandContinentalness), this.erosions[6], pParam, 0.0F, BiomesInit.xiuxianjie_biome0);
 
         for(int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter climate$parameter = this.temperatures[i];
