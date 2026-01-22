@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.datagens.lang;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
@@ -167,6 +168,49 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(Iteminit.danyao38   .get(),  "丹药:§d---轮回丹---");
         this.add(Iteminit.danyao39   .get(),  "丹药:§c---源初灵丹---");
 
+
+
+        this.add(BlockInit.zhiwu0      .get(),  "种子:§a---银月花---");
+        this.add(BlockInit.zhiwu1      .get(),  "§a---月纹果---");
+        this.add(BlockInit.zhiwu2      .get(),  "种子:§a---恒心草---");
+        this.add(BlockInit.zhiwu3      .get(),  "种子:§a---轻灵草---");
+        this.add(BlockInit.zhiwu4      .get(),  "种子:§b---流董草---");
+        this.add(BlockInit.zhiwu5      .get(),  "§b---凝脂果---");
+        this.add(BlockInit.zhiwu6      .get(),  "种子:§b---红绞草---");
+        this.add(BlockInit.zhiwu7      .get(),  "种子:§b---龙纹草---");
+        this.add(BlockInit.zhiwu8      .get(),  "种子:§e---雪凝花---");
+        this.add(BlockInit.zhiwu9      .get(),  "§e---星叶果---");
+        this.add(BlockInit.zhiwu10     .get(),  "种子:§e---菩提花---");
+        this.add(BlockInit.zhiwu11     .get(),  "种子:§e---冰精莲---");
+        this.add(BlockInit.zhiwu12     .get(),  "种子:§d---血菩提---");
+        this.add(BlockInit.zhiwu13     .get(),  "§d--若灵果---");
+        this.add(BlockInit.zhiwu14     .get(),  "种子:§d---阴凝草---");
+        this.add(BlockInit.zhiwu15     .get(),  "种子:§d---火灵莲---");
+        this.add(BlockInit.zhiwu16     .get(),  "种子:§c---地心火莲---");
+        this.add(BlockInit.zhiwu17     .get(),  "种子:§c---腐骨灵花---");
+        this.add(BlockInit.zhiwu18     .get(),  "种子:§c---奇茸通天菊---");
+        this.add(BlockInit.zhiwu19     .get(),  "种子:§c---地心淬灵乳---");
+
+        this.add("item.xiuxianzhilu.zhiwu0",      "植物：§a---银月花---");
+        this.add("item.xiuxianzhilu.zhiwu1",      "果实：§a---月纹果---");
+        this.add("item.xiuxianzhilu.zhiwu2",      "植物：§a---恒心草---");
+        this.add("item.xiuxianzhilu.zhiwu3",      "植物：§a---轻灵草---");
+        this.add("item.xiuxianzhilu.zhiwu4",      "植物：§b---流董草---");
+        this.add("item.xiuxianzhilu.zhiwu5",      "果实：§b---凝脂果---");
+        this.add("item.xiuxianzhilu.zhiwu6",      "植物：§b---红绞草---");
+        this.add("item.xiuxianzhilu.zhiwu7",      "植物：§b---龙纹草---");
+        this.add("item.xiuxianzhilu.zhiwu8",      "植物：§e---雪凝花---");
+        this.add("item.xiuxianzhilu.zhiwu9",      "果实：§e---星叶果---");
+        this.add("item.xiuxianzhilu.zhiwu10",     "植物：§e---菩提花---");
+        this.add("item.xiuxianzhilu.zhiwu11",     "植物：§e---冰精莲---");
+        this.add("item.xiuxianzhilu.zhiwu12",     "植物：§d---血菩提---");
+        this.add("item.xiuxianzhilu.zhiwu13",     "果实：§d---若灵果---");
+        this.add("item.xiuxianzhilu.zhiwu14",     "植物：§d---阴凝草---");
+        this.add("item.xiuxianzhilu.zhiwu15",     "植物：§d---火灵莲---");
+        this.add("item.xiuxianzhilu.zhiwu16",     "植物：§c---地心火莲---");
+        this.add("item.xiuxianzhilu.zhiwu17",     "植物：§c---腐骨灵花---");
+        this.add("item.xiuxianzhilu.zhiwu18",     "植物：§c---奇茸通天菊---");
+        this.add("item.xiuxianzhilu.zhiwu19",     "植物：§c---地心淬灵乳---");
 
     }
 

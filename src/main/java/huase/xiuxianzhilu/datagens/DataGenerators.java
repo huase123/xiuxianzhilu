@@ -8,6 +8,7 @@ package huase.xiuxianzhilu.datagens;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.datagens.lang.ModEnLanguageProvider;
 import huase.xiuxianzhilu.datagens.lang.ModZHLanguageProvider;
+import huase.xiuxianzhilu.datagens.loot.ModBlockLootTables;
 import huase.xiuxianzhilu.datagens.modprovider.ModBlockProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModItemProvider;
 import huase.xiuxianzhilu.datagens.multiblock.ExampleInstanceCaseIllustrationMultiBlockProvider;
@@ -18,12 +19,16 @@ import huase.xiuxianzhilu.datagens.tag.ItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = ModMain.MODID, bus = Bus.MOD)
@@ -53,9 +58,10 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new RERecipeProvider(packOutput));
         generator.addProvider(event.includeServer(), new ExampleInstanceCaseIllustrationMultiBlockProvider(packOutput));
 //
-//        generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Set.of(), List.of(
-//                new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK),
-//                new LootTableProvider.SubProviderEntry(SpecialLootTables::new, LootContextParamSets.BLOCK))));
+        generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Set.of(), List.of(
+                new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)
+//                , new LootTableProvider.SubProviderEntry(SpecialLootTables::new, LootContextParamSets.BLOCK)
+        )));
 
 
 //        generator.addProvider(event.includeServer(), new AdvancementProvider(packOutput, lookupProvider, List.of(new ModAdvanceProvider())));
