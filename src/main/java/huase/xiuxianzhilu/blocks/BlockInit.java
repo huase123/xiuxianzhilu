@@ -3,14 +3,25 @@ package huase.xiuxianzhilu.blocks;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenBlock;
 import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlock;
+import huase.xiuxianzhilu.blocks.treegrower.Lingmu0TreeGrower;
+import huase.xiuxianzhilu.blocks.treegrower.Lingmu1TreeGrower;
+import huase.xiuxianzhilu.blocks.treegrower.Lingmu2TreeGrower;
+import huase.xiuxianzhilu.blocks.treegrower.Lingmu3TreeGrower;
 import huase.xiuxianzhilu.blocks.zhiwu.GuoshiBlock;
 import huase.xiuxianzhilu.blocks.zhiwu.LingDirBlock;
 import huase.xiuxianzhilu.blocks.zhiwu.ZhiwuBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -72,6 +83,45 @@ public class BlockInit {
     public static final RegistryObject<Block> zhiwu17= registerZhiwuBlockWithBlockItem("zhiwu17", ZhiwuBlock::new);
     public static final RegistryObject<Block> zhiwu18= registerZhiwuBlockWithBlockItem("zhiwu18", ZhiwuBlock::new);
     public static final RegistryObject<Block> zhiwu19= registerZhiwuBlockWithBlockItem("zhiwu19", ZhiwuBlock::new);
+
+
+    public static final RegistryObject<Block> lingmu0_SAPLING = registerBlockWithBlockItem("lingmu0_sapling", () -> new SaplingBlock(new Lingmu0TreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> lingmu1_SAPLING = registerBlockWithBlockItem("lingmu1_sapling", () -> new SaplingBlock(new Lingmu1TreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> lingmu2_SAPLING = registerBlockWithBlockItem("lingmu2_sapling", () -> new SaplingBlock(new Lingmu2TreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> lingmu3_SAPLING = registerBlockWithBlockItem("lingmu3_sapling", () -> new SaplingBlock(new Lingmu3TreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> lingmu0_LOG = registerBlockWithBlockItem("lingmu0_log", () ->log(MapColor.SAND, MapColor.QUARTZ));
+    public static final RegistryObject<Block> lingmu1_LOG = registerBlockWithBlockItem("lingmu1_log", () ->log(MapColor.SAND, MapColor.QUARTZ));
+    public static final RegistryObject<Block> lingmu2_LOG = registerBlockWithBlockItem("lingmu2_log", () ->log(MapColor.SAND, MapColor.QUARTZ));
+    public static final RegistryObject<Block> lingmu3_LOG = registerBlockWithBlockItem("lingmu3_log", () ->log(MapColor.SAND, MapColor.QUARTZ));
+    public static final RegistryObject<Block> lingmu0_LEAVES = registerBlockWithBlockItem("lingmu0_leaves", () ->leaves(SoundType.GRASS));
+    public static final RegistryObject<Block> lingmu1_LEAVES = registerBlockWithBlockItem("lingmu1_leaves", () ->leaves(SoundType.GRASS));
+    public static final RegistryObject<Block> lingmu2_LEAVES = registerBlockWithBlockItem("lingmu2_leaves", () ->leaves(SoundType.GRASS));
+    public static final RegistryObject<Block> lingmu3_LEAVES = registerBlockWithBlockItem("lingmu3_leaves", () ->leaves(SoundType.GRASS));
+
+
+    private static LeavesBlock leaves(SoundType pType) {
+        return new LeavesBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(pType).noOcclusion()
+                .isValidSpawn(BlockInit::ocelotOrParrot)
+                .isSuffocating(BlockInit::never)
+                .isViewBlocking(BlockInit::never)
+                .ignitedByLava()
+                .pushReaction(PushReaction.DESTROY)
+                .isRedstoneConductor(BlockInit::never));
+    }
+    private static Boolean ocelotOrParrot(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> p_50825_) {
+//        return (boolean)(p_50825_ == EntityType.OCELOT || p_50825_ == EntityType.PARROT);
+        return true;
+    }
+    private static boolean never(BlockState p_50806_, BlockGetter p_50807_, BlockPos p_50808_) {
+        return false;
+    }
+
+    private static RotatedPillarBlock log(MapColor pTopMapColor, MapColor pSideMapColor) {
+        return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
+            return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor;
+        }).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
+    }
+
     private static <T extends Block> RegistryObject<T> registerBlockWithBlockItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));

@@ -34,7 +34,11 @@ import java.util.List;
 public class ZhiwuBlock extends CropBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 4.0D, 15.0D),
+            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D)};
 
     public ZhiwuBlock() {
         super(Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.CROP));
