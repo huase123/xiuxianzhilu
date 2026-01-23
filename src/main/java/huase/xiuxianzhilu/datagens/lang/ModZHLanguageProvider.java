@@ -212,6 +212,35 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("item.xiuxianzhilu.zhiwu18",     "植物：§c---奇茸通天菊---");
         this.add("item.xiuxianzhilu.zhiwu19",     "植物：§c---地心淬灵乳---");
 
+        this.add(BlockInit.lingmu0_SAPLING     .get(),  "幼苗:§a---月纹木‌---");
+        this.add(BlockInit.lingmu1_SAPLING     .get(),  "幼苗:§b---凝脂楠‌---");
+        this.add(BlockInit.lingmu2_SAPLING     .get(),  "幼苗:§e---星叶松---");
+        this.add(BlockInit.lingmu3_SAPLING     .get(),  "幼苗:§d---若灵木---");
+
+        this.add(BlockInit.lingmu0_LOG     .get(),  "原木:§a---月纹木‌---");
+        this.add(BlockInit.lingmu1_LOG     .get(),  "原木:§b---凝脂楠‌---");
+        this.add(BlockInit.lingmu2_LOG     .get(),  "原木:§e---星叶松---");
+        this.add(BlockInit.lingmu3_LOG     .get(),  "原木:§d---若灵木---");
+
+        this.add(BlockInit.lingmu0_LEAVES     .get(),  "树叶:§a---月纹木‌---");
+        this.add(BlockInit.lingmu1_LEAVES     .get(),  "树叶:§b---凝脂楠‌---");
+        this.add(BlockInit.lingmu2_LEAVES     .get(),  "树叶:§e---星叶松---");
+        this.add(BlockInit.lingmu3_LEAVES     .get(),  "树叶:§d---若灵木---");
+
+
+        this.add(BlockInit.xvantie0  .get(),  "原矿:§a---黑纹铁---");
+        this.add(BlockInit.xvantie1  .get(),  "原矿:§b---百锻玄铁---");
+        this.add(BlockInit.xvantie2  .get(),  "原矿:§e---寒心铁精---");
+        this.add(BlockInit.xvantie3  .get(),  "原矿:§d---星辰玄铁---");
+        this.add(BlockInit.lingjin0  .get(),  "原矿:§a---云纹仙金---");
+        this.add(BlockInit.lingjin1  .get(),  "原矿:§b---流霞仙金---");
+        this.add(BlockInit.lingjin2  .get(),  "原矿:§e---玄霜仙金---");
+        this.add(BlockInit.lingjin3  .get(),  "原矿:§d---鸿蒙仙金---");
+        this.add(BlockInit.lingyv0   .get(),  "原矿:§a---青纹灵玉---");
+        this.add(BlockInit.lingyv1   .get(),  "原矿:§b---凝露灵玉---");
+        this.add(BlockInit.lingyv2   .get(),  "原矿:§e---玄心灵玉---");
+        this.add(BlockInit.lingyv3   .get(),  "原矿:§d---通神灵玉---");
+
     }
 
     private void addgongfa(ResourceKey<GongfaSample> gongfa0, String s) {

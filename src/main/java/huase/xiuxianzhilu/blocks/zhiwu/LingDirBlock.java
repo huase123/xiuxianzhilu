@@ -11,6 +11,6 @@ import net.minecraft.world.level.material.MapColor;
 
 public class LingDirBlock extends Block {
     public LingDirBlock() {
-        super(Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.5F).sound(SoundType.ROOTED_DIRT));
+        super(Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.5F).sound(SoundType.ROOTED_DIRT).lightLevel((blockState) -> 3));
     }
 }

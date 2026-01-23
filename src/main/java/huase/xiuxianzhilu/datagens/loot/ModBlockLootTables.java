@@ -3,12 +3,14 @@ package huase.xiuxianzhilu.datagens.loot;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.blocks.zhiwu.GuoshiBlock;
 import huase.xiuxianzhilu.blocks.zhiwu.ZhiwuBlock;
+import huase.xiuxianzhilu.items.Iteminit;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -60,6 +62,28 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         BlockInit.zhiwublocklist.stream().forEach(this::dropzhiwu);
 
+
+        this.add(BlockInit.xvantie0.get(), (block) -> this.createCailiaoDrop(block, Iteminit.xvantie0.get()));
+        this.add(BlockInit.xvantie1.get(), (block) -> this.createCailiaoDrop(block, Iteminit.xvantie1.get()));
+        this.add(BlockInit.xvantie2.get(), (block) -> this.createCailiaoDrop(block, Iteminit.xvantie2.get()));
+        this.add(BlockInit.xvantie3.get(), (block) -> this.createCailiaoDrop(block, Iteminit.xvantie3.get()));
+        this.add(BlockInit.lingjin0.get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingjin0.get()));
+        this.add(BlockInit.lingjin1.get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingjin1.get()));
+        this.add(BlockInit.lingjin2.get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingjin2.get()));
+        this.add(BlockInit.lingjin3.get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingjin3.get()));
+        this.add(BlockInit.lingyv0 .get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingyv0 .get()));
+        this.add(BlockInit.lingyv1 .get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingyv1 .get()));
+        this.add(BlockInit.lingyv2 .get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingyv2 .get()));
+        this.add(BlockInit.lingyv3 .get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingyv3 .get()));
+
+
+
+    }
+
+    protected LootTable.Builder createCailiaoDrop(Block pBlock, ItemLike pItem) {
+        return createSilkTouchDispatchTable(pBlock, this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pItem)
+//                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))
+        ));
     }
 
     private void dropzhiwu(RegistryObject<Block> block) {

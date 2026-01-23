@@ -41,7 +41,7 @@ public class ZhiwuBlock extends CropBlock {
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D)};
 
     public ZhiwuBlock() {
-        super(Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.CROP));
+        super(Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.CROP).lightLevel((blockState) -> 5));
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
     }
 

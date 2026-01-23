@@ -30,9 +30,7 @@ public class ModBlockProvider extends BlockStateProvider {
         simpleBlockWithItem(BlockInit.lianqiding2.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu2")));
         simpleBlockWithItem(BlockInit.lianqiding3.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu3")));
 
-        BlockInit.zhiwublocklist.stream().forEach(c->{
-            this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath());
-        });
+        BlockInit.zhiwublocklist.stream().forEach(c-> this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath()));
 
         logBlockWithItem( BlockInit.lingmu0_LOG);
         logBlockWithItem( BlockInit.lingmu1_LOG);
@@ -49,6 +47,9 @@ public class ModBlockProvider extends BlockStateProvider {
         cross(BlockInit.lingmu1_SAPLING);
         cross(BlockInit.lingmu2_SAPLING);
         cross(BlockInit.lingmu3_SAPLING);
+
+
+        BlockInit.OreBlocklist.stream().forEach(this::ore);
     }
 
 
@@ -95,6 +96,16 @@ public class ModBlockProvider extends BlockStateProvider {
                 this.models().cross(
                                 blockRegistryObject.getId().getPath(),
                                 ModMain.prefix( "block/" + blockRegistryObject.getId().getPath())
+                        )
+                        .renderType("cutout"))});
+
+    }
+
+    private void ore(RegistryObject<Block> blockRegistryObject) {
+        this.getVariantBuilder(blockRegistryObject.get()).forAllStates((state) ->  new ConfiguredModel[]{new ConfiguredModel(
+                this.models().cross(
+                                blockRegistryObject.getId().getPath(),
+                                ModMain.prefix( "item/" + blockRegistryObject.getId().getPath())
                         )
                         .renderType("cutout"))});
 

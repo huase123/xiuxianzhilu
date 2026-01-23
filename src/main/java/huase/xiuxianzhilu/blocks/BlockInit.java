@@ -12,6 +12,7 @@ import huase.xiuxianzhilu.blocks.zhiwu.LingDirBlock;
 import huase.xiuxianzhilu.blocks.zhiwu.ZhiwuBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -40,6 +41,7 @@ public class BlockInit {
     public static List<RegistryObject<Block>> zhiwublocklist = new ArrayList();
     public static List<RegistryObject<Item>> zhiwuitemlist = new ArrayList();
     public static List<RegistryObject<BlockItem>> zhiwuseeditemlist = new ArrayList();
+    public static List<RegistryObject<Block>> OreBlocklist = new ArrayList();
 
 
     // Creates a new Block with the id "xiuxianzhilu:example_block", combining the namespace and path
@@ -99,6 +101,18 @@ public class BlockInit {
     public static final RegistryObject<Block> lingmu3_LEAVES = registerBlockWithBlockItem("lingmu3_leaves", () ->leaves(SoundType.GRASS));
 
 
+    public static final RegistryObject<Block> xvantie0 = registerOreBlock("xvantie0", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> xvantie1 = registerOreBlock("xvantie1", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> xvantie2 = registerOreBlock("xvantie2", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> xvantie3 = registerOreBlock("xvantie3", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingjin0 = registerOreBlock("lingjin0", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingjin1 = registerOreBlock("lingjin1", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingjin2 = registerOreBlock("lingjin2", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingjin3 = registerOreBlock("lingjin3", () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingyv0  = registerOreBlock("lingyv0",  () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingyv1  = registerOreBlock("lingyv1",  () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingyv2  = registerOreBlock("lingyv2",  () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> lingyv3  = registerOreBlock("lingyv3",  () ->new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).noOcclusion().lightLevel((blockState) -> 7), UniformInt.of(3, 7)));
     private static LeavesBlock leaves(SoundType pType) {
         return new LeavesBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(pType).noOcclusion()
                 .isValidSpawn(BlockInit::ocelotOrParrot)
@@ -106,7 +120,9 @@ public class BlockInit {
                 .isViewBlocking(BlockInit::never)
                 .ignitedByLava()
                 .pushReaction(PushReaction.DESTROY)
-                .isRedstoneConductor(BlockInit::never));
+                .isRedstoneConductor(BlockInit::never)
+                .lightLevel((blockState) -> 3)
+        );
     }
     private static Boolean ocelotOrParrot(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> p_50825_) {
 //        return (boolean)(p_50825_ == EntityType.OCELOT || p_50825_ == EntityType.PARROT);
@@ -119,9 +135,14 @@ public class BlockInit {
     private static RotatedPillarBlock log(MapColor pTopMapColor, MapColor pSideMapColor) {
         return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
             return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor;
-        }).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
+        }).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava().lightLevel((blockState) -> 4));
     }
 
+    private static <T extends Block> RegistryObject<T> registerOreBlock(String name, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        OreBlocklist.add((RegistryObject<Block>)toReturn);
+        return toReturn;
+    }
     private static <T extends Block> RegistryObject<T> registerBlockWithBlockItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
