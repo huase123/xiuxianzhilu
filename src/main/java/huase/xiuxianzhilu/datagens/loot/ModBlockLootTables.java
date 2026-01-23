@@ -77,6 +77,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(BlockInit.lingyv3 .get(), (block) -> this.createCailiaoDrop(block, Iteminit.lingyv3 .get()));
 
 
+        this.add(BlockInit.lingmu0_LEAVES.get(), (block) -> this.createOakLeavesDrops(block, BlockInit.lingmu0_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(BlockInit.lingmu1_LEAVES.get(), (block) -> this.createOakLeavesDrops(block, BlockInit.lingmu1_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(BlockInit.lingmu2_LEAVES.get(), (block) -> this.createOakLeavesDrops(block, BlockInit.lingmu2_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(BlockInit.lingmu3_LEAVES.get(), (block) -> this.createOakLeavesDrops(block, BlockInit.lingmu3_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
     }
 
