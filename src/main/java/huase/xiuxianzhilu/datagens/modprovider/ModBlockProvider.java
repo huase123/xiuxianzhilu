@@ -5,6 +5,7 @@ import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.blocks.zhiwu.ZhiwuBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -33,6 +34,21 @@ public class ModBlockProvider extends BlockStateProvider {
             this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath());
         });
 
+        logBlockWithItem( BlockInit.lingmu0_LOG);
+        logBlockWithItem( BlockInit.lingmu1_LOG);
+        logBlockWithItem( BlockInit.lingmu2_LOG);
+        logBlockWithItem( BlockInit.lingmu3_LOG);
+
+        simpleBlockWithItemFile(BlockInit.lingmu0_LEAVES);
+        simpleBlockWithItemFile(BlockInit.lingmu1_LEAVES);
+        simpleBlockWithItemFile(BlockInit.lingmu2_LEAVES);
+        simpleBlockWithItemFile(BlockInit.lingmu3_LEAVES);
+
+
+        cross(BlockInit.lingmu0_SAPLING);
+        cross(BlockInit.lingmu1_SAPLING);
+        cross(BlockInit.lingmu2_SAPLING);
+        cross(BlockInit.lingmu3_SAPLING);
     }
 
 
@@ -74,7 +90,21 @@ public class ModBlockProvider extends BlockStateProvider {
                         .renderType("cutout"))};
         return models;
     }
+    private void cross(RegistryObject<Block> blockRegistryObject) {
+        this.getVariantBuilder(blockRegistryObject.get()).forAllStates((state) ->  new ConfiguredModel[]{new ConfiguredModel(
+                this.models().cross(
+                                blockRegistryObject.getId().getPath(),
+                                ModMain.prefix( "block/" + blockRegistryObject.getId().getPath())
+                        )
+                        .renderType("cutout"))});
+
+    }
+    public void logBlockWithItem(RegistryObject<Block> block) {
+        logBlock((RotatedPillarBlock)block.get());
+        simpleBlockItem(block.get(),models().getExistingFile(modLoc("block/" + block.getId().getPath())));
+    }
+
     private void simpleBlockWithItemFile(RegistryObject<Block> blockRegistryObject) {
-        simpleBlockWithItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile(modLoc("block/"+blockRegistryObject.getKey().location().getPath())));
+        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 }

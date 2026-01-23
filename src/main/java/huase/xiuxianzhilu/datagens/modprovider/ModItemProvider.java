@@ -6,7 +6,6 @@ import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -30,8 +29,14 @@ public class ModItemProvider extends ItemModelProvider {
         Iteminit.cailiaolist.stream().forEach(c ->simpleItem(c));
         Iteminit.danyaolist.stream().forEach(c ->simpleItem(c));
 
-        BlockInit.zhiwuseeditemlist.stream().forEach(c ->simpleSeedItem(c));
+        BlockInit.zhiwuseeditemlist.stream().forEach(c -> simpleblockItem(c));
         BlockInit.zhiwuitemlist.stream().forEach(c ->simpleZhiwuItem(c));
+
+        simpleblockItem(BlockInit.lingmu0_SAPLING);
+        simpleblockItem(BlockInit.lingmu1_SAPLING);
+        simpleblockItem(BlockInit.lingmu2_SAPLING);
+        simpleblockItem(BlockInit.lingmu3_SAPLING);
+
     }
     private void modleItem(RegistryObject<Item> itemRegistryObject) {
 
@@ -57,7 +62,7 @@ public class ModItemProvider extends ItemModelProvider {
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ModMain.prefix("block/" + item.getId().getPath()));
     }
-    private ItemModelBuilder simpleSeedItem(RegistryObject<BlockItem> item) {
+    private ItemModelBuilder simpleblockItem(RegistryObject item) {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ModMain.prefix("block/" + item.getId().getPath()));
