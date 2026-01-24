@@ -133,9 +133,10 @@ public class BlockInit {
     }
 
     private static RotatedPillarBlock log(MapColor pTopMapColor, MapColor pSideMapColor) {
-        return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
-            return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor;
-        }).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava().lightLevel((blockState) -> 4));
+        return new RotatedPillarBlock(BlockBehaviour.Properties.of()
+                .mapColor((p_152624_) -> p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(2.0F).sound(SoundType.WOOD).ignitedByLava().lightLevel((blockState) -> 4));
     }
 
     private static <T extends Block> RegistryObject<T> registerOreBlock(String name, Supplier<T> block) {

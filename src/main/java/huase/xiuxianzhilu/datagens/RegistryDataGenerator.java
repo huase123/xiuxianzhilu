@@ -13,6 +13,7 @@ import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
 import huase.xiuxianzhilu.worlds.densityfunctions.DensityFunctionGen;
 import huase.xiuxianzhilu.worlds.dimensiontype.DimensionTypeGen;
 import huase.xiuxianzhilu.worlds.feature.FeatureGen;
+import huase.xiuxianzhilu.worlds.feature.FeaturePlacementGen;
 import huase.xiuxianzhilu.worlds.levelstem.LevelStemGen;
 import huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists.MultiNoiseBiomeSourceParameterListGen;
 import huase.xiuxianzhilu.worlds.noisegeneratorsettings.NoiseGeneratorSettingsGen;
@@ -41,6 +42,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 //                .add(Registries.CONFIGURED_CARVER, (RegistrySetBuilder.RegistryBootstrap) Carvers::bootstrap)
 //                .add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) FeatureUtils::bootstrap)
                 .add(Registries.CONFIGURED_FEATURE, FeatureGen::bootstrap)
+                .add(Registries.PLACED_FEATURE, FeaturePlacementGen::bootstrap)
 //                .add(Registries.PLACED_FEATURE, PlacementUtils::bootstrap)
 //                .add(Registries.STRUCTURE, Structures::bootstrap)
 //                .add(Registries.STRUCTURE_SET, StructureSets::bootstrap)

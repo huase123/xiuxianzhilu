@@ -21,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsProvider {
 
     public static final TagKey<Block> cailiao_block = TagKey.create(Registries.BLOCK, ModMain.prefix("cailiao_block"));
+    public static final TagKey<Block> lingmu_log = TagKey.create(Registries.BLOCK, ModMain.prefix("lingmu_log"));
     public BlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, ModMain.MOD_ID, existingFileHelper);
 
@@ -32,5 +33,21 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).addTag(cailiao_block);
         tag(BlockTags.NEEDS_IRON_TOOL).addTag(cailiao_block);
+
+        this.tag(BlockTags.LOGS)
+                .add(BlockInit.lingmu0_LEAVES.get())
+                .add(BlockInit.lingmu1_LEAVES.get())
+                .add(BlockInit.lingmu2_LEAVES.get())
+                .add(BlockInit.lingmu3_LEAVES.get())
+        ;
+        this.tag(lingmu_log)
+                .add(BlockInit.lingmu0_LOG.get())
+                .add(BlockInit.lingmu1_LOG.get())
+                .add(BlockInit.lingmu2_LOG.get())
+                .add(BlockInit.lingmu3_LOG.get())
+        ;
+
+
+        tag(BlockTags.MINEABLE_WITH_AXE).addTag(lingmu_log);
     }
 }

@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.worlds.biomes;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.worlds.feature.TreeFeaturePlacements;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -67,15 +68,15 @@ public class BiomesInit {
 
 
         context.register(xiuxianjie_biome0 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome1 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111cd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome2 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111ad4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome1 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111cd4e)), defaultSpawning(), grasslandTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
+        context.register(xiuxianjie_biome2 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111ad4e)), defaultSpawning(), mountainousAreaTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
         context.register(xiuxianjie_biome3 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x11ffffff)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
         context.register(xiuxianjie_biome4 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0161cd6e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome5 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd1e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome5 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd1e)), defaultSpawning(), deepForestAreaTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
         context.register(xiuxianjie_biome6 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x01111199)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
         context.register(xiuxianjie_biome7 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55ff1111)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
         context.register(xiuxianjie_biome8 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55999999)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome9 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55111199)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome9 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55111199)), defaultSpawning(), glacierTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
         context.register(xiuxianjie_biome10, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55111133)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
 
 
@@ -102,6 +103,7 @@ public class BiomesInit {
         context.register(TU_BIOME   , biomeWithDefaults(fireflyParticles   (defaultSHAmbientBuilder(0x01925f36)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
     }
 
+
     public static Biome.BiomeBuilder biomeWithDefaults(BiomeSpecialEffects.Builder biomeAmbience, MobSpawnSettings.Builder mobSpawnInfo, BiomeGenerationSettings.Builder biomeGenerationSettings) {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
@@ -116,7 +118,7 @@ public class BiomesInit {
 
     public static BiomeSpecialEffects.Builder fireflyParticles(BiomeSpecialEffects.Builder builder) {
 //        builder.ambientParticle(new AmbientParticleSettings(SHParticleType.WANDERING_FIREFLY.get(), 0.005f));
-		builder.ambientParticle(new AmbientParticleSettings(ParticleTypes.WHITE_ASH, 0.05f));
+        builder.ambientParticle(new AmbientParticleSettings(ParticleTypes.WHITE_ASH, 0.05f));
         return builder;
     }
 
@@ -164,8 +166,30 @@ public class BiomesInit {
         BiomeDefaultFeatures.addDefaultGrass(biome);
         BiomeDefaultFeatures.addSavannaExtraGrass(biome);
         biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
+//        biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturesGen.lingguo0.);
         BiomeDefaultFeatures.addSurfaceFreezing(biome);
         return biome;
     }
 
+    private static BiomeGenerationSettings.Builder grasslandTreePlacement(BiomeGenerationSettings.Builder builder) {
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.grassland_lingmu0_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder mountainousAreaTreePlacement(BiomeGenerationSettings.Builder builder) {
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.mountainous_lingmu1_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder deepForestAreaTreePlacement(BiomeGenerationSettings.Builder builder) {
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.deepforest_lingmu0_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.deepforest_lingmu2_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder glacierTreePlacement(BiomeGenerationSettings.Builder builder) {
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.glacier_lingmu3_placed);
+        return builder;
+    }
 }

@@ -82,6 +82,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(BlockInit.lingmu2_LEAVES.get(), (block) -> this.createOakLeavesDrops(block, BlockInit.lingmu2_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(BlockInit.lingmu3_LEAVES.get(), (block) -> this.createOakLeavesDrops(block, BlockInit.lingmu3_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
+
+        this.dropSelf(BlockInit.lingmu0_LOG.get());
+        this.dropSelf(BlockInit.lingmu1_LOG.get());
+        this.dropSelf(BlockInit.lingmu2_LOG.get());
+        this.dropSelf(BlockInit.lingmu3_LOG.get());
+
     }
 
     protected LootTable.Builder createCailiaoDrop(Block pBlock, ItemLike pItem) {
