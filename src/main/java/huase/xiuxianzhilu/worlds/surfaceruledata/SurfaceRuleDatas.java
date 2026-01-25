@@ -171,6 +171,12 @@ public class SurfaceRuleDatas {
                                     DEEPSLATE
                             )
                     );
+        SurfaceRules.RuleSource shallowSea_surfacerules =
+                    SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                    DIRT
+                            )
+                    );
 
         SurfaceRules.RuleSource volcano_surfacerules =
                     SurfaceRules.sequence(
@@ -192,19 +198,16 @@ public class SurfaceRuleDatas {
                     );
         SurfaceRules.RuleSource glacier_surfacerules =
                     SurfaceRules.sequence(
-                            SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, 1),
-                                    PACKED_ICE
-                            ),
-                            SurfaceRules.ifTrue(SurfaceRules.VERY_DEEP_UNDER_FLOOR,
-                                    PACKED_ICE
-                            )
+                            SurfaceRules.ifTrue(SurfaceRules.steep(), PACKED_ICE),
+                            SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.PACKED_ICE, 0.0D, 0.2D), PACKED_ICE),
+                            SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.ICE, 0.0D, 0.025D), ICE),
+                            SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SNOW_BLOCK)
                     );
         SurfaceRules.RuleSource deep_sea_surfacerules =
                     SurfaceRules.sequence(
-                            SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(0, 2),
-                                    WATER
-                            )
+                            SurfaceRules.ifTrue(SurfaceRules.steep(), WATER)
                     );
+
 
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
 
@@ -269,7 +272,7 @@ public class SurfaceRuleDatas {
                                 ,SurfaceRules.ifTrue(
                                         SurfaceRules.isBiome(BiomesInit.xiuxianjie_biome6),
                                         SurfaceRules.sequence(
-                                                air_surfacerules
+                                                shallowSea_surfacerules
                                         )
                                 )
 //                                火山

@@ -7,6 +7,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.items.Iteminit;
+import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -241,6 +242,21 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(BlockInit.lingyv2   .get(),  "原矿:§e---玄心灵玉---");
         this.add(BlockInit.lingyv3   .get(),  "原矿:§d---通神灵玉---");
 
+
+
+
+        this.addBiome(BiomesInit.xiuxianjie_biome0  ,  "赤水河"        );
+        this.addBiome(BiomesInit.xiuxianjie_biome1  ,  "青丘草原"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome2  ,  "昆仑山地"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome3  ,  "地下幽都"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome4  ,  "流沙之墟"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome5  ,  "雾凇林海‌"      );
+        this.addBiome(BiomesInit.xiuxianjie_biome6  ,  "归墟溟海"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome7  ,  "炎火之山‌"      );
+        this.addBiome(BiomesInit.xiuxianjie_biome8  ,  "不周雪山"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome9  ,  "冰魄寒渊"       );
+        this.addBiome(BiomesInit.xiuxianjie_biome10 ,  "黑水玄渊‌"      );
+
     }
 
     private void addgongfa(ResourceKey<GongfaSample> gongfa0, String s) {
@@ -252,6 +268,6 @@ public class ModZHLanguageProvider extends LanguageProvider {
     }
 
     public void addBiome(ResourceKey<Biome> biome, String name) {
-        this.add("biome.shxiuxian." + biome.location().getPath(), name);
+        this.add("biome."+ModMain.MOD_ID+"." + biome.location().getPath(), name);
     }
 }

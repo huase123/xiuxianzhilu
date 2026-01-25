@@ -4,7 +4,9 @@ import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.blocks.zhiwu.ZhiwuBlock;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -30,6 +32,7 @@ public class ModBlockProvider extends BlockStateProvider {
         simpleBlockWithItem(BlockInit.lianqiding2.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu2")));
         simpleBlockWithItem(BlockInit.lianqiding3.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu3")));
 
+        cubeTop(BlockInit.lingdirblock);
         BlockInit.zhiwublocklist.stream().forEach(c-> this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath()));
 
         logBlockWithItem( BlockInit.lingmu0_LOG);
@@ -49,10 +52,22 @@ public class ModBlockProvider extends BlockStateProvider {
         cross(BlockInit.lingmu3_SAPLING);
 
 
+
         BlockInit.OreBlocklist.stream().forEach(this::ore);
     }
 
 
+
+    private void cubeTop(RegistryObject<Block> blockRegistryObject) {
+        this.getVariantBuilder(blockRegistryObject.get()).forAllStates((state) ->  new ConfiguredModel[]{new ConfiguredModel(
+                this.models().cubeTop(
+                            blockRegistryObject.getId().getPath(),
+                            TextureMapping.getBlockTexture(Blocks.DIRT),
+                            ModMain.prefix( "block/" + blockRegistryObject.getId().getPath())
+                )
+//                        .renderType("cutout")
+        )});
+    }
     public void makeCornCrop(Block block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function;
 

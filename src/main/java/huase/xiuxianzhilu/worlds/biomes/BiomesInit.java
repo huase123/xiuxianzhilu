@@ -1,7 +1,9 @@
 package huase.xiuxianzhilu.worlds.biomes;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.worlds.feature.OreFeaturePlacements;
 import huase.xiuxianzhilu.worlds.feature.TreeFeaturePlacements;
+import huase.xiuxianzhilu.worlds.feature.ZhiwuPlacements;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -67,48 +69,27 @@ public class BiomesInit {
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
 
 
-        context.register(xiuxianjie_biome0 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome1 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111cd4e)), defaultSpawning(), grasslandTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
-        context.register(xiuxianjie_biome2 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111ad4e)), defaultSpawning(), mountainousAreaTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
-        context.register(xiuxianjie_biome3 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x11ffffff)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome4 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0161cd6e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome5 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd1e)), defaultSpawning(), deepForestAreaTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
-        context.register(xiuxianjie_biome6 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x01111199)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome7 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55ff1111)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome8 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55999999)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome9 , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55111199)), defaultSpawning(), glacierTreePlacement(defaultGenSettingBuilder(featureGetter, carverGetter))).build());
-        context.register(xiuxianjie_biome10, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x55111133)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome0 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), xiuxianjie_biome0_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome1 , biomeWithDefaults(0.5f,0.1f,fireflyParticles  (defaultSHAmbientBuilder(0x0211cd4e)), defaultSpawning(), xiuxianjie_biome1_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome2 , biomeWithDefaults(0.5f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x0311ad4e)), defaultSpawning(), xiuxianjie_biome2_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome3 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0xffffffff)), defaultSpawning(), xiuxianjie_biome3_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome4 , biomeWithDefaults(0.5f,0.2f,fireflyParticles  (defaultSHAmbientBuilder(0x0161cd6e)), defaultSpawning(), xiuxianjie_biome4_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome5 , biomeWithDefaults(0.5f,0.2f,fireflyParticles  (defaultSHAmbientBuilder(0x0141fd1e)), defaultSpawning(), xiuxianjie_biome5_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome6 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x01111199)), defaultSpawning(), xiuxianjie_biome6_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome7 , biomeWithDefaults(0.5f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55ff1111)), defaultSpawning(), xiuxianjie_biome7_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome8 , biomeWithDefaults(-2.0f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55999999)), defaultSpawning(), xiuxianjie_biome8_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome9 , biomeWithDefaults(-2.0f,2.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55111199)), defaultSpawning(), xiuxianjie_biome9_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome10, biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x11111133)), defaultSpawning(), xiuxianjie_biome10_Placement(featureGetter, carverGetter)).build());
+
+   }
 
 
-        context.register(ZHUJI_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(ZHUJI_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-
-        context.register(JINDAN_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd9c)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(JINDAN_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd9c)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(JINDAN_BIOME3, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fd9c)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-
-        context.register(YUANYIN_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fde4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(YUANYIN_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fde4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(YUANYIN_BIOME3, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x0111fde4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-
-        context.register(HUASHEN_BIOME1, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x017dfbf4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(HUASHEN_BIOME2, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x017dfbf4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(HUASHEN_BIOME3, biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x017dfbf4)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-
-
-        context.register(JIN_BIOME  , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x01ffea00)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(MU_BIOME   , biomeWithDefaults(fireflyParticles   (defaultSHAmbientBuilder(0x013cff00)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(SHUI_BIOME , biomeWithDefaults(fireflyParticles (defaultSHAmbientBuilder(0x016faffe)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(HUO_BIOME  , biomeWithDefaults(fireflyParticles  (defaultSHAmbientBuilder(0x01c4360f)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-        context.register(TU_BIOME   , biomeWithDefaults(fireflyParticles   (defaultSHAmbientBuilder(0x01925f36)), defaultSpawning(), defaultGenSettingBuilder(featureGetter, carverGetter)).build());
-    }
-
-
-    public static Biome.BiomeBuilder biomeWithDefaults(BiomeSpecialEffects.Builder biomeAmbience, MobSpawnSettings.Builder mobSpawnInfo, BiomeGenerationSettings.Builder biomeGenerationSettings) {
+    public static Biome.BiomeBuilder biomeWithDefaults(float temperature,float downfall,BiomeSpecialEffects.Builder biomeAmbience, MobSpawnSettings.Builder mobSpawnInfo, BiomeGenerationSettings.Builder biomeGenerationSettings) {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
-                .temperature(0.5F)
-                .downfall(0.5F)
+                .temperature(temperature)
+                .temperatureAdjustment(Biome.TemperatureModifier.FROZEN)
+                .downfall(downfall)
                 .specialEffects(biomeAmbience.build())
                 .mobSpawnSettings(mobSpawnInfo.build())
                 .generationSettings(biomeGenerationSettings.build())
@@ -126,8 +107,8 @@ public class BiomesInit {
 
     public static BiomeSpecialEffects.Builder defaultSHAmbientBuilder(int color) {
         return new BiomeSpecialEffects.Builder()
-                .waterColor(0x01aaffaa)
-                .waterFogColor(0x01aaffaa)
+                .waterColor(color)
+                .waterFogColor(color)
                 .fogColor(0x01aaffaa)
                 .skyColor(0x01aaffaa)
                 .foliageColorOverride(color)
@@ -160,6 +141,7 @@ public class BiomesInit {
     public static BiomeGenerationSettings.Builder defaultGenSettingBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
+        BiomeDefaultFeatures.addDefaultOres(biome);
         BiomeDefaultFeatures.addDefaultSoftDisks(biome);
         BiomeDefaultFeatures.addForestGrass(biome);
         BiomeDefaultFeatures.addSavannaGrass(biome);
@@ -171,25 +153,88 @@ public class BiomesInit {
         return biome;
     }
 
-    private static BiomeGenerationSettings.Builder grasslandTreePlacement(BiomeGenerationSettings.Builder builder) {
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome0_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingyv0_placed);
 
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu2_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome1_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.grassland_lingmu0_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.xvantie0_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu3_placed);
         return builder;
     }
-    private static BiomeGenerationSettings.Builder mountainousAreaTreePlacement(BiomeGenerationSettings.Builder builder) {
-
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome2_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.mountainous_lingmu1_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingjin0_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu0_placed);
         return builder;
     }
-    private static BiomeGenerationSettings.Builder deepForestAreaTreePlacement(BiomeGenerationSettings.Builder builder) {
-
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome3_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.xvantie1_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu4_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome4_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingjin1_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu6_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome5_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.deepforest_lingmu0_placed);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.deepforest_lingmu2_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingyv1_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu7_placed);
         return builder;
     }
-    private static BiomeGenerationSettings.Builder glacierTreePlacement(BiomeGenerationSettings.Builder builder) {
-
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome6_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.xvantie2_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu8_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome7_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingyv2_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu10_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome8_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingjin2_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu11_placed);
+        return builder;
+    }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome9_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        BiomeDefaultFeatures.addIcebergs(builder);
+        BiomeDefaultFeatures.addBlueIce(builder);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TreeFeaturePlacements.glacier_lingmu3_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingjin3_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingyv3_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.xvantie3_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu12_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu14_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu15_placed);
         return builder;
     }
+    private static BiomeGenerationSettings.Builder xiuxianjie_biome10_Placement(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = defaultGenSettingBuilder(featureGetter, carverGetter);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingjin3_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.lingyv3_placed);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreFeaturePlacements.xvantie3_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu16_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu17_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu18_placed);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ZhiwuPlacements.zhiwu19_placed);
+        return builder;
+    }
+
 }

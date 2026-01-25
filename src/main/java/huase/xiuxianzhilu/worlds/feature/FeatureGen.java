@@ -13,9 +13,10 @@ public class FeatureGen {
 //        EndFeatures.bootstrap(pContext);
 //        MiscOverworldFeatures.bootstrap(pContext);
 //        NetherFeatures.bootstrap(pContext);
-//        OreFeatures.bootstrap(pContext);
 //        PileFeatures.bootstrap(pContext);
         TreeFeaturesGen.bootstrap(pContext);
+        OreFeaturesGen.bootstrap(pContext);
+        ZhiwuFeaturesGen.bootstrap(pContext);
 //        VegetationFeatures.bootstrap(pContext);
     }
 

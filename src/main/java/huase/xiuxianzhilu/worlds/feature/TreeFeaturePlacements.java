@@ -41,11 +41,11 @@ public class TreeFeaturePlacements {
         Holder<ConfiguredFeature<?, ?>> holder1 = holdergetter.getOrThrow(TreeFeaturesGen.lingguo1);
         Holder<ConfiguredFeature<?, ?>> holder2 = holdergetter.getOrThrow(TreeFeaturesGen.lingguo2);
         Holder<ConfiguredFeature<?, ?>> holder3 = holdergetter.getOrThrow(TreeFeaturesGen.lingguo3);
-        PlacementUtils.register(pContext, grassland_lingmu0_placed, holder0, treePlacement(PlacementUtils.countExtra(2, 0.1F, 1)));
+        PlacementUtils.register(pContext, grassland_lingmu0_placed, holder0, treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
         PlacementUtils.register(pContext, deepforest_lingmu0_placed, holder0, deepforesttreePlacement(PlacementUtils.countExtra(10, 0.1F, 3)));
-        PlacementUtils.register(pContext, mountainous_lingmu1_placed, holder1, treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
+        PlacementUtils.register(pContext, mountainous_lingmu1_placed, holder1, treePlacement(PlacementUtils.countExtra(0, 0.5F, 1)));
         PlacementUtils.register(pContext, deepforest_lingmu2_placed, holder2, deepforesttreePlacement(PlacementUtils.countExtra(0, 0.1F, 2)));
-        PlacementUtils.register(pContext, glacier_lingmu3_placed, holder3, glaciertreePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
+        PlacementUtils.register(pContext, glacier_lingmu3_placed, holder3, glaciertreePlacement(PlacementUtils.countExtra(0, 0.2F, 1)));
     }
 
     private static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);

@@ -22,6 +22,7 @@ import huase.xiuxianzhilu.screen.MenuTypesInit;
 import huase.xiuxianzhilu.worlds.biomesources.BiomeSourceInit;
 import huase.xiuxianzhilu.worlds.biomesources.REBiomeSource;
 import huase.xiuxianzhilu.worlds.chunkgenerators.ChunkGeneratorInti;
+import huase.xiuxianzhilu.worlds.feature.FeatureInit;
 import huase.xiuxianzhilu.worlds.feature.treedecorators.TreeDecoratorTypeInit;
 import huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists.MultiNoiseBiomeSourceParameterListGen;
 import huase.xiuxianzhilu.worlds.structures.StructuresInit;
@@ -81,6 +82,7 @@ public class ModMain {
         BlockEntitiesinit.BLOCK_ENTITIES.register(modEventBus);
 
         TreeDecoratorTypeInit.TYPE_DEFERRED_REGISTER.register(modEventBus);
+        FeatureInit.FEATURE_DEFERRED_REGISTER.register(modEventBus);
 
         // Register the Deferred Register to the mod event bus so tabs get registered
         RecipesInit.SERIALIZERS.register(modEventBus);

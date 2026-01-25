@@ -10,6 +10,8 @@ public class FeaturePlacementGen {
 
     public static void bootstrap(BootstapContext<PlacedFeature> pContext) {
         TreeFeaturePlacements.bootstrap(pContext);
+        OreFeaturePlacements.bootstrap(pContext);
+        ZhiwuPlacements.bootstrap(pContext);
 
 //        AquaticPlacements.bootstrap(pContext);
 //        CavePlacements.bootstrap(pContext);
