@@ -203,11 +203,6 @@ public class CapabilityUtil {
             return Component.translatable(key.toString());
         }
     }
-    public static int getJingjieNum(Player player) {
-        PlayerCapability capability =getCapability(player);
-        return capability.getLingxiuindex();
-    }
-
     public static MutableComponent getMaxjingjie(Player player) {
         PlayerCapability capability =getCapability(player);
         List<LingxiuCase> lingxius = capability.getLingxius();

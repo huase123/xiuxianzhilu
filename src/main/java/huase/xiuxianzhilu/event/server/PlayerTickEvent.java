@@ -63,7 +63,7 @@ public class PlayerTickEvent {
     private static void updatesFly(Player player) {
         if (!player.isCreative() && !player.isSpectator() && !player.isDeadOrDying()) {
 
-            if (CapabilityUtil.getJingjieNum(player) >= 2 && CapabilityUtil.getLingli(player) > 0.0F) {
+            if (CapabilityUtil.getLingxiuindex(player) >= 2 && CapabilityUtil.getLingli(player) > 0.0F) {
                 player.getAbilities().mayfly = true;
             } else {
                 player.getAbilities().mayfly = false;

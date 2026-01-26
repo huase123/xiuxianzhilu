@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
+import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
@@ -14,6 +16,7 @@ import huase.xiuxianzhilu.configs.Config;
 import huase.xiuxianzhilu.creativemodetabs.CreativeModeTabInit;
 import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
+import huase.xiuxianzhilu.items.danyao.UseStats;
 import huase.xiuxianzhilu.network.NetworkHandler;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipesInit;
 import huase.xiuxianzhilu.recipe.RecipesInit;
@@ -77,6 +80,8 @@ public class ModMain {
         BlockInit.ITEMS.register(modEventBus);
         Iteminit.ITEMS.register(modEventBus);
 
+        UseStats.ITEMSUSED.register(modEventBus);
+
         BlockCreateEntityInit.BlockCreate_ENTITY_TYPES.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
         BlockEntitiesinit.BLOCK_ENTITIES.register(modEventBus);
@@ -114,6 +119,8 @@ public class ModMain {
 
         FabaoGen.fabao_keyBase_REGISTER.register(modEventBus);
         FabaoTypesInIt.fabao_type_REGISTER.register(modEventBus);
+        DanyaoGen.danyao_keyBase_REGISTER.register(modEventBus);
+        DanyaoTypesInIt.danyao_type_REGISTER.register(modEventBus);
         GongfaGen.gongfa_key_REGISTER.register(modEventBus);
         GongfaTypesInit.gongfa_type_key_REGISTER.register(modEventBus);
 //        资源包管理的注册表

@@ -48,14 +48,20 @@ public class GongfaSampleItem extends Item {
     }
 
 
+    GongfaSample sample;
+    public GongfaSample getGongfaSample(Level level, ItemStack pStack) {
+        if(sample == null){
+            sample = level.registryAccess().registryOrThrow(gongfa_key).stream().filter(
+                    c -> pStack.is(c.getItem())
+            ).findAny().get();
+        }
+        return sample;
+    }
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 
         if(pLevel == null)return;
-        GongfaSample sample = pLevel.registryAccess().registryOrThrow(gongfa_key).stream().filter(
-                c -> pStack.is(c.getItem())
-        ).findAny().get();
-
+        GongfaSample sample = getGongfaSample(pLevel,pStack);
         Holder<LingxiuJingjieSample> child = sample.getChild();
         if(child != null){
             pTooltip.add(Component.translatable("所需境界:").withStyle(ChatFormatting.AQUA).append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get()).toString())));

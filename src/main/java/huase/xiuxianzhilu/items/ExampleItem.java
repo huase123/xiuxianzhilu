@@ -1,7 +1,9 @@
 package huase.xiuxianzhilu.items;
 
-import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.items.danyao.UseStats;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -32,14 +34,18 @@ public class ExampleItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
         BlockHitResult blockhitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.NONE);
 
+        pPlayer.awardStat(UseStats.danyaoused.get().get(this));
         if(!pPlayer.level().isClientSide){
 //            PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(pPlayer);
 //            DensityFunction densityFunction = capability.getDensityFunction();
-            CapabilityUtil.openLinggen(pPlayer);
+//            CapabilityUtil.openLinggen(pPlayer);
 
+            int value = ((ServerPlayer) pPlayer).getStats().getValue(UseStats.danyaoused.get(), this);
+            pPlayer.sendSystemMessage(Component.translatable("已使用次数："+value));
         }else {
             Minecraft.getInstance().gameRenderer.cycleEffect();
         }
+
 
 
         return InteractionResultHolder.consume(itemstack);
