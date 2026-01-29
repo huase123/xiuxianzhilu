@@ -1,6 +1,8 @@
 package huase.xiuxianzhilu.compat.jei;
 
+import huase.xiuxianzhilu.recipe.LiandanluRecipe;
 import huase.xiuxianzhilu.recipe.LianqidingRecipe;
+import huase.xiuxianzhilu.screen.liandanlu.LiandanluMenu;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.transfer.IRecipeTransferError;
@@ -70,6 +72,12 @@ public class REBasicRecipeTransferInfo<C extends AbstractContainerMenu, R> imple
             if (recipeLv>lv)return false;
         }
 
+        if(container instanceof LiandanluMenu liandanluMenu && recipe instanceof LiandanluRecipe lianqidingRecipe){
+            int recipeLv = getRecipeLv();
+            int lv = liandanluMenu.getBlockEntity().getLv();
+            if (recipeLv>lv)return false;
+        }
+
 
         return true;
     }
@@ -92,6 +100,11 @@ public class REBasicRecipeTransferInfo<C extends AbstractContainerMenu, R> imple
         if(recipeType.equals(LianqidingCategory.GEM_LIANQIDING1_TYPE))return 1;
         if(recipeType.equals(LianqidingCategory.GEM_LIANQIDING2_TYPE))return 2;
         if(recipeType.equals(LianqidingCategory.GEM_LIANQIDING3_TYPE))return 3;
+
+        if(recipeType.equals(LiandanluCategory.GEM_LIANDANLU0_TYPE))return 0;
+        if(recipeType.equals(LiandanluCategory.GEM_LIANDANLU1_TYPE))return 1;
+        if(recipeType.equals(LiandanluCategory.GEM_LIANDANLU2_TYPE))return 2;
+        if(recipeType.equals(LiandanluCategory.GEM_LIANDANLU3_TYPE))return 3;
         return 0;
     }
     @Override

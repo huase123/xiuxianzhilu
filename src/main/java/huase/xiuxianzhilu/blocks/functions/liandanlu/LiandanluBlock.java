@@ -1,6 +1,7 @@
-package huase.xiuxianzhilu.blocks.functions.lianqiding;
+package huase.xiuxianzhilu.blocks.functions.liandanlu;
 
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
+import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlockEntity;
 import huase.xiuxianzhilu.event.server.MultiBlockRecipeManager;
 import huase.xiuxianzhilu.items.functions.Interactionzhenfa;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.material.MapColor;
@@ -41,7 +41,7 @@ import java.util.Optional;
 /**
  * - @description:ZhenjiBlock类
  */
-public class LianqidingBlock extends BaseEntityBlock {
+public class LiandanluBlock extends BaseEntityBlock {
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
@@ -65,8 +65,8 @@ public class LianqidingBlock extends BaseEntityBlock {
         return lv;
     }
 
-    public LianqidingBlock(int lv) {
-        super(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).lightLevel((blockState) -> 11));
+    public LiandanluBlock(int lv) {
+        super(Properties.of().mapColor(MapColor.STONE).lightLevel((blockState) -> 11));
         this.lv = lv;
     }
 
@@ -152,7 +152,7 @@ public class LianqidingBlock extends BaseEntityBlock {
 //        }
 
 //        return createTickerHelper(pBlockEntityType,  BlockEntitiesinit.lianqidingblockentity.get(), LianqidingBlockEntity::tick);
-        return createTickerHelper(pBlockEntityType, BlockEntitiesinit.lianqidingblockentity.get(),
+        return createTickerHelper(pBlockEntityType, BlockEntitiesinit.liandanlublockentity.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 

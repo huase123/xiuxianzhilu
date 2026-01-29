@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.blocks;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenBlockEntity;
+import huase.xiuxianzhilu.blocks.functions.liandanlu.LiandanluBlockEntity;
 import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,6 +30,15 @@ public class BlockEntitiesinit {
                             , BlockInit.lianqiding1.get()
                             , BlockInit.lianqiding2.get()
                             , BlockInit.lianqiding3.get()
+                    ).build(null));
+
+    public static final RegistryObject<BlockEntityType<LiandanluBlockEntity>> liandanlublockentity =
+            BLOCK_ENTITIES.register("liandanlublockentity", () ->
+                    BlockEntityType.Builder.of(LiandanluBlockEntity::new
+                            , BlockInit.liandanlu0.get()
+                            , BlockInit.liandanlu1.get()
+                            , BlockInit.liandanlu2.get()
+                            , BlockInit.liandanlu3.get()
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

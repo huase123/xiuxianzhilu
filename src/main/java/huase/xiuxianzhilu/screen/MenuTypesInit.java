@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.screen;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.screen.liandanlu.LiandanluMenu;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
 import huase.xiuxianzhilu.screen.linggen.LinggenMenu;
 import huase.xiuxianzhilu.screen.player.PlayerAttrubuteContainerMenu;
@@ -28,6 +29,9 @@ public class MenuTypesInit {
 
     public static final RegistryObject<MenuType<LianqidingMenu>> lianqidingmenu =
             registerMenuType("lianqidingmenu", LianqidingMenu::new);
+
+    public static final RegistryObject<MenuType<LiandanluMenu>> liandanlumenu =
+            registerMenuType("liandanlumenu", LiandanluMenu::new);
 
     public static final RegistryObject<MenuType<PutuanMenu>> putuanmenu =
             registerMenuType("putuanmenu", PutuanMenu::new);

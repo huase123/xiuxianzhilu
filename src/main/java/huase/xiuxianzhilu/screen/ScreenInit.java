@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.screen;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.screen.liandanlu.LiandanluScreen;
 import huase.xiuxianzhilu.screen.lianqiding.LianqidingScreen;
 import huase.xiuxianzhilu.screen.linggen.LinggenScreen;
 import huase.xiuxianzhilu.screen.player.PlayerAttrubuteContiainerScreen;
@@ -22,6 +23,7 @@ public class ScreenInit {
         MenuScreens.register(MenuTypesInit.playerattrubutecontainermenu.get(), PlayerAttrubuteContiainerScreen::new);
         MenuScreens.register(MenuTypesInit.linggenmenu.get(), LinggenScreen::new);
         MenuScreens.register(MenuTypesInit.lianqidingmenu.get(), LianqidingScreen::new);
+        MenuScreens.register(MenuTypesInit.liandanlumenu.get(), LiandanluScreen::new);
         MenuScreens.register(MenuTypesInit.putuanmenu.get(), PutuanScreen::new);
     }
 }

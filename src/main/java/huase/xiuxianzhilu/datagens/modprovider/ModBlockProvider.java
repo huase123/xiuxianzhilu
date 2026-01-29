@@ -27,10 +27,15 @@ public class ModBlockProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlockWithItem(BlockInit.lianqiding0.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu0")));
-        simpleBlockWithItem(BlockInit.lianqiding1.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu1")));
-        simpleBlockWithItem(BlockInit.lianqiding2.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu2")));
-        simpleBlockWithItem(BlockInit.lianqiding3.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu3")));
+        simpleBlockWithItem(BlockInit.lianqiding0.get(), new ModelFile.UncheckedModelFile(modLoc("block/lianqiding0")));
+        simpleBlockWithItem(BlockInit.lianqiding1.get(), new ModelFile.UncheckedModelFile(modLoc("block/lianqiding1")));
+        simpleBlockWithItem(BlockInit.lianqiding2.get(), new ModelFile.UncheckedModelFile(modLoc("block/lianqiding2")));
+        simpleBlockWithItem(BlockInit.lianqiding3.get(), new ModelFile.UncheckedModelFile(modLoc("block/lianqiding3")));
+
+        simpleBlockWithItem(BlockInit.liandanlu0.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu0")));
+        simpleBlockWithItem(BlockInit.liandanlu1.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu1")));
+        simpleBlockWithItem(BlockInit.liandanlu2.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu2")));
+        simpleBlockWithItem(BlockInit.liandanlu3.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu3")));
 
         cubeTop(BlockInit.lingdirblock);
         BlockInit.zhiwublocklist.stream().forEach(c-> this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath()));

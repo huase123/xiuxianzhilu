@@ -15,5 +15,7 @@ public class RecipesInit {
 
     public static final RegistryObject<RecipeSerializer<LianqidingRecipe>> lianqidingtrecipe =
             SERIALIZERS.register("lianqiding_recipe", () -> LianqidingRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<LiandanluRecipe>> liandanlurecipe =
+            SERIALIZERS.register("liandanlurecipe", () -> LiandanluRecipe.Serializer.INSTANCE);
 
 }

@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.blocks;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenBlock;
+import huase.xiuxianzhilu.blocks.functions.liandanlu.LiandanluBlock;
 import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlock;
 import huase.xiuxianzhilu.blocks.treegrower.Lingmu0TreeGrower;
 import huase.xiuxianzhilu.blocks.treegrower.Lingmu1TreeGrower;
@@ -60,6 +61,11 @@ public class BlockInit {
     public static final RegistryObject<Block> lianqiding1 = registerBlockWithBlockItem("lianqiding1", () -> new LianqidingBlock(1));
     public static final RegistryObject<Block> lianqiding2 = registerBlockWithBlockItem("lianqiding2", () -> new LianqidingBlock(2));
     public static final RegistryObject<Block> lianqiding3 = registerBlockWithBlockItem("lianqiding3", () -> new LianqidingBlock(3));
+
+    public static final RegistryObject<Block> liandanlu0 = registerBlockWithBlockItem("liandanlu0", () -> new LiandanluBlock(0));
+    public static final RegistryObject<Block> liandanlu1 = registerBlockWithBlockItem("liandanlu1", () -> new LiandanluBlock(1));
+    public static final RegistryObject<Block> liandanlu2 = registerBlockWithBlockItem("liandanlu2", () -> new LiandanluBlock(2));
+    public static final RegistryObject<Block> liandanlu3 = registerBlockWithBlockItem("liandanlu3", () -> new LiandanluBlock(3));
 
 
     //    灵土

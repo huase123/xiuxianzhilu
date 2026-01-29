@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.blocks;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.functions.jvlingzhen.JvlingzhenBlockEntityRenderer;
+import huase.xiuxianzhilu.blocks.functions.liandanlu.LiandanluBlockEntityRenderer;
 import huase.xiuxianzhilu.blocks.functions.lianqiding.LianqidingBlockEntityRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -24,5 +25,6 @@ public class BlockEntitiesRenderinit {
         event.registerBlockEntityRenderer(BlockEntitiesinit.jvlingzhenblockentity.get(), JvlingzhenBlockEntityRenderer::new);
 
         event.registerBlockEntityRenderer(BlockEntitiesinit.lianqidingblockentity.get(), LianqidingBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntitiesinit.liandanlublockentity.get(), LiandanluBlockEntityRenderer::new);
     }
 }
