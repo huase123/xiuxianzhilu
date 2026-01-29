@@ -6,7 +6,7 @@ import huase.xiuxianzhilu.event.server.MultiBlockRecipeManager;
 import huase.xiuxianzhilu.items.functions.Interactionzhenfa;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
 import huase.xiuxianzhilu.recipe.multiblock.MultiBlockRecipe;
-import huase.xiuxianzhilu.screen.lianqiding.LianqidingMenu;
+import huase.xiuxianzhilu.screen.liandanlu.LiandanluMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -30,6 +30,7 @@ import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemStackHandler;
@@ -50,10 +51,11 @@ public class LiandanluBlock extends BaseEntityBlock {
 
     private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
+    protected static final VoxelShape SHAPEsuper = Shapes.join(SHAPE, box(0.0D, 16.0D, 0.0D, 16.0D, 28.0D, 16.0D), BooleanOp.OR);
 
-//    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-//        return SHAPE;
-//    }
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPEsuper;
+    }
     public VoxelShape getInteractionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return INSIDE;
     }
@@ -112,8 +114,8 @@ public class LiandanluBlock extends BaseEntityBlock {
                 interactionzhenfa.interactionzhenfa(itemstack,entity,pPlayer);
             }else {
                 NetworkHooks.openScreen((ServerPlayer) pPlayer,
-                        new SimpleMenuProvider((containerId, playerInventory, player) -> new LianqidingMenu(containerId, playerInventory,entity),
-                                Component.translatable("炼器鼎")),
+                        new SimpleMenuProvider((containerId, playerInventory, player) -> new LiandanluMenu(containerId, playerInventory,entity),
+                                Component.translatable("炼丹炉")),
                         entity.getBlockPos());
             }
         }else {
@@ -141,7 +143,7 @@ public class LiandanluBlock extends BaseEntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
 
-        return new LianqidingBlockEntity(pPos, pState,lv);
+        return new LiandanluBlockEntity(pPos, pState,lv);
     }
 
     @Nullable

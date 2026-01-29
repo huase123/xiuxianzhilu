@@ -197,7 +197,7 @@ public class LiandanluBlockEntity extends BlockEntity implements PrentFunction {
     private final Container result = new SimpleContainer(1);
     public void updateCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots()-1; i++) {
+        for(int i = 0; i <= itemHandler.getSlots()-1; i++) {
             inventory.setItem(i, this.itemHandler.getStackInSlot(i));
         }
 

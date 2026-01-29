@@ -44,6 +44,13 @@ public class BuildLianqidingRecipe implements FinishedRecipe {
     public BuildLianqidingRecipe define(int pSymbol, ItemLike pItem) {
         return this.define(pSymbol, Ingredient.of(pItem));
     }
+    public BuildLianqidingRecipe defines(ItemLike pItem,int ... pSymbol) {
+        for (int i : pSymbol) {
+//            用excle配置的序号，所以减1
+            this.define(i-1, pItem);
+        }
+        return this;
+    }
 
     /**
      * Adds a key to the recipe pattern.

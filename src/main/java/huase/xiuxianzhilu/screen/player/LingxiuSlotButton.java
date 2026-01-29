@@ -24,12 +24,14 @@ import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGe
 /**
  * - @description:PlayerMianbanButton类
  */
-public class LingxiuSlotButton extends ToServerButton {
+public class LingxiuSlotButton extends ToServerButton implements HoveredRender {
     private static final ResourceLocation slot =
             ModMain.prefix("textures/gui/player/slot.png");
     private int slotButtonindex;
-    public LingxiuSlotButton(PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
+    private PlayerAttrubuteContiainerScreen playerAttrubuteContiainerScreen;
+    public LingxiuSlotButton(PlayerAttrubuteContiainerScreen playerAttrubuteContiainerScreen, PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
         super(pMenu,index,buttonMenu,leftPos,topPos);
+        this.playerAttrubuteContiainerScreen = playerAttrubuteContiainerScreen;
         this.slotButtonindex = slotButtonindex;
     }
 
@@ -49,12 +51,19 @@ public class LingxiuSlotButton extends ToServerButton {
             renderItem(pGuiGraphics);
 
             if (isHovering(pMouseX,pMouseY)) {
-                AbstractContainerScreen.renderSlotHighlight(pGuiGraphics, this.getX() + 1, this.getY() + 1, 0);
-                renderTooltip(pGuiGraphics,pMouseX,pMouseY);
+                playerAttrubuteContiainerScreen.hoveredRender = this;
             }
         }
     }
 
+    @Override
+    public void renderHouvered(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        if (isHovering(pMouseX,pMouseY)) {
+            AbstractContainerScreen.renderSlotHighlight(pGuiGraphics, this.getX() + 1, this.getY() + 1, 0);
+            renderTooltip(pGuiGraphics,pMouseX,pMouseY);
+        }
+
+    }
     DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
     List<Component> mutableComponents = new LinkedList<>();

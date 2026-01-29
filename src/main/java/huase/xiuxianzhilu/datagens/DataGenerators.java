@@ -11,7 +11,7 @@ import huase.xiuxianzhilu.datagens.lang.ModZHLanguageProvider;
 import huase.xiuxianzhilu.datagens.loot.ModBlockLootTables;
 import huase.xiuxianzhilu.datagens.modprovider.ModBlockProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModItemProvider;
-import huase.xiuxianzhilu.datagens.multiblock.ExampleInstanceCaseIllustrationMultiBlockProvider;
+import huase.xiuxianzhilu.datagens.multiblock.MultiBlockProviderGen;
 import huase.xiuxianzhilu.datagens.recipeprovider.RERecipeProvider;
 import huase.xiuxianzhilu.datagens.tag.BlockTagsProvider;
 import huase.xiuxianzhilu.datagens.tag.CustomizeWorldPresetTagsProvider;
@@ -56,7 +56,7 @@ public class DataGenerators {
 //        generator.addProvider(event.includeServer(), new StalactiteGenerator(packOutput));
 //
         generator.addProvider(event.includeServer(), new RERecipeProvider(packOutput));
-        generator.addProvider(event.includeServer(), new ExampleInstanceCaseIllustrationMultiBlockProvider(packOutput));
+        generator.addProvider(event.includeServer(), new MultiBlockProviderGen(packOutput));
 //
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)

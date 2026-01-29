@@ -31,6 +31,10 @@ public class LiandanluScreen extends FunctionAbstractContainerScreen<LiandanluMe
         super.init();
     }
 
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+    }
     private static final ResourceLocation liandanlu0 = ModMain.prefix("textures/gui/container/liandanlu0.png");
     private static final ResourceLocation liandanlu1 = ModMain.prefix("textures/gui/container/liandanlu1.png");
     private static final ResourceLocation liandanlu2 = ModMain.prefix("textures/gui/container/liandanlu2.png");

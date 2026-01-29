@@ -34,6 +34,7 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
             ModMain.prefix("textures/gui/player/fabao.png");
 
     List<MutableComponent> mutableComponents = new LinkedList<>();
+    HoveredRender hoveredRender;
     public PlayerAttrubuteContiainerScreen(PlayerAttrubuteContainerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
@@ -50,6 +51,10 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+        if(hoveredRender != null){
+            hoveredRender.renderHouvered(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        }
+
     }
     protected void containerTick() {
         if(this.minecraft.level.getGameTime()%20==0){
@@ -105,7 +110,7 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         int lingxiuslotButtonindex = -1;
         for (int i = index + 37; index < i; index++) {
             ButtonMenu buttonMenu = buttonFunctionMap.get(index);
-            LingxiuSlotButton toServerButton = new LingxiuSlotButton(pMenu,index,lingxiuslotButtonindex,buttonMenu,this.leftPos,this.topPos);
+            LingxiuSlotButton toServerButton = new LingxiuSlotButton(this,pMenu,index,lingxiuslotButtonindex,buttonMenu,this.leftPos,this.topPos);
             this.addRenderableWidget(toServerButton);
             lingxiuslotButtonindex++;
         }
@@ -114,7 +119,7 @@ public class PlayerAttrubuteContiainerScreen extends FunctionAbstractContainerSc
         int gongfaslotButtonindex = -1;
         for (int i = index + 37; index < i; index++) {
             ButtonMenu buttonMenu = buttonFunctionMap.get(index);
-            GongfaSlotButton toServerButton = new GongfaSlotButton(pMenu,index,gongfaslotButtonindex,buttonMenu,this.leftPos,this.topPos);
+            GongfaSlotButton toServerButton = new GongfaSlotButton(this,pMenu,index,gongfaslotButtonindex,buttonMenu,this.leftPos,this.topPos);
             this.addRenderableWidget(toServerButton);
             gongfaslotButtonindex++;
         }

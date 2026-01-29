@@ -31,6 +31,10 @@ public class LianqidingScreen extends FunctionAbstractContainerScreen<Lianqiding
         super.init();
     }
 
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+    }
     private static final ResourceLocation lianqiding0 = ModMain.prefix("textures/gui/container/lianqiding0.png");
     private static final ResourceLocation lianqiding1 = ModMain.prefix("textures/gui/container/lianqiding1.png");
     private static final ResourceLocation lianqiding2 = ModMain.prefix("textures/gui/container/lianqiding2.png");

@@ -6,6 +6,7 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSam
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -94,7 +95,10 @@ public class FabaoSampleItem extends Item {
         Holder<LingxiuJingjieSample> child = sample.getJingjie();
 
         if(child != null){
-            pTooltip.add(Component.translatable("穿戴所需境界:").append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get()).toString())).withStyle(ChatFormatting.AQUA));
+            ResourceLocation key = pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get());
+            if(key !=null){
+                pTooltip.add(Component.translatable("穿戴所需境界:").append(Component.translatable(key.toString())).withStyle(ChatFormatting.AQUA));
+            }
         }
 
         pTooltip.add(Component.translatable("-----基础属性-----").withStyle(ChatFormatting.WHITE));

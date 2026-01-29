@@ -24,12 +24,14 @@ import java.util.List;
 /**
  * - @description:PlayerMianbanButton类
  */
-public class GongfaSlotButton extends ToServerButton {
+public class GongfaSlotButton extends ToServerButton implements HoveredRender {
     private static final ResourceLocation slot =
             ModMain.prefix("textures/gui/player/slot.png");
     private int slotButtonindex;
-    public GongfaSlotButton(PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
+    private PlayerAttrubuteContiainerScreen playerAttrubuteContiainerScreen;
+    public GongfaSlotButton(PlayerAttrubuteContiainerScreen playerAttrubuteContiainerScreen, PlayerAttrubuteContainerMenu pMenu, int index, int slotButtonindex, ButtonMenu buttonMenu, int leftPos, int topPos) {
         super(pMenu,index,buttonMenu,leftPos,topPos);
+        this.playerAttrubuteContiainerScreen = playerAttrubuteContiainerScreen;
         this.slotButtonindex = slotButtonindex;
     }
 
@@ -49,12 +51,19 @@ public class GongfaSlotButton extends ToServerButton {
             renderItem(pGuiGraphics);
 
             if (isHovering(pMouseX,pMouseY)) {
-                AbstractContainerScreen.renderSlotHighlight(pGuiGraphics, this.getX() + 1, this.getY() + 1, 0);
-                renderAttributeTooltip(pGuiGraphics,pMouseX,pMouseY);
+                playerAttrubuteContiainerScreen.hoveredRender = this;
             }
         }
     }
 
+    @Override
+    public void renderHouvered(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        if (isHovering(pMouseX,pMouseY)) {
+            AbstractContainerScreen.renderSlotHighlight(pGuiGraphics, this.getX() + 1, this.getY() + 1, 0);
+            renderAttributeTooltip(pGuiGraphics,pMouseX,pMouseY);
+        }
+
+    }
 
     DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
