@@ -68,7 +68,7 @@ public class LianqidingBlock extends BaseEntityBlock {
     }
 
     public LianqidingBlock(int lv) {
-        super(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).lightLevel((blockState) -> 11));
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(1.5F).lightLevel((blockState) -> 11));
         this.lv = lv;
     }
 

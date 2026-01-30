@@ -58,6 +58,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        this.dropSelf(BlockInit.lianqiding0.get());
+        this.dropSelf(BlockInit.lianqiding1.get());
+        this.dropSelf(BlockInit.lianqiding2.get());
+        this.dropSelf(BlockInit.lianqiding3.get());
+        this.dropSelf(BlockInit.liandanlu0.get());
+        this.dropSelf(BlockInit.liandanlu1.get());
+        this.dropSelf(BlockInit.liandanlu2.get());
+        this.dropSelf(BlockInit.liandanlu3.get());
+
+
         this.dropSelf(BlockInit.lingdirblock.get());
 
         BlockInit.zhiwublocklist.stream().forEach(this::dropzhiwu);

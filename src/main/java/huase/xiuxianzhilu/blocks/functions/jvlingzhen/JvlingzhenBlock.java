@@ -61,7 +61,7 @@ public class JvlingzhenBlock extends BaseEntityBlock {
     }
 
     public JvlingzhenBlock(int lv) {
-        super(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).lightLevel((blockState) -> 11));
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5F).lightLevel((blockState) -> 11));
         this.lv = lv;
     }
 

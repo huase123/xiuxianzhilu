@@ -70,6 +70,15 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(Iteminit.jingjie3.get()  ,"§d元婴");
         this.add(Iteminit.jingjie4.get()  ,"§c化神");
 
+        this.add(BlockInit.lianqiding0.get()  ,"§a初阳鼎");
+        this.add(BlockInit.lianqiding1.get()  ,"§b玄阴鼎");
+        this.add(BlockInit.lianqiding2.get()  ,"§e流光鼎");
+        this.add(BlockInit.lianqiding3.get()  ,"§d归元鼎");
+        this.add(BlockInit.liandanlu0.get()  ,"§a初阳炉");
+        this.add(BlockInit.liandanlu1.get()  ,"§b玄阴炉");
+        this.add(BlockInit.liandanlu2.get()  ,"§e流光炉");
+        this.add(BlockInit.liandanlu3.get()  ,"§d归元炉");
+
         this.addgongfa(GongfaGen.gongfa0  ,"功法:§a---聚灵诀---");
         this.addgongfa(GongfaGen.gongfa1  ,"功法:§b---凝元功---");
         this.addgongfa(GongfaGen.gongfa2  ,"功法:§e---金丹诀---");

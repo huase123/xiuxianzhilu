@@ -68,7 +68,7 @@ public class LiandanluBlock extends BaseEntityBlock {
     }
 
     public LiandanluBlock(int lv) {
-        super(Properties.of().mapColor(MapColor.STONE).lightLevel((blockState) -> 11));
+        super(Properties.of().mapColor(MapColor.STONE).strength(1.5F).lightLevel((blockState) -> 11));
         this.lv = lv;
     }
 
