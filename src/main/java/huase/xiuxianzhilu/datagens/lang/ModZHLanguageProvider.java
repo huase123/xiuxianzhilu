@@ -57,6 +57,20 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("linggen.tu",                      "§6土");
 
 
+        this.add(Iteminit.celingzhu.get()  ,"§a测灵珠");
+        this.add(Iteminit.lingshi0.get()  ,"§a灵石");
+        this.add(Iteminit.lingshi1.get()  ,"§b中阶灵石");
+        this.add(Iteminit.lingshi2.get()  ,"§c高阶灵石");
+        this.add(Iteminit.tpfu.get()  ,"§a秘境传送符");
+        this.add(Iteminit.zhenqi.get()  ,"§a阵旗");
+
+
+        this.add(BlockInit.jvlingzhen0.get()  ,"§a聚灵阵");
+        this.add(BlockInit.lingdirblock.get()  ,"§a灵土");
+
+
+
+
 
         this.addjingjie(LingxiujingjieGen.lianqi    ,"§a练气");
         this.addjingjie(LingxiujingjieGen.zhuji     ,"§b筑基");

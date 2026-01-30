@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 public class ZhenqiItem extends Item implements Interactionzhenfa{
 
     public ZhenqiItem() {
-        super(new Properties());
+        super(new Item.Properties().stacksTo(1));
     }
 
 

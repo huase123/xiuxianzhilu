@@ -36,6 +36,7 @@ public class ModBlockProvider extends BlockStateProvider {
         simpleBlockWithItem(BlockInit.liandanlu1.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu1")));
         simpleBlockWithItem(BlockInit.liandanlu2.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu2")));
         simpleBlockWithItem(BlockInit.liandanlu3.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu3")));
+        simpleBlockWithItem(BlockInit.jvlingzhen0.get(), new ModelFile.UncheckedModelFile(modLoc("block/zhenpan")));
 
         cubeTop(BlockInit.lingdirblock);
         BlockInit.zhiwublocklist.stream().forEach(c-> this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath()));
@@ -64,6 +65,7 @@ public class ModBlockProvider extends BlockStateProvider {
 
 
     private void cubeTop(RegistryObject<Block> blockRegistryObject) {
+
         this.getVariantBuilder(blockRegistryObject.get()).forAllStates((state) ->  new ConfiguredModel[]{new ConfiguredModel(
                 this.models().cubeTop(
                             blockRegistryObject.getId().getPath(),
@@ -72,6 +74,7 @@ public class ModBlockProvider extends BlockStateProvider {
                 )
 //                        .renderType("cutout")
         )});
+        simpleBlockItem(blockRegistryObject.get(),models().getExistingFile(modLoc("block/" + blockRegistryObject.getId().getPath())));
     }
     public void makeCornCrop(Block block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function;

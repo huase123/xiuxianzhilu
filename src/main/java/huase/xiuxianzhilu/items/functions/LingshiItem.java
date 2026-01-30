@@ -16,7 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public class LingshiItem extends Item {
 
     public LingshiItem() {
-        super(new Item.Properties());
+        super(new Item.Properties().stacksTo(64));
     }
     /**
      * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see

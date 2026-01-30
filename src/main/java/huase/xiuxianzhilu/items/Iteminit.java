@@ -6,6 +6,7 @@ import huase.xiuxianzhilu.items.danyao.DanyaoSampleItem;
 import huase.xiuxianzhilu.items.fabao.FabaoSampleItem;
 import huase.xiuxianzhilu.items.functions.LingshiItem;
 import huase.xiuxianzhilu.items.functions.PutuanItem;
+import huase.xiuxianzhilu.items.functions.TPFuItem;
 import huase.xiuxianzhilu.items.functions.ZhenqiItem;
 import huase.xiuxianzhilu.items.gongfa.GongfaSampleItem;
 import huase.xiuxianzhilu.items.jingjie.JingjieSampleItem;
@@ -30,11 +31,16 @@ public class Iteminit {
     public static List<RegistryObject<Item>> cailiaolist = new ArrayList();
     public static List<RegistryObject<Item>> danyaolist = new ArrayList();
     // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
+    public static final RegistryObject<Item> celingzhu = ITEMS.register("celingzhu", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new ExampleItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
-    public static final RegistryObject<Item> ZhenqiItem = ITEMS.register("zhenqiitem", () -> new ZhenqiItem());
+    public static final RegistryObject<Item> zhenqi = ITEMS.register("zhenqi", () -> new ZhenqiItem());
     public static final RegistryObject<Item> putuan = ITEMS.register("putuan", () -> new PutuanItem());
-    public static final RegistryObject<Item> lingshi = ITEMS.register("lingshi", () -> new LingshiItem());
+
+    public static final RegistryObject<Item> lingshi0 = ITEMS.register("lingshi0", () -> new LingshiItem());
+    public static final RegistryObject<Item> lingshi1 = ITEMS.register("lingshi1", () -> new LingshiItem());
+    public static final RegistryObject<Item> lingshi2 = ITEMS.register("lingshi2", () -> new LingshiItem());
+    public static final RegistryObject<Item> tpfu = ITEMS.register("tpfu", () -> new TPFuItem());
 
 //    public static final RegistryObject<Item> gongfa0 = ITEMS.register("gongfa0", () -> new GongfaSampleItem());
     public static final RegistryObject<Item> gongfa0 = registerGongfa("gongfa_0", () ->new GongfaSampleItem());

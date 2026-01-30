@@ -22,7 +22,17 @@ public class ModItemProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        simpleItem(Iteminit.celingzhu);
+        simpleItem(Iteminit.lingshi0);
+        simpleItem(Iteminit.lingshi1);
+        simpleItem(Iteminit.lingshi2);
+        simpleItem(Iteminit.zhenqi);
+        simpleItem(Iteminit.tpfu);
+
+
         modleItem(Iteminit.putuan);
+
+
         Iteminit.gongfaSamplelist.stream().forEach(c ->simpleItem(c));
         Iteminit.jingjielist.stream().forEach(c ->simpleItem(c));
         Iteminit.fabaolist.stream().forEach(c ->simpleItem(c));

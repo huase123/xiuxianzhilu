@@ -23,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
  */
 public class PutuanItem extends Item {
     public PutuanItem() {
-        super(new Properties());
+        super(new Item.Properties().stacksTo(1));
     }
 
     /**

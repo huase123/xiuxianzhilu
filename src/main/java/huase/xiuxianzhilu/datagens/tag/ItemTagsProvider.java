@@ -24,6 +24,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
     }
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(islingshi).add(Iteminit.lingshi.get());
+        this.tag(islingshi).add(Iteminit.lingshi2.get());
     }
 }
