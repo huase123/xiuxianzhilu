@@ -45,8 +45,8 @@ public class NoiseUse {
         int y0 = pPos.getY()>>4;
         int z0 = pPos.getZ()>>4;
         double lingliDensity = NoiseUse.getLingliDensity(Minecraft.getInstance().level, x0, y0, z0);
-        double max = Math.max(0.0D, lingliDensity);
-        double v = 0.2D + max;
+//        double max = Math.max(0.0D, lingliDensity);
+        double v = 1.7D + lingliDensity;
         return (int) (v*100);
     }
 }

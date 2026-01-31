@@ -37,6 +37,8 @@ public class ModBlockProvider extends BlockStateProvider {
         simpleBlockWithItem(BlockInit.liandanlu2.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu2")));
         simpleBlockWithItem(BlockInit.liandanlu3.get(), new ModelFile.UncheckedModelFile(modLoc("block/liandanlu3")));
         simpleBlockWithItem(BlockInit.jvlingzhen0.get(), new ModelFile.UncheckedModelFile(modLoc("block/zhenpan")));
+        simpleBlockWithItem(BlockInit.jvlingzhen1.get(), new ModelFile.UncheckedModelFile(modLoc("block/zhenpan")));
+        simpleBlockWithItem(BlockInit.jvlingzhen2.get(), new ModelFile.UncheckedModelFile(modLoc("block/zhenpan")));
 
         cubeTop(BlockInit.lingdirblock);
         BlockInit.zhiwublocklist.stream().forEach(c-> this.makeCornCrop(c.get(),c.getId().getPath(),c.getId().getPath()));

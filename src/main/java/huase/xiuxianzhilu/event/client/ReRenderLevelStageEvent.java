@@ -2,11 +2,14 @@ package huase.xiuxianzhilu.event.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.util.NoiseUse;
 import huase.xiuxianzhilu.util.RenderApi;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
@@ -28,6 +31,11 @@ public class ReRenderLevelStageEvent {
     private static void postEvent(RenderLevelStageEvent event) {
 //        if(!SHConfig.FIRSTPERSONDISPLAY.get())return;
         if (event.getStage() !=RenderLevelStageEvent.Stage.AFTER_ENTITIES )return;
+
+        LocalPlayer player = Minecraft.getInstance().player;
+        if(player == null)return;
+        ItemStack mainHandItem = player.getMainHandItem();
+        if(mainHandItem.isEmpty() || !mainHandItem.is(Iteminit.celingzhu.get()))return;
 
         MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
         PoseStack poseStack = event.getPoseStack();

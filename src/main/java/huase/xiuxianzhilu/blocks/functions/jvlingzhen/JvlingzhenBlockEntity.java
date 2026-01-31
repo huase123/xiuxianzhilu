@@ -90,7 +90,14 @@ public class JvlingzhenBlockEntity extends BlockEntity implements ChildFunction 
     }
     public void tick(Level Level, BlockPos pPos, BlockState State) {
         if(getGoalplayer() != null){
-            handProgress(getGoalplayer(),pPos);
+            if(!checkScope(getGoalplayer().getOnPos())){
+                this.goalplayer =null;
+                playerUUID =null;
+                progress = 0;
+                this.setChanged();
+            }else {
+                handProgress(getGoalplayer(),pPos);
+            }
         }else {
             progress = 0;
         }
@@ -115,7 +122,6 @@ public class JvlingzhenBlockEntity extends BlockEntity implements ChildFunction 
         return false;
     }
     private void handProgress(Player player, BlockPos pPos) {
-
         if(progress<maxProgress){
                 progress++;
         }else {
@@ -160,14 +166,14 @@ public class JvlingzhenBlockEntity extends BlockEntity implements ChildFunction 
 
     @Override
     public boolean checkScope(BlockPos blockPos) {
-        int scope = (int) Math.pow(10 + 10 * getLv(), 2);
+        int scope = (int) Math.pow(8 + 4 * getLv(), 2);
         double v = blockPos.distSqr(this.getBlockPos());
         return scope >= v;
     }
 
     @Override
     public int getLingliDensity() {
-        return 10 + getLv()*10;
+        return 10 + getLv()*20;
     }
 
     public Player getGoalplayer() {

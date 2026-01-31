@@ -54,6 +54,8 @@ public class BlockInit {
 
 
     public static final RegistryObject<Block> jvlingzhen0 = registerBlockWithBlockItem("jvlingzhen0", () -> new JvlingzhenBlock(0));
+    public static final RegistryObject<Block> jvlingzhen1 = registerBlockWithBlockItem("jvlingzhen1", () -> new JvlingzhenBlock(0));
+    public static final RegistryObject<Block> jvlingzhen2 = registerBlockWithBlockItem("jvlingzhen2", () -> new JvlingzhenBlock(0));
 
 
 

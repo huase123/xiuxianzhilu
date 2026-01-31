@@ -66,6 +66,8 @@ public class ModZHLanguageProvider extends LanguageProvider {
 
 
         this.add(BlockInit.jvlingzhen0.get()  ,"§a聚灵阵");
+        this.add(BlockInit.jvlingzhen1.get()  ,"§b中阶聚灵阵");
+        this.add(BlockInit.jvlingzhen2.get()  ,"§c高阶聚灵阵");
         this.add(BlockInit.lingdirblock.get()  ,"§a灵土");
 
 

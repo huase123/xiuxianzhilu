@@ -127,13 +127,14 @@ public class LiandanluBlockEntity extends BlockEntity implements PrentFunction {
 
     public int getLingliDensity() {
         int lingliDensity = getsSelfLingliDensity(level, this.getBlockPos());
+        int lingli = 20;
         for (BlockPos childBlockPo : childBlockPos) {
             BlockEntity blockEntity = this.level.getBlockEntity(childBlockPo);
             if (blockEntity != null && blockEntity instanceof ChildFunction childFunction){
-                lingliDensity += childFunction.getLingliDensity();
+                lingli += childFunction.getLingliDensity();
             }
         }
-        return lingliDensity;
+        return lingliDensity*lingli/100;
     }
 
     private void checkChilds(Level level, BlockPos pPos, BlockState state) {
@@ -242,8 +243,13 @@ public class LiandanluBlockEntity extends BlockEntity implements PrentFunction {
     }
 
     private int getMaxinteractNum() {
+        if(getLv()>=2){
+            return 2;
+        }
+
         return 1;
     }
+
 
     @Override
     public List<BlockPos> getChildBlockPos() {

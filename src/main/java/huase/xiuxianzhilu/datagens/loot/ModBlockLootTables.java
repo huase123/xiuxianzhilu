@@ -69,6 +69,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 
         this.dropSelf(BlockInit.jvlingzhen0.get());
+        this.dropSelf(BlockInit.jvlingzhen1.get());
+        this.dropSelf(BlockInit.jvlingzhen2.get());
         this.dropSelf(BlockInit.lingdirblock.get());
 
         BlockInit.zhiwublocklist.stream().forEach(this::dropzhiwu);
