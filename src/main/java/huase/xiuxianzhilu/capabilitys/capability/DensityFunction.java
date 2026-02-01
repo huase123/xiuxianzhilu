@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.capabilitys.capability;
 
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
@@ -21,17 +22,17 @@ public class DensityFunction {
     PlayerCapability playerCapability;
     NormalNoise jingjieNoise;
     NormalNoise gongfaNoise;
-    Player player;
-    public DensityFunction(PlayerCapability playerCapability, Player player) {
+    Entity entity;
+    public DensityFunction(PlayerCapability playerCapability, Entity entity) {
         this.playerCapability = playerCapability;
-        this.player =player;
+        this.entity = entity;
         updateNormalNoise();
     }
 //更新密度函数,灵根改变再调用
     public void updateNormalNoise() {
         int size = playerCapability.getLinggens().size();
-        jingjieNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits())), -9+size, 1);
-        gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(player.getUUID().getMostSignificantBits()>>2)), -9, 1);
+        jingjieNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(entity.getUUID().getMostSignificantBits())), -9+size, 1);
+        gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(entity.getUUID().getMostSignificantBits()>>2)), -9, 1);
     }
 
     public void update(Player player) {

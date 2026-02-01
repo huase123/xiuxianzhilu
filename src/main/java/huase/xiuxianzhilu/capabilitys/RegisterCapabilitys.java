@@ -5,6 +5,7 @@ import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.CapabilityProvider;
 import huase.xiuxianzhilu.capabilitys.capability.MosterCapability;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import huase.xiuxianzhilu.entity.moster.CapabilityMoster;
 import huase.xiuxianzhilu.network.NetworkHandler;
 import huase.xiuxianzhilu.network.SynsAPI;
 import huase.xiuxianzhilu.network.client.CPacketCapability;
@@ -45,6 +46,11 @@ public class RegisterCapabilitys {
         if (event.getObject() instanceof Player player) {
             event.addCapability(ModMain.prefix("playercapability"),
                     new CapabilityProvider(new PlayerCapability(player))
+            );
+        }
+        if (event.getObject() instanceof CapabilityMoster) {
+            event.addCapability(ModMain.prefix("playercapability"),
+                    new CapabilityProvider(new PlayerCapability(event.getObject()))
             );
         }
     }

@@ -79,6 +79,7 @@ public class ModMain {
         // Register the Deferred Register to the mod event bus so items get registered
         BlockInit.ITEMS.register(modEventBus);
         Iteminit.ITEMS.register(modEventBus);
+        EntityInit.SPAWN_EGGS.register(modEventBus);
 
         UseStats.ITEMSUSED.register(modEventBus);
 

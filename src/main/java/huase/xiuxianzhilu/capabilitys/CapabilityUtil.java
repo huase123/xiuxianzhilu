@@ -7,6 +7,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
+import huase.xiuxianzhilu.entity.moster.CapabilityMoster;
 import huase.xiuxianzhilu.items.fabao.FabaoSampleItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
@@ -55,6 +56,10 @@ public class CapabilityUtil {
 
     public static PlayerCapability getCapability(Player player) {
         return player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElse(null);
+    }
+
+    public static PlayerCapability getCapability(Entity entity) {
+        return entity.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElse(null);
     }
 
 
@@ -106,7 +111,7 @@ public class CapabilityUtil {
 
         return lingxiuCase;
     }
-    public static int getLingxiuindex(Player player) {
+    public static int getLingxiuindex(Entity player) {
         PlayerCapability capability = getCapability(player);
         return capability.getLingxiuindex();
     }
@@ -249,7 +254,7 @@ public class CapabilityUtil {
         return (lingxiuCase.getMaxdengji()+1)+"层";
     }
 
-    public static int getXiulianshudu(Player player) {
+    public static int getXiulianshudu(Entity player) {
         PlayerCapability capability =getCapability(player);
         int value = 0;
         LingxiuCase lingxiuCase = capability.getLingxiu();
@@ -375,17 +380,17 @@ public class CapabilityUtil {
         return value;
     }
 
-    public static float getLingli(Player player) {
+    public static float getLingli(Entity player) {
         PlayerCapability capability =getCapability(player);
         return  capability.getLingli();
     }
-    public static void addLingli(Player player,float value) {
+    public static void addLingli(Entity player, float value) {
         PlayerCapability capability =getCapability(player);
         capability.setLingli(Math.min(Math.max(getLingli(player)+value,0),getMaxlingli(player)));
 
     }
 
-    public static float getMaxlingli(Player player) {
+    public static float getMaxlingli(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getMaxlingli();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -406,7 +411,7 @@ public class CapabilityUtil {
         return value;
     }
 
-    public static float getWugong(Player player) {
+    public static float getWugong(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getWugong();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -426,7 +431,7 @@ public class CapabilityUtil {
         return value;
     }
 
-    public static float getWufang(Player player) {
+    public static float getWufang(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getWufang();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -447,10 +452,10 @@ public class CapabilityUtil {
 
     }
 
-    public static float getMingzhong(Player player) {
-        PlayerCapability capability =getCapability(player);
+    public static float getMingzhong(Entity entity) {
+        PlayerCapability capability =getCapability(entity);
         float value = capability.getMingzhong();
-        for (int i = 0; i <= getLingxiuindex(player); i++) {
+        for (int i = 0; i <= getLingxiuindex(entity); i++) {
             LingxiuCase lingxius = capability.getLingxius().get(i);
             if(lingxius.isActivate())
             value +=lingxius.getMingzhong();
@@ -461,13 +466,13 @@ public class CapabilityUtil {
         for (int i = 0; i <capability.getFabaoslot().getSlots(); i++) {
             ItemStack pStack = capability.getFabaoslot().getStackInSlot(i);
             if(!pStack.isEmpty() && pStack.getItem() instanceof FabaoSampleItem fabaoSampleItem){
-                value +=fabaoSampleItem.getMingzhong(player.level(),pStack);
+                value +=fabaoSampleItem.getMingzhong(entity.level(),pStack);
             }
         }
         return value;
     }
 
-    public static float getDunsu(Player player) {
+    public static float getDunsu(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getDunsu();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -487,7 +492,7 @@ public class CapabilityUtil {
         return value;
     }
 
-    public static float getBaojishanghai(Player player) {
+    public static float getBaojishanghai(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getBaojishanghai();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -507,7 +512,7 @@ public class CapabilityUtil {
         return value;
     }
 
-    public static float getBaolv(Player player) {
+    public static float getBaolv(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getBaojilv();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -527,7 +532,7 @@ public class CapabilityUtil {
         return value;
     }
 
-    public static float getXixue(Player player) {
+    public static float getXixue(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getXixue();
         for (int i = 0; i <= getLingxiuindex(player); i++) {
@@ -549,12 +554,12 @@ public class CapabilityUtil {
 
     public static boolean handleMingzhong(Entity entity, LivingEntity living) {
         float mingzhong = 0;
-        if(entity instanceof Player player){
-             mingzhong += getMingzhong(player);
+        if(entity instanceof Player || entity instanceof CapabilityMoster){
+             mingzhong += getMingzhong(entity);
         }
         float dunsu = 0;
-        if(living instanceof Player player){
-             dunsu = getDunsu(player);
+        if(living instanceof Player || entity instanceof CapabilityMoster){
+             dunsu = getDunsu(living);
         }
         float i1 = random.nextFloat(100);
         if(i1+mingzhong-dunsu>0){
@@ -567,21 +572,27 @@ public class CapabilityUtil {
 
         float i = 0;
         float j = 0;
-        if(entity instanceof Player player){
-            float linglixiaohao = getXiulianshudu(player)/10f;
-            float lingli = getLingli(player);
+        if(entity instanceof Player || entity instanceof CapabilityMoster){
+            float linglixiaohao = getXiulianshudu(entity)/10f;
+            float lingli = getLingli(entity);
             if(lingli>linglixiaohao){
-                i = getWugong(player) + handleBaolv(getBaolv(player)) * (0.4f + getBaojishanghai(player)/100f) * getWugong(player);
-                addLingli(player,-linglixiaohao);
+                i = getWugong(entity) + handleBaolv(getBaolv(entity)) * (0.4f + getBaojishanghai(entity)/100f) * getWugong(entity);
+                addLingli(entity,-linglixiaohao);
             }
         }
-        if(living instanceof Player player){
-            float linglixiaohao = getXiulianshudu(player)/30f;
-            float lingli = getLingli(player);
+        if(entity instanceof CapabilityMoster){
+            i = getWugong(entity) + handleBaolv(getBaolv(entity)) * (0.4f + getBaojishanghai(entity)/100f) * getWugong(entity);
+        }
+        if(living instanceof Player ){
+            float linglixiaohao = getXiulianshudu(living)/30f;
+            float lingli = getLingli(living);
             if(lingli>linglixiaohao){
-                j = getWufang(player);
+                j = getWufang(living);
             }
-            addLingli(player,-linglixiaohao);
+            addLingli(living,-linglixiaohao);
+        }
+        if(entity instanceof CapabilityMoster){
+            j = getWufang(living);
         }
 
         return Math.max(0,i-j+amount);
@@ -600,6 +611,10 @@ public class CapabilityUtil {
             if(entity instanceof Player player){
                 float v1 = getXixue(player) / 100f * amount;
                 player.setHealth(player.getHealth()+v1);
+            }
+            if(entity instanceof CapabilityMoster && entity instanceof LivingEntity livingEntity){
+                float v1 = getXixue(entity) / 100f * amount;
+                livingEntity.setHealth(livingEntity.getHealth()+v1);
             }
         }
     }

@@ -4,6 +4,7 @@ import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 
 import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
@@ -17,10 +18,10 @@ public class LingxiuCase extends AttributeBase {
     float maxjingyan;
     int dengji;
     int maxdengji;
-    Player player;
+    Entity entity;
     boolean activate = true;
 
-    public LingxiuCase(Player player, LingxiuJingjieSample lingxiuJingjieSample) {
+    public LingxiuCase(Entity entity, LingxiuJingjieSample lingxiuJingjieSample) {
         super(lingxiuJingjieSample.maxshengming, lingxiuJingjieSample.wugong, lingxiuJingjieSample.wufang, lingxiuJingjieSample.baojishanghai, lingxiuJingjieSample.baojilv
                 , lingxiuJingjieSample.getMaxlingli()
                 , lingxiuJingjieSample.getMingzhong()
@@ -28,15 +29,15 @@ public class LingxiuCase extends AttributeBase {
                 , lingxiuJingjieSample.getShouyuan()
                 , lingxiuJingjieSample.getXixue()
         );
-        this.player = player;
+        this.entity = entity;
         this.lingxiuJingjieSample = lingxiuJingjieSample;
 
         this.maxjingyan = lingxiuJingjieSample.getMaxjingyan();
         this.maxdengji = lingxiuJingjieSample.getMaxdengji();
     }
 
-    public LingxiuCase(Player player, CompoundTag compoundTag) {
-        this.player = player;
+    public LingxiuCase(Entity entity, CompoundTag compoundTag) {
+        this.entity = entity;
         deserializeNBT(compoundTag);
     }
 
@@ -48,7 +49,7 @@ public class LingxiuCase extends AttributeBase {
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag compoundTag = super.serializeNBT();
-        ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
+        ResourceLocation key = entity.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
         if(key !=null){
             compoundTag.putString("lingxiuJingjie",key.toString());
         }
@@ -64,7 +65,7 @@ public class LingxiuCase extends AttributeBase {
     public void deserializeNBT(CompoundTag compoundTag) {
         super.deserializeNBT(compoundTag);
         String string = compoundTag.getString("lingxiuJingjie");
-        lingxiuJingjieSample = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
+        lingxiuJingjieSample = entity.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
 
         this.jingyan = compoundTag.getFloat("jingyan");
         this.maxjingyan = compoundTag.getFloat("maxjingyan");

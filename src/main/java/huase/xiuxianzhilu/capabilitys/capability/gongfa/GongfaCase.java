@@ -17,18 +17,18 @@ import static huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen.gongfa_
  */
 public class GongfaCase extends AttributeBase {
     GongfaSample gongfaSample;
-    Player player;
+    Entity entity;
     int layernum;
     int maxlayernum;
     float jingyan;
     float maxjingyan;
-    public GongfaCase(Player player, CompoundTag compoundTag) {
-        this.player = player;
+    public GongfaCase(Entity entity, CompoundTag compoundTag) {
+        this.entity = entity;
         deserializeNBT(compoundTag);
     }
 
-    public GongfaCase(Player player, GongfaSample gongfaSample) {
-        this.player = player;
+    public GongfaCase(Entity entity, GongfaSample gongfaSample) {
+        this.entity = entity;
         this.gongfaSample = gongfaSample;
         this.maxlayernum = gongfaSample.getMaxdengji();
         this.maxjingyan = gongfaSample.getmaxjingyan();
@@ -37,7 +37,7 @@ public class GongfaCase extends AttributeBase {
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag compoundTag = super.serializeNBT();
-        ResourceLocation key = player.level().registryAccess().registryOrThrow(gongfa_key).getKey(gongfaSample);
+        ResourceLocation key = entity.level().registryAccess().registryOrThrow(gongfa_key).getKey(gongfaSample);
         if(key !=null){
             compoundTag.putString("gongfaSample",key.toString());
         }
@@ -52,7 +52,7 @@ public class GongfaCase extends AttributeBase {
     public void deserializeNBT(CompoundTag compoundTag) {
         super.deserializeNBT(compoundTag);
         String string = compoundTag.getString("gongfaSample");
-        gongfaSample = player.level().registryAccess().registryOrThrow(gongfa_key).get(ResourceLocation.parse(string));
+        gongfaSample = entity.level().registryAccess().registryOrThrow(gongfa_key).get(ResourceLocation.parse(string));
 
         this.layernum = compoundTag.getInt("layernum");
         this.maxlayernum = compoundTag.getInt("maxlayernum");

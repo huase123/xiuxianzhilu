@@ -18,6 +18,9 @@ public class EntityRenderInit {
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(EntityInit.putuanentity.get(), PutuanRender::new);
+            event.registerEntityRenderer(EntityInit.mosterbaseentity.get(), PutuanRender::new);
+
+
         }
     }
 }

@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.creativemodetabs;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.BlockInit;
+import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
@@ -28,6 +29,7 @@ public class CreativeModeTabInit {
                 output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
                 BlockInit.ITEMS.getEntries().stream().forEach(e->output.accept(e.get()));
                 Iteminit.ITEMS.getEntries().stream().forEach(e->output.accept(e.get()));
+                EntityInit.SPAWN_EGGS.getEntries().stream().forEach(e->output.accept(e.get()));
             }).build());
 
     // Add the example block item to the building blocks tab

@@ -10,16 +10,17 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-public class PutuanRender extends EntityRenderer<PutuanEntity> {
+public class PutuanRender<T extends Entity> extends EntityRenderer {
     public PutuanRender(EntityRendererProvider.Context context) {
         super(context);
     }
 
     ItemStack itemstack = new ItemStack(Iteminit.putuan.get());
-    public void render(PutuanEntity entity, float v, float v1, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+    public void render(Entity entity, float v, float v1, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
 
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 
@@ -33,7 +34,7 @@ public class PutuanRender extends EntityRenderer<PutuanEntity> {
         poseStack.popPose();
     }
     @Override
-    public ResourceLocation getTextureLocation(PutuanEntity entity) {
+    public ResourceLocation getTextureLocation(Entity entity) {
         return null;
     }
 }

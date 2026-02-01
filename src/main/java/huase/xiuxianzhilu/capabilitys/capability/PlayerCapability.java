@@ -4,7 +4,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.tis.Tixiu;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
     ItemStackHandler fabaoslot = new ItemStackHandler(7);
     private boolean isupdate =true;
     private DensityFunction densityFunction ;
-    private Player player ;
+    private Entity entity;
 
 
     public boolean isIsupdate() {
@@ -42,10 +42,9 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         this.isupdate = isupdate;
     }
 
-    public PlayerCapability(Player player) {
-        this.player = player;
+    public PlayerCapability(Entity entity) {
+        this.entity = entity;
         if(!linggens.isEmpty());
-//        densityFunction = new DensityFunction(this, player);
     }
 
 
@@ -98,7 +97,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         lingxius.clear();
         for (int i = 0; i < compoundTag.getInt("lingxiusize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("lingxiu" + i);
-            lingxius.add(new LingxiuCase(player,tag));
+            lingxius.add(new LingxiuCase(entity,tag));
         }
         linggens.clear();
         for (int i = 0; i < compoundTag.getInt("linggensize"); i++) {
@@ -111,9 +110,9 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         gongfas.clear();
         for (int i = 0; i < compoundTag.getInt("gongfasize"); i++) {
             CompoundTag tag = (CompoundTag) compoundTag.get("gongfa" + i);
-            gongfas.add(new GongfaCase(player,tag));
+            gongfas.add(new GongfaCase(entity,tag));
         }
-        if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(player);
+        if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(entity);
     }
 
     public ItemStackHandler getFabaoslot() {
@@ -231,7 +230,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
         this.densityFunction = densityFunction;
     }
 
-    public void createDensityFunction( Player player) {
-        densityFunction = new DensityFunction(this, player);
+    public void createDensityFunction( Entity entity) {
+        densityFunction = new DensityFunction(this, entity);
     }
 }
