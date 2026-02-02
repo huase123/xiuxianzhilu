@@ -3,6 +3,11 @@ package huase.xiuxianzhilu.entity.moster;
 
 import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.Entitylivingabstract;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -16,7 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
-
 
 
 public class MosterBaseEntity extends Monster implements CapabilityMoster{
@@ -113,8 +117,13 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 	@Override
 	public void initCapability(LivingEntity livingEntity, Level level) {
 		PlayerCapability capability = CapabilityUtil.getCapability(livingEntity);
-		capability.setMaxshengming(100.0f);
 
+		Entitylivingabstract entitylivingabstract = level.registryAccess().registryOrThrow(EntitylivingGen.entityliving_key).stream().filter(
+				c -> c.getType().equals(livingEntity.getType())
+		).findAny().get();
+		capability.deserializeNBT(entitylivingabstract.serializeNBT());
+		Holder<LingxiuJingjieSample> jingjie = entitylivingabstract.getJingjie();
+		capability.getLingxius().add(new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
 		capability.setIsupdate(true);
 	}
 

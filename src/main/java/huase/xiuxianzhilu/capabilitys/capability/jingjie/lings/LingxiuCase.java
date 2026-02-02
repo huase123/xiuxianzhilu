@@ -93,13 +93,14 @@ public class LingxiuCase extends AttributeBase {
             dengji++;
             jingyan = 0;
             maxjingyan +=(maxjingyan/ maxdengji)*2;
-
+            this.amplification(1.2f);
             ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
             player.sendSystemMessage(Component.translatable("境界突破至")
                     .append(Component.translatable(key.toString())).append((dengji+1)+"层")
             );
         }else {
             if(!isYuanman()){
+                this.amplification(1.3f);
                 ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuJingjieSample);
                 player.sendSystemMessage(Component.translatable("境界突破至")
                         .append(Component.translatable(key.toString())).append("圆满")
@@ -140,5 +141,19 @@ public class LingxiuCase extends AttributeBase {
 
     public boolean isYuanman() {
         return dengji>= maxdengji;
+    }
+
+    public LingxiuCase amplification(float amplification) {
+        this.maxshengming*=amplification;
+        this.wugong*=amplification;
+        this.wufang*=amplification;
+        this.baojishanghai*=amplification;
+        this.baojilv*=amplification;
+        this.maxlingli*=amplification;
+        this.mingzhong*=amplification;
+        this.dunsu*=amplification;
+        this.shouyuan*=amplification;
+        this.xixue*=amplification;
+        return this;
     }
 }

@@ -6,6 +6,8 @@ import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
 import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoTypesInIt;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
@@ -124,6 +126,9 @@ public class ModMain {
         DanyaoTypesInIt.danyao_type_REGISTER.register(modEventBus);
         GongfaGen.gongfa_key_REGISTER.register(modEventBus);
         GongfaTypesInit.gongfa_type_key_REGISTER.register(modEventBus);
+        EntitylivingGen.entityliving_key_keyBase_REGISTER.register(modEventBus);
+        EntitylivingTypesInIt.entityliving_type_REGISTER.register(modEventBus);
+
 //        资源包管理的注册表
         modEventBus.addListener(NewRegistries::setRegistriesForDatapack);
 

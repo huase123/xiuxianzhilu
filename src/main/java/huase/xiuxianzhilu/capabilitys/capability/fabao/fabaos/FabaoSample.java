@@ -17,8 +17,8 @@ import java.util.Optional;
 /**
  * - @description:FabaaoSample类
  */
-public class FabaaoSample extends Fabaoabstract {
-    public static final Codec<FabaaoSample> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
+public class FabaoSample extends Fabaoabstract {
+    public static final Codec<FabaoSample> CODEC =  RecordCodecBuilder.create(instance -> instance.group(
             LingxiujingjieGen.HOLDER_CODEC.optionalFieldOf("jingjie").forGetter(fabaoabstract -> Optional.ofNullable(fabaoabstract.getJingjie())),
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(Fabaoabstract::getItem),
             Codec.INT.fieldOf("type").forGetter(Fabaoabstract::getTypenum),
@@ -33,12 +33,12 @@ public class FabaaoSample extends Fabaoabstract {
             ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getDunsu").forGetter(AttributeBase::getDunsu)
             ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getShouyuan").forGetter(AttributeBase::getShouyuan)
             ,Codec.floatRange(0, Float.MAX_VALUE).fieldOf("getXixue").forGetter(AttributeBase::getXixue)
-    ).apply(instance, FabaaoSample::new));
+    ).apply(instance, FabaoSample::new));
     Holder<LingxiuJingjieSample> jingjie;
     Item item;
     int dengji;
     int typenum;
-    public FabaaoSample(Optional<Holder<LingxiuJingjieSample>> jingjie, Item item, int typenum, int dengji , float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv, float maxlingli, float mingzhong, float dunsu, float shouyuan, float xixue) {
+    public FabaoSample(Optional<Holder<LingxiuJingjieSample>> jingjie, Item item, int typenum, int dengji , float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv, float maxlingli, float mingzhong, float dunsu, float shouyuan, float xixue) {
         super(maxshengming, wugong, wufang, baojishanghai, baojilv, maxlingli, mingzhong, dunsu, shouyuan, xixue);
         this.dengji=dengji;
         this.jingjie=jingjie.orElse(null);
@@ -46,7 +46,7 @@ public class FabaaoSample extends Fabaoabstract {
         this.typenum = typenum;
     }
 
-    public FabaaoSample(Holder.Reference<LingxiuJingjieSample> jingjie, Item item, int typenum, int dengji, int maxshengming, int wugong, int wufang, int baojishanghai, int baojilv, int maxlingli, int mingzhong, int dunsu, int shouyuan, int xixue) {
+    public FabaoSample(Holder.Reference<LingxiuJingjieSample> jingjie, Item item, int typenum, int dengji, int maxshengming, int wugong, int wufang, int baojishanghai, int baojilv, int maxlingli, int mingzhong, int dunsu, int shouyuan, int xixue) {
         super(maxshengming, wugong, wufang, baojishanghai, baojilv, maxlingli, mingzhong, dunsu, shouyuan, xixue);
         this.dengji=dengji;
         this.jingjie=jingjie;

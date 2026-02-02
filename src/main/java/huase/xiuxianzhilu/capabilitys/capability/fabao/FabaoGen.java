@@ -2,7 +2,7 @@ package huase.xiuxianzhilu.capabilitys.capability.fabao;
 
 import com.mojang.serialization.Codec;
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.capabilitys.capability.fabao.fabaos.FabaaoSample;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.fabaos.FabaoSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.items.Iteminit;
@@ -54,21 +54,21 @@ public class FabaoGen {
 
     public static void bootstrap(BootstapContext<Fabaoabstract> context) {
         HolderGetter<LingxiuJingjieSample> lookup = context.lookup(LingxiujingjieGen.lingxiu_jingjie_key);
-        context.register(jiezhi0    , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.jiezhi0.get(),0,0,5 , 2    ,2     ,   0       , 0       , 0     ,0 , 2 ,0 , 0));
-        context.register(jiezhi1    , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.jiezhi1.get(),0,1,20 , 5    ,4     ,   0       , 0       , 0     ,0 , 4 ,0 , 0));
-        context.register(jiezhi2    , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.jiezhi2.get(),0,2,100 , 15    ,12     ,   0       , 0       , 0     ,0 , 8 ,0 , 0));
-        context.register(jiezhi3    , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.jiezhi3.get(),0,3,500 , 75    ,36     ,   0       , 0       , 0     ,0 , 16 ,0 , 0));
-        context.register(xianglian0 , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.xianglian0.get(),1,0,5 , 0    ,2     ,   2       , 0       , 0     ,0 , 2 ,0 , 0));
-        context.register(xianglian1 , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.xianglian1.get(),1,1,20 , 0    ,4     ,   4       , 0       , 0     ,0 , 4 ,0 , 0));
-        context.register(xianglian2 , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.xianglian2.get(),1,2,100 , 0    ,12     ,   8       , 0       , 0     ,0 , 8 ,0 , 0));
-        context.register(xianglian3 , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.xianglian3.get(),1,3,500 , 0    ,36     ,   0       , 0       , 16     ,0 , 16 ,0 , 0));
-        context.register(yvpei0     , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.yvpei0.get(),2,0,5 , 0    ,2     ,   0       , 0       , 20     ,0 , 2 ,0 , 0));
-        context.register(yvpei1     , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.yvpei1.get(),2,1,20 , 0    ,4     ,   0       , 0       , 40     ,0 , 4 ,0 , 0));
-        context.register(yvpei2     , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.yvpei2.get(),2,2,100 , 0    ,12     ,   0       , 0       , 80     ,0 , 8 ,0 , 0));
-        context.register(yvpei3     , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.yvpei3.get(),2,3,500 , 0    ,36     ,   0       , 0       , 160     ,0 , 16 ,0 , 0));
-        context.register(hufu0      , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.hufu0.get(),3,0,5 , 0    ,2     ,   0       , 0       , 0     ,5 , 2 ,0 , 0));
-        context.register(hufu1      , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.hufu1.get(),3,1,20 , 0    ,4     ,   0       , 0       , 0     ,10 , 4 ,0 , 0));
-        context.register(hufu2      , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.hufu2.get(),3,2,100 , 0    ,12     ,   0       , 0       , 0     ,15 , 8 ,0 , 0));
-        context.register(hufu3      , new FabaaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.hufu3.get(),3,3,500 , 0    ,36     ,   0       , 0       , 0     ,20 , 16 ,0 , 0));
+        context.register(jiezhi0    , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.jiezhi0.get(),0,0,5 , 2    ,2     ,   0       , 0       , 0     ,0 , 2 ,0 , 0));
+        context.register(jiezhi1    , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.jiezhi1.get(),0,1,20 , 5    ,4     ,   0       , 0       , 0     ,0 , 4 ,0 , 0));
+        context.register(jiezhi2    , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.jiezhi2.get(),0,2,100 , 15    ,12     ,   0       , 0       , 0     ,0 , 8 ,0 , 0));
+        context.register(jiezhi3    , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.jiezhi3.get(),0,3,500 , 75    ,36     ,   0       , 0       , 0     ,0 , 16 ,0 , 0));
+        context.register(xianglian0 , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.xianglian0.get(),1,0,5 , 0    ,2     ,   2       , 0       , 0     ,0 , 2 ,0 , 0));
+        context.register(xianglian1 , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.xianglian1.get(),1,1,20 , 0    ,4     ,   4       , 0       , 0     ,0 , 4 ,0 , 0));
+        context.register(xianglian2 , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.xianglian2.get(),1,2,100 , 0    ,12     ,   8       , 0       , 0     ,0 , 8 ,0 , 0));
+        context.register(xianglian3 , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.xianglian3.get(),1,3,500 , 0    ,36     ,   0       , 0       , 16     ,0 , 16 ,0 , 0));
+        context.register(yvpei0     , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.yvpei0.get(),2,0,5 , 0    ,2     ,   0       , 0       , 20     ,0 , 2 ,0 , 0));
+        context.register(yvpei1     , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.yvpei1.get(),2,1,20 , 0    ,4     ,   0       , 0       , 40     ,0 , 4 ,0 , 0));
+        context.register(yvpei2     , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.yvpei2.get(),2,2,100 , 0    ,12     ,   0       , 0       , 80     ,0 , 8 ,0 , 0));
+        context.register(yvpei3     , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.yvpei3.get(),2,3,500 , 0    ,36     ,   0       , 0       , 160     ,0 , 16 ,0 , 0));
+        context.register(hufu0      , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.lianqi   ),Iteminit.hufu0.get(),3,0,5 , 0    ,2     ,   0       , 0       , 0     ,5 , 2 ,0 , 0));
+        context.register(hufu1      , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.zhuji    ),Iteminit.hufu1.get(),3,1,20 , 0    ,4     ,   0       , 0       , 0     ,10 , 4 ,0 , 0));
+        context.register(hufu2      , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.yuanying ),Iteminit.hufu2.get(),3,2,100 , 0    ,12     ,   0       , 0       , 0     ,15 , 8 ,0 , 0));
+        context.register(hufu3      , new FabaoSample(lookup.getOrThrow(LingxiujingjieGen.huashen  ),Iteminit.hufu3.get(),3,3,500 , 0    ,36     ,   0       , 0       , 0     ,20 , 16 ,0 , 0));
  }
 }

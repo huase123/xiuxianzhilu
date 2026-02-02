@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.registrie;
 
 import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
@@ -24,6 +25,7 @@ public class NewRegistries {
         event.dataPackRegistry(GongfaGen.gongfa_key, GongfaGen.CODEC, GongfaGen.CODEC);
         event.dataPackRegistry(FabaoGen.fabao_key, FabaoGen.CODEC, FabaoGen.CODEC);
         event.dataPackRegistry(DanyaoGen.danyao_key, DanyaoGen.CODEC, DanyaoGen.CODEC);
+        event.dataPackRegistry(EntitylivingGen.entityliving_key, EntitylivingGen.CODEC, EntitylivingGen.CODEC);
 //        event.dataPackRegistry(MagicPaintingVariants.REGISTRY_KEY, MagicPaintingVariant.CODEC, MagicPaintingVariant.CODEC);
     }
 

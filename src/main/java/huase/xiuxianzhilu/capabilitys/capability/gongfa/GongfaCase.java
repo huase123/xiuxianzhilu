@@ -28,10 +28,17 @@ public class GongfaCase extends AttributeBase {
     }
 
     public GongfaCase(Entity entity, GongfaSample gongfaSample) {
+        super(gongfaSample.maxshengming, gongfaSample.wugong, gongfaSample.wufang, gongfaSample.baojishanghai, gongfaSample.baojilv
+                , gongfaSample.getMaxlingli()
+                , gongfaSample.getMingzhong()
+                , gongfaSample.getDunsu()
+                , gongfaSample.getShouyuan()
+                , gongfaSample.getXixue()
+        );
         this.entity = entity;
-        this.gongfaSample = gongfaSample;
-        this.maxlayernum = gongfaSample.getMaxdengji();
-        this.maxjingyan = gongfaSample.getmaxjingyan();
+        this.gongfaSample =gongfaSample;
+        this.maxlayernum = this.gongfaSample.getMaxdengji();
+        this.maxjingyan = this.gongfaSample.getmaxjingyan();
     }
 
     @Override

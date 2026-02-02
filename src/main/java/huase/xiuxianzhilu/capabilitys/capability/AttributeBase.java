@@ -11,15 +11,15 @@ AttributeBase implements INBTSerializable<CompoundTag> {
     public float baojishanghai;
     public float baojilv;
     //最大灵力值
-    private float maxlingli;
+    public float maxlingli;
     //命中
-    private float mingzhong;
+    public float mingzhong;
     // 遁速
-    private float dunsu;
+    public float dunsu;
     //寿元
-    private float shouyuan;
+    public float shouyuan;
     //吸血
-    private float xixue;
+    public float xixue;
 
     public AttributeBase(){
         this.maxshengming = 20;

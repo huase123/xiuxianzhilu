@@ -2,7 +2,7 @@ package huase.xiuxianzhilu.capabilitys.capability.fabao;
 
 import com.mojang.serialization.Codec;
 import huase.xiuxianzhilu.ModMain;
-import huase.xiuxianzhilu.capabilitys.capability.fabao.fabaos.FabaaoSample;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.fabaos.FabaoSample;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ExtraCodecs;
@@ -23,7 +23,7 @@ public class FabaoTypesInIt {
     public static final Supplier<IForgeRegistry<FabaoType>> REGISTRY = fabao_type_REGISTER.makeRegistry(() -> new RegistryBuilder<FabaoType>().allowModification().disableSync());
     public static final Codec<FabaoType> CODEC = ExtraCodecs.lazyInitializedCodec(() -> REGISTRY.get().getCodec());
 
-    public static final RegistryObject<FabaoType> fabao_sample_type = registerType("fabao_sample_type", () -> () -> FabaaoSample.CODEC);
+    public static final RegistryObject<FabaoType> fabao_sample_type = registerType("fabao_sample_type", () -> () -> FabaoSample.CODEC);
 
     private static RegistryObject<FabaoType> registerType(String name, Supplier<FabaoType> factory) {
         return fabao_type_REGISTER.register(name, factory);
