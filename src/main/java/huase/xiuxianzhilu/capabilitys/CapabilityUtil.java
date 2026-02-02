@@ -353,7 +353,7 @@ public class CapabilityUtil {
         return player.getHealth();
     }
 
-    public static float getMaxshengming(Player player) {
+    public static float getMaxshengming(LivingEntity player) {
 
         PlayerCapability capability =getCapability(player);
         float value = capability.getMaxshengming();

@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.entity;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.entity.functions.putuan.PutuanEntity;
 import huase.xiuxianzhilu.entity.moster.MosterBaseEntity;
+import huase.xiuxianzhilu.entity.moster.chilingshuishe.ChilingshuisheEntity;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -38,9 +39,15 @@ public class EntityInit {
 
     public static final RegistryObject<EntityType<MosterBaseEntity>> mosterbaseentity =
             registerEntityAndEgg("mosterbaseentity",
-                    EntityType.Builder.<MosterBaseEntity>of(MosterBaseEntity::new, MobCategory.MISC)
-                    .updateInterval(Integer.MAX_VALUE)
-                    .sized(0.9f, 0.3f));
+                    EntityType.Builder.of(MosterBaseEntity::new, MobCategory.MISC)
+                    .setTrackingRange(10)
+                    .sized(0.9f, 1.6f));
+
+    public static final RegistryObject<EntityType<ChilingshuisheEntity>> chilingshuishe =
+            registerEntityAndEgg("chilingshuishe",
+                    EntityType.Builder.of(ChilingshuisheEntity::new, MobCategory.MISC)
+                    .setTrackingRange(10)
+                    .sized(0.9f, 1.6f));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(entityName, () -> builder.build(entityName));
@@ -58,11 +65,11 @@ public class EntityInit {
 
     public static AttributeSupplier.Builder registerAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 500.0D)
+                .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 2.0D)
-                .add(Attributes.FOLLOW_RANGE, 40.0D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.FOLLOW_RANGE, 20.0D)
+//                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 ;
     }
 

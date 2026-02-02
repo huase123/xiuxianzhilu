@@ -69,6 +69,12 @@ public class RegisterCapabilitys {
         {
             CapabilityUtil.synsMaxhealth(serverPlayer,CapabilityUtil.getCapability(serverPlayer));
         }
+        if (entity instanceof CapabilityMoster capabilityMoster && entity instanceof LivingEntity livingEntity)
+        {
+            if(!event.loadedFromDisk()){
+                capabilityMoster.initCapability(livingEntity, event.getLevel());
+            }
+        }
 
     }
 
@@ -100,9 +106,11 @@ public class RegisterCapabilitys {
             AttributeBase capability = CapabilityUtil.getCapability(entity);
             if(capability instanceof hua.huase.shanhaicontinent.capabilitys.capability.Update update && update.isIsupdate()){
                 update.setIsupdate(false);
-                if(entity instanceof Player player){
-                    if(CapabilityUtil.getMaxshengming(player)!=player.getAttribute(Attributes.MAX_HEALTH).getValue()){
-                        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(CapabilityUtil.getMaxshengming(player));
+                double value = entity.getAttribute(Attributes.MAX_HEALTH).getValue();
+                float maxshengming = CapabilityUtil.getMaxshengming(entity);
+                if(entity instanceof CapabilityMoster){
+                    if(maxshengming!= value){
+                        entity.setHealth(maxshengming);
                     }
                 }
                 SynsAPI.synsCapability(entity,capability);

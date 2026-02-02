@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.entity;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.entity.functions.putuan.PutuanRender;
+import huase.xiuxianzhilu.entity.moster.chilingshuishe.ChilingshuisheRender;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +20,7 @@ public class EntityRenderInit {
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(EntityInit.putuanentity.get(), PutuanRender::new);
             event.registerEntityRenderer(EntityInit.mosterbaseentity.get(), PutuanRender::new);
+            event.registerEntityRenderer(EntityInit.chilingshuishe.get(), ChilingshuisheRender::new);
 
 
         }

@@ -1,12 +1,12 @@
 package huase.xiuxianzhilu.entity.moster;
 
 
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -51,20 +51,6 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 	}
 
-	public static AttributeSupplier.Builder registerAttributes() {
-		return Monster.createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 80.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.4D)
-				.add(Attributes.ATTACK_DAMAGE, 8.0D)
-				.add(Attributes.ATTACK_KNOCKBACK, 1.0D)
-
-				.add(Attributes.FOLLOW_RANGE, 40.0D);
-	}
-
-//	@Override
-//	public float getStepHeight() {
-//		return 2.2F;
-//	}
 
 	@Nullable
 	@Override
@@ -124,7 +110,12 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 		return false;
 	}
 
+	@Override
+	public void initCapability(LivingEntity livingEntity, Level level) {
+		PlayerCapability capability = CapabilityUtil.getCapability(livingEntity);
+		capability.setMaxshengming(100.0f);
 
-
+		capability.setIsupdate(true);
+	}
 
 }
