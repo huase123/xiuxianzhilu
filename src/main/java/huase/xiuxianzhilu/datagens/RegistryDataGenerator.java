@@ -7,6 +7,7 @@ package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
@@ -76,6 +77,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
                 .add(FabaoGen.fabao_key, FabaoGen::bootstrap)
                 .add(DanyaoGen.danyao_key, DanyaoGen::bootstrap)
                 .add(GongfaGen.gongfa_key, GongfaGen::bootstrap)
+                .add(EntitylivingGen.entityliving_key, EntitylivingGen::bootstrap)
 //                .add(Registries.FLAT_LEVEL_GENERATOR_PRESET, FlatLevelGeneratorPresets::bootstrap)
 //                .add(Registries.CHAT_TYPE, ChatType::bootstrap)
 //                .add(Registries.TRIM_PATTERN, TrimPatterns::bootstrap)

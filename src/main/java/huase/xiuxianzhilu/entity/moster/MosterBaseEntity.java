@@ -117,9 +117,8 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 	@Override
 	public void initCapability(LivingEntity livingEntity, Level level) {
 		PlayerCapability capability = CapabilityUtil.getCapability(livingEntity);
-
 		Entitylivingabstract entitylivingabstract = level.registryAccess().registryOrThrow(EntitylivingGen.entityliving_key).stream().filter(
-				c -> c.getType().equals(livingEntity.getType())
+				c -> c.getEntityType().equals(livingEntity.getType())
 		).findAny().get();
 		capability.deserializeNBT(entitylivingabstract.serializeNBT());
 		Holder<LingxiuJingjieSample> jingjie = entitylivingabstract.getJingjie();
