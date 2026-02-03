@@ -3,10 +3,12 @@ package huase.xiuxianzhilu.datagens.modprovider;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.blocks.BlockInit;
+import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -22,6 +24,11 @@ public class ModItemProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        for (RegistryObject<Item> item : EntityInit.SPAWN_EGGS.getEntries()) {
+            if (item.get() instanceof SpawnEggItem) {
+                getBuilder(item.getId().getPath()).parent(getExistingFile(ResourceLocation.parse("item/template_spawn_egg")));
+            }
+        }
         simpleItem(Iteminit.celingzhu);
         simpleItem(Iteminit.lingshi0);
         simpleItem(Iteminit.lingshi1);

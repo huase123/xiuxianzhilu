@@ -7,6 +7,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.entity.EntityInit;
+import huase.xiuxianzhilu.entity.functions.putuan.PutuanEntity;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
 import net.minecraft.data.PackOutput;
@@ -58,12 +59,25 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("linggen.tu",                      "§6土");
 
 
+        this.add("item.xiuxianzhilu.chilingshuishe_spawn_egg"  ,"赤鳞水虺-刷怪蛋");
+        this.add("item.xiuxianzhilu.huanlinghu_spawn_egg"  ,"幻灵狐-刷怪蛋");
+        this.add("item.xiuxianzhilu.xueyichanglang_spawn_egg"  ,"雪翼苍狼-刷怪蛋");
+        this.add("item.xiuxianzhilu.youmingguishou_spawn_egg"  ,"幽冥鬼手-刷怪蛋");
+        this.add("item.xiuxianzhilu.shayingmoxie_spawn_egg"  ,"沙影魔蝎-刷怪蛋");
+        this.add("item.xiuxianzhilu.huanduzhu_spawn_egg"  ,"幻毒蛛-刷怪蛋");
+        this.add("item.xiuxianzhilu.zuoying_spawn_egg"  ,"烛阴-刷怪蛋");
+        this.add("item.xiuxianzhilu.huoqiling_spawn_egg"  ,"火麟兽-刷怪蛋");
+        this.add("item.xiuxianzhilu.xvanbingjvxiong_spawn_egg"  ,"玄冰巨熊-刷怪蛋");
+        this.add("item.xiuxianzhilu.bingfenghuang_spawn_egg"  ,"冰凤凰-刷怪蛋");
+        this.add("item.xiuxianzhilu.kunpeng_spawn_egg"  ,"鲲鹏-刷怪蛋");
+
         this.add(Iteminit.celingzhu.get()  ,"§a测灵珠");
         this.add(Iteminit.lingshi0.get()  ,"§a灵石");
         this.add(Iteminit.lingshi1.get()  ,"§b中阶灵石");
         this.add(Iteminit.lingshi2.get()  ,"§c高阶灵石");
         this.add(Iteminit.tpfu.get()  ,"§a秘境传送符");
         this.add(Iteminit.zhenqi.get()  ,"§a阵旗");
+        this.add(Iteminit.putuan.get()  ,"§a蒲团");
 
 
         this.add(BlockInit.jvlingzhen0.get()  ,"§a聚灵阵");
@@ -296,6 +310,14 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(EntityInit.xvanbingjvxiong                 .get(),  "§e玄冰巨熊"           );
         this.add(EntityInit.bingfenghuang                   .get(),  "§d冰凤凰"            );
         this.add(EntityInit.kunpeng                         .get(),  "§c鲲鹏"         );
+
+        this.add(PutuanEntity.State.EMPTY,  "挂机"         );
+        this.add(PutuanEntity.State.GONGFA, "修炼功法"      );
+        this.add(PutuanEntity.State.LINGMAI,"调整灵脉"      );
+    }
+
+    private void add(PutuanEntity.State state, String s) {
+        this.add("putuan.state."+state.name(),  s);
     }
 
     private void addgongfa(ResourceKey<GongfaSample> gongfa0, String s) {

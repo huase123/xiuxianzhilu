@@ -110,7 +110,7 @@ public class REBlockPredicate {
                 ImmutableSet.Builder<Block> builder = ImmutableSet.builder();
 
                 for(JsonElement jsonelement : jsonarray) {
-                    ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "block"));
+                    ResourceLocation resourcelocation = ResourceLocation.parse(GsonHelper.convertToString(jsonelement, "block"));
                     builder.add(BuiltInRegistries.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
                         return new JsonSyntaxException("Unknown block id '" + resourcelocation + "'");
                     }));
@@ -121,7 +121,7 @@ public class REBlockPredicate {
 
             TagKey<Block> tagkey = null;
             if (jsonobject.has("tag")) {
-                ResourceLocation resourcelocation1 = new ResourceLocation(GsonHelper.getAsString(jsonobject, "tag"));
+                ResourceLocation resourcelocation1 = ResourceLocation.parse(GsonHelper.getAsString(jsonobject, "tag"));
                 tagkey = TagKey.create(Registries.BLOCK, resourcelocation1);
             }
 

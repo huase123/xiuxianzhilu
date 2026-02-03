@@ -11,13 +11,19 @@ import huase.xiuxianzhilu.blocks.treegrower.Lingmu3TreeGrower;
 import huase.xiuxianzhilu.blocks.zhiwu.GuoshiBlock;
 import huase.xiuxianzhilu.blocks.zhiwu.LingDirBlock;
 import huase.xiuxianzhilu.blocks.zhiwu.ZhiwuBlock;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,6 +34,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -53,9 +60,9 @@ public class BlockInit {
 
 
 
-    public static final RegistryObject<Block> jvlingzhen0 = registerBlockWithBlockItem("jvlingzhen0", () -> new JvlingzhenBlock(0));
-    public static final RegistryObject<Block> jvlingzhen1 = registerBlockWithBlockItem("jvlingzhen1", () -> new JvlingzhenBlock(0));
-    public static final RegistryObject<Block> jvlingzhen2 = registerBlockWithBlockItem("jvlingzhen2", () -> new JvlingzhenBlock(0));
+    public static final RegistryObject<Block> jvlingzhen0 = registerBlockWithBlockItem("jvlingzhen0", () -> new JvlingzhenBlock(0),  Component.translatable("可用于觉醒灵根，可提高炼器鼎、炼丹炉的灵力浓度").withStyle(ChatFormatting.GREEN));
+    public static final RegistryObject<Block> jvlingzhen1 = registerBlockWithBlockItem("jvlingzhen1", () -> new JvlingzhenBlock(0),  Component.translatable("可用于觉醒灵根，可提高炼器鼎、炼丹炉的灵力浓度").withStyle(ChatFormatting.GREEN));
+    public static final RegistryObject<Block> jvlingzhen2 = registerBlockWithBlockItem("jvlingzhen2", () -> new JvlingzhenBlock(0),  Component.translatable("可用于觉醒灵根，可提高炼器鼎、炼丹炉的灵力浓度").withStyle(ChatFormatting.GREEN));
 
 
 
@@ -71,7 +78,8 @@ public class BlockInit {
 
 
     //    灵土
-    public static final RegistryObject<Block> lingdirblock= registerBlockWithBlockItem("lingdirblock", LingDirBlock::new);
+    public static final RegistryObject<Block> lingdirblock= registerBlockWithBlockItem("lingdirblock", LingDirBlock::new, Component.translatable("可培养灵植").withStyle(ChatFormatting.GREEN));
+
 
     public static final RegistryObject<Block> zhiwu0= registerZhiwuBlockWithBlockItem("zhiwu0", ZhiwuBlock::new);
     public static final RegistryObject<Block> zhiwu1= registerGuoshiBlockWithBlockItem("zhiwu1", GuoshiBlock::new);
@@ -158,6 +166,16 @@ public class BlockInit {
         return toReturn;
     }
 
+    private static <T extends Block> RegistryObject<T> registerBlockWithBlockItem(String name, Supplier<T> block, MutableComponent mutableComponent) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()){
+            public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
+                pTooltip.add(mutableComponent);
+            }
+        });
+        return toReturn;
+    }
     private static <T extends Block> RegistryObject<T> registerZhiwuBlockWithBlockItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         zhiwublocklist.add((RegistryObject<Block>) toReturn);

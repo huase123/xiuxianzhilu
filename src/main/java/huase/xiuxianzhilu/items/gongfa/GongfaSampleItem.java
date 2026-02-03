@@ -132,8 +132,11 @@ public class GongfaSampleItem extends Item {
 
         Holder<LingxiuJingjieSample> prent = sample.getPrent();
         if(prent != null){
-            pTooltip.add(Component.translatable("=====特殊效果=====").withStyle(ChatFormatting.LIGHT_PURPLE));
-            pTooltip.add(Component.translatable("可突破修为：").withStyle(ChatFormatting.DARK_PURPLE).append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(prent.get()).toString())).append("境"));
+            ResourceLocation key = pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(prent.get());
+            if(key !=null){
+                pTooltip.add(Component.translatable("=====特殊效果=====").withStyle(ChatFormatting.LIGHT_PURPLE));
+                pTooltip.add(Component.translatable("可突破修为：").withStyle(ChatFormatting.DARK_PURPLE).append(Component.translatable(key.toString())).append("境"));
+            }
         }
     }
 }

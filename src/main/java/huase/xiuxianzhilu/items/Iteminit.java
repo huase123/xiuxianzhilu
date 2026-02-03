@@ -10,12 +10,18 @@ import huase.xiuxianzhilu.items.functions.TPFuItem;
 import huase.xiuxianzhilu.items.functions.ZhenqiItem;
 import huase.xiuxianzhilu.items.gongfa.GongfaSampleItem;
 import huase.xiuxianzhilu.items.jingjie.JingjieSampleItem;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -31,16 +37,20 @@ public class Iteminit {
     public static List<RegistryObject<Item>> cailiaolist = new ArrayList();
     public static List<RegistryObject<Item>> danyaolist = new ArrayList();
     // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
-    public static final RegistryObject<Item> celingzhu = ITEMS.register("celingzhu", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> celingzhu = ITEMS.register("celingzhu", () -> new Item(new Item.Properties().stacksTo(1)) {
+        public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+            pTooltip.add(Component.translatable("拿手上可观察到天地间的灵力浓度").withStyle(ChatFormatting.GREEN));
+        }
+    });
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new ExampleItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
     public static final RegistryObject<Item> zhenqi = ITEMS.register("zhenqi", () -> new ZhenqiItem());
     public static final RegistryObject<Item> putuan = ITEMS.register("putuan", () -> new PutuanItem());
 
+    public static final RegistryObject<Item> tpfu = ITEMS.register("tpfu", () -> new TPFuItem());
     public static final RegistryObject<Item> lingshi0 = ITEMS.register("lingshi0", () -> new LingshiItem());
     public static final RegistryObject<Item> lingshi1 = ITEMS.register("lingshi1", () -> new LingshiItem());
     public static final RegistryObject<Item> lingshi2 = ITEMS.register("lingshi2", () -> new LingshiItem());
-    public static final RegistryObject<Item> tpfu = ITEMS.register("tpfu", () -> new TPFuItem());
 
 //    public static final RegistryObject<Item> gongfa0 = ITEMS.register("gongfa0", () -> new GongfaSampleItem());
     public static final RegistryObject<Item> gongfa0 = registerGongfa("gongfa_0", () ->new GongfaSampleItem());

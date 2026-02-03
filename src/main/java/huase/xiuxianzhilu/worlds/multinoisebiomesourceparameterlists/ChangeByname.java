@@ -35,6 +35,6 @@ public class ChangeByname {
 
         // 验证修改结果
         System.out.println(targetClass.getMethod("getPreset", ResourceLocation.class)
-                .invoke(null, new ResourceLocation("new_id")));
+                .invoke(null, ResourceLocation.parse("new_id")));
     }
 }
