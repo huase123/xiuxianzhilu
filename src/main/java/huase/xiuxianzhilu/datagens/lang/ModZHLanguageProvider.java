@@ -6,6 +6,7 @@ import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaSample;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
+import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.items.Iteminit;
 import huase.xiuxianzhilu.worlds.biomes.BiomesInit;
 import net.minecraft.data.PackOutput;
@@ -282,6 +283,19 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.addBiome(BiomesInit.xiuxianjie_biome9  ,  "冰魄寒渊"       );
         this.addBiome(BiomesInit.xiuxianjie_biome10 ,  "黑水玄渊‌"      );
 
+
+
+        this.add(EntityInit.chilingshuishe                  .get(),  "§a赤鳞水虺"           );
+        this.add(EntityInit.huanlinghu                      .get(),  "§a幻灵狐"            );
+        this.add(EntityInit.xueyichanglang                  .get(),  "§a雪翼苍狼"           );
+        this.add(EntityInit.youmingguishou                  .get(),  "§b幽冥鬼手"           );
+        this.add(EntityInit.shayingmoxie                    .get(),  "§b沙影魔蝎"           );
+        this.add(EntityInit.huanduzhu                       .get(),  "§b幻毒蛛"            );
+        this.add(EntityInit.zuoying                         .get(),  "§e烛阴"         );
+        this.add(EntityInit.huoqiling                       .get(),  "§e火麟兽"            );
+        this.add(EntityInit.xvanbingjvxiong                 .get(),  "§e玄冰巨熊"           );
+        this.add(EntityInit.bingfenghuang                   .get(),  "§d冰凤凰"            );
+        this.add(EntityInit.kunpeng                         .get(),  "§c鲲鹏"         );
     }
 
     private void addgongfa(ResourceKey<GongfaSample> gongfa0, String s) {

@@ -25,7 +25,7 @@ public class DimensionTypeGen {
 
     public static void bootstrapType(BootstapContext<DimensionType> context) {
         DimensionType dimensionType = new DimensionType(
-                OptionalLong.of(13000L), //fixed time
+                OptionalLong.of(130000L), //fixed time
                 true, //skylight
                 false, //ceiling
                 false, //ultrawarm
@@ -33,7 +33,7 @@ public class DimensionTypeGen {
                 8D, //coordinate scale
                 true, //bed works
                 true, //respawn anchor works
-                -32, // Minimum Y Level
+                -64, // Minimum Y Level
                 32 + 256, // Height + Min Y = Max Y
                 32 + 256, // Logical Height
                 BlockTags.INFINIBURN_OVERWORLD, //infiburn

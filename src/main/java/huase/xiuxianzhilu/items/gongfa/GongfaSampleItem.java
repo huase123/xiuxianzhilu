@@ -6,6 +6,7 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSam
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -64,7 +65,10 @@ public class GongfaSampleItem extends Item {
         GongfaSample sample = getGongfaSample(pLevel,pStack);
         Holder<LingxiuJingjieSample> child = sample.getChild();
         if(child != null){
-            pTooltip.add(Component.translatable("所需境界:").withStyle(ChatFormatting.AQUA).append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get()).toString())));
+            ResourceLocation key = pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(child.get());
+            if(key !=null) {
+                pTooltip.add(Component.translatable("所需境界:").withStyle(ChatFormatting.AQUA).append(Component.translatable(key.toString())));
+            }
         }
 
 

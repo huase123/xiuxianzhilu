@@ -31,7 +31,7 @@ public class NoiseGeneratorSettingsGen {
 
     public static NoiseGeneratorSettings tfDefault(BootstapContext<NoiseGeneratorSettings> context) {
         NoiseSettings tfNoise = NoiseSettings.create(
-                -32, //TODO Deliberate over this. For now it'll be -32
+                -64, //TODO Deliberate over this. For now it'll be -32
                 256,
                 1,
                 2
