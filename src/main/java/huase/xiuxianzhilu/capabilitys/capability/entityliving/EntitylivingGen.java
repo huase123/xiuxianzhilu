@@ -30,7 +30,17 @@ public class EntitylivingGen {
     public static final Codec<Entitylivingabstract> CODEC = EntitylivingTypesInIt.CODEC.dispatch("entityliving_key_type", Entitylivingabstract::getType, EntitylivingType::getCodec);
     public static final Codec<Holder<Entitylivingabstract>> HOLDER_CODEC = RegistryFileCodec.create(entityliving_key, CODEC, true);
 
-    public static final ResourceKey<Entitylivingabstract> chilingshuishe      = registerKey("chilingshuishe");
+    public static final ResourceKey<Entitylivingabstract> chilingshuishe       = registerKey("chilingshuishe");
+    public static final ResourceKey<Entitylivingabstract> huanlinghu           = registerKey("huanlinghu");
+    public static final ResourceKey<Entitylivingabstract> xueyichanglang       = registerKey("xueyichanglang");
+    public static final ResourceKey<Entitylivingabstract> youmingguishou       = registerKey("youmingguishou");
+    public static final ResourceKey<Entitylivingabstract> shayingmoxie         = registerKey("shayingmoxie");
+    public static final ResourceKey<Entitylivingabstract> huanduzhu            = registerKey("huanduzhu");
+    public static final ResourceKey<Entitylivingabstract> zuoying              = registerKey("zuoying");
+    public static final ResourceKey<Entitylivingabstract> huoqiling            = registerKey("huoqiling");
+    public static final ResourceKey<Entitylivingabstract> xvanbingjvxiong      = registerKey("xvanbingjvxiong");
+    public static final ResourceKey<Entitylivingabstract> bingfenghuang        = registerKey("bingfenghuang");
+    public static final ResourceKey<Entitylivingabstract> kunpeng              = registerKey("kunpeng");
     public static ResourceKey<Entitylivingabstract> registerKey(String name) {
         return ResourceKey.create(entityliving_key,ModMain.prefix(name));
     }
@@ -38,7 +48,17 @@ public class EntitylivingGen {
 
     public static void bootstrap(BootstapContext<Entitylivingabstract> context) {
         HolderGetter<LingxiuJingjieSample> lookup = context.lookup(LingxiujingjieGen.lingxiu_jingjie_key);
-        context.register(chilingshuishe    , new EntitylivingSample(EntityInit.chilingshuishe.get(),lookup.getOrThrow(LingxiujingjieGen.lianqi   ),2.0f,30,3,3,3,3,3,3,3,3,3));
+        context.register(chilingshuishe     , new EntitylivingSample(EntityInit.chilingshuishe .get(),lookup.getOrThrow(LingxiujingjieGen.lianqi       ),2f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(huanlinghu         , new EntitylivingSample(EntityInit.huanlinghu     .get(),lookup.getOrThrow(LingxiujingjieGen.lianqi       ),2.5f     ,0,0,0,0,0,0,0,0,0,0));
+        context.register(xueyichanglang     , new EntitylivingSample(EntityInit.xueyichanglang .get(),lookup.getOrThrow(LingxiujingjieGen.lianqi       ),3f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(youmingguishou     , new EntitylivingSample(EntityInit.youmingguishou .get(),lookup.getOrThrow(LingxiujingjieGen.zhuji        ),3f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(shayingmoxie       , new EntitylivingSample(EntityInit.shayingmoxie   .get(),lookup.getOrThrow(LingxiujingjieGen.zhuji        ),4f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(huanduzhu          , new EntitylivingSample(EntityInit.huanduzhu      .get(),lookup.getOrThrow(LingxiujingjieGen.zhuji        ),5f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(zuoying            , new EntitylivingSample(EntityInit.zuoying        .get(),lookup.getOrThrow(LingxiujingjieGen.jindan       ),3f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(huoqiling          , new EntitylivingSample(EntityInit.huoqiling      .get(),lookup.getOrThrow(LingxiujingjieGen.jindan       ),4f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(xvanbingjvxiong    , new EntitylivingSample(EntityInit.xvanbingjvxiong.get(),lookup.getOrThrow(LingxiujingjieGen.jindan       ),5f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(bingfenghuang      , new EntitylivingSample(EntityInit.bingfenghuang  .get(),lookup.getOrThrow(LingxiujingjieGen.yuanying     ),4f       ,0,0,0,0,0,0,0,0,0,0));
+        context.register(kunpeng            , new EntitylivingSample(EntityInit.kunpeng        .get(),lookup.getOrThrow(LingxiujingjieGen.huashen      ),4f       ,0,0,0,0,0,0,0,0,0,0));
 
     }
 }

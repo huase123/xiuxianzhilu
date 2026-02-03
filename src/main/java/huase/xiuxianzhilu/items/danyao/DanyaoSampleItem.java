@@ -39,9 +39,7 @@ public class DanyaoSampleItem extends Item {
             Danyaoabstract danyaoSample = getDanyaoSample(pLevel, pStack);
             if (danyaoSample.getMaxusetime() == -1 || value <= danyaoSample.getMaxusetime()) {
                 Holder<LingxiuJingjieSample> lingxiuJingjieSample = danyaoSample.getJingjie();
-                PlayerCapability capability = CapabilityUtil.getCapability(serverplayer);
-                LingxiuCase lingxiu = capability.getLingxiu();
-                if (lingxiuJingjieSample == null || (lingxiu != null && lingxiuJingjieSample.get().equals(lingxiu.getLingxiuJingjie()))) {
+                if (lingxiuJingjieSample == null || isSatisfy(serverplayer,lingxiuJingjieSample)) {
                     finishUsingItem(danyaoSample, serverplayer);
                 } else {
                     serverplayer.sendSystemMessage(Component.translatable("当前境界无法服用该丹药"));
@@ -53,6 +51,16 @@ public class DanyaoSampleItem extends Item {
 
 
         return  pStack;
+    }
+
+    private boolean isSatisfy(ServerPlayer serverplayer, Holder<LingxiuJingjieSample> lingxiuJingjieSample) {
+        PlayerCapability capability = CapabilityUtil.getCapability(serverplayer);
+        for (LingxiuCase lingxius : capability.getLingxius()) {
+            if(lingxiuJingjieSample.get().equals(lingxius.getLingxiuJingjie())){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void finishUsingItem(Danyaoabstract danyaoSample, ServerPlayer serverplayer) {

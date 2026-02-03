@@ -572,7 +572,7 @@ public class CapabilityUtil {
 
         float i = 0;
         float j = 0;
-        if(entity instanceof Player || entity instanceof CapabilityMoster){
+        if(entity instanceof Player){
             float linglixiaohao = getXiulianshudu(entity)/10f;
             float lingli = getLingli(entity);
             if(lingli>linglixiaohao){
@@ -591,7 +591,7 @@ public class CapabilityUtil {
             }
             addLingli(living,-linglixiaohao);
         }
-        if(entity instanceof CapabilityMoster){
+        if(living instanceof CapabilityMoster){
             j = getWufang(living);
         }
 

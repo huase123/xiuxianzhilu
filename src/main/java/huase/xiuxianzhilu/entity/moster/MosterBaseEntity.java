@@ -9,6 +9,8 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -23,6 +25,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+
+import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
 
 
 public class MosterBaseEntity extends Monster implements CapabilityMoster{
@@ -129,6 +133,15 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 			capability.getLingxius().add(new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
 			capability.setIsupdate(true);
 		}
+
+		LingxiuCase lingxiu = capability.getLingxiu();
+		if(lingxiu !=null){
+			ResourceLocation key = level.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiu.getLingxiuJingjie());
+			if(key != null){
+				livingEntity.setCustomName(Component.translatable(livingEntity.getDisplayName().getString()).append("--------").append(Component.translatable(key.toString())));
+			}
+		}
+
 	}
 
 }
