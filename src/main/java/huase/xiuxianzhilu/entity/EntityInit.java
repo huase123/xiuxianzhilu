@@ -3,7 +3,17 @@ package huase.xiuxianzhilu.entity;
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.entity.functions.putuan.PutuanEntity;
 import huase.xiuxianzhilu.entity.moster.MosterBaseEntity;
+import huase.xiuxianzhilu.entity.moster.bingfenghuang.BingfenghuangEntity;
 import huase.xiuxianzhilu.entity.moster.chilingshuishe.ChilingshuisheEntity;
+import huase.xiuxianzhilu.entity.moster.huanduzhu.HuanduzhuEntity;
+import huase.xiuxianzhilu.entity.moster.huanlinghu.HuanlinghuEntity;
+import huase.xiuxianzhilu.entity.moster.huoqiling.HuoqilingEntity;
+import huase.xiuxianzhilu.entity.moster.kunpeng.KunpengEntity;
+import huase.xiuxianzhilu.entity.moster.shayingmoxie.ShayingmoxieEntity;
+import huase.xiuxianzhilu.entity.moster.xueyichanglang.XueyichanglangEntity;
+import huase.xiuxianzhilu.entity.moster.xvanbingjvxiong.XvanbingjvxiongEntity;
+import huase.xiuxianzhilu.entity.moster.youmingguishou.YoumingguishouEntity;
+import huase.xiuxianzhilu.entity.moster.zuoying.ZuoyingEntity;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -43,12 +53,17 @@ public class EntityInit {
                     .setTrackingRange(10)
                     .sized(0.9f, 1.6f));
 
-    public static final RegistryObject<EntityType<ChilingshuisheEntity>> chilingshuishe =
-            registerEntityAndEgg("chilingshuishe",
-                    EntityType.Builder.of(ChilingshuisheEntity::new, MobCategory.MISC)
-                    .setTrackingRange(10)
-                    .sized(0.9f, 1.6f));
-
+    public static final RegistryObject<EntityType<ChilingshuisheEntity>>    chilingshuishe              = registerEntityAndEgg("chilingshuishe", EntityType.Builder.of(ChilingshuisheEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<HuanlinghuEntity>>        huanlinghu                  = registerEntityAndEgg("huanlinghu", EntityType.Builder.of(HuanlinghuEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<XueyichanglangEntity>>    xueyichanglang              = registerEntityAndEgg("xueyichanglang"          , EntityType.Builder.of(XueyichanglangEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<YoumingguishouEntity>>    youmingguishou              = registerEntityAndEgg("youmingguishou"          , EntityType.Builder.of(YoumingguishouEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<ShayingmoxieEntity>>      shayingmoxie                = registerEntityAndEgg("shayingmoxie"            , EntityType.Builder.of(ShayingmoxieEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<HuanduzhuEntity>>         huanduzhu                   = registerEntityAndEgg("huanduzhu"               , EntityType.Builder.of(HuanduzhuEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<ZuoyingEntity>>           zuoying                     = registerEntityAndEgg("zuoying"                 , EntityType.Builder.of(ZuoyingEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<HuoqilingEntity>>         huoqiling                   = registerEntityAndEgg("huoqiling"               , EntityType.Builder.of(HuoqilingEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<XvanbingjvxiongEntity>>   xvanbingjvxiong             = registerEntityAndEgg("xvanbingjvxiong"         , EntityType.Builder.of(XvanbingjvxiongEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<BingfenghuangEntity>>     bingfenghuang               = registerEntityAndEgg("bingfenghuang"           , EntityType.Builder.of(BingfenghuangEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
+    public static final RegistryObject<EntityType<KunpengEntity>>           kunpeng                     = registerEntityAndEgg("kunpeng"                 , EntityType.Builder.of(KunpengEntity::new, MobCategory.MISC).setTrackingRange(10).sized(0.9f, 1.6f));
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(entityName, () -> builder.build(entityName));
     }

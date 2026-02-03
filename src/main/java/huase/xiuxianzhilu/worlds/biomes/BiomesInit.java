@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu.worlds.biomes;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.entity.EntityInit;
 import huase.xiuxianzhilu.worlds.feature.OreFeaturePlacements;
 import huase.xiuxianzhilu.worlds.feature.TreeFeaturePlacements;
 import huase.xiuxianzhilu.worlds.feature.ZhiwuPlacements;
@@ -69,17 +70,17 @@ public class BiomesInit {
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
 
 
-        context.register(xiuxianjie_biome0 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning(), xiuxianjie_biome0_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome1 , biomeWithDefaults(0.5f,0.1f,fireflyParticles  (defaultSHAmbientBuilder(0x0211cd4e)), defaultSpawning(), xiuxianjie_biome1_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome2 , biomeWithDefaults(0.5f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x0311ad4e)), defaultSpawning(), xiuxianjie_biome2_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome3 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0xffffffff)), defaultSpawning(), xiuxianjie_biome3_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome4 , biomeWithDefaults(0.5f,0.2f,fireflyParticles  (defaultSHAmbientBuilder(0x0161cd6e)), defaultSpawning(), xiuxianjie_biome4_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome5 , biomeWithDefaults(0.5f,0.2f,fireflyParticles  (defaultSHAmbientBuilder(0x0141fd1e)), defaultSpawning(), xiuxianjie_biome5_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome6 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x01111199)), defaultSpawning(), xiuxianjie_biome6_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome7 , biomeWithDefaults(0.5f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55ff1111)), defaultSpawning(), xiuxianjie_biome7_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome8 , biomeWithDefaults(-2.0f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55999999)), defaultSpawning(), xiuxianjie_biome8_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome9 , biomeWithDefaults(-2.0f,2.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55111199)), defaultSpawning(), xiuxianjie_biome9_Placement(featureGetter, carverGetter)).build());
-        context.register(xiuxianjie_biome10, biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x11111133)), defaultSpawning(), xiuxianjie_biome10_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome0 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x0111fd4e)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.chilingshuishe .get(), 5, 1, 1)), xiuxianjie_biome0_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome1 , biomeWithDefaults(0.5f,0.1f,fireflyParticles  (defaultSHAmbientBuilder(0x0211cd4e)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.huanlinghu     .get(), 5, 1, 1)), xiuxianjie_biome1_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome2 , biomeWithDefaults(0.5f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x0311ad4e)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.xueyichanglang .get(), 5, 1, 1)), xiuxianjie_biome2_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome3 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0xffffffff)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.youmingguishou .get(), 5, 1, 1)), xiuxianjie_biome3_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome4 , biomeWithDefaults(0.5f,0.2f,fireflyParticles  (defaultSHAmbientBuilder(0x0161cd6e)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.shayingmoxie   .get(), 5, 1, 1)), xiuxianjie_biome4_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome5 , biomeWithDefaults(0.5f,0.2f,fireflyParticles  (defaultSHAmbientBuilder(0x0141fd1e)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.huanduzhu      .get(), 5, 1, 1)), xiuxianjie_biome5_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome6 , biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x01111199)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.zuoying        .get(), 5, 1, 1)), xiuxianjie_biome6_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome7 , biomeWithDefaults(0.5f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55ff1111)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.huoqiling      .get(), 5, 1, 1)), xiuxianjie_biome7_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome8 , biomeWithDefaults(-2.0f,0.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55999999)),defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.xvanbingjvxiong.get(), 5, 1, 1)), xiuxianjie_biome8_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome9 , biomeWithDefaults(-2.0f,2.5f,fireflyParticles  (defaultSHAmbientBuilder(0x55111199)),defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.bingfenghuang  .get(), 5, 1, 1)), xiuxianjie_biome9_Placement(featureGetter, carverGetter)).build());
+        context.register(xiuxianjie_biome10, biomeWithDefaults(0.5f,0.0f,fireflyParticles  (defaultSHAmbientBuilder(0x11111133)), defaultSpawning().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.kunpeng        .get(), 5, 1, 1)), xiuxianjie_biome10_Placement(featureGetter, carverGetter)).build());
 
    }
 
@@ -123,7 +124,7 @@ public class BiomesInit {
 
     public static MobSpawnSettings.Builder defaultSpawning() {
         MobSpawnSettings.Builder spawnInfo = new MobSpawnSettings.Builder();
-        spawnInfo.creatureGenerationProbability(0.004f);
+        spawnInfo.creatureGenerationProbability(0.04f);
         spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.CHICKEN, 10, 4, 4));
         spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 5, 4, 4));
         spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 4, 2, 3));
@@ -131,7 +132,7 @@ public class BiomesInit {
         spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.SHEEP, 12, 4, 4));
         spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.PIG, 10, 4, 4));
         spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.COW, 8, 4, 4));
-        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 5, 1, 1));
+//        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 5, 1, 1));
 //        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.xiushientity.get(), 1, 1, 1));
         spawnInfo.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 100, 4, 8));
         return spawnInfo;

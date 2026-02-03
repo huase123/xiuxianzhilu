@@ -22,6 +22,8 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 
 public class MosterBaseEntity extends Monster implements CapabilityMoster{
 
@@ -117,13 +119,16 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 	@Override
 	public void initCapability(LivingEntity livingEntity, Level level) {
 		PlayerCapability capability = CapabilityUtil.getCapability(livingEntity);
-		Entitylivingabstract entitylivingabstract = level.registryAccess().registryOrThrow(EntitylivingGen.entityliving_key).stream().filter(
+		Optional<Entitylivingabstract> first = level.registryAccess().registryOrThrow(EntitylivingGen.entityliving_key).stream().filter(
 				c -> c.getEntityType().equals(livingEntity.getType())
-		).findAny().get();
-		capability.deserializeNBT(entitylivingabstract.serializeNBT());
-		Holder<LingxiuJingjieSample> jingjie = entitylivingabstract.getJingjie();
-		capability.getLingxius().add(new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
-		capability.setIsupdate(true);
+		).findFirst();
+		if(!first.isEmpty()){
+			Entitylivingabstract entitylivingabstract =first.get();
+			capability.deserializeNBT(entitylivingabstract.serializeNBT());
+			Holder<LingxiuJingjieSample> jingjie = entitylivingabstract.getJingjie();
+			capability.getLingxius().add(new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
+			capability.setIsupdate(true);
+		}
 	}
 
 }
