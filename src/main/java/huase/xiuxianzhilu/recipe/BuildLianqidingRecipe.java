@@ -51,7 +51,13 @@ public class BuildLianqidingRecipe implements FinishedRecipe {
         }
         return this;
     }
-
+    public BuildLianqidingRecipe defines(TagKey<Item> pTag,int ... pSymbol) {
+        for (int i : pSymbol) {
+//            用excle配置的序号，所以减1
+            this.define(i-1, pTag);
+        }
+        return this;
+    }
     /**
      * Adds a key to the recipe pattern.
      */

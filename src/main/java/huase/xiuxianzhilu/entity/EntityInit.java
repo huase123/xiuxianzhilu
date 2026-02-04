@@ -67,7 +67,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<KunpengEntity>>           kunpeng                     = registerEntityAndEgg("kunpeng"                 , EntityType.Builder.of(KunpengEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.6f));
 
 
-    public static final RegistryObject<EntityType<XiushiEntity>> xiushi = registerEntityAndEgg("xiushientity"                 , EntityType.Builder.of(XiushiEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.2f));
+    public static final RegistryObject<EntityType<XiushiEntity>> xiushi = registerEntityAndEgg("xiushi"                 , EntityType.Builder.of(XiushiEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.2f));
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(entityName, () -> builder.build(entityName));
     }
