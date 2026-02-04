@@ -34,10 +34,16 @@ public class LiandanluRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        int containerSize = pContainer.getContainerSize();
-        for (int i = 0; i < containerSize; i++) {
-            if(!inputItems.get(i).test(pContainer.getItem( i))){
-                return false;
+        for (int i = 0; i < inputItems.size(); i++) {
+            Ingredient ingredient = inputItems.get(i);
+            if(!ingredient.isEmpty()){
+                if(i>=pContainer.getContainerSize()){
+                    return false;
+                }else {
+                    if(!ingredient.test(pContainer.getItem( i))){
+                        return false;
+                    }
+                }
             }
         }
         return true;

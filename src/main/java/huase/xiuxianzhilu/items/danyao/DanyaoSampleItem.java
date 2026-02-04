@@ -9,6 +9,7 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSam
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
@@ -133,7 +134,10 @@ public class DanyaoSampleItem extends Item {
 
         Holder<LingxiuJingjieSample> jingjie = sample.getJingjie();
         if(jingjie != null){
-            pTooltip.add(Component.translatable("所需境界:").withStyle(ChatFormatting.AQUA).append(Component.translatable(pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(jingjie.get()).toString())));
+            ResourceLocation key = pLevel.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(jingjie.get());
+            if(key != null){
+                pTooltip.add(Component.translatable("所需境界:").withStyle(ChatFormatting.AQUA).append(Component.translatable(key.toString())));
+            }
         }
 
         if(sample.getMaxusetime() != -1){

@@ -111,7 +111,7 @@ public class BuildLianqidingRecipe implements FinishedRecipe {
 
     @Override
     public ResourceLocation getId() {
-        return ModMain.prefix("lingqiding/"+BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()+count);
+        return ModMain.prefix("lingqiding/"+BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()+"_count"+count);
     }
 
     @Override

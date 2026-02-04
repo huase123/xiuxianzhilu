@@ -187,7 +187,7 @@ public class RERecipeProvider extends RecipeProvider {
         pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.tpfu.get(), 2).defineLingli(20).defineLingliDensity(10).defines(ItemTagsProvider.islingmu,2,4,6,8));
 
 
-        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen0.get(), 1).defineLingli(120).defineLingliDensity(40).defines(Iteminit.zhenqi.get(),1,3,5,7,9));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen0.get(), 1).defineLingli(0).defineLingliDensity(20).defines(Iteminit.zhenqi.get(),1,3,5,7,9));
         pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen1.get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.zhenqi.get(),1,3,5,7,9,10,11,12,13));
         pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen2.get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.zhenqi.get(),1,3,5,7,9,10,11,12,13,14,15,16,17,18,19,20,21));
 
