@@ -1,8 +1,11 @@
 package huase.xiuxianzhilu.datagens.multiblock;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.blocks.BlockInit;
+import huase.xiuxianzhilu.recipe.multiblock.BuildMultiBlockRecipe;
 import huase.xiuxianzhilu.recipe.multiblock.BuildMultiRecipe;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 
 import java.util.function.Consumer;
 
@@ -17,6 +20,21 @@ public class MultiBlockProviderGen extends MultiBlockProvider {
 
     @Override
     protected void buildRecipes(Consumer<BuildMultiRecipe> pWriter) {
+        buildRecipeszhenfa(pWriter,BlockInit.jvlingzhen0.get(),BlockInit.lingmu0_LOG.get());
+        buildRecipeszhenfa(pWriter,BlockInit.jvlingzhen1.get(),BlockInit.lingmu1_LOG.get());
+        buildRecipeszhenfa(pWriter,BlockInit.jvlingzhen2.get(),BlockInit.lingmu2_LOG.get());
+
+        buildRecipessquare(pWriter,BlockInit.lianqiding0.get(),BlockInit.lingmu0_LOG.get());
+        buildRecipessquare(pWriter,BlockInit.lianqiding1.get(),BlockInit.lingmu1_LOG.get());
+        buildRecipessquare(pWriter,BlockInit.lianqiding2.get(),BlockInit.lingmu2_LOG.get());
+        buildRecipessquare(pWriter,BlockInit.lianqiding3.get(),BlockInit.lingmu3_LOG.get());
+
+        buildRecipessquare(pWriter,BlockInit.liandanlu0.get(),BlockInit.lingmu0_LOG.get());
+        buildRecipessquare(pWriter,BlockInit.liandanlu1.get(),BlockInit.lingmu1_LOG.get());
+        buildRecipessquare(pWriter,BlockInit.liandanlu2.get(),BlockInit.lingmu2_LOG.get());
+        buildRecipessquare(pWriter,BlockInit.liandanlu3.get(),BlockInit.lingmu3_LOG.get());
+
+
 //        pWriter.accept(BuildMultiBlockRecipe.builder(
 //                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(BlockInit.jvlingzhen0.get()).build())
 //                        .aisle(
@@ -106,5 +124,44 @@ public class MultiBlockProviderGen extends MultiBlockProvider {
 //        ));
 //
 
+    }
+
+    private void buildRecipessquare(Consumer<BuildMultiRecipe> pWriter, Block resultblock, Block fillblock) {
+
+        pWriter.accept(BuildMultiBlockRecipe.builder(
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(resultblock).build())
+                        .aisle(
+                         "aaa",
+                                "aaa",
+                                "aaa"
+                        )
+                        .aisle(
+                                "???",
+                                        "?b?",
+                                        "???"
+                        )
+                        .whereresult('b')
+                        .where('?', REBlockPredicate.ANY)
+                        .where('a',  REBlockPredicate.Builder.block().of(fillblock).build())
+        ));
+    }
+    private void buildRecipeszhenfa(Consumer<BuildMultiRecipe> pWriter, Block resultblock, Block fillblock) {
+
+        pWriter.accept(BuildMultiBlockRecipe.builder(
+                MultiBlockPatternBuilder.start( REBlockPredicate.Builder.block().of(resultblock).build())
+                        .aisle(
+                         "a?a",
+                                "?a?",
+                                "a?a"
+                        )
+                        .aisle(
+                                "???",
+                                        "?b?",
+                                        "???"
+                        )
+                        .whereresult('b')
+                        .where('?', REBlockPredicate.ANY)
+                        .where('a',  REBlockPredicate.Builder.block().of(fillblock).build())
+        ));
     }
 }

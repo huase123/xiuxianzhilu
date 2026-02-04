@@ -23,10 +23,10 @@ AttributeBase implements INBTSerializable<CompoundTag> {
 
     public AttributeBase(){
         this.maxshengming = 20;
-        this.wugong = 1;
-        this.wufang = 1;
-        this.baojishanghai = 1;
-        this.baojilv = 1;
+        this.wugong = 0;
+        this.wufang = 0;
+        this.baojishanghai = 0;
+        this.baojilv = 0;
     }
 
     public AttributeBase(float maxshengming, float wugong, float wufang, float baojishanghai, float baojilv) {

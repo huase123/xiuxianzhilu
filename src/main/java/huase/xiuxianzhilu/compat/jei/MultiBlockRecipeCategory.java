@@ -152,7 +152,7 @@ public class MultiBlockRecipeCategory implements IRecipeCategory<MultiBlockRecip
                         VertexConsumer buffer1 = bufferSource.getBuffer(renderType);
                         blockRenderer.getModelRenderer().tesselateBlock(
                                 level, model, blockState, blockPos, posestack,
-                                buffer1, true, level.random, blockState.getSeed(blockPos),
+                                buffer1, false, level.random, blockState.getSeed(blockPos),
                                 OverlayTexture.NO_OVERLAY, empty, renderType
                         );
 

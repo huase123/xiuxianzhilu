@@ -44,7 +44,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
 
     public PlayerCapability(Entity entity) {
         this.entity = entity;
-        if(!linggens.isEmpty());
+        this.shouyuan  = 100;
     }
 
 
