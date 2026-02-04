@@ -182,7 +182,7 @@ public class LiandanluBlockEntity extends BlockEntity implements PrentFunction {
             }
         }
 
-        ItemEntity itementity = new ItemEntity(this.getLevel(), pPos.getX()+0.5, pPos.getY() + 2.7, pPos.getZ()+0.5, resultItem);
+        ItemEntity itementity = new ItemEntity(this.getLevel(), pPos.getX()+0.5, pPos.getY() + 2.5, pPos.getZ()+0.5, resultItem);
         itementity.setDefaultPickUpDelay();
         this.getLevel().addFreshEntity(itementity);
     }
