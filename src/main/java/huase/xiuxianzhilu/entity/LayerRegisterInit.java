@@ -8,6 +8,7 @@ import huase.xiuxianzhilu.entity.moster.huanlinghu.HuanlinghuModel;
 import huase.xiuxianzhilu.entity.moster.huoqiling.HuoqilingModel;
 import huase.xiuxianzhilu.entity.moster.kunpeng.KunpengModel;
 import huase.xiuxianzhilu.entity.moster.shayingmoxie.ShayingmoxieModel;
+import huase.xiuxianzhilu.entity.moster.xiushi.XiushiModel;
 import huase.xiuxianzhilu.entity.moster.xueyichanglang.XueyichanglangModel;
 import huase.xiuxianzhilu.entity.moster.xvanbingjvxiong.XvanbingjvxiongModel;
 import huase.xiuxianzhilu.entity.moster.youmingguishou.YoumingguishouModel;
@@ -33,5 +34,6 @@ public class LayerRegisterInit {
 		event.registerLayerDefinition(XvanbingjvxiongModel.LAYER_LOCATION, XvanbingjvxiongModel::createBodyLayer);
 		event.registerLayerDefinition(BingfenghuangModel.LAYER_LOCATION, BingfenghuangModel::createBodyLayer);
 		event.registerLayerDefinition(KunpengModel.LAYER_LOCATION, KunpengModel::createBodyLayer);
+		event.registerLayerDefinition(XiushiModel.LAYER_LOCATION, XiushiModel::createBodyLayer);
 	}
 }

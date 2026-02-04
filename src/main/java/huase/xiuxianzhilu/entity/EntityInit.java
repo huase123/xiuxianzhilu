@@ -10,6 +10,7 @@ import huase.xiuxianzhilu.entity.moster.huanlinghu.HuanlinghuEntity;
 import huase.xiuxianzhilu.entity.moster.huoqiling.HuoqilingEntity;
 import huase.xiuxianzhilu.entity.moster.kunpeng.KunpengEntity;
 import huase.xiuxianzhilu.entity.moster.shayingmoxie.ShayingmoxieEntity;
+import huase.xiuxianzhilu.entity.moster.xiushi.XiushiEntity;
 import huase.xiuxianzhilu.entity.moster.xueyichanglang.XueyichanglangEntity;
 import huase.xiuxianzhilu.entity.moster.xvanbingjvxiong.XvanbingjvxiongEntity;
 import huase.xiuxianzhilu.entity.moster.youmingguishou.YoumingguishouEntity;
@@ -64,6 +65,9 @@ public class EntityInit {
     public static final RegistryObject<EntityType<XvanbingjvxiongEntity>>   xvanbingjvxiong             = registerEntityAndEgg("xvanbingjvxiong"         , EntityType.Builder.of(XvanbingjvxiongEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.6f));
     public static final RegistryObject<EntityType<BingfenghuangEntity>>     bingfenghuang               = registerEntityAndEgg("bingfenghuang"           , EntityType.Builder.of(BingfenghuangEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.6f));
     public static final RegistryObject<EntityType<KunpengEntity>>           kunpeng                     = registerEntityAndEgg("kunpeng"                 , EntityType.Builder.of(KunpengEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.6f));
+
+
+    public static final RegistryObject<EntityType<XiushiEntity>> xiushi = registerEntityAndEgg("xiushientity"                 , EntityType.Builder.of(XiushiEntity::new, MobCategory.MONSTER).setTrackingRange(10).sized(0.9f, 1.2f));
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(entityName, () -> builder.build(entityName));
     }
@@ -81,7 +85,7 @@ public class EntityInit {
     public static AttributeSupplier.Builder registerAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.MOVEMENT_SPEED, 0.4D)
                 .add(Attributes.ATTACK_DAMAGE, 2.0D)
                 .add(Attributes.FOLLOW_RANGE, 20.0D)
 //                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)

@@ -135,6 +135,8 @@ public class BiomesInit {
 //        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 5, 1, 1));
 //        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.xiushientity.get(), 1, 1, 1));
         spawnInfo.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 100, 4, 8));
+
+        spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.xiushi.get(), 2, 1, 1)).addMobCharge(EntityInit.xiushi.get(), 0.3D, 0.05D);
         return spawnInfo;
     }
 

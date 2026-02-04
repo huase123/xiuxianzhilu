@@ -76,6 +76,15 @@ public class CapabilityUtil {
         ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.get());
         player.sendSystemMessage(Component.translatable("修为成功进阶到").withStyle(ChatFormatting.YELLOW).append(Component.translatable(key.toString()).withStyle(ChatFormatting.GOLD)));
     }
+    public static void addLingxiuCase(LivingEntity livingEntity, LingxiuCase lingxiuCase) {
+        PlayerCapability capability =getCapability(livingEntity);
+        List<LingxiuCase> lingxius = capability.getLingxius();
+
+
+        lingxius.add(lingxiuCase);
+        lingxius.sort((o1, o2) -> (int) (o1.getIntensity() - o2.getIntensity()));
+        capability.setLingxiuindex(lingxius.size()-1);
+        capability.setIsupdate(true); }
     public static void openLinggen(Player player) {
         PlayerCapability capability =CapabilityUtil.getCapability(player);
         RandomSource random = player.getRandom();

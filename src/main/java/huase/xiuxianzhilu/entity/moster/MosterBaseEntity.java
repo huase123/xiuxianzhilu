@@ -73,6 +73,10 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 	}
 
 	@Override
+	public float getStepHeight() {
+		return 2.0F;
+	}
+	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
 //		this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(TFItems.GIANT_PICKAXE.get()));
 	}
@@ -130,8 +134,7 @@ public class MosterBaseEntity extends Monster implements CapabilityMoster{
 			Entitylivingabstract entitylivingabstract =first.get();
 			capability.deserializeNBT(entitylivingabstract.serializeNBT());
 			Holder<LingxiuJingjieSample> jingjie = entitylivingabstract.getJingjie();
-			capability.getLingxius().add(new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
-			capability.setIsupdate(true);
+			CapabilityUtil.addLingxiuCase(livingEntity,new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
 		}
 
 		LingxiuCase lingxiu = capability.getLingxiu();

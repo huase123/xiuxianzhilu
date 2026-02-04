@@ -9,6 +9,7 @@ import huase.xiuxianzhilu.entity.moster.huanlinghu.HuanlinghuRender;
 import huase.xiuxianzhilu.entity.moster.huoqiling.HuoqilingRender;
 import huase.xiuxianzhilu.entity.moster.kunpeng.KunpengRender;
 import huase.xiuxianzhilu.entity.moster.shayingmoxie.ShayingmoxieRender;
+import huase.xiuxianzhilu.entity.moster.xiushi.XiushiRender;
 import huase.xiuxianzhilu.entity.moster.xueyichanglang.XueyichanglangRender;
 import huase.xiuxianzhilu.entity.moster.xvanbingjvxiong.XvanbingjvxiongRender;
 import huase.xiuxianzhilu.entity.moster.youmingguishou.YoumingguishouRender;
@@ -41,6 +42,7 @@ public class EntityRenderInit {
             event.registerEntityRenderer(EntityInit.xvanbingjvxiong         .get(), XvanbingjvxiongRender::new);
             event.registerEntityRenderer(EntityInit.bingfenghuang           .get(), BingfenghuangRender::new);
             event.registerEntityRenderer(EntityInit.kunpeng         .get(), KunpengRender::new);
+            event.registerEntityRenderer(EntityInit.xiushi.get(), XiushiRender::new);
 
 
         }

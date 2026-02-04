@@ -59,6 +59,7 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("linggen.tu",                      "§6土");
 
 
+        this.add("item.xiuxianzhilu.mosterbaseentity_spawn_egg"  ,"测试实体-刷怪蛋");
         this.add("item.xiuxianzhilu.chilingshuishe_spawn_egg"  ,"赤鳞水虺-刷怪蛋");
         this.add("item.xiuxianzhilu.huanlinghu_spawn_egg"  ,"幻灵狐-刷怪蛋");
         this.add("item.xiuxianzhilu.xueyichanglang_spawn_egg"  ,"雪翼苍狼-刷怪蛋");
@@ -70,6 +71,7 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add("item.xiuxianzhilu.xvanbingjvxiong_spawn_egg"  ,"玄冰巨熊-刷怪蛋");
         this.add("item.xiuxianzhilu.bingfenghuang_spawn_egg"  ,"冰凤凰-刷怪蛋");
         this.add("item.xiuxianzhilu.kunpeng_spawn_egg"  ,"鲲鹏-刷怪蛋");
+        this.add("item.xiuxianzhilu.xiushi_spawn_egg"  ,"鲲鹏-修士");
 
         this.add(Iteminit.celingzhu.get()  ,"§a测灵珠");
         this.add(Iteminit.lingshi0.get()  ,"§a灵石");
@@ -299,6 +301,8 @@ public class ModZHLanguageProvider extends LanguageProvider {
 
 
 
+        this.add(EntityInit.mosterbaseentity                  .get(),  "测试实体"           );
+
         this.add(EntityInit.chilingshuishe                  .get(),  "§a赤鳞水虺"           );
         this.add(EntityInit.huanlinghu                      .get(),  "§a幻灵狐"            );
         this.add(EntityInit.xueyichanglang                  .get(),  "§a雪翼苍狼"           );
@@ -310,6 +314,8 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(EntityInit.xvanbingjvxiong                 .get(),  "§e玄冰巨熊"           );
         this.add(EntityInit.bingfenghuang                   .get(),  "§d冰凤凰"            );
         this.add(EntityInit.kunpeng                         .get(),  "§c鲲鹏"         );
+
+        this.add(EntityInit.xiushi                         .get(),  "修士"         );
 
         this.add(PutuanEntity.State.EMPTY,  "挂机"         );
         this.add(PutuanEntity.State.GONGFA, "修炼功法"      );
