@@ -1,11 +1,13 @@
 package huase.xiuxianzhilu.items.functions;
 
+import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.worlds.levelstem.LevelStemGen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -47,6 +49,9 @@ public class TPFuItem extends Item {
                     return ITeleporter.super.placeEntity(entity, currentWorld, destWorld, yaw, repositionEntity);
                 }
             });
+
+
+            AdvenceInit.mijing.trigger((ServerPlayer) pPlayer);
         }
         pPlayer.getCooldowns().addCooldown(this, 1000);
         pPlayer.awardStat(Stats.ITEM_USED.get(this));

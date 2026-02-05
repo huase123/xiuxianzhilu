@@ -1,6 +1,7 @@
 package huase.xiuxianzhilu;
 
 import com.mojang.logging.LogUtils;
+import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.blocks.BlockCreateEntityInit;
 import huase.xiuxianzhilu.blocks.BlockEntitiesinit;
 import huase.xiuxianzhilu.blocks.BlockInit;
@@ -104,6 +105,8 @@ public class ModMain {
         StructuresInit.STRUCTURE_PIECE_TYPE_Registries.register(modEventBus);
         StructuresInit.STRUCTURE_TYPE_Registries.register(modEventBus);
 
+//        触发器
+        new AdvenceInit();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 

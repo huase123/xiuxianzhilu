@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.capabilitys;
 
+import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import huase.xiuxianzhilu.capabilitys.capability.Linggen;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
@@ -14,6 +15,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -75,6 +77,8 @@ public class CapabilityUtil {
         capability.setIsupdate(true);
         ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.get());
         player.sendSystemMessage(Component.translatable("修为成功进阶到").withStyle(ChatFormatting.YELLOW).append(Component.translatable(key.toString()).withStyle(ChatFormatting.GOLD)));
+
+        AdvenceInit.changelingxiutrigger.trigger((ServerPlayer) player,key);
     }
     public static void addLingxiuCase(LivingEntity livingEntity, LingxiuCase lingxiuCase) {
         PlayerCapability capability =getCapability(livingEntity);
@@ -102,6 +106,8 @@ public class CapabilityUtil {
         capability.createDensityFunction(player);
         player.sendSystemMessage(Component.translatable("成功觉醒灵根").append(getLinggenstring(player)));
         capability.setIsupdate(true);
+
+        AdvenceInit.juexinglinggen.trigger((ServerPlayer) player);
     }
 
     public static boolean isOpenLinggen(Player player) {
