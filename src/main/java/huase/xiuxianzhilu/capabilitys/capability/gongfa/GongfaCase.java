@@ -1,10 +1,13 @@
 package huase.xiuxianzhilu.capabilitys.capability.gongfa;
 
+import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 
@@ -112,7 +115,7 @@ public class GongfaCase extends AttributeBase {
     private void addjingyan(Player player, List<Entity> passengers) {
         if(jingyan<maxlayernum){
             jingyan++;
-            jingyan +=20;
+            ((ServerPlayer)player).connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("正在修炼功法").withStyle(ChatFormatting.GREEN)));
         }else {
             jingyan=0;
             layernum++;
@@ -127,5 +130,10 @@ public class GongfaCase extends AttributeBase {
 
     private void yuanman(Player player, List<Entity> passengers) {
         gongfaSample.yuanman(player,passengers);
+
+        ((ServerPlayer)player).connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("功法修炼圆满，不用再修炼").withStyle(ChatFormatting.GREEN)));
+
+        AdvenceInit.gongfatrigger.trigger((ServerPlayer) player,
+                entity.level().registryAccess().registryOrThrow(gongfa_key).getKey(gongfaSample));
     }
 }

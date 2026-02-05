@@ -26,6 +26,19 @@ public class ReVillagerTradesEvent {
                     , new ItemStack(Items.BOOK)
                     , new ItemStack(Iteminit.gongfa0.get())
                     , 10, 1, 1.0f));
+            trades.get(1).add(new BasicItemListing(
+                    new ItemStack(Items.EMERALD,2)
+                    , ItemStack.EMPTY
+                    , new ItemStack(Iteminit.tpfu.get())
+                    , 2, 1, 1.0f));
+        }
+        if(event.getType().equals(VillagerProfession.TOOLSMITH)) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            trades.get(1).add(new BasicItemListing(
+                    new ItemStack(Items.EMERALD,2)
+                    , ItemStack.EMPTY
+                    , new ItemStack(Iteminit.tpfu.get())
+                    , 2, 1, 1.0f));
         }
     }
 

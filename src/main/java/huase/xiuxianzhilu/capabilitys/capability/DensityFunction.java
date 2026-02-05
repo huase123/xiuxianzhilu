@@ -8,6 +8,8 @@ import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
+import java.util.List;
+
 /**
  * - @description:DensityFunction类
  */
@@ -23,16 +25,23 @@ public class DensityFunction {
     NormalNoise jingjieNoise;
     NormalNoise gongfaNoise;
     Entity entity;
+    /**
+     * TODO 问题描述：未知原因，第一次启动游戏进入世界时，获取客户端与服务端玩家的UUID不一致，所以用@see mostSignificantBits 变量来向客户端同步seed
+     * @author :huase
+     * @date 2026/2/5 18:24
+     */
+    public long mostSignificantBits;
     public DensityFunction(PlayerCapability playerCapability, Entity entity) {
         this.playerCapability = playerCapability;
         this.entity = entity;
-        updateNormalNoise();
+        updateNormalNoise(entity.getUUID().getMostSignificantBits());
     }
 //更新密度函数,灵根改变再调用
-    public void updateNormalNoise() {
+    public void updateNormalNoise(long mostSignificantBits) {
+        this.mostSignificantBits =mostSignificantBits;
         int size = playerCapability.getLinggens().size();
-        jingjieNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(entity.getUUID().getMostSignificantBits())), -9+size, 1);
-        gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(entity.getUUID().getMostSignificantBits()>>2)), -9, 1);
+        jingjieNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(mostSignificantBits)), -9+size, 1);
+        gongfaNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(mostSignificantBits >>2)), -9, 1);
     }
 
     public void update(Player player) {
@@ -46,7 +55,7 @@ public class DensityFunction {
                 if(lingxiu == null)return;
 
 
-                double value = value()*10;
+                double value = value()/10;
                 lingxiu.addJingyan(player,value);
                 playerCapability.setIsupdate(true);
             }
@@ -55,22 +64,29 @@ public class DensityFunction {
     }
 
     public void updateClientState(float partialTick) {
-        time += (newtime-time)*0.01 * partialTick;
-        dazuo += (newdazuo-dazuo)*0.01 * partialTick;
-        danyao += (newdanyao-danyao)*0.01 *partialTick;
+//        time += (newtime-time)*0.01 * partialTick;
+//        dazuo += (newdazuo-dazuo)*0.01 * partialTick;
+//        danyao += (newdanyao-danyao)*0.01 *partialTick;
     }
-    public void synchronizeClient(double time, double dazuo, double danyao) {
+    public void synchronizeClient(double time, double dazuo, double danyao, long mostSignificantBits) {
         this.newtime = time;
         this.newdazuo = dazuo;
         this.newdanyao = danyao;
+        this.time = time;
+        this.dazuo = dazuo;
+        this.danyao = danyao;
+        if(this.mostSignificantBits != mostSignificantBits)updateNormalNoise(mostSignificantBits);
     }
 
     public double getjingjieValue() {
         LingxiuCase lingxiu = playerCapability.getLingxiu();
         if(lingxiu == null)return 0;
         double value = getjingjieNoise();
+        if(value<0)value = value/4;
         float intensity =lingxiu.getIntensity();
-        return Math.abs(value*intensity);
+//        return Math.abs(value*intensity);
+//        return Math.max(0,value*intensity);
+        return value*intensity;
     }
     public double getjingjieNoise() {
         LingxiuCase lingxiu = playerCapability.getLingxiu();
@@ -83,9 +99,10 @@ public class DensityFunction {
     public double getGongfaValue() {
         GongfaCase gongfaindex = playerCapability.getGongfa();
         if(gongfaindex == null)return 0;
-        double value = getGongfaNoise();
+//        double value = getGongfaNoise();
         float intensity = gongfaindex.getIntensity();
-        return Math.abs(value*intensity);
+//        return Math.abs(value*intensity);
+        return Math.abs(intensity/5);
     }
     public double getGongfaNoise() {
         GongfaCase gongfaindex = playerCapability.getGongfa();
@@ -100,4 +117,8 @@ public class DensityFunction {
         return value;
     }
 
+    public void dazuotiaozheng(Player player, List<Entity> passengers) {
+        newdazuo++;
+        dazuo++;
+    }
 }

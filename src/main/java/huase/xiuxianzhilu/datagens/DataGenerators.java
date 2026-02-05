@@ -6,9 +6,11 @@
 package huase.xiuxianzhilu.datagens;
 
 import huase.xiuxianzhilu.ModMain;
+import huase.xiuxianzhilu.advance.ModAdvanceProviderGen;
 import huase.xiuxianzhilu.datagens.lang.ModEnLanguageProvider;
 import huase.xiuxianzhilu.datagens.lang.ModZHLanguageProvider;
 import huase.xiuxianzhilu.datagens.loot.ModBlockLootTables;
+import huase.xiuxianzhilu.datagens.loot.MosterEntityLootSubProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModBlockProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModItemProvider;
 import huase.xiuxianzhilu.datagens.multiblock.MultiBlockProviderGen;
@@ -19,6 +21,7 @@ import huase.xiuxianzhilu.datagens.tag.ItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -60,7 +63,7 @@ public class DataGenerators {
 //
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)
-//                , new LootTableProvider.SubProviderEntry(SpecialLootTables::new, LootContextParamSets.BLOCK)
+                , new LootTableProvider.SubProviderEntry(MosterEntityLootSubProvider::new, LootContextParamSets.ENTITY)
         )));
 
 
@@ -74,5 +77,20 @@ public class DataGenerators {
 //        generator.addProvider(event.includeServer(), new BiomeTagGenerator(packOutput, lookupProvider, existingFileHelper));
 //        generator.addProvider(event.includeServer(), new StructureTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new CustomizeWorldPresetTagsProvider(packOutput, lookupProvider, existingFileHelper));
+
+
+
+
+
+        generator.addProvider(event.includeServer(), new AdvancementProvider(packOutput, lookupProvider,
+                List.of(
+                        new ModAdvanceProviderGen()
+                ))
+        );
+
+
+
+
+
     }
 }

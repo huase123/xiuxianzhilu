@@ -1,6 +1,8 @@
 package huase.xiuxianzhilu.capabilitys;
 
+import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
+import huase.xiuxianzhilu.capabilitys.capability.DensityFunction;
 import huase.xiuxianzhilu.capabilitys.capability.Linggen;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
@@ -13,7 +15,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -75,6 +79,8 @@ public class CapabilityUtil {
         capability.setIsupdate(true);
         ResourceLocation key = player.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiuCase.get());
         player.sendSystemMessage(Component.translatable("修为成功进阶到").withStyle(ChatFormatting.YELLOW).append(Component.translatable(key.toString()).withStyle(ChatFormatting.GOLD)));
+
+        AdvenceInit.changelingxiutrigger.trigger((ServerPlayer) player,key);
     }
     public static void addLingxiuCase(LivingEntity livingEntity, LingxiuCase lingxiuCase) {
         PlayerCapability capability =getCapability(livingEntity);
@@ -102,6 +108,8 @@ public class CapabilityUtil {
         capability.createDensityFunction(player);
         player.sendSystemMessage(Component.translatable("成功觉醒灵根").append(getLinggenstring(player)));
         capability.setIsupdate(true);
+
+        AdvenceInit.juexinglinggen.trigger((ServerPlayer) player);
     }
 
     public static boolean isOpenLinggen(Player player) {
@@ -180,17 +188,32 @@ public class CapabilityUtil {
     }
 
     public static void xiuliangongfa(Player player, List<Entity> passengers) {
+        if(player.level().isClientSide)return;
         GongfaCase gongfaindex = getCapability(player).getGongfa();
-
         if(gongfaindex == null){
-
         }else {
             gongfaindex.xiulian(player,passengers);
         }
     }
 
     public static void xiulianlingmai(Player player, List<Entity> passengers) {
-        player.sendSystemMessage(Component.translatable("灵脉调整"));
+
+        player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(playerCapability -> {
+            DensityFunction densityFunction = playerCapability.getDensityFunction();
+            if(densityFunction == null){
+                if(player instanceof ServerPlayer serverPlayer){
+                    ((ServerPlayer)player).connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("未觉醒灵根，无法调整").withStyle(ChatFormatting.GREEN)));
+                }
+            }else {
+                densityFunction.dazuotiaozheng(player,passengers);
+                if(player instanceof ServerPlayer serverPlayer){
+                    ((ServerPlayer)player).connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("正在调整灵脉").withStyle(ChatFormatting.GREEN)));
+
+
+                    AdvenceInit.tiaozhenglingmai.trigger((ServerPlayer) player);
+                }
+            };
+        });
     }
 
     public static float getPlayerLingli(Player player) {
@@ -335,6 +358,19 @@ public class CapabilityUtil {
     public static void addNianling(Player player, int i) {
         PlayerCapability capability =getCapability(player);
         capability.setNianling(Math.min(getShouyuan(player),getNianling(player)+i));
+
+        if(getNianling(player)+3>=getShouyuan(player)){
+            player.sendSystemMessage(Component.translatable("油尽灯枯，寿元即将耗尽").withStyle(ChatFormatting.RED));
+        }
+        if(getNianling(player)>=getShouyuan(player)){
+            chongsheng(player);
+        }
+        capability.setIsupdate(true);
+    }
+
+    public static void addShouyuan(Player player, int i) {
+        PlayerCapability capability =getCapability(player);
+        capability.setShouyuan(Math.min(getShouyuan(player)+i,getNianling(player)));
 
         if(getNianling(player)+3>=getShouyuan(player)){
             player.sendSystemMessage(Component.translatable("油尽灯枯，寿元即将耗尽").withStyle(ChatFormatting.RED));

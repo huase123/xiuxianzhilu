@@ -47,7 +47,7 @@ public class PlayerTickEvent {
     }
 
     private static void updateShouyuan(Player player) {
-        if (player.level().getGameTime() % 18000L == 0L && !player.isDeadOrDying()) {
+        if (player.level().getGameTime() % 4000L == 0L && !player.isDeadOrDying()) {
             CapabilityUtil.addNianling(player, 1);
         }
     }
@@ -55,7 +55,7 @@ public class PlayerTickEvent {
     private static void updatesLingli(Player player) {
         if (player.level().getGameTime() % 100L == 0L) {
             int xiulianshudu = CapabilityUtil.getXiulianshudu(player);
-            CapabilityUtil.addLingli(player, xiulianshudu/30f);
+            CapabilityUtil.addLingli(player, xiulianshudu/20f);
         }
     }
 

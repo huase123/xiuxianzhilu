@@ -37,18 +37,21 @@ public class DensityFunctionPacketCapability {
   public double time;
   public double dazuo;
   public double danyao;
+  public long mostSignificantBits;
   public DensityFunctionPacketCapability(int entityId, DensityFunction densityFunction) {
     this.entityId = entityId;
     this.time = densityFunction.time;
     this.dazuo = densityFunction.dazuo;
     this.danyao = densityFunction.danyao;
+    this.mostSignificantBits = densityFunction.mostSignificantBits;
   }
 
-  public DensityFunctionPacketCapability(int entityId, double time, double dazuo, double danyao) {
+  public DensityFunctionPacketCapability(int entityId, double time, double dazuo, double danyao, long mostSignificantBits) {
     this.entityId = entityId;
     this.time = time;
     this.dazuo = dazuo;
     this.danyao = danyao;
+    this.mostSignificantBits = mostSignificantBits;
   }
 
   public static void encode(DensityFunctionPacketCapability msg, FriendlyByteBuf buf) {
@@ -56,10 +59,11 @@ public class DensityFunctionPacketCapability {
     buf.writeDouble(msg.time);
     buf.writeDouble(msg.dazuo);
     buf.writeDouble(msg.danyao);
+    buf.writeLong(msg.mostSignificantBits);
   }
 
   public static DensityFunctionPacketCapability decode(FriendlyByteBuf buf) {
-    return new DensityFunctionPacketCapability(buf.readInt(),buf.readDouble(),buf.readDouble(),buf.readDouble());
+    return new DensityFunctionPacketCapability(buf.readInt(),buf.readDouble(),buf.readDouble(),buf.readDouble(),buf.readLong());
   }
 
   public static void handle(DensityFunctionPacketCapability msg, Supplier<NetworkEvent.Context> ctx) {
@@ -72,7 +76,7 @@ public class DensityFunctionPacketCapability {
           PlayerCapability capability = (PlayerCapability) CapabilityUtil.getCapability(entity);
           DensityFunction densityFunction = capability.getDensityFunction();
           if(densityFunction == null)capability.createDensityFunction((Player) entity);
-          densityFunction.synchronizeClient(msg.time,msg.dazuo,msg.danyao);
+          densityFunction.synchronizeClient(msg.time,msg.dazuo,msg.danyao,msg.mostSignificantBits);
 
         }
       }

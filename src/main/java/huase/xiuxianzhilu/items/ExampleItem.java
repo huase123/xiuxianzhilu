@@ -1,10 +1,11 @@
 package huase.xiuxianzhilu.items;
 
+import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.items.danyao.UseStats;
 import huase.xiuxianzhilu.worlds.levelstem.LevelStemGen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -15,9 +16,6 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.ITeleporter;
-
-import java.util.function.Function;
 
 /**
  * - @description:ExampleItem类
@@ -48,16 +46,17 @@ public class ExampleItem extends Item {
 //            int value = ((ServerPlayer) pPlayer).getStats().getValue(UseStats.danyaoused.get(), this);
 //            pPlayer.sendSystemMessage(Component.translatable("已使用次数："+value));
 
+            AdvenceInit.xiuxianzhilu.trigger((ServerPlayer) pPlayer);
 
-            ResourceKey<Level> destination = getDestination(pPlayer);
-            ServerLevel serverWorld = pPlayer.getCommandSenderWorld().getServer().getLevel(destination);
-
-            pPlayer.changeDimension(serverWorld, new ITeleporter() {
-                @Override
-                public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-                    return ITeleporter.super.placeEntity(entity, currentWorld, destWorld, yaw, repositionEntity);
-                }
-            });
+//            ResourceKey<Level> destination = getDestination(pPlayer);
+//            ServerLevel serverWorld = pPlayer.getCommandSenderWorld().getServer().getLevel(destination);
+//
+//            pPlayer.changeDimension(serverWorld, new ITeleporter() {
+//                @Override
+//                public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+//                    return ITeleporter.super.placeEntity(entity, currentWorld, destWorld, yaw, repositionEntity);
+//                }
+//            });
         }else {
 //            Minecraft.getInstance().gameRenderer.cycleEffect();
         }

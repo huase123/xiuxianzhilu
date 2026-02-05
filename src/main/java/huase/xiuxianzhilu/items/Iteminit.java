@@ -64,6 +64,7 @@ public class Iteminit {
     public static final RegistryObject<Item> jingjie2 = registerJingjie("jingjie2", () ->new JingjieSampleItem());
     public static final RegistryObject<Item> jingjie3 = registerJingjie("jingjie3", () ->new JingjieSampleItem());
     public static final RegistryObject<Item> jingjie4 = registerJingjie("jingjie4", () ->new JingjieSampleItem());
+    public static final RegistryObject<Item> jingjie5 = registerJingjie("jingjie5", () ->new JingjieSampleItem());
 
     public static final RegistryObject<Item> jiezhi0 = registerFabao("jiezhi0", () ->new FabaoSampleItem());
     public static final RegistryObject<Item> jiezhi1 = registerFabao("jiezhi1", () ->new FabaoSampleItem());
