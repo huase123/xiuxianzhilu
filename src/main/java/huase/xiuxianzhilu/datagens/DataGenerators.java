@@ -10,6 +10,7 @@ import huase.xiuxianzhilu.advance.ModAdvanceProviderGen;
 import huase.xiuxianzhilu.datagens.lang.ModEnLanguageProvider;
 import huase.xiuxianzhilu.datagens.lang.ModZHLanguageProvider;
 import huase.xiuxianzhilu.datagens.loot.ModBlockLootTables;
+import huase.xiuxianzhilu.datagens.loot.MosterEntityLootSubProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModBlockProvider;
 import huase.xiuxianzhilu.datagens.modprovider.ModItemProvider;
 import huase.xiuxianzhilu.datagens.multiblock.MultiBlockProviderGen;
@@ -62,7 +63,7 @@ public class DataGenerators {
 //
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)
-//                , new LootTableProvider.SubProviderEntry(SpecialLootTables::new, LootContextParamSets.BLOCK)
+                , new LootTableProvider.SubProviderEntry(MosterEntityLootSubProvider::new, LootContextParamSets.ENTITY)
         )));
 
 

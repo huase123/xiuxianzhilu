@@ -368,6 +368,19 @@ public class CapabilityUtil {
         capability.setIsupdate(true);
     }
 
+    public static void addShouyuan(Player player, int i) {
+        PlayerCapability capability =getCapability(player);
+        capability.setShouyuan(Math.min(getShouyuan(player)+i,getNianling(player)));
+
+        if(getNianling(player)+3>=getShouyuan(player)){
+            player.sendSystemMessage(Component.translatable("油尽灯枯，寿元即将耗尽").withStyle(ChatFormatting.RED));
+        }
+        if(getNianling(player)>=getShouyuan(player)){
+            chongsheng(player);
+        }
+        capability.setIsupdate(true);
+    }
+
     static void chongsheng(Player player) {
 
         PlayerCapability playerCapability =getCapability(player);
