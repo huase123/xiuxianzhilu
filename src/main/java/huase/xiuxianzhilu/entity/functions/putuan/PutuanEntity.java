@@ -53,7 +53,7 @@ public class PutuanEntity extends Entity implements HasCustomInventoryScreen {
     @Override
     public void tick() {
         super.tick();
-        if(!this.level().isClientSide){
+//        if(!this.level().isClientSide){
             Entity firstPassenger = this.getFirstPassenger();
             if(getState().equals(State.EMPTY))return;
             if(firstPassenger == null){
@@ -66,7 +66,7 @@ public class PutuanEntity extends Entity implements HasCustomInventoryScreen {
                     }
                 }
             }
-        }
+//        }
     }
 
 

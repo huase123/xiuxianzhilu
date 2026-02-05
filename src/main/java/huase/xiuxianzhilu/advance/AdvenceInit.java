@@ -12,6 +12,7 @@ public class AdvenceInit {
     public static final PlayerTrigger juexinglinggen = CriteriaTriggers.register(new PlayerTrigger(ModMain.prefix("juexinglinggen")));
     public static final GongfaTrigger gongfatrigger = CriteriaTriggers.register(new GongfaTrigger());
     public static final PlayerTrigger mijing = CriteriaTriggers.register(new PlayerTrigger(ModMain.prefix("mijing")));
+    public static final PlayerTrigger tiaozhenglingmai = CriteriaTriggers.register(new PlayerTrigger(ModMain.prefix("tiaozhenglingmai")));
 
 //
 //    public static void register(){

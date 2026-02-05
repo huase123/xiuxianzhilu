@@ -45,7 +45,6 @@ public class EntityInit {
     public static final RegistryObject<EntityType<PutuanEntity>> putuanentity =
             registerEntity("putuanentity",
                     EntityType.Builder.<PutuanEntity>of(PutuanEntity::new, MobCategory.MISC)
-                    .updateInterval(Integer.MAX_VALUE)
                     .sized(0.9f, 0.3f));
 
     public static final RegistryObject<EntityType<MosterBaseEntity>> mosterbaseentity =

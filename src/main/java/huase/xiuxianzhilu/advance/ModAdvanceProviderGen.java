@@ -58,7 +58,8 @@ public class ModAdvanceProviderGen implements AdvancementSubProvider {
 
         Advancement juexinglinggen  =  juexinglinggen(pWriter,jvlingzhen0,Iteminit.linghe0,AdvenceInit.juexinglinggen);
 
-        Advancement gongfa0yuanman  =  gongfayuanman(pWriter,juexinglinggen,Iteminit.gongfa0, GongfaGen.gongfa0);
+        Advancement putuan  =  addItemAdvance(pWriter,juexinglinggen,Iteminit.putuan,Component.translatable("制作蒲团").withStyle(ChatFormatting.GOLD));
+        Advancement gongfa0yuanman  =  gongfayuanman(pWriter,putuan,Iteminit.gongfa0, GongfaGen.gongfa0);
         Advancement gongfa1yuanman  =  gongfayuanman(pWriter,gongfa0yuanman,Iteminit.gongfa1, GongfaGen.gongfa1);
         Advancement gongfa2yuanman  =  gongfayuanman(pWriter,gongfa1yuanman,Iteminit.gongfa2, GongfaGen.gongfa2);
         Advancement gongfa3yuanman  =  gongfayuanman(pWriter,gongfa2yuanman,Iteminit.gongfa3, GongfaGen.gongfa3);
@@ -70,6 +71,11 @@ public class ModAdvanceProviderGen implements AdvancementSubProvider {
         Advancement jindan   =  addJingjieAdvance(pWriter,zhuji   ,Iteminit.jingjie2,LingxiujingjieGen.jindan  );
         Advancement yuanying =  addJingjieAdvance(pWriter,jindan  ,Iteminit.jingjie3,LingxiujingjieGen.yuanying);
         Advancement huashen  =  addJingjieAdvance(pWriter,yuanying,Iteminit.jingjie4,LingxiujingjieGen.huashen );
+
+
+
+        Advancement tiaozhenglingmai   =  advancementgen(pWriter,lianqi,Iteminit.linghe1,AdvenceInit.tiaozhenglingmai,Component.translatable("灵脉调整").withStyle(ChatFormatting.RED),Component.translatable("当灵脉状态差时，立即打坐调理，以更快获取经验"));
+
     }
 
     private Advancement gongfayuanman(Consumer<Advancement> pWriter, Advancement root, RegistryObject<Item> itemRegistryObject, ResourceKey<GongfaSample> resourceKey) {

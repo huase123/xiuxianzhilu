@@ -4,9 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import javax.annotation.Nullable;
@@ -31,7 +30,7 @@ public class NoiseUse {
                 serverLevel = getServerLevel();
             }
             seed = serverLevel.getSeed();
-            normalNoise = NormalNoise.create(new WorldgenRandom(new LegacyRandomSource(seed)), -5, 1);
+            normalNoise = NormalNoise.create(RandomSource.create(seed), -5, 1);
         }
 
 

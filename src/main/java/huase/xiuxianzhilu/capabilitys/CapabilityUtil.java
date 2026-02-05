@@ -2,6 +2,7 @@ package huase.xiuxianzhilu.capabilitys;
 
 import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
+import huase.xiuxianzhilu.capabilitys.capability.DensityFunction;
 import huase.xiuxianzhilu.capabilitys.capability.Linggen;
 import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaCase;
@@ -14,6 +15,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -186,17 +188,32 @@ public class CapabilityUtil {
     }
 
     public static void xiuliangongfa(Player player, List<Entity> passengers) {
+        if(player.level().isClientSide)return;
         GongfaCase gongfaindex = getCapability(player).getGongfa();
-
         if(gongfaindex == null){
-
         }else {
             gongfaindex.xiulian(player,passengers);
         }
     }
 
     public static void xiulianlingmai(Player player, List<Entity> passengers) {
-        player.sendSystemMessage(Component.translatable("灵脉调整"));
+
+        player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(playerCapability -> {
+            DensityFunction densityFunction = playerCapability.getDensityFunction();
+            if(densityFunction == null){
+                if(player instanceof ServerPlayer serverPlayer){
+                    ((ServerPlayer)player).connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("未觉醒灵根，无法调整").withStyle(ChatFormatting.GREEN)));
+                }
+            }else {
+                densityFunction.dazuotiaozheng(player,passengers);
+                if(player instanceof ServerPlayer serverPlayer){
+                    ((ServerPlayer)player).connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("正在调整灵脉").withStyle(ChatFormatting.GREEN)));
+
+
+                    AdvenceInit.tiaozhenglingmai.trigger((ServerPlayer) player);
+                }
+            };
+        });
     }
 
     public static float getPlayerLingli(Player player) {

@@ -112,7 +112,7 @@ public class PlayerCapability extends AttributeBase implements hua.huase.shanhai
             CompoundTag tag = (CompoundTag) compoundTag.get("gongfa" + i);
             gongfas.add(new GongfaCase(entity,tag));
         }
-        if(compoundTag.getBoolean("huadensityfunction"))createDensityFunction(entity);
+        if(compoundTag.getBoolean("huadensityfunction") && densityFunction == null)createDensityFunction(entity);
     }
 
     public ItemStackHandler getFabaoslot() {
