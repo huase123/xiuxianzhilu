@@ -1,0 +1,150 @@
+package huase.xiuxianzhilu.entity.moster;
+
+
+import huase.xiuxianzhilu.capabilitys.CapabilityUtil;
+import huase.xiuxianzhilu.capabilitys.capability.PlayerCapability;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.Entitylivingabstract;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
+import net.minecraft.core.Holder;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+
+import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen.lingxiu_jingjie_key;
+
+
+public class MosterBaseEntity extends Monster implements CapabilityMoster{
+
+	public MosterBaseEntity(EntityType<? extends Monster> type, Level world) {
+		super(type, world);
+
+		for (EquipmentSlot slot : EquipmentSlot.values()) {
+			this.setDropChance(slot, 0);
+		}
+	}
+
+	@Override
+	protected void registerGoals() {
+		this.goalSelector.addGoal(1, new FloatGoal(this));
+		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false) {
+//			@Override
+//			protected double getAttackReachSqr(LivingEntity attackTarget) {
+//				return this.mob.getBbWidth() * this.mob.getBbHeight();
+//			}
+//
+//			@Override
+//			protected void checkAndPerformAttack(LivingEntity pEnemy, double pDistToEnemySqr) {
+//				double eyeHeightDistToEnemySqr = this.mob.distanceToSqr(pEnemy.getX(), pEnemy.getY() - this.mob.getEyeHeight() + pEnemy.getEyeHeight(), pEnemy.getZ());
+//				super.checkAndPerformAttack(pEnemy, Math.min(pDistToEnemySqr, eyeHeightDistToEnemySqr * 0.8D));
+//			}
+		});
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+	}
+
+
+	@Nullable
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+		SpawnGroupData data = super.finalizeSpawn(accessor, difficulty, reason, spawnDataIn, dataTag);
+		populateDefaultEquipmentSlots(accessor.getRandom(), difficulty);
+		populateDefaultEquipmentEnchantments(accessor.getRandom(), difficulty);
+
+		return data;
+	}
+
+	@Override
+	public float getStepHeight() {
+		return 2.0F;
+	}
+	@Override
+	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
+//		this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(TFItems.GIANT_PICKAXE.get()));
+	}
+
+	@Override
+	protected void enchantSpawnedWeapon(RandomSource random, float chance) {
+
+	}
+
+	@Override
+	protected void enchantSpawnedArmor(RandomSource random, float chance, EquipmentSlot slot) {
+
+	}
+
+	@Override
+	public boolean doHurtTarget(Entity entity) {
+//		return EntityUtil.properlyApplyCustomDamageSource(this, entity, TFDamageTypes.getEntityDamageSource(this.level(), TFDamageTypes.ANT, this));
+		return super.doHurtTarget(entity);
+	}
+
+	@Override
+	public double getMyRidingOffset() {
+		return -2.5D;
+	}
+
+	@Override
+	public int getMaxSpawnClusterSize() {
+		return 1;
+	}
+
+	@Override
+	public boolean checkSpawnRules(LevelAccessor accessor, MobSpawnType reason) {
+//		List<GiantMiner> giantsNearby = accessor.getEntitiesOfClass(GiantMiner.class, this.getBoundingBox().inflate(100, 10, 100));
+//		return giantsNearby.size() < 5;
+		return true;
+	}
+
+//	public static boolean canSpawn(EntityType<? extends GiantMiner> type, ServerLevelAccessor accessor, MobSpawnType reason, BlockPos pos, RandomSource rand) {
+////		return accessor.getBlockState(pos.below()).is(BlockTagGenerator.GIANTS_SPAWNABLE_ON);
+//		return true;
+//	}
+
+	@Override
+	protected boolean canRide(Entity entity) {
+		return false;
+	}
+
+	@Override
+	public void initCapability(LivingEntity livingEntity, Level level) {
+		PlayerCapability capability = CapabilityUtil.getCapability(livingEntity);
+		Optional<Entitylivingabstract> first = level.registryAccess().registryOrThrow(EntitylivingGen.entityliving_key).stream().filter(
+				c -> c.getEntityType().equals(livingEntity.getType())
+		).findFirst();
+		if(!first.isEmpty()){
+			Entitylivingabstract entitylivingabstract =first.get();
+			capability.deserializeNBT(entitylivingabstract.serializeNBT());
+			Holder<LingxiuJingjieSample> jingjie = entitylivingabstract.getJingjie();
+			CapabilityUtil.addLingxiuCase(livingEntity,new LingxiuCase(livingEntity,jingjie.get()).amplification(entitylivingabstract.getAmplification()));
+		}
+
+		LingxiuCase lingxiu = capability.getLingxiu();
+		if(lingxiu !=null){
+			ResourceLocation key = level.registryAccess().registryOrThrow(lingxiu_jingjie_key).getKey(lingxiu.getLingxiuJingjie());
+			if(key != null){
+				livingEntity.setCustomName(Component.translatable(livingEntity.getDisplayName().getString()).append("--------").append(Component.translatable(key.toString())));
+			}
+		}
+
+	}
+
+}
