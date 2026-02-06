@@ -370,7 +370,7 @@ public class CapabilityUtil {
 
     public static void addShouyuan(Player player, int i) {
         PlayerCapability capability =getCapability(player);
-        capability.setShouyuan(Math.min(getShouyuan(player)+i,getNianling(player)));
+        capability.setShouyuan(Math.min(getShouyuan(player)+i,getShouyuan(player)));
 
         if(getNianling(player)+3>=getShouyuan(player)){
             player.sendSystemMessage(Component.translatable("油尽灯枯，寿元即将耗尽").withStyle(ChatFormatting.RED));
