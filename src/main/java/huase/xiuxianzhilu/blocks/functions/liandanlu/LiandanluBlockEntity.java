@@ -138,19 +138,29 @@ public class LiandanluBlockEntity extends BlockEntity implements PrentFunction {
     }
 
     private void checkChilds(Level level, BlockPos pPos, BlockState state) {
-        childBlockPos.removeIf(c -> checkChildBlockPos(c)
+        childBlockPos.removeIf(c -> checkChildBlockPos(c,pPos)
         );
     }
 
-    private boolean checkChildBlockPos(BlockPos pPos) {
+    private boolean checkChildBlockPos(BlockPos corppos, BlockPos pos) {
         BlockEntity blockEntity = null;
         if (this.level != null) {
-            blockEntity = this.level.getBlockEntity(pPos);
+            blockEntity = this.level.getBlockEntity(corppos);
         }
-        if(blockEntity == null && !(blockEntity instanceof ChildFunction)){
+        if(blockEntity == null ){
             return true;
+        }else {
+            if(blockEntity instanceof ChildFunction childFunction){
+                for (BlockPos prentBlockPo : childFunction.getPrentBlockPos()) {
+                    if(prentBlockPo.equals(pos)){
+                        return false;
+                    }
+                }
+                return true;
+            }else {
+                return true;
+            }
         }
-        return false;
     }
 
     private void handRecipeFor(Player player, BlockPos pPos, LiandanluRecipe lianqidingRecipe) {

@@ -116,7 +116,7 @@ public class JvlingzhenBlockEntity extends BlockEntity implements ChildFunction 
         if (this.level != null) {
             blockEntity = this.level.getBlockEntity(pPos);
         }
-        if(blockEntity == null &&  !(blockEntity instanceof ChildFunction)){
+        if(blockEntity == null ||  !(blockEntity instanceof PrentFunction)){
             return true;
         }
         return false;
