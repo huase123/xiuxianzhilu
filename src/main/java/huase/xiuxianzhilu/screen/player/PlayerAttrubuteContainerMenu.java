@@ -143,9 +143,14 @@ public class PlayerAttrubuteContainerMenu extends ReAbstractContainerMenu implem
             Optional<Fabaoabstract> any = player.level().registryAccess().registryOrThrow(FabaoGen.fabao_key).stream().filter(
                     c -> stack.is(c.getItem())
             ).findAny();
-            if(any.isEmpty())return false;
+            if(any.isEmpty())return true;
             if(any.get().getTypenum()==type){
-                return true;
+                for (LingxiuCase lingxius : CapabilityUtil.getCapability(player).getLingxius()) {
+                    if(lingxius.getLingxiuJingjie().equals(any.get().getJingjie().get())){
+                        return true;
+                    }
+                }
+
             }
             return false;
         }
