@@ -3,6 +3,7 @@ package huase.xiuxianzhilu.util;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
+import huase.xiuxianzhilu.ModMain;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,7 +17,7 @@ import org.joml.Matrix4f;
  * - @description:renderapi类
  */
 public class RenderApi {
-    public static final ResourceLocation CRYSTAL_BEAM_LOCATION = ResourceLocation.parse("textures/entity/beacon_beam.png");
+    public static final ResourceLocation CRYSTAL_BEAM_LOCATION = ModMain.parse("textures/entity/beacon_beam.png");
     private static final RenderType BEAM = RenderType.beaconBeam(CRYSTAL_BEAM_LOCATION,true);
     public static void renderCrystalBeams(float size,float sizegoal, int alpha, float pX, float pY, float pZ, float pPartialTick, int pTickCount, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         float f = Mth.sqrt(pX * pX + pZ * pZ);

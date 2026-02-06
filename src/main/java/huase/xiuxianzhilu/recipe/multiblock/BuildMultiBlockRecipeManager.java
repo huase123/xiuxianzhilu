@@ -4,6 +4,7 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.*;
+import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeType;
 import huase.xiuxianzhilu.registrie.NewRegistries;
 import net.minecraft.core.BlockPos;
@@ -79,7 +80,7 @@ public class BuildMultiBlockRecipeManager  extends SimpleJsonResourceReloadListe
     public static MultiRecipe<?> fromJson(ResourceLocation pRecipeId, JsonObject pJson, net.minecraftforge.common.crafting.conditions.ICondition.IContext context) {
         String s = GsonHelper.getAsString(pJson, "type");
 
-        return NewRegistries.MultiBlockRecipeSerializer_IForgeRegistry.getValue(ResourceLocation.parse(s)).fromJson(pRecipeId, pJson);
+        return NewRegistries.MultiBlockRecipeSerializer_IForgeRegistry.getValue(ModMain.parse(s)).fromJson(pRecipeId, pJson);
 
     }
 

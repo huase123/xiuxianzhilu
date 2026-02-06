@@ -26,7 +26,7 @@ public class ModItemProvider extends ItemModelProvider {
     protected void registerModels() {
         for (RegistryObject<Item> item : EntityInit.SPAWN_EGGS.getEntries()) {
             if (item.get() instanceof SpawnEggItem) {
-                getBuilder(item.getId().getPath()).parent(getExistingFile(ResourceLocation.parse("item/template_spawn_egg")));
+                getBuilder(item.getId().getPath()).parent(getExistingFile(ModMain.parse("item/template_spawn_egg")));
             }
         }
         simpleItem(Iteminit.celingzhu);
@@ -70,18 +70,18 @@ public class ModItemProvider extends ItemModelProvider {
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                ResourceLocation.parse("item/generated")).texture("layer0",
+                ModMain.parse("item/generated")).texture("layer0",
                 ModMain.prefix( "item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder simpleZhiwuItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                ResourceLocation.parse("item/generated")).texture("layer0",
+                ModMain.parse("item/generated")).texture("layer0",
                 ModMain.prefix("block/" + item.getId().getPath()));
     }
     private ItemModelBuilder simpleblockItem(RegistryObject item) {
         return withExistingParent(item.getId().getPath(),
-                ResourceLocation.parse("item/generated")).texture("layer0",
+                ModMain.parse("item/generated")).texture("layer0",
                 ModMain.prefix("block/" + item.getId().getPath()));
     }
 }

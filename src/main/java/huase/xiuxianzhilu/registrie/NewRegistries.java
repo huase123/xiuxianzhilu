@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.registrie;
 
+import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoGen;
 import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
@@ -8,7 +9,6 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeSerializer;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.DataPackRegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.NewRegistryEvent;
@@ -34,7 +34,7 @@ public class NewRegistries {
 
     public static IForgeRegistry<MultiBlockRecipeSerializer<?>> MultiBlockRecipeSerializer_IForgeRegistry;
     private static <T> ResourceKey<Registry<T>> createRegistryKey(String pName) {
-        return ResourceKey.createRegistryKey(ResourceLocation.parse(pName));
+        return ResourceKey.createRegistryKey(ModMain.parse(pName));
     }
     /**
      * TODO 功能描述：注册表查询使用，可直接用level.registryAccess().registryOrThrow(LINGXIUJINGJIE_KEY)代替

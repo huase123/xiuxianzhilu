@@ -17,7 +17,7 @@ public class GongfaTrigger extends SimpleCriterionTrigger<GongfaTrigger.TriggerI
     }
 
     public TriggerInstance createInstance(JsonObject pJson, ContextAwarePredicate pPredicate, DeserializationContext pDeserializationContext) {
-        ResourceLocation resourceLocation = ResourceLocation.parse(GsonHelper.getAsString(pJson, "resourcekey"));
+        ResourceLocation resourceLocation = ModMain.parse(GsonHelper.getAsString(pJson, "resourcekey"));
         return new TriggerInstance(pPredicate, resourceLocation);
     }
 

@@ -147,7 +147,12 @@ public class ModMain {
     }
 
     public static ResourceLocation prefix(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
+//        return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
+        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
+    }
+    public static ResourceLocation parse(String name) {
+//        return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
+        return new ResourceLocation(name);
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code

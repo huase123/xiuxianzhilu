@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.capabilitys.capability.gongfa;
 
+import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.advance.AdvenceInit;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import net.minecraft.ChatFormatting;
@@ -62,7 +63,7 @@ public class GongfaCase extends AttributeBase {
     public void deserializeNBT(CompoundTag compoundTag) {
         super.deserializeNBT(compoundTag);
         String string = compoundTag.getString("gongfaSample");
-        gongfaSample = entity.level().registryAccess().registryOrThrow(gongfa_key).get(ResourceLocation.parse(string));
+        gongfaSample = entity.level().registryAccess().registryOrThrow(gongfa_key).get(ModMain.parse(string));
 
         this.layernum = compoundTag.getInt("layernum");
         this.maxlayernum = compoundTag.getInt("maxlayernum");

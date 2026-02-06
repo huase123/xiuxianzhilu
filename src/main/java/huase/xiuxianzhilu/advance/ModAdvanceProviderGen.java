@@ -31,7 +31,7 @@ public class ModAdvanceProviderGen implements AdvancementSubProvider {
                 .display(Iteminit.jingjie5.get()
                         , Component.translatable("修仙之路").withStyle(ChatFormatting.WHITE)
                         , Component.translatable("欢迎来到《修仙之路》").withStyle(ChatFormatting.DARK_GREEN),
-                        ResourceLocation.parse("textures/block/diamond_block.png"),
+                        ModMain.parse("textures/block/diamond_block.png"),
                         FrameType.GOAL, true, true, false)
                 .addCriterion("xiuxianzhilu", new PlayerTrigger.TriggerInstance(AdvenceInit.xiuxianzhilu.getId(), ContextAwarePredicate.ANY)).
                 save(pWriter, ModMain.MODID + ":advancement/root");

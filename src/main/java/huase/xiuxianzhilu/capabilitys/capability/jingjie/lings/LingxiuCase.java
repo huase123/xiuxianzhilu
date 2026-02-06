@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.capabilitys.capability.jingjie.lings;
 
+import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.AttributeBase;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -65,7 +66,7 @@ public class LingxiuCase extends AttributeBase {
     public void deserializeNBT(CompoundTag compoundTag) {
         super.deserializeNBT(compoundTag);
         String string = compoundTag.getString("lingxiuJingjie");
-        lingxiuJingjieSample = entity.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ResourceLocation.parse(string));
+        lingxiuJingjieSample = entity.level().registryAccess().registryOrThrow(lingxiu_jingjie_key).get(ModMain.parse(string));
 
         this.jingyan = compoundTag.getFloat("jingyan");
         this.maxjingyan = compoundTag.getFloat("maxjingyan");

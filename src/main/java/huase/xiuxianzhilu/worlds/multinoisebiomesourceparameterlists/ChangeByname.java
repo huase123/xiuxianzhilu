@@ -1,5 +1,6 @@
 package huase.xiuxianzhilu.worlds.multinoisebiomesourceparameterlists;
 
+import huase.xiuxianzhilu.ModMain;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 
@@ -35,6 +36,6 @@ public class ChangeByname {
 
         // 验证修改结果
         System.out.println(targetClass.getMethod("getPreset", ResourceLocation.class)
-                .invoke(null, ResourceLocation.parse("new_id")));
+                .invoke(null, ModMain.parse("new_id")));
     }
 }

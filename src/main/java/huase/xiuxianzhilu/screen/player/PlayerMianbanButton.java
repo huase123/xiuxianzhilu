@@ -2,11 +2,11 @@ package huase.xiuxianzhilu.screen.player;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.screen.ButtonMenu;
 import huase.xiuxianzhilu.screen.ToServerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Matrix4f;
@@ -20,7 +20,7 @@ import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGe
  */
 public class PlayerMianbanButton extends ToServerButton {
     private static final net.minecraft.resources.ResourceLocation CREATIVE_INVENTORY_TABS_IMAGE =
-           ResourceLocation.parse("textures/gui/container/creative_inventory/tabs.png");
+            ModMain.parse("textures/gui/container/creative_inventory/tabs.png");
     PlayerAttrubuteContainerMenu.Mianban value;
     public PlayerMianbanButton(PlayerAttrubuteContainerMenu pMenu, int index, ButtonMenu buttonMenu, int leftPos, int topPos, PlayerAttrubuteContainerMenu.Mianban value) {
         super(pMenu,index,buttonMenu,leftPos,topPos);
