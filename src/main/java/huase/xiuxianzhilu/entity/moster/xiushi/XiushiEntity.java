@@ -89,7 +89,7 @@ public class XiushiEntity extends MosterBaseEntity {
         LingxiuJingjieSample lingxiuJingjieSample = getEntitylivingabstract(level,livingEntity.getOnPos());
 
         if(lingxiuJingjieSample != null){
-            CapabilityUtil.addLingxiuCase(livingEntity,new LingxiuCase(livingEntity,lingxiuJingjieSample).amplification(4));
+            CapabilityUtil.addLingxiuCase(livingEntity,new LingxiuCase(livingEntity,lingxiuJingjieSample).amplification(3));
         }
 
         LingxiuCase lingxiu = capability.getLingxiu();
