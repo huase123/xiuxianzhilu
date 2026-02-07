@@ -11,6 +11,7 @@ import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuCase;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.entity.moster.CapabilityMoster;
 import huase.xiuxianzhilu.items.fabao.FabaoSampleItem;
+import huase.xiuxianzhilu.items.functions.LingSwordItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -617,8 +618,12 @@ public class CapabilityUtil {
 
         float i = 0;
         float j = 0;
-        if(entity instanceof Player){
+        if(entity instanceof Player player){
             float linglixiaohao = getXiulianshudu(entity)/10f;
+            if(player.getMainHandItem().getItem() instanceof LingSwordItem lingSwordItem){
+                linglixiaohao = lingSwordItem.handLinglixiaohao(linglixiaohao);
+            }
+
             float lingli = getLingli(entity);
             if(lingli>linglixiaohao){
                 i = getWugong(entity) + handleBaolv(getBaolv(entity)) * (0.4f + getBaojishanghai(entity)/100f) * getWugong(entity);

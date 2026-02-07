@@ -125,6 +125,15 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(Iteminit.gongfa4.get(),  "功法:§c---化神归真诀---");
 
 
+        this.add(Iteminit.linggao0.get(),  "§a<黄>-§b灵镐");
+        this.add(Iteminit.linggao1.get(),  "§b<玄>-§b灵镐");
+        this.add(Iteminit.linggao2.get(),  "§e<地>-§b灵镐");
+        this.add(Iteminit.linggao3.get(),  "§d<天>-§b灵镐");
+        this.add(Iteminit.lingjian0.get(),  "§a<黄>-§b灵剑");
+        this.add(Iteminit.lingjian1.get(),  "§b<玄>-§b灵剑");
+        this.add(Iteminit.lingjian2.get(),  "§e<地>-§b灵剑");
+        this.add(Iteminit.lingjian3.get(),  "§d<天>-§b灵剑");
+
         this.add(Iteminit.jiezhi0.get(),  "法宝:§a---灵戒指---§f<§a黄§f>阶");
         this.add(Iteminit.jiezhi1.get(),  "法宝:§b---灵戒指---§f<§b玄§f>阶");
         this.add(Iteminit.jiezhi2.get(),  "法宝:§e---灵戒指---§f<§e地§f>阶");

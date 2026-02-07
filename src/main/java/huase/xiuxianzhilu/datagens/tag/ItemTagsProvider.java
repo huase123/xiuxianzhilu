@@ -23,12 +23,27 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
     public static final TagKey<Item> islingjin = TagKey.create(Registries.ITEM, ModMain.prefix("islingjin"));
     public static final TagKey<Item> islingyv = TagKey.create(Registries.ITEM, ModMain.prefix("islingyv"));
     public static final TagKey<Item> islingmu = TagKey.create(Registries.ITEM, ModMain.prefix("islingmu"));
+
+    public static final TagKey<Item> islinggao = TagKey.create(Registries.ITEM, ModMain.prefix("islinggao"));
+    public static final TagKey<Item> islingjian = TagKey.create(Registries.ITEM, ModMain.prefix("islingjian"));
     public ItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper)
     {
         super(output, lookupProvider, blockTagProvider, ModMain.MOD_ID, existingFileHelper);
     }
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        this.tag(islinggao)
+                .add(Iteminit.linggao0.get())
+                .add(Iteminit.linggao1.get())
+                .add(Iteminit.linggao2.get())
+                .add(Iteminit.linggao3.get())
+        ;
+        this.tag(islingjian)
+                .add(Iteminit.lingjian0.get())
+                .add(Iteminit.lingjian1.get())
+                .add(Iteminit.lingjian2.get())
+                .add(Iteminit.lingjian3.get())
+        ;
         this.tag(islingshi)
                 .add(Iteminit.lingshi0.get())
                 .add(Iteminit.lingshi1.get())

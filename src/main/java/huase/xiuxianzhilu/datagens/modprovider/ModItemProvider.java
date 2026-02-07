@@ -36,6 +36,16 @@ public class ModItemProvider extends ItemModelProvider {
         simpleItem(Iteminit.zhenqi);
         simpleItem(Iteminit.tpfu);
 
+        this.toolItem(Iteminit.linggao0);
+        this.toolItem(Iteminit.linggao1);
+        this.toolItem(Iteminit.linggao2);
+        this.toolItem(Iteminit.linggao3);
+
+
+        this.toolItem(Iteminit.lingjian0);
+        this.toolItem(Iteminit.lingjian1);
+        this.toolItem(Iteminit.lingjian2);
+        this.toolItem(Iteminit.lingjian3);
 
         modleItem(Iteminit.putuan);
 
@@ -66,22 +76,29 @@ public class ModItemProvider extends ItemModelProvider {
                 .model(new ModelFile.UncheckedModelFile(trimNameResLoc));
     }
 
+    private ItemModelBuilder toolItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                mcLoc("item/handheld")).texture("layer0",
+                ModMain.prefix( "item/" + item.getId().getPath()))
+                ;
+    }
 
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                ModMain.parse("item/generated")).texture("layer0",
+                mcLoc("item/generated")).texture("layer0",
                 ModMain.prefix( "item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder simpleZhiwuItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                ModMain.parse("item/generated")).texture("layer0",
+                mcLoc("item/generated")).texture("layer0",
                 ModMain.prefix("block/" + item.getId().getPath()));
     }
     private ItemModelBuilder simpleblockItem(RegistryObject item) {
         return withExistingParent(item.getId().getPath(),
-                ModMain.parse("item/generated")).texture("layer0",
+                mcLoc("item/generated")).texture("layer0",
                 ModMain.prefix("block/" + item.getId().getPath()));
     }
+
 }

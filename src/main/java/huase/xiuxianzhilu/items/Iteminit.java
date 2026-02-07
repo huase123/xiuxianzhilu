@@ -39,6 +39,11 @@ public class Iteminit {
     public static final RegistryObject<Item> linggao1 = ITEMS.register("linggao1", () -> new ToolItem(1));
     public static final RegistryObject<Item> linggao2 = ITEMS.register("linggao2", () -> new ToolItem(2));
     public static final RegistryObject<Item> linggao3 = ITEMS.register("linggao3", () -> new ToolItem(3));
+
+    public static final RegistryObject<Item> lingjian0 = ITEMS.register("lingjian0", () -> new LingSwordItem(0));
+    public static final RegistryObject<Item> lingjian1 = ITEMS.register("lingjian1", () -> new LingSwordItem(1));
+    public static final RegistryObject<Item> lingjian2 = ITEMS.register("lingjian2", () -> new LingSwordItem(2));
+    public static final RegistryObject<Item> lingjian3 = ITEMS.register("lingjian3", () -> new LingSwordItem(3));
     public static final RegistryObject<Item> celingzhu = ITEMS.register("celingzhu", () -> new Item(new Item.Properties().stacksTo(1)) {
         public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
             pTooltip.add(Component.translatable("拿手上可观察到天地间的灵力浓度").withStyle(ChatFormatting.GREEN));

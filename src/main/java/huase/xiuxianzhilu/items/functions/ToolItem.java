@@ -1,14 +1,18 @@
 package huase.xiuxianzhilu.items.functions;
 
 import huase.xiuxianzhilu.datagens.tag.BlockTagsProvider;
-import huase.xiuxianzhilu.items.Iteminit;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.ForgeTier;
-import net.minecraftforge.common.Tags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
+import static huase.xiuxianzhilu.items.functions.ForgeTiers.getForgeTier;
 
 /**
  * - @description:ToolItem类
@@ -20,17 +24,14 @@ public class ToolItem extends DiggerItem {
         this.LV = lv;
     }
 
-    private static Tier getForgeTier(int lv) {
-        switch (lv){
-            case 0:return new ForgeTier(3,1200,8    ,6  ,10, Tags.Blocks.NEEDS_NETHERITE_TOOL, () -> Ingredient.of(Iteminit.linghe0.get()));
-            case 1:return new ForgeTier(4,2000,10   ,12 ,15, Tags.Blocks.NEEDS_NETHERITE_TOOL, () -> Ingredient.of(Iteminit.linghe1.get()));
-            case 2:return new ForgeTier(5,3000,12   ,24 ,20, Tags.Blocks.NEEDS_NETHERITE_TOOL, () -> Ingredient.of(Iteminit.linghe2.get()));
-            case 3:return new ForgeTier(6,4000,14   ,48 ,25, Tags.Blocks.NEEDS_NETHERITE_TOOL, () -> Ingredient.of(Iteminit.linghe3.get()));
 
-            default:
-                return new ForgeTier(4,1561,8,1,10, Tags.Blocks.NEEDS_NETHERITE_TOOL, () -> Ingredient.of(Items.NETHERITE_INGOT));
-        }
+    @Override
+    public boolean canPerformAction(ItemStack stack, net.minecraftforge.common.ToolAction toolAction) {
+        return net.minecraftforge.common.ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction);
     }
 
 
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+        pTooltip.add(Component.translatable("可不受工具类型限制挖掘方块").withStyle(ChatFormatting.GREEN));
+    }
 }
