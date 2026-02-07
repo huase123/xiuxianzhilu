@@ -94,22 +94,22 @@ public class RERecipeProvider extends RecipeProvider {
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Iteminit.lingmu0.get())
-                .pattern("aaa")
+                .pattern("a a")
                 .define('a', BlockInit.lingmu0_LOG.get())
                 .unlockedBy(getHasName(Iteminit.lingmu0.get()), has(BlockInit.lingmu0_LOG.get()))
                 .save(pWriter);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Iteminit.lingmu1.get())
-                .pattern("aaa")
+                .pattern("a a")
                 .define('a', BlockInit.lingmu1_LOG.get())
                 .unlockedBy(getHasName(Iteminit.lingmu1.get()), has(BlockInit.lingmu1_LOG.get()))
                 .save(pWriter);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Iteminit.lingmu2.get())
-                .pattern("aaa")
+                .pattern("a a")
                 .define('a', BlockInit.lingmu2_LOG.get())
                 .unlockedBy(getHasName(Iteminit.lingmu2.get()), has(BlockInit.lingmu2_LOG.get()))
                 .save(pWriter);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Iteminit.lingmu3.get())
-                .pattern("aaa")
+                .pattern("a a")
                 .define('a', BlockInit.lingmu3_LOG.get())
                 .unlockedBy(getHasName(Iteminit.lingmu3.get()), has(BlockInit.lingmu3_LOG.get()))
                 .save(pWriter);
@@ -187,9 +187,9 @@ public class RERecipeProvider extends RecipeProvider {
         pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.tpfu.get(), 2).defineLingli(20).defineLingliDensity(10).defines(ItemTagsProvider.islingmu,2,4,6,8));
 
 
-        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen0.get(), 1).defineLingli(0).defineLingliDensity(10).defines(Iteminit.zhenqi.get(),1,3,5,7,9));
-        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen1.get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.zhenqi.get(),1,3,5,7,9,10,11,12,13));
-        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen2.get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.zhenqi.get(),1,3,5,7,9,10,11,12,13,14,15,16,17,18,19,20,21));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen0.get(), 1).defineLingli(0).defineLingliDensity(10).defines(Iteminit.zhenqi.get(),4,5,6));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen1.get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.zhenqi.get(),4,5,6,10,11,12,13));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen2.get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.zhenqi.get(),4,5,6,10,11,12,13,14,15,16,17,18,19,20,21));
 
 
     }
