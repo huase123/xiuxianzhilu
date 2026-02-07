@@ -24,6 +24,8 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
     public static final TagKey<Block> cailiao_block = TagKey.create(Registries.BLOCK, ModMain.prefix("cailiao_block"));
     public static final TagKey<Block> lingmu_log = TagKey.create(Registries.BLOCK, ModMain.prefix("lingmu_log"));
     public static final TagKey<Block> biome_top_block = TagKey.create(Registries.BLOCK, ModMain.prefix("biome_top_block"));
+
+    public static final TagKey<Block> mineable_tool = TagKey.create(Registries.BLOCK, ModMain.prefix("mineable_tool"));
     public BlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, ModMain.MOD_ID, existingFileHelper);
 
@@ -58,5 +60,12 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
 
 
         tag(BlockTags.MINEABLE_WITH_AXE).addTag(lingmu_log);
+
+        tag(mineable_tool)
+                .addTag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(BlockTags.MINEABLE_WITH_HOE)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(BlockTags.MINEABLE_WITH_SHOVEL)
+        ;
     }
 }

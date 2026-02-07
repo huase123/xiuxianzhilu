@@ -4,10 +4,7 @@ import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.items.cailiao.CailiaoSampleItem;
 import huase.xiuxianzhilu.items.danyao.DanyaoSampleItem;
 import huase.xiuxianzhilu.items.fabao.FabaoSampleItem;
-import huase.xiuxianzhilu.items.functions.LingshiItem;
-import huase.xiuxianzhilu.items.functions.PutuanItem;
-import huase.xiuxianzhilu.items.functions.TPFuItem;
-import huase.xiuxianzhilu.items.functions.ZhenqiItem;
+import huase.xiuxianzhilu.items.functions.*;
 import huase.xiuxianzhilu.items.gongfa.GongfaSampleItem;
 import huase.xiuxianzhilu.items.jingjie.JingjieSampleItem;
 import net.minecraft.ChatFormatting;
@@ -36,7 +33,12 @@ public class Iteminit {
     public static List<RegistryObject<Item>> fabaolist = new ArrayList();
     public static List<RegistryObject<Item>> cailiaolist = new ArrayList();
     public static List<RegistryObject<Item>> danyaolist = new ArrayList();
-    // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
+
+
+    public static final RegistryObject<Item> linggao0 = ITEMS.register("linggao0", () -> new ToolItem(0));
+    public static final RegistryObject<Item> linggao1 = ITEMS.register("linggao1", () -> new ToolItem(1));
+    public static final RegistryObject<Item> linggao2 = ITEMS.register("linggao2", () -> new ToolItem(2));
+    public static final RegistryObject<Item> linggao3 = ITEMS.register("linggao3", () -> new ToolItem(3));
     public static final RegistryObject<Item> celingzhu = ITEMS.register("celingzhu", () -> new Item(new Item.Properties().stacksTo(1)) {
         public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
             pTooltip.add(Component.translatable("拿手上可观察到天地间的灵力浓度").withStyle(ChatFormatting.GREEN));
