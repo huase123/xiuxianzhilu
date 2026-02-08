@@ -440,6 +440,9 @@ public class CapabilityUtil {
     public static float getMaxlingli(Entity player) {
         PlayerCapability capability =getCapability(player);
         float value = capability.getMaxlingli();
+        //防止数组意外越界
+        if(capability.getLingxius().isEmpty())return value;
+
         for (int i = 0; i <= getLingxiuindex(player); i++) {
             LingxiuCase lingxius = capability.getLingxius().get(i);
             if(lingxius.isActivate())
