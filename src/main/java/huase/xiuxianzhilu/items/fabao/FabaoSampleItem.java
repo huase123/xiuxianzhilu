@@ -22,7 +22,7 @@ import static huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGe
  */
 public class FabaoSampleItem extends Item {
     public FabaoSampleItem() {
-        super(new Properties());
+        super(new Properties().stacksTo(1));
     }
 
     public float getMaxshengming(Level level, ItemStack pStack) {
