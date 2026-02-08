@@ -58,11 +58,12 @@ public class GongfaSlotButton extends ToServerButton implements HoveredRender {
 
     @Override
     public void renderHouvered(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        if (isHovering(pMouseX,pMouseY)) {
-            AbstractContainerScreen.renderSlotHighlight(pGuiGraphics, this.getX() + 1, this.getY() + 1, 0);
-            renderAttributeTooltip(pGuiGraphics,pMouseX,pMouseY);
+        if(isEffective()) {
+            if (isHovering(pMouseX, pMouseY)) {
+                AbstractContainerScreen.renderSlotHighlight(pGuiGraphics, this.getX() + 1, this.getY() + 1, 0);
+                renderAttributeTooltip(pGuiGraphics, pMouseX, pMouseY);
+            }
         }
-
     }
 
     DecimalFormat decimalFormat = new DecimalFormat("#.0");
