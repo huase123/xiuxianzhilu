@@ -74,15 +74,10 @@ public class FabaoSampleItem extends Item {
         Fabaoabstract fabaoabstract = getFabaoabstract(level, pStack);
         return fabaoabstract.getXixue();
     }
-
-    Fabaoabstract sample;
     public Fabaoabstract getFabaoabstract(Level level, ItemStack pStack) {
-        if(sample == null){
-             sample = level.registryAccess().registryOrThrow(FabaoGen.fabao_key).stream().filter(
-                    c -> pStack.is(c.getItem())
-            ).findAny().get();
-        }
-        return sample;
+        return level.registryAccess().registryOrThrow(FabaoGen.fabao_key).stream().filter(
+                c -> pStack.is(c.getItem())
+        ).findAny().get();
     }
 
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {

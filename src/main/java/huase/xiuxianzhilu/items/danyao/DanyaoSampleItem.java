@@ -117,14 +117,10 @@ public class DanyaoSampleItem extends Item {
     }
 
 
-    Danyaoabstract sample;
     public Danyaoabstract getDanyaoSample(Level level, ItemStack pStack) {
-        if(sample == null){
-            sample = level.registryAccess().registryOrThrow(danyao_key).stream().filter(
-                    c -> pStack.is(c.getItem())
-            ).findAny().get();
-        }
-        return sample;
+        return level.registryAccess().registryOrThrow(danyao_key).stream().filter(
+                c -> pStack.is(c.getItem())
+        ).findAny().get();
     }
 
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
