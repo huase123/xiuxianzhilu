@@ -1,12 +1,12 @@
 package huase.xiuxianzhilu.items.functions;
 
+import huase.xiuxianzhilu.items.Iteminit;
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
@@ -14,38 +14,30 @@ import java.util.function.Supplier;
 
 public enum ArmorMaterialsCustomize implements ArmorMaterial {
 
-    huang("huang", 30, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266655_) -> {
-        p_266655_.put(ArmorItem.Type.BOOTS, 3);
-        p_266655_.put(ArmorItem.Type.LEGGINGS, 6);
-        p_266655_.put(ArmorItem.Type.CHESTPLATE, 8);
-        p_266655_.put(ArmorItem.Type.HELMET, 3);
-    }), 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.1F, () -> {
-        return Ingredient.of(Items.NETHERITE_INGOT);
-    }),
-    xvan("xvan", 40, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266655_) -> {
-        p_266655_.put(ArmorItem.Type.BOOTS, 4);
-        p_266655_.put(ArmorItem.Type.LEGGINGS, 7);
-        p_266655_.put(ArmorItem.Type.CHESTPLATE, 9);
-        p_266655_.put(ArmorItem.Type.HELMET, 4);
-    }), 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> {
-        return Ingredient.of(Items.NETHERITE_INGOT);
-    }),
-    di("di", 50, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266655_) -> {
-        p_266655_.put(ArmorItem.Type.BOOTS, 5);
-        p_266655_.put(ArmorItem.Type.LEGGINGS, 8);
-        p_266655_.put(ArmorItem.Type.CHESTPLATE, 10);
-        p_266655_.put(ArmorItem.Type.HELMET, 5);
-    }), 30, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.2F, () -> {
-        return Ingredient.of(Items.NETHERITE_INGOT);
-    }),
-    tian("tian", 70, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266655_) -> {
-        p_266655_.put(ArmorItem.Type.BOOTS, 6);
-        p_266655_.put(ArmorItem.Type.LEGGINGS, 9);
-        p_266655_.put(ArmorItem.Type.CHESTPLATE, 11);
-        p_266655_.put(ArmorItem.Type.HELMET, 6);
-    }), 40, SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.2F, () -> {
-        return Ingredient.of(Items.NETHERITE_INGOT);
-    });
+    huang("huang", 30, Util.make(new EnumMap<>(ArmorItem.Type.class), (typeIntegerEnumMap) -> {
+        typeIntegerEnumMap.put(ArmorItem.Type.BOOTS, 3);
+        typeIntegerEnumMap.put(ArmorItem.Type.LEGGINGS, 6);
+        typeIntegerEnumMap.put(ArmorItem.Type.CHESTPLATE, 8);
+        typeIntegerEnumMap.put(ArmorItem.Type.HELMET, 3);
+    }), 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.1F, () -> Ingredient.of(Iteminit.linghe0.get())),
+    xvan("xvan", 120, Util.make(new EnumMap<>(ArmorItem.Type.class), (typeIntegerEnumMap) -> {
+        typeIntegerEnumMap.put(ArmorItem.Type.BOOTS, 4);
+        typeIntegerEnumMap.put(ArmorItem.Type.LEGGINGS, 7);
+        typeIntegerEnumMap.put(ArmorItem.Type.CHESTPLATE, 9);
+        typeIntegerEnumMap.put(ArmorItem.Type.HELMET, 4);
+    }), 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(Iteminit.linghe1.get())),
+    di("di", 240, Util.make(new EnumMap<>(ArmorItem.Type.class), (typeIntegerEnumMap) -> {
+        typeIntegerEnumMap.put(ArmorItem.Type.BOOTS, 5);
+        typeIntegerEnumMap.put(ArmorItem.Type.LEGGINGS, 8);
+        typeIntegerEnumMap.put(ArmorItem.Type.CHESTPLATE, 10);
+        typeIntegerEnumMap.put(ArmorItem.Type.HELMET, 5);
+    }), 30, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.2F, () -> Ingredient.of(Iteminit.linghe2.get())),
+    tian("tian", 480, Util.make(new EnumMap<>(ArmorItem.Type.class), (typeIntegerEnumMap) -> {
+        typeIntegerEnumMap.put(ArmorItem.Type.BOOTS, 6);
+        typeIntegerEnumMap.put(ArmorItem.Type.LEGGINGS, 9);
+        typeIntegerEnumMap.put(ArmorItem.Type.CHESTPLATE, 11);
+        typeIntegerEnumMap.put(ArmorItem.Type.HELMET, 6);
+    }), 40, SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.2F, () -> Ingredient.of(Iteminit.linghe3.get()));
 
     private final String name;
     private final int durabilityMultiplier;
@@ -69,10 +61,10 @@ public enum ArmorMaterialsCustomize implements ArmorMaterial {
     }
 
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {
-        p_266653_.put(ArmorItem.Type.BOOTS, 13);
-        p_266653_.put(ArmorItem.Type.LEGGINGS, 15);
-        p_266653_.put(ArmorItem.Type.CHESTPLATE, 16);
-        p_266653_.put(ArmorItem.Type.HELMET, 11);
+        p_266653_.put(ArmorItem.Type.BOOTS, 23);
+        p_266653_.put(ArmorItem.Type.LEGGINGS, 25);
+        p_266653_.put(ArmorItem.Type.CHESTPLATE, 27);
+        p_266653_.put(ArmorItem.Type.HELMET, 20);
     });
 
     public static ArmorMaterial getType(int lv) {

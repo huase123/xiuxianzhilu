@@ -192,6 +192,37 @@ public class RERecipeProvider extends RecipeProvider {
         pWriter.accept(BuildLianqidingRecipe.shapedResult(BlockInit.jvlingzhen2.get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.zhenqi.get(),4,5,6,10,11,12,13,14,15,16,17,18,19,20,21));
 
 
+
+
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_helmet0     .get(), 1).defineLingli(50).defineLingliDensity(30).defines(Iteminit.xvantie0.get(),1,3).defines(Iteminit.lingjin0.get(),2).defines(Iteminit.lingyv0 .get(),4,6));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_chestplate0 .get(), 1).defineLingli(50).defineLingliDensity(30).defines(Iteminit.xvantie0.get(),1,3).defines(Iteminit.lingjin0.get(),4,5,6).defines(Iteminit.lingyv0 .get(),7,8,9));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_leggings0   .get(), 1).defineLingli(50).defineLingliDensity(30).defines(Iteminit.xvantie0.get(),1,2,3).defines(Iteminit.lingjin0.get(),4,6).defines(Iteminit.lingyv0 .get(),7,9));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.linggao0         .get(), 1).defineLingli(50).defineLingliDensity(30).defines(Iteminit.xvantie0.get(),1).defines(Iteminit.lingjin0.get(),3).defines(Iteminit.lingyv0 .get(),2,5).defines(Iteminit.lingmu0 .get(),8));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.lingjian0        .get(), 1).defineLingli(50).defineLingliDensity(30).defines(Iteminit.xvantie0.get(),2).defines(Iteminit.lingjin0.get(),5).defines(Iteminit.lingmu0 .get(),8));
+
+
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_helmet1     .get(), 1).defineLingli(120).defineLingliDensity(55).defines(Iteminit.xvantie1.get(),1,3,10)   .defines(Iteminit.lingjin1.get(),2,11)     .defines(Iteminit.lingyv1 .get(),4,6,12,13));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_chestplate1 .get(), 1).defineLingli(120).defineLingliDensity(55).defines(Iteminit.xvantie1.get(),1,3,10)   .defines(Iteminit.lingjin1.get(),4,5,6,11) .defines(Iteminit.lingyv1 .get(),7,8,9,12,13));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_leggings1   .get(), 1).defineLingli(120).defineLingliDensity(55).defines(Iteminit.xvantie1.get(),1,2,3,10) .defines(Iteminit.lingjin1.get(),4,6,11)   .defines(Iteminit.lingyv1 .get(),7,9,12,13));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_boots1      .get(), 1).defineLingli(120).defineLingliDensity(55).defines(Iteminit.xvantie1.get(),1,10)     .defines(Iteminit.lingjin1.get(),3,11)     .defines(Iteminit.lingyv1 .get(),4,6,12,13));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.linggao1         .get(), 1).defineLingli(120).defineLingliDensity(55).defines(Iteminit.xvantie1.get(),1,10)     .defines(Iteminit.lingjin1.get(),3,11)     .defines(Iteminit.lingyv1 .get(),2,5,12,13).defines(Iteminit.lingmu1 .get(),8));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.lingjian1        .get(), 1).defineLingli(120).defineLingliDensity(55).defines(Iteminit.xvantie1.get(),2,10)     .defines(Iteminit.lingjin1.get(),5,11)     .defines(Iteminit.lingyv1 .get(),12,13).defines(Iteminit.lingmu1 .get(),8));
+
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_helmet2     .get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.xvantie2.get(),1,3,10,14,15)   .defines(Iteminit.lingjin2.get(),2,11,16,17)     .defines(Iteminit.lingyv2 .get(),4,6,12,13,18,19,20,21));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_chestplate2 .get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.xvantie2.get(),1,3,10,14,15)   .defines(Iteminit.lingjin2.get(),4,5,6,11,16,17) .defines(Iteminit.lingyv2 .get(),7,8,9,12,13,18,19,20,21));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_leggings2   .get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.xvantie2.get(),1,2,3,10,14,15) .defines(Iteminit.lingjin2.get(),4,6,11,16,17)   .defines(Iteminit.lingyv2 .get(),7,9,12,13,18,19,20,21));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_boots2      .get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.xvantie2.get(),1,10,14,15)     .defines(Iteminit.lingjin2.get(),3,11,16,17)     .defines(Iteminit.lingyv2 .get(),4,6,12,13,18,19,20,21));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.linggao2         .get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.xvantie2.get(),1,10,14,15)     .defines(Iteminit.lingjin2.get(),3,11,16,17)     .defines(Iteminit.lingyv2 .get(),2,5,12,13,18,19,20,21).defines(Iteminit.lingmu2 .get(),8));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.lingjian2        .get(), 1).defineLingli(240).defineLingliDensity(80).defines(Iteminit.xvantie2.get(),2,10,14,15)     .defines(Iteminit.lingjin2.get(),5,11,16,17)     .defines(Iteminit.lingyv2 .get(),12,13,18,19,20,21).defines(Iteminit.lingmu2 .get(),8));
+
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_helmet3     .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),1,3,10,14,15,22)   .defines(Iteminit.lingjin3.get(),2,11,16,17,23)     .defines(Iteminit.lingyv3 .get(),4,6,12,13,18,19,20,21,24,25));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_chestplate3 .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),1,3,10,14,15,22)   .defines(Iteminit.lingjin3.get(),4,5,6,11,16,17,23) .defines(Iteminit.lingyv3 .get(),7,8,9,12,13,18,19,20,21,24,25));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_leggings3   .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),1,2,3,10,14,15,22) .defines(Iteminit.lingjin3.get(),4,6,11,16,17,23)   .defines(Iteminit.lingyv3 .get(),7,9,12,13,18,19,20,21,24,25));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.ling_boots3      .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),1,10,14,15,22)     .defines(Iteminit.lingjin3.get(),3,11,16,17,23)     .defines(Iteminit.lingyv3 .get(),4,6,12,13,18,19,20,21,24,25));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.linggao3         .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),1,10,14,15,22)     .defines(Iteminit.lingjin3.get(),3,11,16,17,23)     .defines(Iteminit.lingyv3 .get(),2,5,12,13,18,19,20,21,24,25).defines(Iteminit.lingmu3 .get(),8));
+        pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.lingjian3        .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),2,10,14,15,22)     .defines(Iteminit.lingjin3.get(),5,11,16,17,23)     .defines(Iteminit.lingyv3 .get(),12,13,18,19,20,21,24,25).defines(Iteminit.lingmu3 .get(),8));
+
+
     }
 
     private @NotNull Item getzhiwu(String s) {

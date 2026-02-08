@@ -53,21 +53,15 @@ public class Iteminit {
     public static final RegistryObject<Item> ling_leggings0   = registerArrom("ling_leggings0"  ,  () -> new LingArmorItem(0,ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> ling_boots0      = registerArrom("ling_boots0"     ,  () -> new LingArmorItem(0,ArmorItem.Type.BOOTS));
 
-
-
     public static final RegistryObject<Item> ling_helmet1     = registerArrom("ling_helmet1",      () -> new LingArmorItem(1,ArmorItem.Type.HELMET));
     public static final RegistryObject<Item> ling_chestplate1 = registerArrom("ling_chestplate1",  () -> new LingArmorItem(1,ArmorItem.Type.CHESTPLATE));
     public static final RegistryObject<Item> ling_leggings1   = registerArrom("ling_leggings1",    () -> new LingArmorItem(1,ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> ling_boots1      = registerArrom("ling_boots1",       () -> new LingArmorItem(1,ArmorItem.Type.BOOTS));
 
-
-
     public static final RegistryObject<Item> ling_helmet2     = registerArrom("ling_helmet2",      () -> new LingArmorItem(2,ArmorItem.Type.HELMET));
     public static final RegistryObject<Item> ling_chestplate2 = registerArrom("ling_chestplate2",  () -> new LingArmorItem(2,ArmorItem.Type.CHESTPLATE));
     public static final RegistryObject<Item> ling_leggings2   = registerArrom("ling_leggings2",    () -> new LingArmorItem(2,ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> ling_boots2      = registerArrom("ling_boots2",       () -> new LingArmorItem(2,ArmorItem.Type.BOOTS));
-
-
 
     public static final RegistryObject<Item> ling_helmet3     = registerArrom("ling_helmet3",      () -> new LingArmorItem(3,ArmorItem.Type.HELMET));
     public static final RegistryObject<Item> ling_chestplate3 = registerArrom("ling_chestplate3",  () -> new LingArmorItem(3,ArmorItem.Type.CHESTPLATE));
