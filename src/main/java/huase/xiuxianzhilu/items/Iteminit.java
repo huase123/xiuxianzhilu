@@ -10,6 +10,7 @@ import huase.xiuxianzhilu.items.jingjie.JingjieSampleItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -33,6 +34,7 @@ public class Iteminit {
     public static List<RegistryObject<Item>> fabaolist = new ArrayList();
     public static List<RegistryObject<Item>> cailiaolist = new ArrayList();
     public static List<RegistryObject<Item>> danyaolist = new ArrayList();
+    public static List<RegistryObject<Item>> arromlist = new ArrayList();
 
 
     public static final RegistryObject<Item> linggao0 = ITEMS.register("linggao0", () -> new ToolItem(0));
@@ -44,6 +46,34 @@ public class Iteminit {
     public static final RegistryObject<Item> lingjian1 = ITEMS.register("lingjian1", () -> new LingSwordItem(1));
     public static final RegistryObject<Item> lingjian2 = ITEMS.register("lingjian2", () -> new LingSwordItem(2));
     public static final RegistryObject<Item> lingjian3 = ITEMS.register("lingjian3", () -> new LingSwordItem(3));
+
+
+    public static final RegistryObject<Item> ling_helmet0     = registerArrom("ling_helmet0"    ,  () -> new LingArmorItem(0,ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> ling_chestplate0 = registerArrom("ling_chestplate0",  () -> new LingArmorItem(0,ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> ling_leggings0   = registerArrom("ling_leggings0"  ,  () -> new LingArmorItem(0,ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> ling_boots0      = registerArrom("ling_boots0"     ,  () -> new LingArmorItem(0,ArmorItem.Type.BOOTS));
+
+
+
+    public static final RegistryObject<Item> ling_helmet1     = registerArrom("ling_helmet1",      () -> new LingArmorItem(1,ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> ling_chestplate1 = registerArrom("ling_chestplate1",  () -> new LingArmorItem(1,ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> ling_leggings1   = registerArrom("ling_leggings1",    () -> new LingArmorItem(1,ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> ling_boots1      = registerArrom("ling_boots1",       () -> new LingArmorItem(1,ArmorItem.Type.BOOTS));
+
+
+
+    public static final RegistryObject<Item> ling_helmet2     = registerArrom("ling_helmet2",      () -> new LingArmorItem(2,ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> ling_chestplate2 = registerArrom("ling_chestplate2",  () -> new LingArmorItem(2,ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> ling_leggings2   = registerArrom("ling_leggings2",    () -> new LingArmorItem(2,ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> ling_boots2      = registerArrom("ling_boots2",       () -> new LingArmorItem(2,ArmorItem.Type.BOOTS));
+
+
+
+    public static final RegistryObject<Item> ling_helmet3     = registerArrom("ling_helmet3",      () -> new LingArmorItem(3,ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> ling_chestplate3 = registerArrom("ling_chestplate3",  () -> new LingArmorItem(3,ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> ling_leggings3   = registerArrom("ling_leggings3",    () -> new LingArmorItem(3,ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> ling_boots3      = registerArrom("ling_boots3",       () -> new LingArmorItem(3,ArmorItem.Type.BOOTS));
+
     public static final RegistryObject<Item> celingzhu = ITEMS.register("celingzhu", () -> new Item(new Item.Properties().stacksTo(1)) {
         public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
             pTooltip.add(Component.translatable("拿手上可观察到天地间的灵力浓度").withStyle(ChatFormatting.GREEN));
@@ -165,6 +195,11 @@ public class Iteminit {
     private static  <T extends Item> RegistryObject<Item> registerGongfa(String string, Supplier<T> item) {
         RegistryObject<Item> register = ITEMS.register(string, item);
         gongfaSamplelist.add(register);
+        return register;
+    }
+    private static  <T extends Item> RegistryObject<Item> registerArrom(String string, Supplier<T> item) {
+        RegistryObject<Item> register = ITEMS.register(string, item);
+        arromlist.add(register);
         return register;
     }
     private static  <T extends Item> RegistryObject<Item> registerJingjie(String string, Supplier<T> item) {

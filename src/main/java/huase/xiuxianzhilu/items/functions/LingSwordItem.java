@@ -54,7 +54,7 @@ public class LingSwordItem extends SwordItem {
         pTooltip.add(Component.translatable("除本拥有更强大的属性，还能减少使用者的灵力消耗").withStyle(ChatFormatting.GREEN));
         pTooltip.add(Component.translatable("玩家受伤与攻击都需要消耗灵力来获得属性的增幅").withStyle(ChatFormatting.DARK_GRAY));
 
-        int pow = (int) (Math.pow(0.8f, LV + 1)*100);
+        int pow = (int) (getLinglixiaohaoCoefficient()*100);
         pTooltip.add(Component.translatable("消耗削减:").append(Component.translatable(pow+"%").withStyle(ChatFormatting.YELLOW)));
     }
 }

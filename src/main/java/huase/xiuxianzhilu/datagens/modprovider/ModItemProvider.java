@@ -55,6 +55,7 @@ public class ModItemProvider extends ItemModelProvider {
         Iteminit.fabaolist.stream().forEach(c ->simpleItem(c));
         Iteminit.cailiaolist.stream().forEach(c ->simpleItem(c));
         Iteminit.danyaolist.stream().forEach(c ->simpleItem(c));
+        Iteminit.arromlist.stream().forEach(c ->simpleItem(c));
 
         BlockInit.zhiwuseeditemlist.stream().forEach(c -> simpleblockItem(c));
         BlockInit.zhiwuitemlist.stream().forEach(c ->simpleZhiwuItem(c));

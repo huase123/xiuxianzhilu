@@ -134,6 +134,30 @@ public class ModZHLanguageProvider extends LanguageProvider {
         this.add(Iteminit.lingjian2.get(),  "§e<地>-§b灵剑");
         this.add(Iteminit.lingjian3.get(),  "§d<天>-§b灵剑");
 
+
+        this.add(Iteminit.ling_helmet0.get(),  "§a<黄>-§b灵头盔");
+        this.add(Iteminit.ling_helmet1.get(),  "§b<玄>-§b灵头盔");
+        this.add(Iteminit.ling_helmet2.get(),  "§e<地>-§b灵头盔");
+        this.add(Iteminit.ling_helmet3.get(),  "§d<天>-§b灵头盔");
+
+        this.add(Iteminit.ling_chestplate0.get(),  "§a<黄>-§b灵胸甲");
+        this.add(Iteminit.ling_chestplate1.get(),  "§b<玄>-§b灵胸甲");
+        this.add(Iteminit.ling_chestplate2.get(),  "§e<地>-§b灵胸甲");
+        this.add(Iteminit.ling_chestplate3.get(),  "§d<天>-§b灵胸甲");
+
+        this.add(Iteminit.ling_leggings0.get(),  "§a<黄>-§b灵护腿");
+        this.add(Iteminit.ling_leggings1.get(),  "§b<玄>-§b灵护腿");
+        this.add(Iteminit.ling_leggings2.get(),  "§e<地>-§b灵护腿");
+        this.add(Iteminit.ling_leggings3.get(),  "§d<天>-§b灵护腿");
+
+        this.add(Iteminit.ling_boots0.get(),  "§a<黄>-§b灵鞋子");
+        this.add(Iteminit.ling_boots1.get(),  "§b<玄>-§b灵鞋子");
+        this.add(Iteminit.ling_boots2.get(),  "§e<地>-§b灵鞋子");
+        this.add(Iteminit.ling_boots3.get(),  "§d<天>-§b灵鞋子");
+
+
+
+
         this.add(Iteminit.jiezhi0.get(),  "法宝:§a---灵戒指---§f<§a黄§f>阶");
         this.add(Iteminit.jiezhi1.get(),  "法宝:§b---灵戒指---§f<§b玄§f>阶");
         this.add(Iteminit.jiezhi2.get(),  "法宝:§e---灵戒指---§f<§e地§f>阶");
