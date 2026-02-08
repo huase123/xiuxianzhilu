@@ -2,10 +2,16 @@ package huase.xiuxianzhilu.registrie;
 
 import huase.xiuxianzhilu.ModMain;
 import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.danyao.DanyaoTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingGen;
+import huase.xiuxianzhilu.capabilitys.capability.entityliving.EntitylivingTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoGen;
+import huase.xiuxianzhilu.capabilitys.capability.fabao.FabaoTypesInIt;
 import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaGen;
+import huase.xiuxianzhilu.capabilitys.capability.gongfa.GongfaTypesInit;
 import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieGen;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.LingxiujingjieTypesInIt;
+import huase.xiuxianzhilu.capabilitys.capability.jingjie.lings.LingxiuJingjieSample;
 import huase.xiuxianzhilu.recipe.MultiBlockRecipeSerializer;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -43,7 +49,21 @@ public class NewRegistries {
      */
     public static void registerNewRegistry(NewRegistryEvent event) {
 
-        event.create(new RegistryBuilder<MultiBlockRecipeSerializer<?>>().setName(MultiBlockRecipeSerializer_Resourcekey.location()).setMaxID(1000), functionTypes -> MultiBlockRecipeSerializer_IForgeRegistry = functionTypes);
+        event.create(new RegistryBuilder<MultiBlockRecipeSerializer<?>>().setName(MultiBlockRecipeSerializer_Resourcekey.location()).setMaxID(1000),
+                functionTypes -> MultiBlockRecipeSerializer_IForgeRegistry = functionTypes);
+
+
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(LingxiujingjieGen.lingxiu_jingjie_key.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(GongfaGen.gongfa_key.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(FabaoGen.fabao_key.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(DanyaoGen.danyao_key.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(EntitylivingGen.entityliving_key.location()).setMaxID(1000));
+
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(LingxiujingjieTypesInIt.lingxiu_jingjie_type.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(GongfaTypesInit.gongfa_type_key.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(FabaoTypesInIt.fabao_type.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(DanyaoTypesInIt.danyao_type.location()).setMaxID(1000));
+        event.create(new RegistryBuilder<LingxiuJingjieSample>().setName(EntitylivingTypesInIt.entityliving_type.location()).setMaxID(1000));
 //        event.create(new RegistryBuilder<LingxiuJingjie>().setName(LINGXIUJINGJIE_KEY.location()).setMaxID(1000), functionTypes -> LingxiuJingjie_IForgeRegistry = functionTypes);
 //        event.create(new RegistryBuilder<LingxiuJingjie>().setName(LINGXIUJINGJIE_KEY.location()).setMaxID(1000));
   }
