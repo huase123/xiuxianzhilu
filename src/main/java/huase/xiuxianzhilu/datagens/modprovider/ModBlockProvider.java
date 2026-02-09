@@ -128,13 +128,13 @@ public class ModBlockProvider extends BlockStateProvider {
 
     private void ore(RegistryObject<Block> blockRegistryObject) {
         this.getVariantBuilder(blockRegistryObject.get()).forAllStates((state) ->  new ConfiguredModel[]{new ConfiguredModel(
-                this.models().cross(
+                this.models().cubeAll(
                                 blockRegistryObject.getId().getPath(),
-                                ModMain.prefix( "item/" + blockRegistryObject.getId().getPath())
+                                ModMain.prefix( "block/" + blockRegistryObject.getId().getPath())
                         )
                         .renderType("cutout"))});
-
     }
+
     public void logBlockWithItem(RegistryObject<Block> block) {
         logBlock((RotatedPillarBlock)block.get());
         simpleBlockItem(block.get(),models().getExistingFile(modLoc("block/" + block.getId().getPath())));

@@ -157,9 +157,11 @@ public class BlockInit {
 
     private static <T extends Block> RegistryObject<T> registerOreBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        ITEMS.register(name + "_ore", () -> new BlockItem(toReturn.get(), new Item.Properties()));
         OreBlocklist.add((RegistryObject<Block>)toReturn);
         return toReturn;
     }
+
     private static <T extends Block> RegistryObject<T> registerBlockWithBlockItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));

@@ -9,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -65,7 +66,15 @@ public class ModItemProvider extends ItemModelProvider {
         simpleblockItem(BlockInit.lingmu2_SAPLING);
         simpleblockItem(BlockInit.lingmu3_SAPLING);
 
+        BlockInit.OreBlocklist.forEach(this::oreblockitem);
+
     }
+
+    private void oreblockitem(RegistryObject<Block> block) {
+        String blockName = block.getId().getPath();
+        withExistingParent(blockName + "_ore", ModMain.prefix("block/" + blockName));
+    }
+
     private void modleItem(RegistryObject<Item> itemRegistryObject) {
 
         String currentTrimName =itemRegistryObject.getKey().location().getPath();
