@@ -9,6 +9,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
@@ -223,6 +226,25 @@ public class RERecipeProvider extends RecipeProvider {
         pWriter.accept(BuildLianqidingRecipe.shapedResult(Iteminit.lingjian3        .get(), 1).defineLingli(480).defineLingliDensity(120).defines(Iteminit.xvantie3.get(),2,10,14,15,22)     .defines(Iteminit.lingjin3.get(),5,11,16,17,23)     .defines(Iteminit.lingyv3 .get(),12,13,18,19,20,21,24,25).defines(Iteminit.lingmu3 .get(),8));
 
 
+
+//矿物熔炼
+        addSmelting_recipe(pWriter,Iteminit.xvantie0.get(),BlockInit.xvantie0.get());
+        addSmelting_recipe(pWriter,Iteminit.xvantie1.get(),BlockInit.xvantie1.get());
+        addSmelting_recipe(pWriter,Iteminit.xvantie2.get(),BlockInit.xvantie2.get());
+        addSmelting_recipe(pWriter,Iteminit.xvantie3.get(),BlockInit.xvantie3.get());
+        addSmelting_recipe(pWriter,Iteminit.lingjin0.get(),BlockInit.lingjin0.get());
+        addSmelting_recipe(pWriter,Iteminit.lingjin1.get(),BlockInit.lingjin1.get());
+        addSmelting_recipe(pWriter,Iteminit.lingjin2.get(),BlockInit.lingjin2.get());
+        addSmelting_recipe(pWriter,Iteminit.lingjin3.get(),BlockInit.lingjin3.get());
+        addSmelting_recipe(pWriter,Iteminit.lingyv0 .get(),BlockInit.lingyv0 .get());
+        addSmelting_recipe(pWriter,Iteminit.lingyv1 .get(),BlockInit.lingyv1 .get());
+        addSmelting_recipe(pWriter,Iteminit.lingyv2 .get(),BlockInit.lingyv2 .get());
+        addSmelting_recipe(pWriter,Iteminit.lingyv3 .get(),BlockInit.lingyv3 .get());
+    }
+
+    private void addSmelting_recipe(Consumer<FinishedRecipe> pWriter, ItemLike pResult, ItemLike input) {
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, pResult, 0.7F, 200, RecipeSerializer.SMELTING_RECIPE).group("xiuxianzhilu").unlockedBy(getHasName(input), has(input))
+                .save(pWriter, getItemName(pResult) + "_from_smelting" + "_" + getItemName(input));
     }
 
     private @NotNull Item getzhiwu(String s) {
